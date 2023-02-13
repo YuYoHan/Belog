@@ -1,2 +1,0 @@
-# velog
-velog team project
