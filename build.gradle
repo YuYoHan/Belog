@@ -36,7 +36,7 @@ dependencies {
     // log4j2
     implementation 'org.springframework.boot:spring-boot-starter-log4j2'
     // mybatis
-    implementation group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-starter', version: '3.0.1'
+    implementation group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-starter', version: '2.3.0'
 
 
 }
