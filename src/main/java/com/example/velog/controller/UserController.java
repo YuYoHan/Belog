@@ -29,14 +29,21 @@ public class UserController {
 
     @PostMapping("/signUp")
     public String signUp(@Validated UserDTO userDTO, Errors errors, HttpServletResponse resp, Model model) {
+        // post요청시 넘어온 user 입력값에서 Validation에 걸리는 경우
         if(errors.hasErrors()) {
             // 회원 가입 실패시, 입력 데이터를 유지
             model.addAttribute("userDTO", userDTO);
 
             // 유효성 통과 못한 필드와 메시지를 핸들링
+            // 회원가입 실패시 message 값들을 모델에 매핑해서 View로 전달
             Map<String, String> validatorResult = userService.validateHandling(errors);
+
+
+            // map.keySet() -> 모든 key값을 갖고온다.
+            // 그 갖고온 키로 반복문을 통해 키와 에러 메세지로 매핑
             for (String key: validatorResult.keySet()
                  ) {
+                // ex) model.addAtrribute("valid_id", "아이디는 필수 입력사항 입니다.")
                 model.addAttribute(key,validatorResult.get(key));
             }
             return "/signUp";
