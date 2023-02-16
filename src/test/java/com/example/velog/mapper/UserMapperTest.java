@@ -42,6 +42,5 @@ class UserMapperTest {
         Assertions.assertThat(p1.getUserPw()).isEqualTo(password);
         Assertions.assertThat(p1.getUserName()).isEqualTo(name);
         Assertions.assertThat(p1.getUserAddr()).isEqualTo(addr);
-
     }
 }
