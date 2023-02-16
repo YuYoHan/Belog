@@ -14,5 +14,4 @@ public class UserDTO {
     private String userPw;
     private String userName;
     private String userAddr;
-    private MultipartFile userImg;
 }
