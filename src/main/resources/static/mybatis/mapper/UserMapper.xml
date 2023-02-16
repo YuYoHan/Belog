@@ -4,6 +4,6 @@
 
 <mapper namespace="com.example.velog.mapper.UserMapper">
     <insert id="signUp">
-        insert into user(userEmail, userPw, userName, userAddr) values (#{userEmail},#{userPw}, #{userName}, #{userAddr})
+        insert into user(userEmail, userPw, userName, userAddr, userImg) values (#{userEmail},#{userPw}, #{userName}, #{userAddr}, #{userImg})
     </insert>
 </mapper>
