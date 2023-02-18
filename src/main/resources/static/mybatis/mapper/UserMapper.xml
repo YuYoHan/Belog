@@ -4,6 +4,10 @@
 
 <mapper namespace="com.example.velog.mapper.UserMapper">
     <insert id="signUp">
-        insert into user(userEmail, userPw, userName, userAddr, userImg) values (#{userEmail},#{userPw}, #{userName}, #{userAddr}, #{userImg})
+        insert into user(userEmail, userPw, userName, userAddr, userAddrDetail, userAddrEtc, userImg)
+        values (#{userEmail},#{userPw}, #{userName}, #{userAddr}, #{userAddrDeail}, #{userAddrEtc}, #{userImg})
     </insert>
+    <select id="login" resultType="com.example.velog.domain.UserDTO">
+        select * from user where userId=#{userId} and userPw=#{userPw}
+    </select>
 </mapper>

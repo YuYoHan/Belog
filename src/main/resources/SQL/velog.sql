@@ -1,6 +1,11 @@
 create database velog;
 use velog;
 
+drop table user;
+drop table board;
+drop table comment;
+drop table like_sth;
+
 create table user(
 	userId bigint primary key auto_increment,
     userEmail varchar(300) unique,
