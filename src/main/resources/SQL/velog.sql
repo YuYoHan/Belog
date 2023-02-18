@@ -1,12 +1,19 @@
 create database velog;
 use velog;
 
+drop table user;
+drop table board;
+drop table comment;
+drop table like_sth;
+
 create table user(
 	userId bigint primary key auto_increment,
     userEmail varchar(300) unique,
     userPw varchar(300) not null,
     userName varchar(300) not null,
     userAddr varchar(1000) not null,
+    userAddrDetail varchar(1000) not null ,
+    userAddrEtc varchar(300) not null ,
     userImg varchar(1000) not null
 );
 
