@@ -24,17 +24,22 @@ public class UserDTO {
     private String userPw;
     @NotBlank(message = "이름은 필수 입력사항 입니다.")
     private String userName;
-    @NotBlank(message = "주소는 필수 입력사항 입니다.")
+    @NotBlank(message = "우편번호는 필수 입력사항 입니다.")
     private String userAddr;
+
+    private String userAddrDetail;
+    private String userAddrEtc;
 
     private MultipartFile userImg;
 
     @Builder
-    public UserDTO(String userEmail, String userPw, String userName, String userAddr, MultipartFile userImg) {
+    public UserDTO(String userEmail, String userPw, String userName, String userAddr, String userAddrDetail, String userAddrEtc, MultipartFile userImg) {
         this.userEmail = userEmail;
         this.userPw = userPw;
         this.userName = userName;
         this.userAddr = userAddr;
+        this.userAddrDetail = userAddrDetail;
+        this.userAddrEtc = userAddrEtc;
         this.userImg = userImg;
     }
 

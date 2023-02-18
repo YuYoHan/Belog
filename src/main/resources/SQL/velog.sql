@@ -7,8 +7,8 @@ create table user(
     userPw varchar(300) not null,
     userName varchar(300) not null,
     userAddr varchar(1000) not null,
-    userAddrDetial varchar(1000) not null ,
-    userAddretc varchar(300) not null ,
+    userAddrDetail varchar(1000) not null ,
+    userAddrEtc varchar(300) not null ,
     userImg varchar(1000) not null
 );
 
