@@ -35,4 +35,10 @@ public class UserServiceImpl implements UserService{
         }
         return  validatorResult;
     }
+
+    @Override
+    public UserDTO login(String userId, String userPw) {
+        UserDTO user = userMapper.login(userId, userPw);
+        return user;
+    }
 }
