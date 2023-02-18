@@ -8,11 +8,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Iterator;
 import java.util.Map;
 
 @Controller
@@ -56,6 +59,19 @@ public class UserController {
         }
         return "redirect:/";
     }
+
+    @GetMapping("/login")
+    public String loginForm(@CookieValue("userEmail") String userEmail, Model model) {
+        if(userEmail == null) return "login";
+
+        log.info(userEmail);
+        model.addAttribute("loginEmail", userEmail);
+        return "login";
+    }
+
+
+    @PostMapping("/login")
+    public String login(String userId, String userPw, )
 
 
 
