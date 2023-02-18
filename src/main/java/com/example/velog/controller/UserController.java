@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -71,7 +72,15 @@ public class UserController {
 
 
     @PostMapping("/login")
-    public String login(String userId, String userPw, )
+    public String login(String userId, String userPw, HttpSession session, Model model) {
+        UserDTO user =  userService.login(userId, userPw);
+
+        if(user != null) {
+            session.setAttribute("userEmail", user.getUserId());
+            model.addAttribute("loginEmail", session.getAttribute("userEmail"));
+        }
+        return "home";
+    }
 
 
 
