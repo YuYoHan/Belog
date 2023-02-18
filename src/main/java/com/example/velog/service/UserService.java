@@ -9,4 +9,6 @@ public interface UserService {
     boolean signUp(UserDTO userDTO);
 
     Map<String,String> validateHandling(Errors errors);
+
+    UserDTO login(String userId, String userPw);
 }
