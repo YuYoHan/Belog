@@ -82,6 +82,11 @@ public class UserController {
         return "home";
     }
 
+    @GetMapping("/logOut")
+    public String logOut(HttpServletRequest req) {
+        req.getSession().invalidate();
+        return "redirect:/";
+    }
 
 
 
