@@ -88,7 +88,24 @@ public class UserController {
         return "redirect:/";
     }
 
+    @GetMapping("/remove")
+    public String remove() {
+        return "/user/remove";
+    }
 
+    @PostMapping("/remove")
+    public String remove(String userEmail, String userPw) {
+        log.info("아이디 : " + userEmail);
+        log.info("비밀번호 : " + userPw);
+
+        UserDTO user = userService.remove(userEmail, userPw);
+        if(user != null) {
+            return "redirect:/";
+        } else {
+            return "/user/remove";
+        }
+
+    }
 
 
 }

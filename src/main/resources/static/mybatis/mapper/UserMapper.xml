@@ -10,5 +10,7 @@
     <select id="login" resultType="com.example.velog.domain.UserDTO">
         select * from user where userEmail=#{userEmail} and userPw=#{userPw}
     </select>
-
+    <delete id="deleteUser" parameterType="String">
+        delete from user where userEmail=#{userEmail} and userPw=#{userPw}
+    </delete>
 </mapper>
