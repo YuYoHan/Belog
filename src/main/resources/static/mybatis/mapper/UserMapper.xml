@@ -8,6 +8,7 @@
         values (#{userEmail},#{userPw}, #{userName}, #{userAddr}, #{userAddrDeail}, #{userAddrEtc}, #{userImg})
     </insert>
     <select id="login" resultType="com.example.velog.domain.UserDTO">
-        select * from user where userId=#{userId} and userPw=#{userPw}
+        select * from user where userEmail=#{userEmail} and userPw=#{userPw}
     </select>
+
 </mapper>

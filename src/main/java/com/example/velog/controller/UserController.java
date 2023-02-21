@@ -72,11 +72,11 @@ public class UserController {
 
 
     @PostMapping("/login")
-    public String login(String userId, String userPw, HttpSession session, Model model) {
-        UserDTO user =  userService.login(userId, userPw);
+    public String login(String userEmail, String userPw, HttpSession session, Model model) {
+        UserDTO user =  userService.login(userEmail, userPw);
 
         if(user != null) {
-            session.setAttribute("userEmail", user.getUserId());
+            session.setAttribute("userEmail", user.getUserEmail());
             model.addAttribute("loginEmail", session.getAttribute("userEmail"));
         }
         return "home";
@@ -87,6 +87,7 @@ public class UserController {
         req.getSession().invalidate();
         return "redirect:/";
     }
+
 
 
 
