@@ -14,4 +14,6 @@ public interface UserService {
     Map<String,String> validateHandling(Errors errors);
 
     UserDTO login(String userId, String userPw);
+
+    UserDTO remove(String userEmail, String userPw);
 }

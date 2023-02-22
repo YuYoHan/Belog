@@ -41,4 +41,10 @@ public class UserServiceImpl implements UserService{
         UserDTO user = userMapper.login(userId, userPw);
         return user;
     }
+
+    @Override
+    public UserDTO remove(String userEmail, String userPw) {
+        return userMapper.deleteUser(userEmail, userPw);
+    }
+
 }

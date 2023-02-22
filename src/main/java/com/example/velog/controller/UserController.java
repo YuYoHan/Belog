@@ -72,11 +72,11 @@ public class UserController {
 
 
     @PostMapping("/login")
-    public String login(String userId, String userPw, HttpSession session, Model model) {
-        UserDTO user =  userService.login(userId, userPw);
+    public String login(String userEmail, String userPw, HttpSession session, Model model) {
+        UserDTO user =  userService.login(userEmail, userPw);
 
         if(user != null) {
-            session.setAttribute("userEmail", user.getUserId());
+            session.setAttribute("userEmail", user.getUserEmail());
             model.addAttribute("loginEmail", session.getAttribute("userEmail"));
         }
         return "home";
@@ -88,6 +88,24 @@ public class UserController {
         return "redirect:/";
     }
 
+    @GetMapping("/remove")
+    public String remove() {
+        return "/user/remove";
+    }
+
+    @PostMapping("/remove")
+    public String remove(String userEmail, String userPw) {
+        log.info("아이디 : " + userEmail);
+        log.info("비밀번호 : " + userPw);
+
+        UserDTO user = userService.remove(userEmail, userPw);
+        if(user != null) {
+            return "redirect:/";
+        } else {
+            return "/user/remove";
+        }
+
+    }
 
 
 }
