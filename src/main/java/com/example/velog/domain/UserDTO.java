@@ -16,6 +16,7 @@ public class UserDTO {
     private Long userId;
     @NotBlank(message = "이메일은 필수 입력사항 입니다.")
     // 이메일 형식이여야 함
+    @Pattern(regexp = "^(?:\\w+\\.?)*\\w+@(?:\\w+\\.)+\\w+$", message = "이메일 형식이 올바르지 않습니다.")
     @Email(message = "이메일 형식에 맞지 않습니다.")
     private String userEmail;
     @NotBlank(message = "비밀번호는 필수 입력 값입니다.")

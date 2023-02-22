@@ -45,3 +45,4 @@ create table like_sth(
     foreign key pk_boardNum2(boardNum) references board(boardNum)
 );
 
+select * from user;
