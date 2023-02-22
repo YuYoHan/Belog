@@ -61,6 +61,10 @@ public class UserController {
         return "redirect:/";
     }
 
+    // 중복체크
+
+
+
     @GetMapping("/login")
     public String loginForm(@CookieValue("userEmail") String userEmail, Model model) {
         if(userEmail == null) return "login";
@@ -76,6 +80,7 @@ public class UserController {
         UserDTO user =  userService.login(userEmail, userPw);
 
         if(user != null) {
+            session.setAttribute("userId", user.getUserId());
             session.setAttribute("userEmail", user.getUserEmail());
             model.addAttribute("loginEmail", session.getAttribute("userEmail"));
         }
