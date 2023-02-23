@@ -6,4 +6,6 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface BoardMapper {
     int writeBoard(BoardDTO boardDTO);
+    
+    int deleteBoard(Long boardNum);
 }

@@ -14,4 +14,9 @@ public class BoardServiceImpl implements BoardService{
     public boolean writeBoard(BoardDTO boardDTO) {
         return boardMapper.writeBoard(boardDTO) == 1;
     }
+
+    @Override
+    public boolean deleteBoard(Long boardNum) {
+        return boardMapper.deleteBoard(boardNum) == 1;
+    }
 }
