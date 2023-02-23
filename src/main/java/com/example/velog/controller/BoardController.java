@@ -18,12 +18,6 @@ import java.sql.Timestamp;
 @Slf4j
 public class BoardController {
 
-    @GetMapping("/")
-    @ResponseBody
-    public String home() {
-        return "home";
-    }
-
     private BoardService boardService;
 
     @PostMapping ("/write")
@@ -46,6 +40,17 @@ public class BoardController {
             // 실패 했을 시 예외처리
             // 추가한 컬럼 개수가 1이 아닐때 걸림
             log.error("[게시글 추가 오류] - ㅇㅇㅇ");
+        }
+        return "redirect:/";
+    }
+
+    @PostMapping("/delete")
+    public String deleteBoard(HttpServletRequest request) {
+        Long deleteBoardNum = Long.parseLong(request.getParameter("boardNum"));
+
+        if(!boardService.deleteBoard(deleteBoardNum)) {
+            // 삭제한 컬럼 개수가 1이 아닐 때 걸림
+            log.error("[게시글 삭제 오류] - ㅇㅇㅇ");
         }
         return "redirect:/";
     }

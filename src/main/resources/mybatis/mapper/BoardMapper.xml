@@ -7,4 +7,7 @@
         insert into board(userId, boardTitle, writeTime, boardContents, hashTag) values (#{userId}, #{boardTitle}, #{writeTime}, #{boardContents}, #{hashTag})
     </insert>
 
+    <delete id="deleteBoard" parameterType="Long">
+        delete from board where boardNum = #{boardNum}
+    </delete>
 </mapper>
