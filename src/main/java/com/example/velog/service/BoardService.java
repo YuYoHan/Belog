@@ -6,4 +6,6 @@ public interface BoardService {
     boolean writeBoard(BoardDTO boardDTO);
 
     boolean deleteBoard(Long boardNum);
+
+    boolean updateBoard(BoardDTO boardDTO);
 }

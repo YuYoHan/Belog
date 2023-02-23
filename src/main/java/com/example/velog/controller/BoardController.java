@@ -54,4 +54,21 @@ public class BoardController {
         }
         return "redirect:/";
     }
+
+    @PostMapping("/update")
+    public String updateBoard(HttpServletRequest request) {
+        Long updateBoardNum = Long.parseLong(request.getParameter("boardNum"));
+        String updateBoardContents = request.getParameter("boardContents");
+
+        BoardDTO boardDTO = BoardDTO.builder()
+                .boardNum(updateBoardNum)
+                .boardContents(updateBoardContents)
+                .build();
+
+        if(!boardService.updateBoard(boardDTO)) {
+            // 업데이트한 컬럼 개수가 1이 아닐 때 걸림
+            log.error("[게시글 수정 오류] - ㅇㅇㅇ");
+        }
+        return "redirect:/";
+    }
 }

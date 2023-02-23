@@ -19,4 +19,9 @@ public class BoardServiceImpl implements BoardService{
     public boolean deleteBoard(Long boardNum) {
         return boardMapper.deleteBoard(boardNum) == 1;
     }
+
+    @Override
+    public boolean updateBoard(BoardDTO boardDTO) {
+        return boardMapper.updateBoard(boardDTO) == 1;
+    }
 }

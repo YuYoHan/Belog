@@ -32,4 +32,10 @@ public class BoardDTO {
         this.boardContents = boardContents;
         this.hashTag = hashTag;
     }
+
+    @Builder
+    public BoardDTO(Long boardNum, String boardContents) {
+        this.boardNum = boardNum;
+        this.boardContents = boardContents;
+    }
 }

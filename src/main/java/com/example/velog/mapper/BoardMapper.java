@@ -8,4 +8,6 @@ public interface BoardMapper {
     int writeBoard(BoardDTO boardDTO);
     
     int deleteBoard(Long boardNum);
+
+    int updateBoard(BoardDTO boardDTO);
 }
