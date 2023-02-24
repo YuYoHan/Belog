@@ -1,2 +1,2 @@
 # velog
-여기는 back-end 작업 공간입니다.
+여기는 PR후 merge하는 공간입니다.
