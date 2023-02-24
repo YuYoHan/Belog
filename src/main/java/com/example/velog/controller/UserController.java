@@ -82,12 +82,11 @@ public class UserController {
         if(user != null) {
             session.setAttribute("userId", user.getUserId());
             session.setAttribute("userEmail", user.getUserEmail());
-            model.addAttribute("loginEmail", session.getAttribute("userEmail"));
         }
         return "home";
     }
 
-    @GetMapping("/logOut")
+    @PostMapping("/logOut")
     public String logOut(HttpServletRequest req) {
         req.getSession().invalidate();
         return "redirect:/";
@@ -95,7 +94,7 @@ public class UserController {
 
     @GetMapping("/remove")
     public String remove() {
-        return "/user/remove";
+        return "/remove";
     }
 
     @PostMapping("/remove")
@@ -107,9 +106,8 @@ public class UserController {
         if(user != null) {
             return "redirect:/";
         } else {
-            return "/user/remove";
+            return "/remove";
         }
-
     }
 
 
