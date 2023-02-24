@@ -10,7 +10,7 @@ export type MypageData = {
    taglist : Array<string>,
    img: string
 }
-
+// testsadasdasdadssad
 function MyPageList() {
    // [
    //    {
