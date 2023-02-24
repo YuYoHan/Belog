@@ -20,7 +20,7 @@ public class BoardController {
 
     private BoardService boardService;
 
-    @PostMapping ("/write")
+    @PostMapping ("/board/write")
     public String insertBoard(HttpServletRequest request) {
         HttpSession session = request.getSession();
         Long userId = (Long)session.getAttribute("userId");
@@ -39,23 +39,23 @@ public class BoardController {
         if(!boardService.writeBoard(boardDTO)) {
             // 실패 했을 시 예외처리
             // 추가한 컬럼 개수가 1이 아닐때 걸림
-            log.error("[게시글 추가 오류] - ㅇㅇㅇ");
+            log.error("[ERROR] : 게시글 추가 오류");
         }
-        return "redirect:/";
+        return "redirect:/board";
     }
 
-    @PostMapping("/delete")
+    @PostMapping("/board/delete")
     public String deleteBoard(HttpServletRequest request) {
         Long deleteBoardNum = Long.parseLong(request.getParameter("boardNum"));
 
         if(!boardService.deleteBoard(deleteBoardNum)) {
             // 삭제한 컬럼 개수가 1이 아닐 때 걸림
-            log.error("[게시글 삭제 오류] - ㅇㅇㅇ");
+            log.error("[ERROR] : 게시글 삭제 오류");
         }
-        return "redirect:/";
+        return "redirect:/board";
     }
 
-    @PostMapping("/update")
+    @PostMapping("/board/update")
     public String updateBoard(HttpServletRequest request) {
         Long updateBoardNum = Long.parseLong(request.getParameter("boardNum"));
         String updateBoardContents = request.getParameter("boardContents");
@@ -67,8 +67,8 @@ public class BoardController {
 
         if(!boardService.updateBoard(boardDTO)) {
             // 업데이트한 컬럼 개수가 1이 아닐 때 걸림
-            log.error("[게시글 수정 오류] - ㅇㅇㅇ");
+            log.error("[ERROR] : 게시글 수정 오류");
         }
-        return "redirect:/";
+        return "redirect:/board";
     }
 }
