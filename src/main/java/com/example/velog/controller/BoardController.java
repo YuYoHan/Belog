@@ -5,13 +5,16 @@ import com.example.velog.service.BoardService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Controller
 @AllArgsConstructor
@@ -70,5 +73,17 @@ public class BoardController {
             log.error("[ERROR] : 게시글 수정 오류");
         }
         return "redirect:/board";
+    }
+
+    @GetMapping("/board")
+    public String findAllBoard(Model model) {
+        model.addAttribute("boardList", boardService.findAllBoard());
+        return "redirect:/";
+    }
+
+    @GetMapping("/board/{boardNum}")
+    public String boardDetail(@PathVariable Long boardNum, Model model) {
+        model.addAttribute("boardDetail", boardService.findBoardByBoardNum(boardNum));
+        return "redirect:/";
     }
 }
