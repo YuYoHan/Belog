@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import styled from "styled-components"
+import BlogLogo from "assets/images/svg/Logosvg"
 
 function Logo() {
    
@@ -7,7 +8,7 @@ function Logo() {
    return(
       <S.Wrapper>
          <Link to='/'>
-            로고
+            <BlogLogo/>
          </Link>
       </S.Wrapper>
    )
@@ -17,17 +18,17 @@ export default Logo
 
 const Wrapper = styled.div`
    
+   & a {
+      display: block;
+      width : 250px;
+      height: auto;
+      & svg {
+         border-radius: 10px;
+      }
+   }
    
 `
-const container = styled.div`
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   font-weight: bold;
-   font-size: 1.3125rem;
-   text-decoration: none;
-`
+
 const S = {
    Wrapper,
-   container,
 }

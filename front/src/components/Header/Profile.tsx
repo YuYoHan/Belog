@@ -23,9 +23,8 @@ function Profile() {
             <S.Profiletoggle  Profilemenu={Profilemenu}>
                <div>
                   <ul>
-                     <li><Link to={'/test1'}>마이 페이지</Link></li>
+                     <li><Link to={'/mypage'}>마이 페이지</Link></li>
                      <li><Link to={'/test2'}>임시 글</Link></li>
-                     <li><Link to={'/test3'}>읽기 목록</Link></li>
                      <li><Link to={'/test4'}>설정</Link></li>
                      <li><Link to={'/test5'}>로그아웃</Link></li>
                   </ul>
@@ -54,9 +53,7 @@ const ProfileBox = styled.div`
    display: block;
    height: 2.5rem;
    width: 2.5rem;
-   box-shadow: rgb(0 0 0 / 9%) 0px 0px 8px;
    border-radius: 50%;
-   object-fit: cover;
    transition: all 0.125s ease-in 0s;
 `
 
@@ -81,7 +78,7 @@ const Profiletoggle = styled.div<{Profilemenu: boolean}>`
       z-index: 5;
       width: 12rem;
       background: #FFFFFF;
-      box-shadow: rgb(0 0 0 / 10%) 0px 0px 8px;
+      box-shadow: 0 5px 25px rgb(0 0 0 / 15%);
    }
 
    & div li {
