@@ -48,10 +48,10 @@ const Wrapper = styled.div`
       & .ql-editor{
          padding: 0;
       }
-
+      
       & .ql-editor.ql-blank::before{
          left: 0;
-         font-family: inherit;
+         font-style: inherit;
       }
    }
 `
