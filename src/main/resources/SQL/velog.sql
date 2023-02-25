@@ -33,7 +33,8 @@ create table comment(
     userId bigint,
     foreign key pk_userId2(userId) references user(userId),
     boardNum bigint,
-    foreign key pk_boardNum(boardNum) references board(boardNum)
+    foreign key pk_boardNum(boardNum) references board(boardNum),
+    commentTime datetime default now()
 );
 
 create table like_sth(
