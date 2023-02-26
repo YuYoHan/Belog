@@ -16,7 +16,6 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.Iterator;
 import java.util.Map;
 
 @Controller
@@ -53,6 +52,10 @@ public class UserController {
             return "/signUp";
         }
         if(userService.signUp(userDTO)) {
+            log.info("result : " + userDTO.getUserId());
+            log.info("result : " + userDTO.getUserEmail());
+            log.info("result : " + userDTO.getUserEmail());
+
             Cookie cookie = new Cookie("userEmail", userDTO.getUserEmail());
             // 30분
             cookie.setMaxAge(1800);
@@ -67,11 +70,11 @@ public class UserController {
 
     @GetMapping("/login")
     public String loginForm(@CookieValue("userEmail") String userEmail, Model model) {
-        if(userEmail == null) return "login";
+        if(userEmail == null) return "/login";
 
         log.info(userEmail);
         model.addAttribute("loginEmail", userEmail);
-        return "login";
+        return "/login";
     }
 
 
