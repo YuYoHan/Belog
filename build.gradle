@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '2.7.8'
     id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+    id 'jacoco'
 }
 
 group = 'com.example'
@@ -18,12 +19,61 @@ configurations {
     }
 }
 
+jacoco {
+    // JaCoCo 버전
+    toolVersion = '0.8.7'
+
+//  테스트결과 리포트를 저장할 경로 변경하는 방법
+//  default는 "$/jacoco"
+//  reportsDir = file("$buildDir/customJacocoReportDir")
+    reportsDirectory = layout.buildDirectory.dir('customJacocoReportDir')
+}
+
+test {
+    // finalizedBy : 이(test) 작업에 대해 주어진 종료자 작업을 추가
+    finalizedBy jacocoTestReport // test 작업이 끝나고 jacocoTestReport를 실행
+}
+jacocoTestReport {
+    // dependsOn : 이 작업에 지정된 종속성을 추가
+    dependsOn test // jacocoTestReport 에 test라는 종속성을 추가
+}
+jacocoTestReport {
+    reports {
+        xml.required = false
+        csv.required = false
+        html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+    }
+}
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.5
+            }
+        }
+
+        rule {
+            enabled = false
+            element = 'CLASS'
+            includes = ['org.gradle.*']
+
+            limit {
+                counter = 'METHOD'
+                value = 'COVEREDRATIO'
+                minimum = 0.5
+            }
+        }
+    }
+}
+
+
 repositories {
     mavenCentral()
 }
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.3.0'
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
