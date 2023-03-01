@@ -4,6 +4,8 @@ import ComentBtn from "components/Coment/ComtentBtn";
 import { MypageData } from "pages/Mypage/components/Myposting/MypageList"
 import { useLocation } from "react-router-dom";
 import styled from "styled-components"
+import EditBtn from "./EditBtn";
+import RemoveBtn from "./RemoveBtn";
 
 function DetailPage() {
 
@@ -13,10 +15,14 @@ function DetailPage() {
    
 
    return (
-      <S.Wrapper>
+      <S.Wrapper> 
          <S.Title>
             {title}
          </S.Title>
+         <S.ButtonWrap>
+            <EditBtn/>
+            <RemoveBtn/>
+         </S.ButtonWrap>
          <S.Content>
             {content}
          </S.Content>
@@ -46,13 +52,20 @@ const Title = styled.div`
    letter-spacing: -.005em;
    color: #000;
 `
+const ButtonWrap = styled.div`
+   display: flex;
+   justify-content: flex-end;
+   margin-top: 3rem;
 
+`
 const Content = styled.div`
    margin: 5rem 0;
 `
 
+
 const S = {
    Wrapper,
    Title,
+   ButtonWrap,
    Content
 }

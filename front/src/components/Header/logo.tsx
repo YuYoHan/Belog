@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import styled from "styled-components"
-import BlogLogo from "assets/images/svg/Logosvg"
+// import BlogLogo from "assets/images/svg/Logosvg"
 
 function Logo() {
    
@@ -8,7 +8,7 @@ function Logo() {
    return(
       <S.Wrapper>
          <Link to='/'>
-            <BlogLogo/>
+            {/* <BlogLogo/> */}
          </Link>
       </S.Wrapper>
    )
