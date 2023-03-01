@@ -8,14 +8,7 @@ import { MypageData } from "./MypageList"
 
 function MyPageCard({data} : {data : MypageData} ) {
    
-   // const [arr  ,setarr] = useState<Array<String>>()
-
-   // useEffect(() => {
-
-   //    setarr(data.taglist)
-   // },[])
-   // console.log(arr);
-   
+  
 
    return(
       
