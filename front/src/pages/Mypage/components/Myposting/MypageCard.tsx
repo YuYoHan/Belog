@@ -1,4 +1,5 @@
 import { media } from "libs/styles/media";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 import { MypageData } from "./MypageList"
@@ -7,7 +8,13 @@ import { MypageData } from "./MypageList"
 
 function MyPageCard({data} : {data : MypageData} ) {
    
-   console.log(data.taglist);
+   // const [arr  ,setarr] = useState<Array<String>>()
+
+   // useEffect(() => {
+
+   //    setarr(data.taglist)
+   // },[])
+   // console.log(arr);
    
 
    return(
@@ -20,6 +27,9 @@ function MyPageCard({data} : {data : MypageData} ) {
                   <S.Content>
                   <strong>{data.title}</strong>
                   <p>{data.content}</p>
+                  <S.Tag>
+                     {data.taglist.map((list) =><span>{list} </span>)}
+                  </S.Tag>
                   </S.Content>
                </S.StyledLink>
             </S.Li>
@@ -42,7 +52,11 @@ const Li = styled.li`
 `
 
 const StyledLink = styled(Link)`
+   transition: .2s ease-in;
 
+   :hover{
+      transform: scale(1.02);
+   }
 `
 
 const ImgContainer = styled.div`
@@ -98,16 +112,21 @@ const Content = styled.div`
       text-overflow: ellipsis;
       color: #495057;
    }
-
+`
+const Tag = styled.div`
+   display: flex;
+   flex-wrap: wrap;
+   
    & span{
       font-size: .875rem;
-      background-color:#757bf6;
-      padding-left: 0.75rem;
-      padding-right: 0.75rem;
-      border-radius: 50%;
+      background-color:  #F8F9FA;;
+      margin: 0 0.55rem 0.4rem 0.55rem;
+      border-radius: 0.5rem;
+      padding: 0.5rem 0.9rem;
+      text-align: center;
+      color: #757bf6;
    }
 `
-
 
 
 const S = {
@@ -115,4 +134,5 @@ const S = {
    StyledLink,
    ImgContainer,
    Content,
+   Tag,
 }
