@@ -7,8 +7,6 @@ import { MypageData } from "./MypageList"
 
 
 function MyPageCard({data} : {data : MypageData} ) {
-   
-  
 
    return(
       
