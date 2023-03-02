@@ -14,7 +14,7 @@ public interface CommentMapper {
     // 댓글 수정
     void edit(CommentDTO commentDTO);
 
-    // 댓글 삭제
+    // 댓글 삭제 ?
     void delete(CommentDTO commentDTO);
 
     // 댓글 목록

@@ -11,21 +11,20 @@ import java.time.LocalDateTime;
 @ToString
 public class CommentDTO {
     private Long commentNum;
-    @NotBlank(message = "로그인된 사용자만 로그인가능")
+
+    @NotBlank(message = "로그인된 사용자만 댓글을 쓰실수 있습니다")
     private Long userId;
+
     @NotBlank
     private Long boardNum;
+
     @NotBlank(message = "댓글을 입력해주세요")
-    // length?
     private String comment;
+
     private LocalDateTime commentTime;
 
     @Builder
-    public CommentDTO(
-            Long userId,
-            Long boardNum,
-            String comment
-    ) {
+    public CommentDTO(Long userId, Long boardNum,String comment) {
         this.userId = userId;
         this.boardNum = boardNum;
         this.comment = comment;
