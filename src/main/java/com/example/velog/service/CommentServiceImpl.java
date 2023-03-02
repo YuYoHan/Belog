@@ -3,7 +3,6 @@ package com.example.velog.service;
 import com.example.velog.domain.CommentDTO;
 import com.example.velog.mapper.CommentMapper;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,7 +11,6 @@ import java.util.List;
 @AllArgsConstructor
 public class CommentServiceImpl implements CommentService {
 
-    @Autowired
     private CommentMapper commentMapper;
 
     // 댓글 추가
