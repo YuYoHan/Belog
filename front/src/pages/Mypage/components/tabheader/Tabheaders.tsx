@@ -17,6 +17,8 @@ function Tabheader() {
       setForm(form);
    };
 
+   
+
    return(
       <S.Wrapper>
          <S.Header>
@@ -64,7 +66,7 @@ const Header = styled.div`
         width: calc(100% - 50%);
         bottom: -22px;
         padding: 0 1rem;
-
+        
     }
   
 `;
