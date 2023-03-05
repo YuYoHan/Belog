@@ -12,7 +12,7 @@ public class BoardDTO {
     private Long boardNum;
     private Long userId;
     private String boardTitle;
-    private Date writeTime;
+    // private Date writeTime;
     private String boardContents;
     private String hashTag;
 
@@ -21,21 +21,15 @@ public class BoardDTO {
             Long boardNum,
             Long userId,
             String boardTitle,
-            Date writeTime,
+            // Date writeTime,
             String boardContents,
             String hashTag
     ) {
         this.boardNum = boardNum;
         this.userId = userId;
         this.boardTitle = boardTitle;
-        this.writeTime = writeTime;
+        // this.writeTime = writeTime;
         this.boardContents = boardContents;
         this.hashTag = hashTag;
-    }
-
-    @Builder
-    public BoardDTO(Long boardNum, String boardContents) {
-        this.boardNum = boardNum;
-        this.boardContents = boardContents;
     }
 }

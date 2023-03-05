@@ -21,7 +21,7 @@ create table board(
 	boardNum bigint primary key auto_increment,
     boardTitle varchar(300) not null,
     boardContents varchar(3000),
-    writeTime datetime default now(),
+    writeTime timestamp not null default current_timestamp on update current_timestamp,
     hashTag varchar(300),
     userId bigint,
     foreign key pk_userId(userId) references user(userId) 

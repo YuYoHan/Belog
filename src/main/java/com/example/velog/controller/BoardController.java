@@ -9,11 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.sql.Timestamp;
 import java.util.List;
 
 @Controller
@@ -27,16 +25,15 @@ public class BoardController {
     public String insertBoard(HttpServletRequest request) {
         HttpSession session = request.getSession();
         Long userId = (Long)session.getAttribute("userId");
-        // 세션부분은 로그인부분과 합치고 테스트 후 null 처리 하기
 
-        Timestamp currentTimeStamp = new Timestamp(System.currentTimeMillis());
+        // Timestamp currentTimeStamp = new Timestamp(System.currentTimeMillis());
 
         BoardDTO boardDTO = BoardDTO.builder()
                 .boardTitle(request.getParameter("boardTitle"))
                 .boardContents(request.getParameter("boardContents"))
                 .hashTag(request.getParameter("hashTag"))
                 .userId(userId)
-                .writeTime(currentTimeStamp)
+                // .writeTime(currentTimeStamp)
                 .build();
 
         if(!boardService.writeBoard(boardDTO)) {
@@ -60,12 +57,16 @@ public class BoardController {
 
     @PostMapping("/board/update")
     public String updateBoard(HttpServletRequest request) {
-        Long updateBoardNum = Long.parseLong(request.getParameter("boardNum"));
-        String updateBoardContents = request.getParameter("boardContents");
+        Long boardNum = Long.parseLong(request.getParameter("boardNum"));
+        String boardTitle = request.getParameter("boardTitle");
+        String hashTag = request.getParameter("hashTag");
+        String boardContents = request.getParameter("boardContents");
 
         BoardDTO boardDTO = BoardDTO.builder()
-                .boardNum(updateBoardNum)
-                .boardContents(updateBoardContents)
+                .boardNum(boardNum)
+                .boardContents(boardContents)
+                .boardTitle(boardTitle)
+                .hashTag(hashTag)
                 .build();
 
         if(!boardService.updateBoard(boardDTO)) {
@@ -77,13 +78,19 @@ public class BoardController {
 
     @GetMapping("/board")
     public String findAllBoard(Model model) {
-        model.addAttribute("boardList", boardService.findAllBoard());
-        return "redirect:/";
+        List<BoardDTO> boardList = boardService.findAllBoard();
+        model.addAttribute("boardList", boardList);
+
+        log.info("모든 게시글 보기: {}", boardList);
+        return "/borad_list";
     }
 
     @GetMapping("/board/{boardNum}")
     public String boardDetail(@PathVariable Long boardNum, Model model) {
-        model.addAttribute("boardDetail", boardService.findBoardByBoardNum(boardNum));
-        return "redirect:/";
+        BoardDTO boardDetail = boardService.findBoardByBoardNum(boardNum);
+        model.addAttribute("boardDetail", boardDetail);
+
+        log.info("{}번 게시글 보기: {}", boardNum, boardDetail);
+        return "/board_detail";
     }
 }
