@@ -7,7 +7,11 @@ import styled from "styled-components"
 import EditBtn from "./EditBtn";
 import RemoveBtn from "./RemoveBtn";
 
+
+
 function DetailPage() {
+
+
 
    const location = useLocation();
    const {id, title, content,tablist,img} = location.state.data 
