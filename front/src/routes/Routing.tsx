@@ -9,8 +9,8 @@ function Routing() {
       <BrowserRouter>
          <Routes>
             <Route element={<Header/>}>
-               <Route path='/' element={<PostingPage/>} />
-               <Route path='/mypage' element={<MyPage/>} />
+               <Route path='/Posting' element={<PostingPage/>} />
+               <Route path='/' element={<MyPage/>} />
                <Route path='/:title' element={<DetailPage/>} />
             </Route>
          </Routes>

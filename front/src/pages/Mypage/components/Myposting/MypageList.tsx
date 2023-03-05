@@ -22,8 +22,6 @@ function MyPageList() {
       axios
       .get("https://2432b997-c1de-4c6d-a6a7-36b68e210341.mock.pstmn.io/list")
       .then((res) => {
-            console.log(res.data);
-            
           setTestData(res.data)
       })
       .catch((err) => {

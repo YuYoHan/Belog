@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react"
 import { Outlet } from "react-router-dom"
 import styled from "styled-components"
 import Logo from "./logo"
@@ -7,9 +8,35 @@ import HeaderSearch from "./Search"
 
 function Header() {
    
-   
+   const [ScrollY, setScrollY] = useState(0); // window 의 pageYOffset값을 저장
+   const [ScrollActive, setScrollActive] = React.useState<boolean>(false);
+
+ 
+
+  const handleScroll  = ()=> {
+    if (ScrollY > 100) {
+      setScrollY(window.pageYOffset);
+      setScrollActive(true);
+    } else {
+      setScrollY(window.pageYOffset);
+      setScrollActive(false);
+    }
+  }
+
+  useEffect(() => {
+    function scrollListener() {
+      window.addEventListener("scroll", handleScroll);
+    } //  window 에서 스크롤을 감시 시작
+    scrollListener(); // window 에서 스크롤을 감시
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    }; //  window 에서 스크롤을 감시를 종료
+  });
+
+
    return(
       <S.Wrapper>
+         <S.HeaderContainer  ScrollActive={ScrollActive}>
          <S.container>
             <Logo/>
             <S.RightItem>
@@ -18,6 +45,8 @@ function Header() {
                <Profile/>
             </S.RightItem>
          </S.container>
+         </S.HeaderContainer>
+
          <Outlet/>
       </S.Wrapper>
    )
@@ -26,8 +55,19 @@ function Header() {
 export default Header
 
 const Wrapper = styled.div`
+   
+   `
+const HeaderContainer = styled.div<{ScrollActive : boolean}>`
+   position: ${({ScrollActive}) => (ScrollActive ? `fixed` : `relative`)};
    height: 4rem;
+   z-index: 9999;
+   top: 0;
+   left: 0;
+   width: 100%;
+   box-shadow: rgb(0 0 0 / 8%) 0px 0px 15px;
+   background-color: #fff;
 `
+
 const container = styled.div`
    height: 100%;
    display: flex;
@@ -43,6 +83,7 @@ const RightItem = styled.div`
 
 const S = {
    Wrapper,
+   HeaderContainer,
    container,
    RightItem,
 }
