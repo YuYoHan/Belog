@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { Outlet } from "react-router-dom"
 import styled from "styled-components"
 import Logo from "./logo"
@@ -8,26 +8,27 @@ import HeaderSearch from "./Search"
 
 function Header() {
    
-   const [ScrollY, setScrollY] = useState(0); // window 의 pageYOffset값을 저장
+   const [ScrollY, setScrollY] = React.useState<number>(0); 
    const [ScrollActive, setScrollActive] = React.useState<boolean>(false);
 
  
 
-  const handleScroll  = ()=> {
-    if (ScrollY > 100) {
-      setScrollY(window.pageYOffset);
-      setScrollActive(true);
-    } else {
-      setScrollY(window.pageYOffset);
+  const handleScroll  = () =>  {
+     
+     if (ScrollY > 100) {
+        setScrollY(window.pageYOffset);
+        setScrollActive(true);
+      } else {
+         setScrollY(window.pageYOffset);
       setScrollActive(false);
-    }
-  }
+   }
+}
 
   useEffect(() => {
     function scrollListener() {
       window.addEventListener("scroll", handleScroll);
-    } //  window 에서 스크롤을 감시 시작
-    scrollListener(); // window 에서 스크롤을 감시
+    } 
+    scrollListener();
     return () => {
       window.removeEventListener("scroll", handleScroll);
     }; //  window 에서 스크롤을 감시를 종료
@@ -37,16 +38,15 @@ function Header() {
    return(
       <S.Wrapper>
          <S.HeaderContainer  ScrollActive={ScrollActive}>
-         <S.container>
-            <Logo/>
-            <S.RightItem>
-               <HeaderSearch/>
-               <OnClickPosting/>
-               <Profile/>
-            </S.RightItem>
-         </S.container>
+            <S.container>
+               <Logo/>
+               <S.RightItem>
+                  <HeaderSearch/>
+                  <OnClickPosting/>
+                  <Profile/>
+               </S.RightItem>
+            </S.container>
          </S.HeaderContainer>
-
          <Outlet/>
       </S.Wrapper>
    )

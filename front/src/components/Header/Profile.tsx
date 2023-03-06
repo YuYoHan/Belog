@@ -13,7 +13,6 @@ function Profile() {
       setProfilemenu(false);
       
    }
-   console.log(Profilemenu);
 
    return(
       <S.Wrapper>

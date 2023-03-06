@@ -9,6 +9,7 @@ function PostingEdit() {
    const [value, setValue] = useState('');
    const quillRef = useRef();
 
+  console.log(value);
   
 //   const toolbarOptions = {
 //    toolbar: {
