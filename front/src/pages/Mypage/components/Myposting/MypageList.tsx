@@ -16,7 +16,7 @@ function MyPageList() {
    // 맵으로 뿌려질 데이터
    // props로  card 넘길거임
 
-   const [testData,setTestData] = useState<Array<MypageData> > ();
+   const [testData,setTestData] = useState<Array<MypageData>>();
    
    useEffect(() => {
       axios

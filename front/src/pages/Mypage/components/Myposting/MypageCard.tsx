@@ -19,8 +19,9 @@ function MyPageCard({data} : {data : MypageData} ) {
                   <strong>{data.title}</strong>
                   <p>{data.content}</p>
                   <S.Tag>
-                     {data.taglist.map((list) =><span>{list} </span>)}
+                     {data.taglist.map((list,index) =><span key={index}>{list} </span>)}
                   </S.Tag>
+                  
                   </S.Content>
                </S.StyledLink>
             </S.Li>
