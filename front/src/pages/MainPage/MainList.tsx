@@ -12,6 +12,7 @@ export type MainPageData  = {
    img: string,
    profile:{username : string,img:string},
    command : string,
+   publishedAt: string
 }
 // testsadasdasdadssad
 function MainPageList() {

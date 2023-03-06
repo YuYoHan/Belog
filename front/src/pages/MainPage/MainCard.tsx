@@ -1,4 +1,4 @@
-import { profile } from "console";
+import TimeForToday from "hooks/daysTimer";
 import { media } from "libs/styles/media"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
@@ -6,7 +6,7 @@ import { MainPageData } from "./MainList"
 
 function MainPageCard ({data} : {data : MainPageData}) {
    
-   console.log(data.profile);
+   
    
 
    return (
@@ -19,7 +19,7 @@ function MainPageCard ({data} : {data : MainPageData}) {
                <strong>{data.title}</strong>
                <p>{data.content}</p>
                <Days>
-                  <span>3일 전</span>
+                  <span>{TimeForToday(data.publishedAt)}</span>
                </Days>
             </S.Content>
                <S.Userinfo>
