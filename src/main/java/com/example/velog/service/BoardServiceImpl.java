@@ -51,6 +51,6 @@ public class BoardServiceImpl implements BoardService{
         if(boardCount != 1) {
             log.error("[ERROR] : 게시글 없음");
         }
-        return boardMapper.findBoardByBoardNum();
+        return boardMapper.findBoardByBoardNum(boardNum);
     }
 }

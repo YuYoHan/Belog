@@ -4,7 +4,7 @@
 <mapper namespace="com.example.velog.mapper.BoardMapper">
 
     <insert id="writeBoard" parameterType="com.example.velog.domain.BoardDTO">
-        insert into board(userId, boardTitle, writeTime, boardContents, hashTag) values (#{userId}, #{boardTitle}, #{writeTime}, #{boardContents}, #{hashTag})
+        insert into board(userId, boardTitle, boardContents, hashTag) values (#{userId}, #{boardTitle}, #{boardContents}, #{hashTag})
     </insert>
 
     <delete id="deleteBoard" parameterType="Long">
@@ -12,7 +12,7 @@
     </delete>
 
     <update id="updateBoard" parameterType="com.example.velog.domain.BoardDTO">
-        update board set boardContents = #{boardContents} where boardNum = #{boardNum}
+        update board set boardContents = #{boardContents}, boardTitle = #{boardTitle}, hashTag = #{hashTag} where boardNum = #{boardNum}
     </update>
 
     <select id="getBoardCount" parameterType="com.example.velog.domain.BoardDTO" resultType="int">
@@ -28,6 +28,6 @@
     </select>
 
     <select id="findBoardByBoardNum" parameterType="Long" resultType="com.example.velog.domain.BoardDTO">
-        select * from board where boardNum = #{boardNum};
+        select boardNum, userId, boardTitle, boardContents, hashTag from board where boardNum = #{boardNum};
     </select>
 </mapper>

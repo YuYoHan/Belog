@@ -17,7 +17,7 @@ public interface BoardMapper {
 
     int getBoardCount();
 
-    BoardDTO findBoardByBoardNum();
+    BoardDTO findBoardByBoardNum(Long boardNum);
 
     int getBoardCountByBoardNum(Long boardNum);
 }
