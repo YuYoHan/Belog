@@ -1,6 +1,7 @@
 package com.example.velog.service;
 
 import com.example.velog.domain.BoardDTO;
+import com.example.velog.domain.Criteria;
 import com.example.velog.mapper.BoardMapper;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,13 +32,15 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    public List<BoardDTO> findAllBoard() {
+    public List<BoardDTO> findAllBoard(Criteria criteria) {
         List<BoardDTO> boardList = Collections.emptyList();
+        int pageFirstBoardNum = criteria.getPageFirstBoardNum();
+        int boardNumPerPage = criteria.getBOARD_NUM_PER_PAGE();
 
         int boardCount = boardMapper.getBoardCount();
 
         if(boardCount > 0) {
-            boardList = boardMapper.findAllBoard();
+            boardList = boardMapper.findAllBoard(pageFirstBoardNum, boardNumPerPage);
         }
 
         return boardList;

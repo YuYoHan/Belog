@@ -2,6 +2,7 @@ package com.example.velog.mapper;
 
 import com.example.velog.domain.BoardDTO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ public interface BoardMapper {
 
     int updateBoard(BoardDTO boardDTO);
 
-    List<BoardDTO> findAllBoard();
+    List<BoardDTO> findAllBoard(@Param("pageFirstBoardNum") int pageFirstBoardNum, @Param("boardNumPerPage") int boardNumPerPage);
 
     int getBoardCount();
 
