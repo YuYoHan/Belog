@@ -15,8 +15,8 @@ public interface CommentService {
     void deleteComment(CommentDTO commentDTO);
 
     // 댓글 목록
-    List<CommentDTO> findAllComment();
+    List<CommentDTO> findAllComment(Long boardNum);
 
     // 댓글 개수
-    public int countComment(int boardNum);
+    int countComment(int boardNum);
 }

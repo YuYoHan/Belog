@@ -11,20 +11,19 @@
     <update id="edit">
         UPDATE comment
         SET comment = #{comment}, commentTime=sysdate
-        where userId = #{userId}
+        where commentNum = #{commentNum}
     </update>
 
-    <update id="delete">
+    <update id="delete" parameterType="com.example.velog.domain.CommentDTO">
         update commment
         set comment='삭제되었습니다'
-        where userId = #{userId}
+        where commentNum = #{commentNum}
     </update>
 
     <select id="findAll" resultType="com.example.velog.domain.CommentDTO">
-        SELECT commentNum, userId, boardNum, comment, commentTime
+        SELECT *
         FROM comment
-        where userId = #{userId}
-        order by userId asc
+        where boardNum = #{boardNum}
     </select>
 
     <select id="count" resultType="int">

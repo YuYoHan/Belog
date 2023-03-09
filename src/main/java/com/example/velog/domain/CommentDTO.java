@@ -29,4 +29,13 @@ public class CommentDTO {
         this.boardNum = boardNum;
         this.comment = comment;
     }
+
+    @Builder
+    public CommentDTO(Long commentNum, Long userId, Long boardNum, String comment, LocalDateTime commentTime) {
+        this.commentNum = commentNum;
+        this.userId = userId;
+        this.boardNum = boardNum;
+        this.comment = comment;
+        this.commentTime = commentTime;
+    }
 }

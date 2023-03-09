@@ -18,7 +18,7 @@ public interface CommentMapper {
     void delete(CommentDTO commentDTO);
 
     // 댓글 목록
-    List<CommentDTO> findAll();
+    List<CommentDTO> findAll(Long boardNum);
 
     // 댓글 개수
     int count(int boardNum);
