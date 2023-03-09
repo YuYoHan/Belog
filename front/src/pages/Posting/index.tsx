@@ -1,7 +1,8 @@
 import styled from "styled-components"
-import PostingEdit from "./PostingEdit"
-import PostingTag from "./PostingTag"
-import PostingTitle from "./PostingTitle"
+import PostingEdit from "./components/PostingEdit"
+import PostingRegisterbtn from "pages/Posting/components/PostingRegisterbtn"
+import PostingTag from "pages/Posting/components/PostingTag"
+import PostingTitle from "pages/Posting/components/PostingTitle"
 
 function PostingPage() {
    
@@ -13,6 +14,7 @@ function PostingPage() {
             <PostingTag/>
             <PostingEdit/>
          </S.container>
+         <PostingRegisterbtn/>
       </S.Wrapper>
    )
 }
