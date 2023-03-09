@@ -1,6 +1,8 @@
 package com.example.velog.controller;
 
 import com.example.velog.domain.BoardDTO;
+import com.example.velog.domain.Criteria;
+import com.example.velog.domain.PageDTO;
 import com.example.velog.service.BoardService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -9,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -41,7 +44,7 @@ public class BoardController {
             // 추가한 컬럼 개수가 1이 아닐때 걸림
             log.error("[ERROR] : 게시글 추가 오류");
         }
-        return "redirect:/board";
+        return "redirect:/board?page=1";
     }
 
     @PostMapping("/board/delete")
@@ -52,7 +55,7 @@ public class BoardController {
             // 삭제한 컬럼 개수가 1이 아닐 때 걸림
             log.error("[ERROR] : 게시글 삭제 오류");
         }
-        return "redirect:/board";
+        return "redirect:/board?page=1";
     }
 
     @PostMapping("/board/update")
@@ -73,13 +76,17 @@ public class BoardController {
             // 업데이트한 컬럼 개수가 1이 아닐 때 걸림
             log.error("[ERROR] : 게시글 수정 오류");
         }
-        return "redirect:/board";
+        return "redirect:/board?page=1";
     }
 
     @GetMapping("/board")
-    public String findAllBoard(Model model) {
-        List<BoardDTO> boardList = boardService.findAllBoard();
+    public String findAllBoard(@RequestParam("page") int page, Model model) {
+
+        Criteria criteria = new Criteria(page);
+
+        List<BoardDTO> boardList = boardService.findAllBoard(criteria);
         model.addAttribute("boardList", boardList);
+        model.addAttribute("pageMaker", new PageDTO(boardService.getBoardCount(), criteria));
 
         log.info("모든 게시글 보기: {}", boardList);
         return "/borad_list";

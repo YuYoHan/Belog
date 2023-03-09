@@ -1,7 +1,9 @@
 package com.example.velog.mapper;
 
 import com.example.velog.domain.BoardDTO;
+import com.example.velog.domain.Criteria;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -13,7 +15,7 @@ public interface BoardMapper {
 
     int updateBoard(BoardDTO boardDTO);
 
-    List<BoardDTO> findAllBoard();
+    List<BoardDTO> findAllBoard(Criteria criteria);
 
     int getBoardCount();
 

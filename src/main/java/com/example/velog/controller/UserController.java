@@ -8,9 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -54,7 +52,6 @@ public class UserController {
         if(userService.signUp(userDTO)) {
             log.info("result : " + userDTO.getUserId());
             log.info("result : " + userDTO.getUserEmail());
-            log.info("result : " + userDTO.getUserEmail());
 
             Cookie cookie = new Cookie("userEmail", userDTO.getUserEmail());
             // 30분
@@ -63,9 +60,6 @@ public class UserController {
         }
         return "redirect:/";
     }
-
-    // 중복체크
-
 
 
     @GetMapping("/login")
@@ -111,6 +105,15 @@ public class UserController {
         } else {
             return "/remove";
         }
+    }
+
+    // 중복체크
+    @PostMapping("/user/email-check")
+    // ajax를 쓸 때는 반드시 @ResponseBody를 써야한다.
+    public @ResponseBody int emailCheck(@RequestParam("userEmail") String userEmail) {
+        log.info("userEmail : " + userEmail);
+        int checkResult = userService.emailCheck(userEmail);
+        return checkResult;
     }
 
 

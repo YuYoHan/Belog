@@ -13,4 +13,6 @@ public interface UserMapper {
     UserDTO login(@Param("userEmail") String userEmail, @Param("userPw") String userPw);
 
     UserDTO deleteUser(@Param("userEmail") String userEmail, @Param("userPw") String userPw);
+
+    int emailCheck(String userEmail);
 }

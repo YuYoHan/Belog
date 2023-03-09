@@ -1,6 +1,7 @@
 package com.example.velog.service;
 
 import com.example.velog.domain.BoardDTO;
+import com.example.velog.domain.Criteria;
 import com.example.velog.mapper.BoardMapper;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,7 +13,7 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 @Slf4j
-public class BoardServiceImpl implements BoardService{
+public class  BoardServiceImpl implements BoardService{
     private BoardMapper boardMapper;
 
     @Override
@@ -31,13 +32,13 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    public List<BoardDTO> findAllBoard() {
+    public List<BoardDTO> findAllBoard(Criteria criteria) {
         List<BoardDTO> boardList = Collections.emptyList();
 
         int boardCount = boardMapper.getBoardCount();
 
         if(boardCount > 0) {
-            boardList = boardMapper.findAllBoard();
+            boardList = boardMapper.findAllBoard(criteria);
         }
 
         return boardList;
@@ -52,5 +53,10 @@ public class BoardServiceImpl implements BoardService{
             log.error("[ERROR] : 게시글 없음");
         }
         return boardMapper.findBoardByBoardNum(boardNum);
+    }
+
+    @Override
+    public int getBoardCount() {
+        return boardMapper.getBoardCount();
     }
 }
