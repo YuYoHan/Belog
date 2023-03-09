@@ -20,6 +20,8 @@ export const joinUpValidation = yup.object({
     .min(4,'비밀번호는 4자리 이상이여야합니다.')
     .max(15,'비밀번호는 15자리 이하여야합니다.' ),
 
+    term : yup.boolean().oneOf([true], '약관에 동의해주세요.'),
+
    /* 
     비밀번호 확인 
     userPw2 : yup
@@ -27,7 +29,9 @@ export const joinUpValidation = yup.object({
     .oneOf([yup.ref('userPw'),null],'비밀번호가 일치하지 않습니다.'),
 */
     
-    /*주소입력API적용하기 
-    userAddr : 
-    */
+    
+    userAddr : yup
+    .string()
+    .required('주소를 입력해주세요.'), 
+    //주소입력 API
 })
