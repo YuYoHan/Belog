@@ -61,9 +61,6 @@ public class UserController {
         return "redirect:/";
     }
 
-    // 중복체크
-
-
 
     @GetMapping("/login")
     public String loginForm(@CookieValue("userEmail") String userEmail, Model model) {
@@ -110,6 +107,7 @@ public class UserController {
         }
     }
 
+    // 중복체크
     @PostMapping("/user/email-check")
     // ajax를 쓸 때는 반드시 @ResponseBody를 써야한다.
     public @ResponseBody int emailCheck(@RequestParam("userEmail") String userEmail) {
@@ -117,5 +115,6 @@ public class UserController {
         int checkResult = userService.emailCheck(userEmail);
         return checkResult;
     }
+
 
 }
