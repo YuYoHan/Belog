@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public String emailCheck(String userEmail) {
+    public int emailCheck(String userEmail) {
         return userMapper.emailCheck(userEmail);
     }
 }

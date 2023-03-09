@@ -7,6 +7,9 @@
         insert into user(userEmail, userPw, userName, userAddr, userAddrDetail, userAddrEtc, userImg)
         values (#{userEmail},#{userPw}, #{userName}, #{userAddr}, #{userAddrDeail}, #{userAddrEtc}, #{userImg})
     </insert>
+    <select id="emailCheck" parameterType="String" resultType="int">
+        select count(userEmail) from user where userEmail = #{userEmail}
+    </select>
     <select id="login" resultType="com.example.velog.domain.UserDTO">
         select * from user where userEmail=#{userEmail} and userPw=#{userPw}
     </select>

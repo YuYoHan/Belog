@@ -52,7 +52,6 @@ public class UserController {
         if(userService.signUp(userDTO)) {
             log.info("result : " + userDTO.getUserId());
             log.info("result : " + userDTO.getUserEmail());
-            log.info("result : " + userDTO.getUserEmail());
 
             Cookie cookie = new Cookie("userEmail", userDTO.getUserEmail());
             // 30분
@@ -113,15 +112,10 @@ public class UserController {
 
     @PostMapping("/user/email-check")
     // ajax를 쓸 때는 반드시 @ResponseBody를 써야한다.
-    public @ResponseBody String emailCheck(@RequestParam("userEmail") String userEmail) {
+    public @ResponseBody int emailCheck(@RequestParam("userEmail") String userEmail) {
         log.info("userEmail : " + userEmail);
-        String checkResult = userService.emailCheck(userEmail);
+        int checkResult = userService.emailCheck(userEmail);
         return checkResult;
-//        if(checkResult != null) {
-//            return "ok!";
-//        } else {
-//            return "no!";
-//        }
     }
 
 }

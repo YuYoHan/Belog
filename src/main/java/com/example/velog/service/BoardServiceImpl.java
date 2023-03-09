@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 @Slf4j
-public class BoardServiceImpl implements BoardService{
+public class  BoardServiceImpl implements BoardService{
     private BoardMapper boardMapper;
 
     @Override
