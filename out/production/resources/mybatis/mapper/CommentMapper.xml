@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.velog.mapper.CommentMapper">
+
+    <insert id="add" useGeneratedKeys="true" keyProperty="commentNum">
+        INSERT INTO comment(userId, boardNum, comment)
+        VALUES (#{userId}, #{boardNum}, #{comment})
+    </insert>
+
+    <update id="edit">
+        UPDATE comment
+        SET comment = #{comment}, commentTime=sysdate
+        where userId = #{userId}
+    </update>
+
+    <update id="delete">
+        update commment
+        set comment='삭제되었습니다'
+        where userId = #{userId}
+    </update>
+
+    <select id="findAll" resultType="com.example.velog.domain.CommentDTO">
+        SELECT commentNum, userId, boardNum, comment, commentTime
+        FROM comment
+        where userId = #{userId}
+        order by userId asc
+    </select>
+
+    <select id="count" resultType="int">
+        select count(*)
+        from comment
+        where boardNum = #{boardNum}
+    </select>
+</mapper>
