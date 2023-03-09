@@ -47,4 +47,8 @@ public class UserServiceImpl implements UserService{
         return userMapper.deleteUser(userEmail, userPw);
     }
 
+    @Override
+    public String emailCheck(String userEmail) {
+        return userMapper.emailCheck(userEmail);
+    }
 }

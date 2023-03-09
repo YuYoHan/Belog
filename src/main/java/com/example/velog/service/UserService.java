@@ -16,4 +16,6 @@ public interface UserService {
     UserDTO login(String userId, String userPw);
 
     UserDTO remove(String userEmail, String userPw);
+
+    String emailCheck(String userEmail);
 }
