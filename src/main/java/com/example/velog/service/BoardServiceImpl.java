@@ -34,13 +34,11 @@ public class BoardServiceImpl implements BoardService{
     @Override
     public List<BoardDTO> findAllBoard(Criteria criteria) {
         List<BoardDTO> boardList = Collections.emptyList();
-        int pageFirstBoardNum = criteria.getPageFirstBoardNum();
-        int boardNumPerPage = criteria.getBOARD_NUM_PER_PAGE();
 
         int boardCount = boardMapper.getBoardCount();
 
         if(boardCount > 0) {
-            boardList = boardMapper.findAllBoard(pageFirstBoardNum, boardNumPerPage);
+            boardList = boardMapper.findAllBoard(criteria);
         }
 
         return boardList;
@@ -55,5 +53,10 @@ public class BoardServiceImpl implements BoardService{
             log.error("[ERROR] : 게시글 없음");
         }
         return boardMapper.findBoardByBoardNum(boardNum);
+    }
+
+    @Override
+    public int getBoardCount() {
+        return boardMapper.getBoardCount();
     }
 }

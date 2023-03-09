@@ -20,7 +20,7 @@
     </select>
 
     <select id="findAllBoard" resultType="map">
-        select * from board order by boardNum desc limit #{pageFirstBoardNum}, #{boardNumPerPage};
+        select * from board order by boardNum desc limit #{startRow}, #{BOARD_NUM_PER_PAGE};
     </select>
 
     <select id="getBoardCountByBoardNum" parameterType="Long" resultType="int">

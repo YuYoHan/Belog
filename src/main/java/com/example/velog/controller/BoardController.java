@@ -2,6 +2,7 @@ package com.example.velog.controller;
 
 import com.example.velog.domain.BoardDTO;
 import com.example.velog.domain.Criteria;
+import com.example.velog.domain.PageDTO;
 import com.example.velog.service.BoardService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -85,6 +86,7 @@ public class BoardController {
 
         List<BoardDTO> boardList = boardService.findAllBoard(criteria);
         model.addAttribute("boardList", boardList);
+        model.addAttribute("pageMaker", new PageDTO(boardService.getBoardCount(), criteria));
 
         log.info("모든 게시글 보기: {}", boardList);
         return "/borad_list";

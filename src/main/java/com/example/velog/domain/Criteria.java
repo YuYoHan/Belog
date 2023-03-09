@@ -5,9 +5,11 @@ public class Criteria {
     private int page;
     // 페이지당 게시글 개수
     private final int BOARD_NUM_PER_PAGE = 10;
+    private int startRow;
 
     public Criteria(int page) {
         this.page = page;
+        this.startRow = (page - 1) * BOARD_NUM_PER_PAGE;
     }
 
     public int getPageFirstBoardNum() {
@@ -21,5 +23,9 @@ public class Criteria {
 
     public int getBOARD_NUM_PER_PAGE() {
         return this.BOARD_NUM_PER_PAGE;
+    }
+
+    public int getStartRow() {
+        return startRow;
     }
 }

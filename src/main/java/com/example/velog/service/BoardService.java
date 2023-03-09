@@ -15,4 +15,6 @@ public interface BoardService {
     List<BoardDTO> findAllBoard(Criteria criteria);
 
     BoardDTO findBoardByBoardNum(Long boardNum);
+
+    int getBoardCount();
 }
