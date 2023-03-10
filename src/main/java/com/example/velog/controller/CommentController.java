@@ -7,13 +7,10 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @Log4j2
@@ -39,7 +36,6 @@ public class CommentController {
             try {
                 if (!comment.equals("") && !comment.isEmpty()) {
 
-
                     CommentDTO commentDTO = CommentDTO.builder()
                             .userId(userId)
                             .boardNum(boardNum)
@@ -57,17 +53,18 @@ public class CommentController {
     }// addComment
 
     // 댓글 수정
-    @PutMapping("/comment/edit")
-    public String editComment(CommentDTO commentDTO, HttpServletRequest request, Model model) {
-        // userId를 세션에서 값 얻어오기
-        HttpSession session = request.getSession();
-        Long userId = (Long) session.getAttribute("userId");
-        Long commentNum = Long.parseLong(request.getParameter("commentNum"));
+    @PostMapping("/comment/edit")
+    public String editComment(HttpServletRequest request, Model model) {
+
         Long boardNum = Long.parseLong(request.getParameter("boardNum"));
+        Long commentNum = Long.parseLong(request.getParameter("commentNum"));
+        String comment = request.getParameter("comment");
 
-        model.addAttribute("commentNum", commentNum);
-        model.addAttribute("boardNum", boardNum);
-
+        CommentDTO commentDTO = CommentDTO.builder()
+                .boardNum(boardNum)
+                .commentNum(commentNum)
+                .comment(comment)
+                .build();
 
         commentService.editComment(commentDTO);
         log.info("edit");
@@ -75,19 +72,26 @@ public class CommentController {
     }
 
     // 댓글 삭제, 삭제되면 삭제되었습니다 내용 띄우기
-    @DeleteMapping("/comment/delete")
-    public String deleteComment(CommentDTO commentDTO) {
+    @PostMapping("/comment/delete")
+    public String deleteComment(HttpServletRequest request) {
+
+        Long boardNum = Long.parseLong(request.getParameter("boardNum"));
+        Long commentNum = Long.parseLong(request.getParameter("commentNum"));
+        String comment = request.getParameter("comment");
+
+        CommentDTO commentDTO = CommentDTO.builder()
+                .boardNum(boardNum)
+                .commentNum(commentNum)
+                .comment(comment)
+                .build();
         commentService.deleteComment(commentDTO);
         log.info("delete");
         return "redirect:/";
     }
 
-    @GetMapping("/comment/{boardnum}")
-    public String findAllComment(HttpServletRequest request, Model model) {
+    @GetMapping("/comment/{boardNum}")
+    public String findAllComment(@PathVariable Long boardNum, Model model) {
         log.info("find");
-
-        //boardNum을 얻어오는 값
-        Long boardNum = Long.parseLong(request.getParameter("boardNum"));
 
         List<CommentDTO> commentList = commentService.findAllComment(boardNum);
         model.addAttribute("commentList", commentList);

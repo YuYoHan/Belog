@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 @Getter
 @ToString
 public class CommentDTO {
+
     private Long commentNum;
 
     @NotBlank(message = "로그인된 사용자만 댓글을 쓰실수 있습니다")
@@ -22,13 +23,6 @@ public class CommentDTO {
     private String comment;
 
     private LocalDateTime commentTime;
-
-    @Builder
-    public CommentDTO(Long userId, Long boardNum,String comment) {
-        this.userId = userId;
-        this.boardNum = boardNum;
-        this.comment = comment;
-    }
 
     @Builder
     public CommentDTO(Long commentNum, Long userId, Long boardNum, String comment, LocalDateTime commentTime) {
