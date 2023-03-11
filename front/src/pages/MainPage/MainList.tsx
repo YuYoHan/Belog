@@ -1,4 +1,5 @@
-import axios from "axios";
+import Axios from "apis/@core";
+import PostsApi from "apis/posts/PostsAPI";
 import { media } from "libs/styles/media";
 import { useState,useEffect } from "react";
 import styled from "styled-components"
@@ -20,14 +21,12 @@ function MainPageList() {
    const [mainlist , setmainlist] = useState<Array<MainPageData>>();
   
    useEffect(() => {
-      axios
-      .get("https://2432b997-c1de-4c6d-a6a7-36b68e210341.mock.pstmn.io/mainlist")
-      .then((res) => {
-         setmainlist(res.data)
-      })
-      .catch((err) => {
-         console.log(err);
-      });
+      
+      const fetchData = async () => {
+         const res = await PostsApi.getPostsApi();
+         setmainlist(res.data);
+      }
+       fetchData()
    },[])
    // console.log(mainlist);
    
