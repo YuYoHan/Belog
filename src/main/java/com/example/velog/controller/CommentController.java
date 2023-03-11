@@ -27,6 +27,7 @@ public class CommentController {
         // userId 세션에서 값 얻어오기
         HttpSession session = request.getSession();
         Long userId = (Long) session.getAttribute("userId");
+        String userEmail = (String) session.getAttribute("userEmail");
 
         if (userId != null) {
             //boardNum을 얻어오는 값
@@ -35,17 +36,17 @@ public class CommentController {
 
             try {
                 if (!comment.equals("") && !comment.isEmpty()) {
-
                     CommentDTO commentDTO = CommentDTO.builder()
                             .userId(userId)
+                            .userEmail(userEmail)
                             .boardNum(boardNum)
                             .comment(comment)
                             .build();
-
                     commentService.addComment(commentDTO);
                 }
                 log.info("Add success");
             } catch (Exception e) {
+                log.info("error");
                 e.printStackTrace();
             }
         }
@@ -54,8 +55,7 @@ public class CommentController {
 
     // 댓글 수정
     @PostMapping("/comment/edit")
-    public String editComment(HttpServletRequest request, Model model) {
-
+    public String editComment(HttpServletRequest request) {
         Long boardNum = Long.parseLong(request.getParameter("boardNum"));
         Long commentNum = Long.parseLong(request.getParameter("commentNum"));
         String comment = request.getParameter("comment");
@@ -68,13 +68,12 @@ public class CommentController {
 
         commentService.editComment(commentDTO);
         log.info("edit");
-        return "redirect:/";
+        return "redirect:/board/{boardNum}";
     }
 
     // 댓글 삭제, 삭제되면 삭제되었습니다 내용 띄우기
     @PostMapping("/comment/delete")
     public String deleteComment(HttpServletRequest request) {
-
         Long boardNum = Long.parseLong(request.getParameter("boardNum"));
         Long commentNum = Long.parseLong(request.getParameter("commentNum"));
         String comment = request.getParameter("comment");
@@ -84,19 +83,20 @@ public class CommentController {
                 .commentNum(commentNum)
                 .comment(comment)
                 .build();
+
         commentService.deleteComment(commentDTO);
         log.info("delete");
-        return "redirect:/";
+        return "redirect:/board/{boardNum}";
     }
 
     @GetMapping("/comment/{boardNum}")
-    public String findAllComment(@PathVariable Long boardNum, Model model) {
+    public String findAllComment(@PathVariable Long boardNum, HttpServletRequest request, Model model) {
         log.info("find");
 
         List<CommentDTO> commentList = commentService.findAllComment(boardNum);
         model.addAttribute("commentList", commentList);
 
-        return "redirect:/"; //?
+        return "redirect:/board/{boardNum}";
     }
 
     @GetMapping("/comment/count")

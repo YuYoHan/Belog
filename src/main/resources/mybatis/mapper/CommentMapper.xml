@@ -4,11 +4,11 @@
 <mapper namespace="com.example.velog.mapper.CommentMapper">
 
     <insert id="add" useGeneratedKeys="true" keyProperty="commentNum">
-        INSERT INTO comment(userId, boardNum, comment)
-        VALUES (#{userId}, #{boardNum}, #{comment})
+        INSERT INTO comment(userId, userEmail, boardNum, comment)
+        VALUES (#{userId}, #{userEmail}, #{boardNum}, #{comment})
     </insert>
 
-    <update id="edit">
+    <update id="edit" parameterType="com.example.velog.domain.CommentDTO">
         UPDATE comment
         SET comment = #{comment}, commentTime=sysdate
         where commentNum = #{commentNum}
@@ -21,7 +21,7 @@
     </update>
 
     <select id="findAll" resultType="com.example.velog.domain.CommentDTO">
-        SELECT *
+        SELECT boardNum, commentNum, userEmail, comment, commentTime
         FROM comment
         where boardNum = #{boardNum}
     </select>
