@@ -34,7 +34,6 @@ public class UserDTO {
     @NotBlank
     private String userAddrEtc;
 
-    private MultipartFile userImg;
 
     @Builder
     public UserDTO(
@@ -43,15 +42,14 @@ public class UserDTO {
             String userName,
             String userAddr,
             String userAddrDetail,
-            String userAddrEtc,
-            MultipartFile userImg) {
+            String userAddrEtc
+            ) {
         this.userEmail = userEmail;
         this.userPw = userPw;
         this.userName = userName;
         this.userAddr = userAddr;
         this.userAddrDetail = userAddrDetail;
         this.userAddrEtc = userAddrEtc;
-        this.userImg = userImg;
     }
 
 }
