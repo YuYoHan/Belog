@@ -13,8 +13,14 @@ create table user(
     userName varchar(300) not null,
     userAddr varchar(1000) not null,
     userAddrDetail varchar(1000) not null ,
-    userAddrEtc varchar(300) not null ,
-    userImg varchar(1000) not null
+    userAddrEtc varchar(300) not null
+);
+
+create table userImg(
+    imgNum bigint primary key auto_increment,
+    userImg varchar(3000),
+    userId bigint,
+    foreign key pk_userId(userId) references user(userId)
 );
 
 create table board(
@@ -24,14 +30,14 @@ create table board(
     writeTime timestamp not null default current_timestamp on update current_timestamp,
     hashTag varchar(300),
     userId bigint,
-    foreign key pk_userId(userId) references user(userId) 
+    foreign key pk_userId2(userId) references user(userId)
 );
 
 create table comment(
 	commentNum bigint primary key auto_increment,
     comment varchar(3000),
     userId bigint,
-    foreign key pk_userId2(userId) references user(userId),
+    foreign key pk_userId3(userId) references user(userId),
     userEmail varchar(300),
     foreign key pk_userEmail(userEmail) references user(userEmail),
     boardNum bigint,
@@ -43,7 +49,7 @@ create table like_sth(
 	likeNum bigint primary key auto_increment,
     likeBoard varchar(3000),
     userId bigint,
-    foreign key pk_userId3(userId) references user(userId),
+    foreign key pk_userId4(userId) references user(userId),
     boardNum bigint,
     foreign key pk_boardNum2(boardNum) references board(boardNum)
 );
