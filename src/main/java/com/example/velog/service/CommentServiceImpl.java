@@ -33,8 +33,8 @@ public class CommentServiceImpl implements CommentService {
 
     // 댓글 조회
     @Override
-    public List<CommentDTO> findAllComment() {
-        return commentMapper.findAll();
+    public List<CommentDTO> findAllComment(Long boardNum) {
+        return commentMapper.findAll(boardNum);
     }
 
     @Override

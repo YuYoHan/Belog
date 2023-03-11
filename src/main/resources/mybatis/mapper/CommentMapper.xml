@@ -4,27 +4,26 @@
 <mapper namespace="com.example.velog.mapper.CommentMapper">
 
     <insert id="add" useGeneratedKeys="true" keyProperty="commentNum">
-        INSERT INTO comment(userId, boardNum, comment)
-        VALUES (#{userId}, #{boardNum}, #{comment})
+        INSERT INTO comment(userId, userEmail, boardNum, comment)
+        VALUES (#{userId}, #{userEmail}, #{boardNum}, #{comment})
     </insert>
 
-    <update id="edit">
+    <update id="edit" parameterType="com.example.velog.domain.CommentDTO">
         UPDATE comment
         SET comment = #{comment}, commentTime=sysdate
-        where userId = #{userId}
+        where commentNum = #{commentNum}
     </update>
 
-    <update id="delete">
+    <update id="delete" parameterType="com.example.velog.domain.CommentDTO">
         update commment
         set comment='삭제되었습니다'
-        where userId = #{userId}
+        where commentNum = #{commentNum}
     </update>
 
     <select id="findAll" resultType="com.example.velog.domain.CommentDTO">
-        SELECT commentNum, userId, boardNum, comment, commentTime
+        SELECT boardNum, commentNum, userEmail, comment, commentTime
         FROM comment
-        where userId = #{userId}
-        order by userId asc
+        where boardNum = #{boardNum}
     </select>
 
     <select id="count" resultType="int">
