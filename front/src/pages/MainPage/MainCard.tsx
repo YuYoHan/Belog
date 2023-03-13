@@ -24,7 +24,7 @@ function MainPageCard ({data} : {data : MainPageData}) {
             </S.Content>
                <S.Userinfo>
                   <div>
-                     <img src={data.profile.img}/>
+                     <img src={data.profile.img} alt=""/>
                      <span>{data.profile.username}</span>
                   </div>
                </S.Userinfo>
