@@ -1,4 +1,5 @@
 import Header from 'components/Header/Header';
+import LodingPage from 'components/Loding/loding';
 import DetailPage from 'pages/DetailPage/Detail';
 import MainPageList from 'pages/MainPage/MainList';
 import MyPage from 'pages/Mypage';
