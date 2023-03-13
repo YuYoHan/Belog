@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import Axios from "apis/@core";
 import PostsApi from "apis/posts/PostsAPI";
 import { AxiosError } from "axios";
+import LodingPage from "components/Loding/loding";
 import queryKey from "consts/queryKey";
 import { media } from "libs/styles/media";
 import { useEffect } from "react";
@@ -26,12 +27,15 @@ export type queryMainPost = {
 function MainPageList() {
    
 
-   const {data : mainlist, isFetching } = useQuery<queryMainPost >([queryKey.GET_MAINPOSTS_LIST], PostsApi.getPostsApi);
+   const {data : mainlist, isLoading } = useQuery<queryMainPost,boolean >([queryKey.GET_MAINPOSTS_LIST], PostsApi.getPostsApi);
    
-   console.log(isFetching);
+   console.log(isLoading);
    
 
    return(
+      
+      
+
       <S.Wrapper>
          <S.Innerwrap>
             <S.Ul>
@@ -41,7 +45,10 @@ function MainPageList() {
                ))}
             </S.Ul>
          </S.Innerwrap>
+
+         {isLoading && <LodingPage />}
       </S.Wrapper>
+
    )
 }
 
