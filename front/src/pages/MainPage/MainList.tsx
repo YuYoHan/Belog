@@ -1,11 +1,14 @@
+import { useQuery } from "@tanstack/react-query";
 import Axios from "apis/@core";
 import PostsApi from "apis/posts/PostsAPI";
+import { AxiosError } from "axios";
+import queryKey from "consts/queryKey";
 import { media } from "libs/styles/media";
-import { useState,useEffect } from "react";
+import { useEffect } from "react";
 import styled from "styled-components"
 import MainPageCard from "./MainCard";
 
-export type MainPageData  = {
+export type MainPageData = {
    id : number,
    title : string,
    content : string,
@@ -15,30 +18,27 @@ export type MainPageData  = {
    command : string,
    publishedAt: string
 }
-// testsadasdasdadssad
-function MainPageList() {
 
-   const [mainlist , setmainlist] = useState<Array<MainPageData>>();
-  
-   useEffect(() => {
-      
-      const fetchData = async () => {
-         const res = await PostsApi.getPostsApi();
-         setmainlist(res.data);
-      }
-       fetchData()
-   },[])
-   // console.log(mainlist);
+export type queryMainPost = {
+   data : MainPageData[]
+}
+
+function MainPageList() {
+   
+
+   const {data : mainlist, isFetching } = useQuery<queryMainPost >([queryKey.GET_MAINPOSTS_LIST], PostsApi.getPostsApi);
+   
+   console.log(isFetching);
    
 
    return(
       <S.Wrapper>
          <S.Innerwrap>
             <S.Ul>
-               { mainlist &&
-                  mainlist.map((list,index) => (
+               {
+                  mainlist?.data.map((list  ,index) => (
                      <MainPageCard data={list} key={index}/>
-                  ))}
+               ))}
             </S.Ul>
          </S.Innerwrap>
       </S.Wrapper>
