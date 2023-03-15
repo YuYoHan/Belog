@@ -10,8 +10,8 @@ function Tabheader() {
    let [form, setForm] = useState<string>('글');
 
 
-   const onFormChange = (e : React.MouseEvent)  => {
-      const { innerText } : any = e.target
+   const onFormChange = (e : React.MouseEvent) : void => {
+      const { innerText } : any  = e.target
       
       form = innerText.toLowerCase();
       setForm(form);
