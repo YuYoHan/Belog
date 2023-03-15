@@ -1,6 +1,6 @@
 import React,{useState} from "react";
-import LoginButton from "../modal/LoginBtn";
-import LoginModal from "../modal/LoginModal";
+import LoginButton from "./modal/LoginBtn";
+import LoginModal from "./modal/LoginModal";
 
 
 function OnClickLogin() {

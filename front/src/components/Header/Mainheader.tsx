@@ -1,7 +1,7 @@
 import {Outlet} from 'react-router-dom'
 import styled from 'styled-components'
 import Logo from './logo'
-import OnClickLogin from './Login'
+import OnClickLogin from './LoginBtn/Login'
 import HeaderSearch from './Search'
 
 function MainHeader(){
