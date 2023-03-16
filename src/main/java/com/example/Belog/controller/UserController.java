@@ -64,11 +64,13 @@ public class UserController {
 
     @GetMapping("/login")
     public String loginForm(@CookieValue("userEmail") String userEmail, Model model) {
-        if(userEmail == null) return "/login";
-
-        log.info(userEmail);
-        model.addAttribute("loginEmail", userEmail);
-        return "/login";
+        if(userEmail == null) {
+            return "/login";
+        } else {
+            model.addAttribute("loginEmail", userEmail);
+            log.info(userEmail);
+            return "/login";
+        }
     }
 
 
