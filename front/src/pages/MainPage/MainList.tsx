@@ -29,13 +29,8 @@ function MainPageList() {
 
    const {data : mainlist, isLoading } = useQuery<queryMainPost,boolean >([queryKey.GET_MAINPOSTS_LIST], PostsApi.getPostsApi);
    
-   console.log(isLoading);
-   
 
    return(
-      
-      
-
       <S.Wrapper>
          <S.Innerwrap>
             <S.Ul>
