@@ -2,7 +2,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.velog.mapper.UserMapper">
+<mapper namespace="com.example.Belog.mapper.UserMapper">
     <insert id="signUp">
         insert into user(userEmail, userPw, userName, userAddr, userAddrDetail, userAddrEtc, userImg)
         values (#{userEmail},#{userPw}, #{userName}, #{userAddr}, #{userAddrDeail}, #{userAddrEtc}, #{userImg})
@@ -10,7 +10,7 @@
     <select id="emailCheck" parameterType="String" resultType="int">
         select count(userEmail) from user where userEmail = #{userEmail}
     </select>
-    <select id="login" resultType="com.example.velog.domain.UserDTO">
+    <select id="login" resultType="com.example.Belog.domain.UserDTO">
         select * from user where userEmail=#{userEmail} and userPw=#{userPw}
     </select>
     <delete id="deleteUser" parameterType="String">
