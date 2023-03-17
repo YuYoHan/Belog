@@ -13,7 +13,7 @@ function MyPageCard({data} : {data : MypageData} ) {
             <S.Li>
                <S.StyledLink to={`/${data.title}`} state={{data}}>
                   <S.ImgContainer>
-                     <img src={data.img}/>
+                     <img src={data.img} alt=""/>
                   </S.ImgContainer>
                   <S.Content>
                   <strong>{data.title}</strong>
@@ -38,8 +38,13 @@ const Li = styled.li`
    display: flex;
    flex-direction: column;
 
-   ${media.desktopM} {
+   ${media.tablet} {
       width: calc(50% - 2rem);
+   }
+   ${media.mobildL} {
+      width: 100%;
+      margin: 2rem 0px;
+
    }
 `
 
@@ -65,8 +70,6 @@ const ImgContainer = styled.div`
       display: block;
       object-fit: cover;
    }
-
-   
 `
 
 const Content = styled.div`
