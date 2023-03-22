@@ -6,6 +6,7 @@ import { MainPageData } from "./MainList"
 
 function MainPageCard ({data} : {data : MainPageData}) {
    
+   console.log(data.publishedAt);
    
    
 
