@@ -6,6 +6,7 @@ import { MainPageData } from "./MainList"
 
 function MainPageCard ({data} : {data : MainPageData}) {
    
+   console.log(data.publishedAt);
    
    
 
@@ -46,10 +47,10 @@ const Li = styled.li`
    ${media.tablet} {
       width: calc(50% - 2rem);
    }
+   
    ${media.mobildL} {
       width: 100%;
       margin: 2rem 0px;
-
    }
 `
 
