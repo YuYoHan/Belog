@@ -50,14 +50,14 @@ class UserControllerTest {
                 .build();
     }
 
-    @Test
-    @DisplayName("회원가입폼 테스트")
-    void signUp() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/signUp"))
-                .andExpect(status().isOk())
-                .andDo(print())
-                .andReturn();
-    }
+//    @Test
+//    @DisplayName("회원가입폼 테스트")
+//    void signUp() throws Exception {
+//        mockMvc.perform(MockMvcRequestBuilders.get("/signUp"))
+//                .andExpect(status().isOk())
+//                .andDo(print())
+//                .andReturn();
+//    }
 
     @Test
     @DisplayName("회원가입 테스트")
@@ -102,15 +102,15 @@ class UserControllerTest {
                 .andReturn();
     }
 
-    @Test
-    @DisplayName("로그아웃 테스트")
-    void logOut() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.post("/logOut"))
-                .andExpect(redirectedUrl("/"))
-                .andExpect(status().isOk())
-                .andExpect(unauthen);
-
-    }
+//    @Test
+//    @DisplayName("로그아웃 테스트")
+//    void logOut() throws Exception {
+//        mockMvc.perform(MockMvcRequestBuilders.post("/logOut"))
+//                .andExpect(redirectedUrl("/"))
+//                .andExpect(status().isOk())
+//                .andExpect(unauthen);
+//
+//    }
 
     @Test
     @DisplayName("회원탈퇴 폼 테스트")

@@ -33,6 +33,12 @@ create table board(
     foreign key pk_userId2(userId) references user(userId)
 );
 
+create table boardImg(
+    boardImgNum bigint primary key auto_increment,
+    boardImg varchar(3000),
+    boardId biging, foreign key pk_boardNum(boardNum) references board(boardNum)
+);
+
 create table comment(
 	commentNum bigint primary key auto_increment,
     comment varchar(3000),
