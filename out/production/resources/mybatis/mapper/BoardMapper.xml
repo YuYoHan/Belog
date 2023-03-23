@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.velog.mapper.BoardMapper">
+<mapper namespace="com.example.Belog.mapper.BoardMapper">
 
-    <insert id="writeBoard" parameterType="com.example.velog.domain.BoardDTO">
-        insert into board(userId, boardTitle, writeTime, boardContents, hashTag) values (#{userId}, #{boardTitle}, #{writeTime}, #{boardContents}, #{hashTag})
+    <insert id="writeBoard" parameterType="com.example.Belog.domain.BoardDTO">
+        insert into board(userId, boardTitle, boardContents, hashTag) values (#{userId}, #{boardTitle}, #{boardContents}, #{hashTag})
     </insert>
 
     <delete id="deleteBoard" parameterType="Long">
         delete from board where boardNum = #{boardNum}
     </delete>
 
-    <update id="updateBoard" parameterType="com.example.velog.domain.BoardDTO">
-        update board set boardContents = #{boardContents} where boardNum = #{boardNum}
+    <update id="updateBoard" parameterType="com.example.Belog.domain.BoardDTO">
+        update board set boardContents = #{boardContents}, boardTitle = #{boardTitle}, hashTag = #{hashTag} where boardNum = #{boardNum}
     </update>
 
-    <select id="getBoardCount" parameterType="com.example.velog.domain.BoardDTO" resultType="int">
+    <select id="getBoardCount" parameterType="com.example.Belog.domain.BoardDTO" resultType="int">
         select count(*) from board;
     </select>
 
     <select id="findAllBoard" resultType="map">
-        select * from board order by boardNum desc;
+        select * from board order by boardNum desc limit #{startRow}, #{BOARD_NUM_PER_PAGE};
     </select>
 
     <select id="getBoardCountByBoardNum" parameterType="Long" resultType="int">
         select count(*) from board where boardNum = #{boardNum}
     </select>
 
-    <select id="findBoardByBoardNum" parameterType="Long" resultType="com.example.velog.domain.BoardDTO">
-        select * from board where boardNum = #{boardNum};
+    <select id="findBoardByBoardNum" parameterType="Long" resultType="com.example.Belog.domain.BoardDTO">
+        select boardNum, userId, boardTitle, boardContents, hashTag from board where boardNum = #{boardNum};
     </select>
 </mapper>

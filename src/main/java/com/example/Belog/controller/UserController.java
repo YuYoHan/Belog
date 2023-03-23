@@ -19,6 +19,7 @@ import java.util.Map;
 @Controller
 @Log4j2
 @AllArgsConstructor
+@RequestMapping("/user/*")
 public class UserController {
 
     private UserService userService;
@@ -57,6 +58,10 @@ public class UserController {
             // 30분
             cookie.setMaxAge(1800);
             resp.addCookie(cookie);
+
+
+            model.addAttribute("userEmail", userDTO.getUserEmail());
+
         }
         return "redirect:/";
     }
