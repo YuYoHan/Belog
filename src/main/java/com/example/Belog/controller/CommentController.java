@@ -19,7 +19,7 @@ public class CommentController {
 
     private CommentService commentService;
 
-    // 댓글 작성
+    // 댓글작성
     @PostMapping("/comment/add")    //?
     public String addComment(@RequestParam String comment, HttpServletRequest request) {
         log.info("add Comment");
@@ -50,7 +50,7 @@ public class CommentController {
         return "redirect:/board/{boardNum}";
     }// addComment
 
-    // 댓글 수정
+    // 댓글수정
     @PostMapping("/comment/edit")
     public String editComment(@RequestParam String comment, HttpServletRequest request) {
         Long boardNum = Long.parseLong(request.getParameter("boardNum"));
@@ -67,7 +67,7 @@ public class CommentController {
         return "redirect:/board/{boardNum}";
     }
 
-    // 댓글 삭제, 삭제되면 삭제되었습니다 내용 띄우기
+    // 댓글삭제
     @PostMapping("/comment/delete")
     public String deleteComment(HttpServletRequest request) {
         Long boardNum = Long.parseLong(request.getParameter("boardNum"));
@@ -83,6 +83,7 @@ public class CommentController {
         return "redirect:/board/{boardNum}";
     }
 
+    // 전체 댓글보여주기
     @GetMapping("/comment/{boardNum}")
     public String findAllComment(@PathVariable Long boardNum, HttpServletRequest request, Model model) {
         log.info("find");

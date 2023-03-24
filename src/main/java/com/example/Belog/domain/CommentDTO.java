@@ -31,4 +31,5 @@ public class CommentDTO {
         this.boardNum = boardNum;
         this.comment = comment;
     }
+
 }

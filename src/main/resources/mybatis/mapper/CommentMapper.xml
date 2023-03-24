@@ -26,8 +26,7 @@
     </select>
 
     <select id="count" resultType="int">
-        select count(*)
-        from comment
+        select count(*) from comment
         where boardNum = #{boardNum}
     </select>
 </mapper>
