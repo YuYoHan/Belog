@@ -21,24 +21,21 @@ public class CommentController {
 
     // 댓글 작성
     @PostMapping("/comment/add")    //?
-    public String addComment(HttpServletRequest request) {
+    public String addComment(@RequestParam String comment, HttpServletRequest request) {
         log.info("add Comment");
 
         // userId 세션에서 값 얻어오기
         HttpSession session = request.getSession();
         Long userId = (Long) session.getAttribute("userId");
-        String userEmail = (String) session.getAttribute("userEmail");
 
         if (userId != null) {
             //boardNum을 얻어오는 값
             Long boardNum = Long.parseLong(request.getParameter("boardNum"));
-            String comment = request.getParameter("comment");
 
             try {
                 if (!comment.equals("") && !comment.isEmpty()) {
                     CommentDTO commentDTO = CommentDTO.builder()
                             .userId(userId)
-                            .userEmail(userEmail)
                             .boardNum(boardNum)
                             .comment(comment)
                             .build();
@@ -55,10 +52,9 @@ public class CommentController {
 
     // 댓글 수정
     @PostMapping("/comment/edit")
-    public String editComment(HttpServletRequest request) {
+    public String editComment(@RequestParam String comment, HttpServletRequest request) {
         Long boardNum = Long.parseLong(request.getParameter("boardNum"));
         Long commentNum = Long.parseLong(request.getParameter("commentNum"));
-        String comment = request.getParameter("comment");
 
         CommentDTO commentDTO = CommentDTO.builder()
                 .boardNum(boardNum)
@@ -76,12 +72,10 @@ public class CommentController {
     public String deleteComment(HttpServletRequest request) {
         Long boardNum = Long.parseLong(request.getParameter("boardNum"));
         Long commentNum = Long.parseLong(request.getParameter("commentNum"));
-        String comment = request.getParameter("comment");
 
         CommentDTO commentDTO = CommentDTO.builder()
                 .boardNum(boardNum)
                 .commentNum(commentNum)
-                .comment(comment)
                 .build();
 
         commentService.deleteComment(commentDTO);

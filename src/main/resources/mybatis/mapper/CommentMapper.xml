@@ -14,16 +14,15 @@
         where commentNum = #{commentNum}
     </update>
 
-    <update id="delete" parameterType="com.example.Belog.domain.CommentDTO">
-        update commment
-        set comment='삭제되었습니다'
+    <delete id="delete" parameterType="com.example.Belog.domain.CommentDTO">
+        delete from comment
         where commentNum = #{commentNum}
-    </update>
+    </delete>
 
     <select id="findAll" resultType="com.example.Belog.domain.CommentDTO">
-        SELECT boardNum, commentNum, userEmail, comment, commentTime
-        FROM comment
-        where boardNum = #{boardNum}
+        SELECT c.boardNum, c.commentNum, u.userEmail, c.comment, c.commentTime
+        FROM comment c, user u
+        where c.userId = u.userId and c.boardNum = #{boardNum}
     </select>
 
     <select id="count" resultType="int">
