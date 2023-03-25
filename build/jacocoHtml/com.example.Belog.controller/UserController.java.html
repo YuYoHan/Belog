@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ko"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">setting</a> &gt; <a href="index.source.html" class="el_package">com.example.Belog.controller</a> &gt; <span class="el_source">UserController.java</span></div><h1>UserController.java</h1><pre class="source lang-java linenums">package com.example.Belog.controller;
+
+import com.example.Belog.domain.UserDTO;
+import com.example.Belog.service.UserService;
+import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.util.Map;
+
+@Controller
+<span class="fc" id="L20">@Log4j2</span>
+<span class="fc" id="L21">@AllArgsConstructor</span>
+@RequestMapping(&quot;/user/*&quot;)
+public class UserController {
+
+    private UserService userService;
+
+    @GetMapping(&quot;/signUp&quot;)
+    public String signUp() {
+<span class="nc" id="L29">        return &quot;/signUp&quot;;</span>
+    }
+
+    @PostMapping(&quot;/signUp&quot;)
+    public String signUp(@Validated UserDTO userDTO, Errors errors, HttpServletResponse resp, Model model) {
+        // post요청시 넘어온 user 입력값에서 Validation에 걸리는 경우
+<span class="nc bnc" id="L35" title="All 2 branches missed.">        if(errors.hasErrors()) {</span>
+            // 회원 가입 실패시, 입력 데이터를 유지
+<span class="nc" id="L37">            model.addAttribute(&quot;userDTO&quot;, userDTO);</span>
+
+            // 유효성 통과 못한 필드와 메시지를 핸들링
+            // 회원가입 실패시 message 값들을 모델에 매핑해서 View로 전달
+<span class="nc" id="L41">            Map&lt;String, String&gt; validatorResult = userService.validateHandling(errors);</span>
+
+
+            // map.keySet() -&gt; 모든 key값을 갖고온다.
+            // 그 갖고온 키로 반복문을 통해 키와 에러 메세지로 매핑
+<span class="nc bnc" id="L46" title="All 2 branches missed.">            for (String key: validatorResult.keySet()</span>
+                 ) {
+                // ex) model.addAtrribute(&quot;valid_id&quot;, &quot;아이디는 필수 입력사항 입니다.&quot;)
+<span class="nc" id="L49">                model.addAttribute(key,validatorResult.get(key));</span>
+<span class="nc" id="L50">            }</span>
+<span class="nc" id="L51">            return &quot;/signUp&quot;;</span>
+        }
+<span class="nc bnc" id="L53" title="All 2 branches missed.">        if(userService.signUp(userDTO)) {</span>
+<span class="nc" id="L54">            log.info(&quot;result : &quot; + userDTO.getUserId());</span>
+<span class="nc" id="L55">            log.info(&quot;result : &quot; + userDTO.getUserEmail());</span>
+
+<span class="nc" id="L57">            Cookie cookie = new Cookie(&quot;userEmail&quot;, userDTO.getUserEmail());</span>
+            // 30분
+<span class="nc" id="L59">            cookie.setMaxAge(1800);</span>
+<span class="nc" id="L60">            resp.addCookie(cookie);</span>
+
+
+<span class="nc" id="L63">            model.addAttribute(&quot;userEmail&quot;, userDTO.getUserEmail());</span>
+
+        }
+<span class="nc" id="L66">        return &quot;redirect:/&quot;;</span>
+    }
+
+
+    @GetMapping(&quot;/login&quot;)
+    public String loginForm(@CookieValue(&quot;userEmail&quot;) String userEmail, Model model) {
+<span class="nc bnc" id="L72" title="All 2 branches missed.">        if(userEmail == null) {</span>
+<span class="nc" id="L73">            return &quot;/login&quot;;</span>
+        } else {
+<span class="nc" id="L75">            model.addAttribute(&quot;loginEmail&quot;, userEmail);</span>
+<span class="nc" id="L76">            log.info(userEmail);</span>
+<span class="nc" id="L77">            return &quot;/login&quot;;</span>
+        }
+    }
+
+
+    @PostMapping(&quot;/login&quot;)
+    public String login(String userEmail, String userPw, HttpSession session, Model model) {
+<span class="nc" id="L84">        UserDTO user =  userService.login(userEmail, userPw);</span>
+
+<span class="nc bnc" id="L86" title="All 2 branches missed.">        if(user != null) {</span>
+<span class="nc" id="L87">            session.setAttribute(&quot;userId&quot;, user.getUserId());</span>
+<span class="nc" id="L88">            session.setAttribute(&quot;userEmail&quot;, user.getUserEmail());</span>
+        }
+<span class="nc" id="L90">        return &quot;home&quot;;</span>
+    }
+
+    @PostMapping(&quot;/logOut&quot;)
+    public String logOut(HttpServletRequest req) {
+<span class="nc" id="L95">        req.getSession().invalidate();</span>
+<span class="nc" id="L96">        return &quot;redirect:/&quot;;</span>
+    }
+
+    @GetMapping(&quot;/remove&quot;)
+    public String remove() {
+<span class="nc" id="L101">        return &quot;/remove&quot;;</span>
+    }
+
+    @PostMapping(&quot;/remove&quot;)
+    public String remove(String userEmail, String userPw) {
+<span class="nc" id="L106">        log.info(&quot;아이디 : &quot; + userEmail);</span>
+<span class="nc" id="L107">        log.info(&quot;비밀번호 : &quot; + userPw);</span>
+
+<span class="nc" id="L109">        UserDTO user = userService.remove(userEmail, userPw);</span>
+<span class="nc bnc" id="L110" title="All 2 branches missed.">        if(user != null) {</span>
+<span class="nc" id="L111">            return &quot;redirect:/&quot;;</span>
+        } else {
+<span class="nc" id="L113">            return &quot;/remove&quot;;</span>
+        }
+    }
+
+    // 중복체크
+    @PostMapping(&quot;/user/email-check&quot;)
+    // ajax를 쓸 때는 반드시 @ResponseBody를 써야한다.
+    public @ResponseBody int emailCheck(@RequestParam(&quot;userEmail&quot;) String userEmail) {
+<span class="nc" id="L121">        log.info(&quot;userEmail : &quot; + userEmail);</span>
+<span class="nc" id="L122">        int checkResult = userService.emailCheck(userEmail);</span>
+<span class="nc" id="L123">        return checkResult;</span>
+    }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

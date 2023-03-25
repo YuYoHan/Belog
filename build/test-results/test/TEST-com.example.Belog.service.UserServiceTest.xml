@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.Belog.service.UserServiceTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-03-25T04:10:41" hostname="gimminseong-ui-MacBookAir.local" time="0.86">
+  <properties/>
+  <testcase name="회원가입 테스트" classname="com.example.Belog.service.UserServiceTest" time="0.84"/>
+  <testcase name="로그인 테스트" classname="com.example.Belog.service.UserServiceTest" time="0.013"/>
+  <system-out><![CDATA[
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.7.8)
+
+2023-03-25 13:10:37.208  INFO 44830 --- [    Test worker] c.e.B.s.UserServiceTest                  : Starting UserServiceTest using Java 11.0.11 on gimminseong-ui-MacBookAir.local with PID 44830 (started by minsungkim in /Users/minsungkim/Minsung/Github/setting)
+2023-03-25 13:10:37.297  INFO 44830 --- [    Test worker] c.e.B.s.UserServiceTest                  : No active profile set, falling back to 1 default profile: "default"
+2023-03-25 13:10:41.420  INFO 44830 --- [    Test worker] c.e.B.s.UserServiceTest                  : Started UserServiceTest in 4.976 seconds (JVM running for 8.416)
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

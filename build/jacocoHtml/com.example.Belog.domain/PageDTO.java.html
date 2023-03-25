@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ko"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PageDTO.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">setting</a> &gt; <a href="index.source.html" class="el_package">com.example.Belog.domain</a> &gt; <span class="el_source">PageDTO.java</span></div><h1>PageDTO.java</h1><pre class="source lang-java linenums">package com.example.Belog.domain;
+
+public class PageDTO {
+    private int startPage;
+    private int endPage;
+    private int realEnd;
+    private int total;
+    private boolean prev;
+    private boolean next;
+
+<span class="nc" id="L11">    public PageDTO(int total, Criteria criteria) {</span>
+<span class="nc" id="L12">        int pageNum = criteria.getPage();</span>
+<span class="nc" id="L13">        this.total = total;</span>
+
+<span class="nc" id="L15">        this.endPage = (int)Math.ceil(pageNum/10.0) * 10;</span>
+<span class="nc" id="L16">        this.startPage = this.endPage - (criteria.getBOARD_NUM_PER_PAGE() - 1);</span>
+<span class="nc" id="L17">        this.realEnd = (int)Math.ceil((total * 1.0 / 10));</span>
+
+<span class="nc bnc" id="L19" title="All 2 branches missed.">        if (endPage &gt; realEnd) {</span>
+<span class="nc" id="L20">            endPage = realEnd;</span>
+        }
+
+<span class="nc bnc" id="L23" title="All 2 branches missed.">        this.prev = this.startPage &gt; 1;</span>
+<span class="nc bnc" id="L24" title="All 2 branches missed.">        this.next = this.endPage &lt; this.realEnd;</span>
+<span class="nc" id="L25">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
