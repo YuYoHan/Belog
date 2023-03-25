@@ -1,7 +1,5 @@
 import Axios from "apis/@core";
-import { API_BASE_URL } from "apis/test/api-config";
-import { AxiosResponse } from "axios";
-import { MainPageData, queryMainPost } from "pages/MainPage/MainList";
+import { queryMainPost } from "pages/MainPage/MainList";
 
 
 const PostsApi =  {
