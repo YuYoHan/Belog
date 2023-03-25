@@ -19,26 +19,23 @@ public class CommentController {
 
     private CommentService commentService;
 
-    // 댓글 작성
+    // 댓글작성
     @PostMapping("/comment/add")    //?
-    public String addComment(HttpServletRequest request) {
+    public String addComment(@RequestParam String comment, HttpServletRequest request) {
         log.info("add Comment");
 
         // userId 세션에서 값 얻어오기
         HttpSession session = request.getSession();
         Long userId = (Long) session.getAttribute("userId");
-        String userEmail = (String) session.getAttribute("userEmail");
 
         if (userId != null) {
             //boardNum을 얻어오는 값
             Long boardNum = Long.parseLong(request.getParameter("boardNum"));
-            String comment = request.getParameter("comment");
 
             try {
                 if (!comment.equals("") && !comment.isEmpty()) {
                     CommentDTO commentDTO = CommentDTO.builder()
                             .userId(userId)
-                            .userEmail(userEmail)
                             .boardNum(boardNum)
                             .comment(comment)
                             .build();
@@ -53,12 +50,11 @@ public class CommentController {
         return "redirect:/board/{boardNum}";
     }// addComment
 
-    // 댓글 수정
+    // 댓글수정
     @PostMapping("/comment/edit")
-    public String editComment(HttpServletRequest request) {
+    public String editComment(@RequestParam String comment, HttpServletRequest request) {
         Long boardNum = Long.parseLong(request.getParameter("boardNum"));
         Long commentNum = Long.parseLong(request.getParameter("commentNum"));
-        String comment = request.getParameter("comment");
 
         CommentDTO commentDTO = CommentDTO.builder()
                 .boardNum(boardNum)
@@ -71,17 +67,15 @@ public class CommentController {
         return "redirect:/board/{boardNum}";
     }
 
-    // 댓글 삭제, 삭제되면 삭제되었습니다 내용 띄우기
+    // 댓글삭제
     @PostMapping("/comment/delete")
     public String deleteComment(HttpServletRequest request) {
         Long boardNum = Long.parseLong(request.getParameter("boardNum"));
         Long commentNum = Long.parseLong(request.getParameter("commentNum"));
-        String comment = request.getParameter("comment");
 
         CommentDTO commentDTO = CommentDTO.builder()
                 .boardNum(boardNum)
                 .commentNum(commentNum)
-                .comment(comment)
                 .build();
 
         commentService.deleteComment(commentDTO);
@@ -89,6 +83,7 @@ public class CommentController {
         return "redirect:/board/{boardNum}";
     }
 
+    // 전체 댓글보여주기
     @GetMapping("/comment/{boardNum}")
     public String findAllComment(@PathVariable Long boardNum, HttpServletRequest request, Model model) {
         log.info("find");

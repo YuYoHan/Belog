@@ -42,10 +42,7 @@ create table boardImg(
 create table comment(
 	commentNum bigint primary key auto_increment,
     comment varchar(3000),
-    userId bigint,
-    foreign key pk_userId3(userId) references user(userId),
-    userEmail varchar(300),
-    foreign key pk_userEmail(userEmail) references user(userEmail),
+    userId bigint, foreign key pk_userId3(userId) references user(userId),
     boardNum bigint,
     foreign key pk_boardNum(boardNum) references board(boardNum),
     commentTime datetime default now()
