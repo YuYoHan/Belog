@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ko"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Criteria.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">setting</a> &gt; <a href="index.source.html" class="el_package">com.example.Belog.domain</a> &gt; <span class="el_source">Criteria.java</span></div><h1>Criteria.java</h1><pre class="source lang-java linenums">package com.example.Belog.domain;
+
+public class Criteria {
+    // 현재 페이지
+    private int page;
+    // 페이지당 게시글 개수
+<span class="nc" id="L7">    private final int BOARD_NUM_PER_PAGE = 10;</span>
+    private int startRow;
+
+<span class="nc" id="L10">    public Criteria(int page) {</span>
+<span class="nc" id="L11">        this.page = page;</span>
+<span class="nc" id="L12">        this.startRow = (page - 1) * BOARD_NUM_PER_PAGE;</span>
+<span class="nc" id="L13">    }</span>
+
+    public int getPageFirstBoardNum() {
+        // 현재 페이지의 게시글 시작 번호
+<span class="nc" id="L17">        return (this.page - 1) * BOARD_NUM_PER_PAGE;</span>
+    }
+
+    public int getPage() {
+<span class="nc" id="L21">        return this.page;</span>
+    }
+
+    public int getBOARD_NUM_PER_PAGE() {
+<span class="nc" id="L25">        return this.BOARD_NUM_PER_PAGE;</span>
+    }
+
+    public int getStartRow() {
+<span class="nc" id="L29">        return startRow;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

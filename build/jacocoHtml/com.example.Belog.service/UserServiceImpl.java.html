@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ko"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserServiceImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">setting</a> &gt; <a href="index.source.html" class="el_package">com.example.Belog.service</a> &gt; <span class="el_source">UserServiceImpl.java</span></div><h1>UserServiceImpl.java</h1><pre class="source lang-java linenums">package com.example.Belog.service;
+
+import com.example.Belog.domain.UserDTO;
+import com.example.Belog.mapper.UserMapper;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.validation.Errors;
+import org.springframework.validation.FieldError;
+
+import java.util.HashMap;
+import java.util.Map;
+
+@Service
+<span class="fc" id="L14">@AllArgsConstructor</span>
+public class UserServiceImpl implements UserService{
+
+    private UserMapper userMapper;
+
+    @Override
+    public boolean signUp(UserDTO userDTO) {
+        // 있으면 true
+<span class="nc bnc" id="L22" title="All 2 branches missed.">        return userMapper.signUp(userDTO) == 1;</span>
+    }
+
+    @Override
+    public Map&lt;String, String&gt; validateHandling(Errors errors) {
+<span class="nc" id="L27">        Map&lt;String, String&gt; validatorResult = new HashMap&lt;&gt;();</span>
+        // 유효성 검사에 실패한 필드 목록을 가져옵니다.
+<span class="nc bnc" id="L29" title="All 2 branches missed.">        for (FieldError error: errors.getFieldErrors()</span>
+             ) {
+            // 유효성 검사에 실패한 필드명을 가져옵니다.
+<span class="nc" id="L32">            String validKeyName = String.format(&quot;valid_%s&quot;, error.getField());</span>
+            // 유효성 검사에 실패한 필드에 정의된 메시지를 가져옵니다.
+<span class="nc" id="L34">            validatorResult.put(validKeyName, error.getDefaultMessage());</span>
+<span class="nc" id="L35">        }</span>
+<span class="nc" id="L36">        return  validatorResult;</span>
+    }
+
+    @Override
+    public UserDTO login(String userId, String userPw) {
+<span class="nc" id="L41">        UserDTO user = userMapper.login(userId, userPw);</span>
+<span class="nc" id="L42">        return user;</span>
+    }
+
+    @Override
+    public UserDTO remove(String userEmail, String userPw) {
+<span class="nc" id="L47">        return userMapper.deleteUser(userEmail, userPw);</span>
+    }
+
+    @Override
+    public int emailCheck(String userEmail) {
+<span class="nc" id="L52">        return userMapper.emailCheck(userEmail);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
