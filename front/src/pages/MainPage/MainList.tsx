@@ -1,13 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import Axios from "apis/@core";
 import PostsApi from "apis/posts/PostsAPI";
-import { API_BASE_URL } from "apis/test/api-config";
-import Testfile from "apis/test/testfile";
-import axios, { AxiosError } from "axios";
 import LodingPage from "components/Loding/loding";
-import {BACK_TEST_API, queryKey} from "consts/queryKey";
+import { queryKey} from "consts/queryKey";
 import { media } from "libs/styles/media";
-import { useEffect } from "react";
 import styled from "styled-components"
 import MainPageCard from "./MainCard";
 
@@ -30,27 +25,8 @@ function MainPageList() {
    
 
    const {data : mainlist, isLoading } = useQuery<queryMainPost,boolean >([queryKey.GET_MAINPOSTS_LIST], PostsApi.getPostsApi);
-   // const {data : Test_APi } = useQuery<any,boolean >([BACK_TEST_API.GET_TEST_LIST], PostsApi.testApi);
    
-   useEffect(() => {
-      function fetchData() {
-         axios({
-            method: "get",
-            url: "http://localhost:8080/user",
-            headers : {
-               "Content-Type": "application/json",
-           } 
-          }).then((res) => {
-            console.log(res); 
-            
-          }).catch((err) => {
-            console.log(err);
-            
-          })
-      }
-      fetchData()
-   })
-   
+  
    
    return(
       <S.Wrapper>

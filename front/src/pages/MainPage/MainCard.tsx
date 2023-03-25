@@ -95,6 +95,7 @@ const Content = styled.div`
       white-space: nowrap;
       overflow: hidden;
       color: #212529;
+      font-weight: 600;
    }
 
    & p {
