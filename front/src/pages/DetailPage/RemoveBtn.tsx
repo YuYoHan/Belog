@@ -9,18 +9,10 @@ import DetailConfirmModal from "./ConfirmModal/Modal";
 
 
 
-function RemoveBtn({ id} : {id : number}) {
+function RemoveBtn({ id } : {id : number} ) {
 
    const [modalOpen, setModalOpen] = useState<boolean>(false);
    
-   
-   // const mutation  : any = useMutation(() => PostsApi.deletePostsApi(id), {
-   //    onSuccess: () => {
-   //       setModalOpen(true)
-   //       queryClient.invalidateQueries([queryKey.GET_MAINPOSTS_LIST])
-   //    },
-   // })
-   // mutation.mutate()
    const onOpenModal = () => {
       setModalOpen(true)
    }
