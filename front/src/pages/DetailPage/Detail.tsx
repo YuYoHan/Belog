@@ -17,6 +17,8 @@ function DetailPage() {
    const {id, title, content,tablist,img} = location.state.data 
    
    
+   
+   
 
    return (
       <S.Wrapper> 
@@ -25,7 +27,7 @@ function DetailPage() {
          </S.Title>
          <S.ButtonWrap>
             <EditBtn/>
-            <RemoveBtn/>
+            <RemoveBtn id={id}/>
          </S.ButtonWrap>
          <S.Content>
             {content}

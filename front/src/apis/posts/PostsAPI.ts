@@ -6,8 +6,9 @@ const PostsApi =  {
    getPostsApi(): Promise<queryMainPost> {
       return Axios.get('http://localhost:3001/mainpostslist')
    },
-   testApi(): Promise<any> {
-      return Axios.get(`http://localhost:8080/todo`)
+   deletePostsApi(id : number): Promise<any> {
+      
+      return Axios.delete(`http://localhost:3001/mainpostslist/${id}`)
    },
 }
 
