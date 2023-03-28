@@ -1,13 +1,35 @@
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import PostsApi from "apis/posts/PostsAPI";
+import axios from "axios";
+import { queryKey } from "consts/queryKey";
+import { queryMainPost } from "pages/MainPage/MainList";
+import React, { useState } from "react";
 import styled from "styled-components"
+import DetailConfirmModal from "./ConfirmModal/Modal";
 
-function RemoveBtn( ) {
+
+
+function RemoveBtn({ id} : {id : number}) {
+
+   const [modalOpen, setModalOpen] = useState<boolean>(false);
    
-
+   
+   // const mutation  : any = useMutation(() => PostsApi.deletePostsApi(id), {
+   //    onSuccess: () => {
+   //       setModalOpen(true)
+   //       queryClient.invalidateQueries([queryKey.GET_MAINPOSTS_LIST])
+   //    },
+   // })
+   // mutation.mutate()
+   const onOpenModal = () => {
+      setModalOpen(true)
+   }
 
    return (
-      <Button>
-         삭제
-      </Button>
+      <div>
+      <Button onClick={onOpenModal}>삭제</Button>
+      {modalOpen && <DetailConfirmModal id={id} setModalOpen={setModalOpen}/>}
+      </div>
    )
 }
 
