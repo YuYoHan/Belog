@@ -13,12 +13,6 @@ function PostingEdit() {
 
 const testdate  = () => {
     
-  const customer = {
-    "name" : "정석용",
-    "company" : "카카오",
-    "email" : "정석용@naver.com"
-  }
-  
   //           fetch("http://localhost:3001/posts/", {
 //           method : "POST",
 //           body : JSON.stringify(formData),
@@ -98,9 +92,9 @@ const imageHandler = (event: ChangeEvent<HTMLInputElement>) => {
     if(file && editor){
         const formData = new FormData();
         formData.append("image", file);
-for (let value of formData.values()) { 
-	console.log(value);
-}
+      for (let value of formData.values()) { 
+        console.log(value);
+      }
         const res = await axios.post('http://localhost:3001/posts/', formData);
         console.log(res);
         
