@@ -25,11 +25,7 @@ function MainPageList() {
    
 
    const {data : mainlist, isLoading } = useQuery<queryMainPost,boolean >([queryKey.GET_MAINPOSTS_LIST], PostsApi.getPostsApi);
-   const test  = () => {
-      const res = PostsApi.test()
-      console.log(res);
-      
-   }
+  
 
    return(
       <S.Wrapper>
@@ -39,7 +35,6 @@ function MainPageList() {
                   mainlist?.data.map((list  ,index) => (
                      <MainPageCard data={list} key={index}/>
                ))}
-               <button onClick={test}>테스트</button>
             </S.Ul>
          </S.Innerwrap>
 
