@@ -25,7 +25,6 @@ function MainPageList() {
    
 
    const {data : mainlist, isLoading } = useQuery<queryMainPost,boolean >([queryKey.GET_MAINPOSTS_LIST], PostsApi.getPostsApi);
-  
 
    return(
       <S.Wrapper>
