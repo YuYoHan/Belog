@@ -31,6 +31,22 @@
         "img": "https://velog.velcdn.com/images/superlipbalm/profile/ed4a5c63-6734-46c0-a976-e62749ca93cc/IMG_E1877.JPG"
       },
       "publishedAt": "2023-02-01T15:24:16Z"
+    },
+    {
+      "id": 5,
+      "title": "mypage",
+      "content": "Writing your data fetching logic by hand is over. Tell TanStack Query where to get your data and how fresh you need it to be and the rest is automatic. It handles caching, background updates and stale data out of the box with zero-configuration. ",
+      "taglist": [
+        "React",
+        "html",
+        "css"
+      ],
+      "img": "https://velog.velcdn.com/images/hhhminme/post/55ebe145-aca6-478c-af86-556f846a26c3/image.png",
+      "profile": {
+        "username": "Test2",
+        "img": "https://velog.velcdn.com/images/superlipbalm/profile/ed4a5c63-6734-46c0-a976-e62749ca93cc/IMG_E1877.JPG"
+      },
+      "publishedAt": "2023-02-01T15:24:16Z"
     }
   ],
   "posts": [
