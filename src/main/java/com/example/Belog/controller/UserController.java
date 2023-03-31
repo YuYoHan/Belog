@@ -4,6 +4,8 @@ import com.example.Belog.domain.UserDTO;
 import com.example.Belog.service.UserService;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -14,104 +16,156 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.Map;
 
-@Controller
+@RestController
 @Log4j2
 @AllArgsConstructor
-@RequestMapping("/user/*")
+@RequestMapping("/user")
 public class UserController {
 
     private UserService userService;
 
-    @GetMapping("/signUp")
-    public String signUp() {
-        return "/signUp";
+//    @GetMapping("/signUp")
+//    public String signUp() {
+//        return "/signUp";
+//    }
+//
+//    @PostMapping("/signUp")
+//    public String signUp(@Validated UserDTO userDTO, Errors errors, HttpServletResponse resp, Model model) {
+//        // post요청시 넘어온 user 입력값에서 Validation에 걸리는 경우
+//        if(errors.hasErrors()) {
+//            // 회원 가입 실패시, 입력 데이터를 유지
+//            model.addAttribute("userDTO", userDTO);
+//
+//            // 유효성 통과 못한 필드와 메시지를 핸들링
+//            // 회원가입 실패시 message 값들을 모델에 매핑해서 View로 전달
+//            Map<String, String> validatorResult = userService.validateHandling(errors);
+//
+//
+//            // map.keySet() -> 모든 key값을 갖고온다.
+//            // 그 갖고온 키로 반복문을 통해 키와 에러 메세지로 매핑
+//            for (String key: validatorResult.keySet()
+//                 ) {
+//                // ex) model.addAtrribute("valid_id", "아이디는 필수 입력사항 입니다.")
+//                model.addAttribute(key,validatorResult.get(key));
+//            }
+//            return "/signUp";
+//        }
+//        if(userService.signUp(userDTO)) {
+//            log.info("result : " + userDTO.getUserId());
+//            log.info("result : " + userDTO.getUserEmail());
+//
+//            Cookie cookie = new Cookie("userEmail", userDTO.getUserEmail());
+//            // 30분
+//            cookie.setMaxAge(1800);
+//            resp.addCookie(cookie);
+//
+//
+//            model.addAttribute("userEmail", userDTO.getUserEmail());
+//
+//        }
+//        return "redirect:/";
+//    }
+//
+//
+//
+//    @GetMapping("/login")
+//    public String loginForm(@CookieValue("userEmail") String userEmail, Model model) {
+//        if(userEmail == null) {
+//            return "/login";
+//        } else {
+//            model.addAttribute("loginEmail", userEmail);
+//            log.info(userEmail);
+//            return "/login";
+//        }
+//    }
+//
+//
+//    @PostMapping("/login")
+//    public String login(String userEmail, String userPw, HttpSession session, Model model) {
+//        UserDTO user =  userService.login(userEmail, userPw);
+//
+//        if(user != null) {
+//            session.setAttribute("userId", user.getUserId());
+//            session.setAttribute("userEmail", user.getUserEmail());
+//        }
+//        return "home";
+//    }
+//
+//    @PostMapping("/logOut")
+//    public String logOut(HttpServletRequest req) {
+//        req.getSession().invalidate();
+//        return "redirect:/";
+//    }
+//
+//    @GetMapping("/remove")
+//    public String remove() {
+//        return "/remove";
+//    }
+//
+//    @PostMapping("/remove")
+//    public String remove(String userEmail, String userPw) {
+//        log.info("아이디 : " + userEmail);
+//        log.info("비밀번호 : " + userPw);
+//
+//        UserDTO user = userService.remove(userEmail, userPw);
+//        if(user != null) {
+//            return "redirect:/";
+//        } else {
+//            return "/remove";
+//        }
+//    }
+
+    // 모든 회원 정보를 가져오는 API
+    @GetMapping("/")
+    public ResponseEntity<List<UserDTO>> getAllUser() {
+        List<UserDTO> userDTOList = userService.getAllUser();
+        return ResponseEntity.status(HttpStatus.OK).body(userDTOList);
     }
 
-    @PostMapping("/signUp")
-    public String signUp(@Validated UserDTO userDTO, Errors errors, HttpServletResponse resp, Model model) {
-        // post요청시 넘어온 user 입력값에서 Validation에 걸리는 경우
-        if(errors.hasErrors()) {
-            // 회원 가입 실패시, 입력 데이터를 유지
-            model.addAttribute("userDTO", userDTO);
-
-            // 유효성 통과 못한 필드와 메시지를 핸들링
-            // 회원가입 실패시 message 값들을 모델에 매핑해서 View로 전달
-            Map<String, String> validatorResult = userService.validateHandling(errors);
+    // 회원 정보를 가져오는 API
+    @GetMapping("/{userEmail}")
+    public ResponseEntity<UserDTO> getUser(@PathVariable String userEmail) {
+        UserDTO userDTO = userService.getUser(userEmail);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(userDTO);
+    }
 
 
-            // map.keySet() -> 모든 key값을 갖고온다.
-            // 그 갖고온 키로 반복문을 통해 키와 에러 메세지로 매핑
-            for (String key: validatorResult.keySet()
-                 ) {
-                // ex) model.addAtrribute("valid_id", "아이디는 필수 입력사항 입니다.")
-                model.addAttribute(key,validatorResult.get(key));
-            }
-            return "/signUp";
+    /**
+     * 회원 가입 API
+     * @return ResponseEntity<UserResponse> 201 Created, 가입된 회원의 정보
+     */
+    @PostMapping("/")
+    public ResponseEntity<Boolean> signUp(@RequestBody UserDTO userDTO) {
+        boolean login = userService.signUp(userDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(login);
+    }
+
+    // 로그인
+    @PostMapping("/")
+    public String login(@PathVariable String userId, @PathVariable String userPw) {
+        UserDTO loginUser = userService.login(userId, userPw);
+        if(loginUser != null) {
+            return "로그인이 성공했습니다.";
         }
-        if(userService.signUp(userDTO)) {
-            log.info("result : " + userDTO.getUserId());
-            log.info("result : " + userDTO.getUserEmail());
-
-            Cookie cookie = new Cookie("userEmail", userDTO.getUserEmail());
-            // 30분
-            cookie.setMaxAge(1800);
-            resp.addCookie(cookie);
-
-
-            model.addAttribute("userEmail", userDTO.getUserEmail());
-
-        }
-        return "redirect:/";
+        return "아이디가 없습니다.";
     }
 
-
-    @GetMapping("/login")
-    public String loginForm(@CookieValue("userEmail") String userEmail, Model model) {
-        if(userEmail == null) {
-            return "/login";
-        } else {
-            model.addAttribute("loginEmail", userEmail);
-            log.info(userEmail);
-            return "/login";
-        }
+    // 회원 정보 수정
+    @PutMapping("/{id}")
+    public ResponseEntity<UserDTO> update(@PathVariable Long id, @RequestBody UserDTO userDTO) {
+        UserDTO user = userService.update(userDTO);
+        return ResponseEntity.status(HttpStatus.OK).body(user);
     }
 
-
-    @PostMapping("/login")
-    public String login(String userEmail, String userPw, HttpSession session, Model model) {
-        UserDTO user =  userService.login(userEmail, userPw);
-
-        if(user != null) {
-            session.setAttribute("userId", user.getUserId());
-            session.setAttribute("userEmail", user.getUserEmail());
-        }
-        return "home";
-    }
-
-    @PostMapping("/logOut")
-    public String logOut(HttpServletRequest req) {
-        req.getSession().invalidate();
-        return "redirect:/";
-    }
-
-    @GetMapping("/remove")
-    public String remove() {
-        return "/remove";
-    }
-
-    @PostMapping("/remove")
-    public String remove(String userEmail, String userPw) {
-        log.info("아이디 : " + userEmail);
-        log.info("비밀번호 : " + userPw);
-
-        UserDTO user = userService.remove(userEmail, userPw);
-        if(user != null) {
-            return "redirect:/";
-        } else {
-            return "/remove";
-        }
+    // 회원 탈퇴(삭제) API
+    // 204 : NO_CONTENT
+    @DeleteMapping("/")
+    public ResponseEntity<Object> delete(String userEmail, String userPw) {
+        userService.delete(userEmail, userPw);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
     }
 
     // 중복체크

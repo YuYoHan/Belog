@@ -4,6 +4,8 @@ import com.example.Belog.domain.UserDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 @Mapper
 public interface UserMapper {
     int signUp(UserDTO userDTO);
@@ -15,4 +17,10 @@ public interface UserMapper {
     UserDTO deleteUser(@Param("userEmail") String userEmail, @Param("userPw") String userPw);
 
     int emailCheck(String userEmail);
+
+    List<UserDTO> getAllUser();
+
+    UserDTO getUser(String userEmail);
+
+    UserDTO update(UserDTO userDTO);
 }

@@ -3,6 +3,7 @@ package com.example.Belog.service;
 import com.example.Belog.domain.UserDTO;
 import org.springframework.validation.Errors;
 
+import java.util.List;
 import java.util.Map;
 
 public interface UserService {
@@ -15,7 +16,14 @@ public interface UserService {
 
     UserDTO login(String userId, String userPw);
 
-    UserDTO remove(String userEmail, String userPw);
-
     int emailCheck(String userEmail);
+
+    List<UserDTO> getAllUser();
+
+    UserDTO getUser(String userEmail);
+
+
+    UserDTO update(UserDTO userDTO);
+
+    void delete(String userEmail, String userPw);
 }

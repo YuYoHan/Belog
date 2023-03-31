@@ -1,5 +1,5 @@
-create database velog;
-use velog;
+create database Belog;
+use Belog;
 
 drop table user;
 drop table board;
@@ -36,7 +36,7 @@ create table board(
 create table boardImg(
     boardImgNum bigint primary key auto_increment,
     boardImg varchar(3000),
-    boardId biging, foreign key pk_boardNum(boardNum) references board(boardNum)
+    boardId bigint, foreign key pk_boardNum(boardNum) references board(boardNum)
 );
 
 create table comment(
