@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import styled from "styled-components"
 
 function EditBtn( ) {
@@ -5,9 +6,11 @@ function EditBtn( ) {
 
 
    return (
-      <Button>
-         수정
-      </Button>
+      <Link to={`/Posting:id`}>
+         <Button>
+            수정
+         </Button>
+      </Link>
    )
 }
 
