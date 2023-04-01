@@ -5,6 +5,7 @@ import org.springframework.validation.Errors;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public interface UserService {
     boolean signUp(UserDTO userDTO);
@@ -20,7 +21,7 @@ public interface UserService {
 
     List<UserDTO> getAllUser();
 
-    UserDTO getUser(String userEmail);
+    Optional<UserDTO> getUser(String userEmail);
 
 
     UserDTO update(UserDTO userDTO);

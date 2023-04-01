@@ -1,10 +1,5 @@
-<<<<<<< HEAD:src/main/resources/SQL/velog.sql
-create database Belog;
-use Belog;
-=======
 create database belog;
 use belog;
->>>>>>> a1bca12dd20b2753530da0146ec082d53e7d6da1:out/production/resources/SQL/belog.sql
 
 drop table user;
 drop table board;
@@ -39,13 +34,9 @@ create table board(
 );
 
 create table boardImg(
-    boardImgNum bigint primary key auto_increment,
-    boardImg varchar(3000),
-<<<<<<< HEAD:src/main/resources/SQL/velog.sql
-    boardId bigint, foreign key pk_boardNum(boardNum) references board(boardNum)
-=======
-    boardNum bigint, foreign key pk_boardNum(boardNum) references board(boardNum)
->>>>>>> a1bca12dd20b2753530da0146ec082d53e7d6da1:out/production/resources/SQL/belog.sql
+                         boardImgNum bigint primary key auto_increment,
+                         boardImg varchar(3000),
+                         boardNum bigint, foreign key pk_boardNum(boardNum) references board(boardNum)
 );
 
 create table comment(

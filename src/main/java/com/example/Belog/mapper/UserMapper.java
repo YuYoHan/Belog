@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 @Mapper
 public interface UserMapper {
@@ -20,7 +21,7 @@ public interface UserMapper {
 
     List<UserDTO> getAllUser();
 
-    UserDTO getUser(String userEmail);
+    Optional<UserDTO> getUser(String userEmail);
 
     UserDTO update(UserDTO userDTO);
 }

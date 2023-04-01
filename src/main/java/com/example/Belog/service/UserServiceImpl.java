@@ -10,6 +10,7 @@ import org.springframework.validation.FieldError;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -49,7 +50,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public UserDTO getUser(String userEmail) {
+    public Optional<UserDTO> getUser(String userEmail) {
         return userMapper.getUser(userEmail);
     }
 

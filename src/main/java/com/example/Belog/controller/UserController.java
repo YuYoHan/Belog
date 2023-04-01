@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @Log4j2
@@ -127,9 +128,13 @@ public class UserController {
 
     // 회원 정보를 가져오는 API
     @GetMapping("/{userEmail}")
-    public ResponseEntity<UserDTO> getUser(@PathVariable String userEmail) {
-        UserDTO userDTO = userService.getUser(userEmail);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(userDTO);
+    public ResponseEntity<?> getUser(@PathVariable String userEmail) {
+        Optional<UserDTO> userDTO = userService.getUser(userEmail);
+        if(userDTO.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(userDTO);
+        } else  {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
     }
 
 
@@ -144,7 +149,7 @@ public class UserController {
     }
 
     // 로그인
-    @PostMapping("/")
+    @PostMapping("/loginUser")
     public String login(@PathVariable String userId, @PathVariable String userPw) {
         UserDTO loginUser = userService.login(userId, userPw);
         if(loginUser != null) {

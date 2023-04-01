@@ -24,7 +24,7 @@
     <select id="getUser" resultType="com.example.Belog.domain.UserDTO">
         select * from user where userEmail=#{userEmail}
     </select>
-    <update id="update" parameterType="UserDTO">
+    <update id="update" parameterType="com.example.Belog.domain.UserDTO">
         update user set
                         userPw=#{userPw},
                         userName=#{userName},
