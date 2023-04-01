@@ -1,5 +1,12 @@
 package com.example.Belog.domain;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+@Getter
+@ToString
+@NoArgsConstructor
 public class PageDTO {
     private int startPage;
     private int endPage;

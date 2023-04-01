@@ -6,11 +6,11 @@ import com.example.Belog.domain.Criteria;
 import java.util.List;
 
 public interface BoardService {
-    boolean writeBoard(BoardDTO boardDTO);
+    void writeBoard(BoardDTO boardDTO);
 
-    boolean deleteBoard(Long boardNum);
+    void deleteBoard(Long boardNum);
 
-    boolean updateBoard(BoardDTO boardDTO);
+    void updateBoard(BoardDTO boardDTO);
 
     List<BoardDTO> findAllBoard(Criteria criteria);
 
