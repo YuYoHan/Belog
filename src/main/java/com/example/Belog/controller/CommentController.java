@@ -1,5 +1,6 @@
 package com.example.Belog.controller;
 
+import com.example.Belog.domain.BoardDTO;
 import com.example.Belog.domain.CommentDTO;
 import com.example.Belog.service.CommentService;
 import lombok.AllArgsConstructor;
@@ -17,45 +18,45 @@ import java.util.List;
 @RestController
 @Log4j2
 @AllArgsConstructor
-@RequestMapping("/board/{boradNum}")
+@RequestMapping("/board")
 public class CommentController {
 
     private CommentService commentService;
 
     // 댓글작성
-    @PostMapping("/comment")
-    public void addComment(@RequestBody CommentDTO commentDTO) {
+    @PostMapping("/{boardNum}/comment")
+    public ResponseEntity<?> addComment(@RequestBody CommentDTO commentDTO) {
         commentService.addComment(commentDTO);
         log.info("Add success");
+        return new ResponseEntity<>(commentDTO, HttpStatus.CREATED);
     }// addComment
 
     // 댓글수정
-    @PutMapping("/{commentNum}")
-    public CommentDTO editComment(@PathVariable("commentNum") Long commentNum, @RequestBody CommentDTO commentDTO) {
+    @PutMapping("/{boardNum}/edit-comment")
+    public ResponseEntity<?> editComment(@PathVariable("commentNum") Long commentNum, @RequestBody CommentDTO commentDTO) {
         commentService.editComment(commentDTO);
         log.info("edit");
-        return commentDTO;
+        return new ResponseEntity<>(commentDTO, HttpStatus.OK);
     }//editComment
 
     // 댓글삭제
-    @DeleteMapping("/{commentNum}")
-    public CommentDTO deleteComment(@PathVariable("commentNum") Long commentNum, @RequestBody CommentDTO commentDTO) {
-        commentService.deleteComment(commentDTO);
+    @DeleteMapping("/{boardNum}/{commentNum}")
+    public ResponseEntity<?> deleteComment(@PathVariable Long boardNum, @PathVariable("commentNum") Long commentNum) {
+        commentService.deleteComment(commentNum);
         log.info("delete");
-        return commentDTO;
+        return new ResponseEntity<>(HttpStatus.OK);
     }//deleteComment
 
     // 전체 댓글보여주기
-    @GetMapping("/commentList")
-    public List<CommentDTO> findAllComment(@PathVariable("boardNum") Long boardNum) {
-        List<CommentDTO> commentList = commentService.findAllComment(boardNum);
+    @GetMapping("/{boardNum}/commentList")
+    public List<CommentDTO> findAllComment(@PathVariable Long boardNum) {
         log.info("find");
-        return commentList;
+        return commentService.findAllComment(boardNum);
     }//findAllComment
 
     //댓글 수
-    @GetMapping("/countComment")
-    public int count(@PathVariable("boardNum") int boardNum) {
+    @GetMapping("/{boardNum}/countComment")
+    public int count(@PathVariable Long boardNum) {
         return commentService.countComment(boardNum);
     }
 }

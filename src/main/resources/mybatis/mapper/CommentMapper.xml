@@ -14,19 +14,20 @@
         where commentNum = #{commentNum}
     </update>
 
-    <delete id="delete" parameterType="com.example.Belog.domain.CommentDTO">
+    <delete id="delete" parameterType="Long">
         delete from comment
-        where commentNum = #{commentNum}
+        where commentNum = #{commentNum} AND boardNum=#{boardNum}
     </delete>
 
     <select id="findAll" resultType="com.example.Belog.domain.CommentDTO">
-        SELECT c.boardNum, c.commentNum, u.userEmail, c.comment, c.commentTime
-        FROM comment c, user u
-        where c.userId = u.userId and c.boardNum = #{boardNum}
+        SELECT userId, comment, commentTime
+        FROM comment
+        where boardNum = #{boardNum}
     </select>
 
     <select id="count" resultType="int">
         select count(*) from comment
         where boardNum = #{boardNum}
     </select>
+
 </mapper>
