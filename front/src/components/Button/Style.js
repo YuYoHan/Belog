@@ -54,8 +54,8 @@ const sizeCSS = {
 export const Button = styled.button`
     ${({ variant }) => variantCSS[variant]}
     ${({ shape }) => shapeCSS[shape]}
-  ${({ size }) => sizeCSS[size]}
-  cursor: pointer;
+    ${({ size }) => sizeCSS[size]}
+    cursor: pointer;
     border: none;
     :hover {
         opacity: 0.8;

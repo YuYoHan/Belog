@@ -2,6 +2,7 @@ import ComentForm from "components/Coment/ComentForm";
 import ComentTitle from "components/Coment/ComentTitle";
 import ComentBtn from "components/Coment/ComtentBtn";
 import { MypageData } from "pages/Mypage/components/Myposting/MypageList"
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components"
 import EditBtn from "./EditBtn";
@@ -11,22 +12,30 @@ import RemoveBtn from "./RemoveBtn";
 
 function DetailPage() {
 
-
-
+   const [Buttondisble, setButtondisble] = React.useState<boolean>(false)
    const location = useLocation();
    const {id, title, content,tablist,img} = location.state.data 
    
-   
+   useEffect(() => {
+
+      if(location.pathname.indexOf('mypage') === 1){
+         console.log(location.pathname.indexOf('mypage'));
+         setButtondisble(true)
+      }
+   },[Buttondisble])
 
    return (
       <S.Wrapper> 
          <S.Title>
             {title}
          </S.Title>
-         <S.ButtonWrap>
-            <EditBtn/>
-            <RemoveBtn/>
-         </S.ButtonWrap>
+         { Buttondisble &&
+            <S.ButtonWrap>
+               <EditBtn/>
+               <RemoveBtn id={id}/>
+            </S.ButtonWrap>
+
+         }
          <S.Content>
             {content}
          </S.Content>

@@ -1,11 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import Axios from "apis/@core";
 import PostsApi from "apis/posts/PostsAPI";
-import { AxiosError } from "axios";
 import LodingPage from "components/Loding/loding";
-import queryKey from "consts/queryKey";
+import { queryKey} from "consts/queryKey";
 import { media } from "libs/styles/media";
-import { useEffect } from "react";
 import styled from "styled-components"
 import MainPageCard from "./MainCard";
 
@@ -28,7 +25,6 @@ function MainPageList() {
    
 
    const {data : mainlist, isLoading } = useQuery<queryMainPost,boolean >([queryKey.GET_MAINPOSTS_LIST], PostsApi.getPostsApi);
-   
 
    return(
       <S.Wrapper>

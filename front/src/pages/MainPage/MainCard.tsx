@@ -6,13 +6,10 @@ import { MainPageData } from "./MainList"
 
 function MainPageCard ({data} : {data : MainPageData}) {
    
-   console.log(data.publishedAt);
-   
-   
 
    return (
       <S.Li>
-         <S.StyledLink to={`/${data.title}`} state={{data}}>
+         <S.StyledLink to={`list/${data.title}`} state={{data}}>
             <S.ImgContainer>
                <img src={data.img}/>
             </S.ImgContainer>
@@ -98,6 +95,7 @@ const Content = styled.div`
       white-space: nowrap;
       overflow: hidden;
       color: #212529;
+      font-weight: 600;
    }
 
    & p {
