@@ -2,10 +2,12 @@ package com.example.Belog.domain;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Getter
 @ToString
+@NoArgsConstructor
 public class BoardDTO {
     private Long boardNum;
     private Long userId;

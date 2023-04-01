@@ -17,18 +17,18 @@ public class  BoardServiceImpl implements BoardService{
     private BoardMapper boardMapper;
 
     @Override
-    public boolean writeBoard(BoardDTO boardDTO) {
-        return boardMapper.writeBoard(boardDTO) == 1;
+    public void writeBoard(BoardDTO boardDTO) {
+        boardMapper.writeBoard(boardDTO);
     }
 
     @Override
-    public boolean deleteBoard(Long boardNum) {
-        return boardMapper.deleteBoard(boardNum) == 1;
+    public void deleteBoard(Long boardNum) {
+        boardMapper.deleteBoard(boardNum);
     }
 
     @Override
-    public boolean updateBoard(BoardDTO boardDTO) {
-        return boardMapper.updateBoard(boardDTO) == 1;
+    public void updateBoard(BoardDTO boardDTO) {
+        boardMapper.updateBoard(boardDTO);
     }
 
     @Override
