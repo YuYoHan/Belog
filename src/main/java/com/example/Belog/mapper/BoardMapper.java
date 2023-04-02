@@ -8,11 +8,11 @@ import java.util.List;
 
 @Mapper
 public interface BoardMapper {
-    int writeBoard(BoardDTO boardDTO);
+    void writeBoard(BoardDTO boardDTO);
     
-    int deleteBoard(Long boardNum);
+    void deleteBoard(Long boardNum);
 
-    int updateBoard(BoardDTO boardDTO);
+    void updateBoard(BoardDTO boardDTO);
 
     List<BoardDTO> findAllBoard(Criteria criteria);
 

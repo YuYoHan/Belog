@@ -8,7 +8,9 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -43,12 +45,29 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public UserDTO remove(String userEmail, String userPw) {
-        return userMapper.deleteUser(userEmail, userPw);
+    public List<UserDTO> getAllUser() {
+        return userMapper.getAllUser();
+    }
+
+    @Override
+    public Optional<UserDTO> getUser(String userEmail) {
+        return userMapper.getUser(userEmail);
+    }
+
+    @Override
+    public UserDTO update(UserDTO userDTO) {
+        return userMapper.update(userDTO);
+    }
+
+    @Override
+    public void delete(String userEmail, String userPw) {
+
     }
 
     @Override
     public int emailCheck(String userEmail) {
         return userMapper.emailCheck(userEmail);
     }
+
+
 }

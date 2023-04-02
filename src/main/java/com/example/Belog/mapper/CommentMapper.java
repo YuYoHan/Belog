@@ -15,11 +15,14 @@ public interface CommentMapper {
     void edit(CommentDTO commentDTO);
 
     // 댓글 삭제
-    void delete(CommentDTO commentDTO);
+    void delete(Long commentNum);
+
+    // 댓글 불러오기
+//    CommentDTO find(Long boardNum, Long commentNum);
 
     // 댓글 목록
     List<CommentDTO> findAll(Long boardNum);
 
     // 댓글 개수
-    int count(int boardNum);
+    int count(Long boardNum);
 }

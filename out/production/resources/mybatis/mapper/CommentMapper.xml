@@ -4,8 +4,8 @@
 <mapper namespace="com.example.Belog.mapper.CommentMapper">
 
     <insert id="add" useGeneratedKeys="true" keyProperty="commentNum">
-        INSERT INTO comment(userId, userEmail, boardNum, comment)
-        VALUES (#{userId}, #{userEmail}, #{boardNum}, #{comment})
+        INSERT INTO comment(userId, boardNum, comment)
+        VALUES (#{userId}, #{boardNum}, #{comment})
     </insert>
 
     <update id="edit" parameterType="com.example.Belog.domain.CommentDTO">
