@@ -14,6 +14,8 @@ public interface CommentService {
     // 댓글 삭제
     void deleteComment(Long commentNum);
 
+//    CommentDTO findComment(Long boardNum, Long commentNum);
+
     // 댓글 목록
     List<CommentDTO> findAllComment(Long boardNum);
 

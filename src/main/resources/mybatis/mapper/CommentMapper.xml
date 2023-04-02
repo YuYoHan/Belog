@@ -10,16 +10,22 @@
 
     <update id="edit" parameterType="com.example.Belog.domain.CommentDTO">
         UPDATE comment
-        SET comment = #{comment}, commentTime=sysdate
+        SET comment = #{comment}, commentTime=now()
         where commentNum = #{commentNum}
     </update>
 
     <delete id="delete" parameterType="Long">
         delete from comment
-        where commentNum = #{commentNum} AND boardNum=#{boardNum}
+        where commentNum = #{commentNum}
     </delete>
 
-    <select id="findAll" resultType="com.example.Belog.domain.CommentDTO">
+<!--    <select id="find" resultType="com.example.Belog.domain.CommentDTO">-->
+<!--        SELECT userId, comment, commentTime-->
+<!--        FROM comment-->
+<!--        where boardNum = #{boardNum} AND commentNum = #{commentNum}-->
+<!--    </select>-->
+
+    <select id="findAll" resultType="java.util.HashMap">
         SELECT userId, comment, commentTime
         FROM comment
         where boardNum = #{boardNum}

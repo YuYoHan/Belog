@@ -17,6 +17,9 @@ public interface CommentMapper {
     // 댓글 삭제
     void delete(Long commentNum);
 
+    // 댓글 불러오기
+//    CommentDTO find(Long boardNum, Long commentNum);
+
     // 댓글 목록
     List<CommentDTO> findAll(Long boardNum);
 

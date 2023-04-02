@@ -31,6 +31,12 @@ public class CommentServiceImpl implements CommentService {
         commentMapper.delete(commentNum);
     }
 
+    // 댓글 불러오기
+//    @Override
+//    public CommentDTO findComment(Long boardNum, Long commentNum){
+//        return commentMapper.find(boardNum, commentNum);
+//    }
+
     // 댓글 조회
     @Override
     public List<CommentDTO> findAllComment(Long boardNum) {
