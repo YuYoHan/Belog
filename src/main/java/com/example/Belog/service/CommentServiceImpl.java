@@ -27,9 +27,15 @@ public class CommentServiceImpl implements CommentService {
 
     // 댓글 삭제
     @Override
-    public void deleteComment(CommentDTO commentDTO) {
-        commentMapper.delete(commentDTO);
+    public void deleteComment(Long commentNum) {
+        commentMapper.delete(commentNum);
     }
+
+    // 댓글 불러오기
+//    @Override
+//    public CommentDTO findComment(Long boardNum, Long commentNum){
+//        return commentMapper.find(boardNum, commentNum);
+//    }
 
     // 댓글 조회
     @Override
@@ -38,7 +44,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public int countComment(int boardNum) {
+    public int countComment(Long boardNum) {
         return commentMapper.count(boardNum);
     }
 }
