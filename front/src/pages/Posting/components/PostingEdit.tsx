@@ -10,7 +10,7 @@ function PostingEdit() {
   
    const [content, setcontent ] = useInput('');
    const QuillRef = useRef<ReactQuill>();
-
+  const [imgurl, setImgUrl] = useState<string>('')
 const testdate  = () => {
     
   //           fetch("http://localhost:3001/posts/", {
@@ -89,18 +89,50 @@ const imageHandler = (event: ChangeEvent<HTMLInputElement>) => {
     console.log('핸들 작동');
     
     const file = input.files ? input.files[0] : undefined;
+
     if(file && editor){
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    
+    reader.onloadend = () => {
+      console.log(reader);
+      fetch("http://localhost:3001/posts/" , {
+        method: "POST",
+        body : JSON.stringify(reader.result),
+        
+      }).then(response => response.json()).then((json) => console.log(json))
+      // axios
+      //   .post('http://localhost:3001/posts', { image: reader.result })
+      //   .then((response) => {
+      //     const imageUrl = response.data.url;
+      //     console.log(imageUrl);
+          
+      //     // const quill = quillRef.current;
+      //     // const range = quill?.getSelection(true);
+      //     // if (range) {
+      //     //   quill?.insertEmbed(range.index, 'image', imageUrl);
+      //     // }
+      //   })
+      //   .catch((error) => {
+      //     console.error('Error uploading image:', error);
+      //   });
+    };
+      
         const formData = new FormData();
         formData.append("image", file);
-      for (let value of formData.values()) { 
-        console.log(value);
-      }
-        const res = await axios.post('http://localhost:3001/posts/', formData);
-        console.log(res);
         
-        const url = res?.data?.url;
-                    editor.root.innerHTML =
-            editor.root.innerHTML + `<img src=${url} /><br/>`; // 현재 있는 내용들 뒤에 써줘야한다.
+
+        // const res = await axios.post('http://localhost:3001/posts', formData,{
+        //   headers: {
+        //     'Content-Type': 'multipart/form-data'
+        //   }
+        // });
+        
+        // const url = res.data.url;
+        //             editor.root.innerHTML =
+        //     editor.root.innerHTML + `<img src=${url} /><br/>`; // 현재 있는 내용들 뒤에 써줘야한다.
+
+        
       }
     } 
   };
@@ -149,9 +181,8 @@ const modules = useMemo(() => ({
       modules={modules}
       formats={formats}
       onChange={setcontent}
-      placeholder="내용을 입력해주세요"/>;
+      placeholder="내용을 입력해주세요"/>
 
-      <button onClick={testdate}>asdsaddas</button>
    </S.Wrapper>
   )
    

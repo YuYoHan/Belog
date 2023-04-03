@@ -1,28 +1,47 @@
-import ComentForm from "components/Coment/ComentForm";
-import ComentTitle from "components/Coment/ComentTitle";
-import ComentBtn from "components/Coment/ComtentBtn";
-import { MypageData } from "pages/Mypage/components/Myposting/MypageList"
-import React, { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import CommentApi from "apis/comment/CommentAPI";
+import ComentForm from "components/Comment/CommentForm/ComentForm";
+import ComentTitle from "components/Comment/CommentForm/ComentTitle";
+import ComentBtn from "components/Comment/CommentForm/ComtentBtn";
+import CommentList from "components/Comment/CommentList";
+import { commentKey } from "consts/queryKey";
+import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components"
 import EditBtn from "./EditBtn";
 import RemoveBtn from "./RemoveBtn";
 
 
+export type commentData = {
+   id : number,
+   username : string,
+   profileimg : string,
+   command : string
+}
+
+export type querycommentData = {
+   data : commentData[]
+}
 
 function DetailPage() {
 
    const [Buttondisble, setButtondisble] = React.useState<boolean>(false)
    const location = useLocation();
    const {id, title, content,tablist,img} = location.state.data 
+   const {data : commentist} = useQuery<querycommentData>([commentKey.GET_COMMENT_LIST], CommentApi.getPostsApi);
+   // const { command,id,profileimg,username} = {commentist.data}
+   console.log(commentist?.data);
    
+
+
    useEffect(() => {
 
       if(location.pathname.indexOf('mypage') === 1){
-         console.log(location.pathname.indexOf('mypage'));
          setButtondisble(true)
       }
    },[Buttondisble])
+
+
 
    return (
       <S.Wrapper> 
@@ -39,9 +58,15 @@ function DetailPage() {
          <S.Content>
             {content}
          </S.Content>
-         <ComentTitle/>
-         <ComentForm/>
+         <ComentTitle />
+         <ComentForm />
          <ComentBtn/>
+
+         {
+            commentist?.data.map((list) => 
+               <CommentList data={list}/>
+            )
+         }
       </S.Wrapper>
    )
 }
