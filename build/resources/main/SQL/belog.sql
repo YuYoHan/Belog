@@ -34,9 +34,9 @@ create table board(
 );
 
 create table boardImg(
-    boardImgNum bigint primary key auto_increment,
-    boardImg varchar(3000),
-    boardNum bigint, foreign key pk_boardNum(boardNum) references board(boardNum)
+                         boardImgNum bigint primary key auto_increment,
+                         boardImg varchar(3000),
+                         boardNum bigint, foreign key pk_boardNum(boardNum) references board(boardNum)
 );
 
 create table comment(
