@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ko"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BoardServiceImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">setting</a> &gt; <a href="index.source.html" class="el_package">com.example.Belog.service</a> &gt; <span class="el_source">BoardServiceImpl.java</span></div><h1>BoardServiceImpl.java</h1><pre class="source lang-java linenums">package com.example.Belog.service;
+
+import com.example.Belog.domain.BoardDTO;
+import com.example.Belog.domain.Criteria;
+import com.example.Belog.mapper.BoardMapper;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
+import java.util.Collections;
+import java.util.List;
+
+@Service
+<span class="fc" id="L14">@AllArgsConstructor</span>
+<span class="fc" id="L15">@Slf4j</span>
+public class  BoardServiceImpl implements BoardService{
+    private BoardMapper boardMapper;
+
+    @Override
+    public boolean writeBoard(BoardDTO boardDTO) {
+<span class="nc bnc" id="L21" title="All 2 branches missed.">        return boardMapper.writeBoard(boardDTO) == 1;</span>
+    }
+
+    @Override
+    public boolean deleteBoard(Long boardNum) {
+<span class="nc bnc" id="L26" title="All 2 branches missed.">        return boardMapper.deleteBoard(boardNum) == 1;</span>
+    }
+
+    @Override
+    public boolean updateBoard(BoardDTO boardDTO) {
+<span class="nc bnc" id="L31" title="All 2 branches missed.">        return boardMapper.updateBoard(boardDTO) == 1;</span>
+    }
+
+    @Override
+    public List&lt;BoardDTO&gt; findAllBoard(Criteria criteria) {
+<span class="nc" id="L36">        List&lt;BoardDTO&gt; boardList = Collections.emptyList();</span>
+
+<span class="nc" id="L38">        int boardCount = boardMapper.getBoardCount();</span>
+
+<span class="nc bnc" id="L40" title="All 2 branches missed.">        if(boardCount &gt; 0) {</span>
+<span class="nc" id="L41">            boardList = boardMapper.findAllBoard(criteria);</span>
+        }
+
+<span class="nc" id="L44">        return boardList;</span>
+    }
+
+    @Override
+    public BoardDTO findBoardByBoardNum(Long boardNum) {
+
+<span class="nc" id="L50">        int boardCount = boardMapper.getBoardCountByBoardNum(boardNum);</span>
+
+<span class="nc bnc" id="L52" title="All 2 branches missed.">        if(boardCount != 1) {</span>
+<span class="nc" id="L53">            log.error(&quot;[ERROR] : 게시글 없음&quot;);</span>
+        }
+<span class="nc" id="L55">        return boardMapper.findBoardByBoardNum(boardNum);</span>
+    }
+
+    @Override
+    public int getBoardCount() {
+<span class="nc" id="L60">        return boardMapper.getBoardCount();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
