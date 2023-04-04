@@ -50,127 +50,33 @@
     }
   ],
   "posts": [
+    
+  ],
+  "images" : [
+
+  ],
+  "comment" : [
     {
-      "id": 1
+      "id" : 1,
+      "username": "kwaneung",
+      "profileimg": "https://velog.velcdn.com/images/kwaneung/profile/c065ce6f-e476-48fb-89d0-da866db6771d/image.png",
+      "command" : "잘 읽었습니다! 과연 자바를 대체할 정도로 대중화가 될 날이 언제올지 기다려지네요"
     },
     {
-      "id": 2
+      "id" : 2,
+      "username": "123xxx",
+      "profileimg": "https://velog.velcdn.com/images/123xxx/profile/73005fb9-4017-4d36-b901-da7548941937/image.PNG",
+      "command" : "자바시러 자바시러 자바시러"
+      
+
     },
     {
-      "id": 3
-    },
-    {
-      "id": 4
-    },
-    {
-      "id": 5
-    },
-    {
-      "id": 6
-    },
-    {
-      "sadads": "",
-      "id": 7
-    },
-    {
-      "sadads": "",
-      "id": 8
-    },
-    {
-      "id": 9
-    },
-    {
-      "id": 10
-    },
-    {
-      "id": 11
-    },
-    {
-      "id": 12
-    },
-    {
-      "id": 13
-    },
-    {
-      "name": "정석용",
-      "company": "카카오",
-      "email": "정석용@naver.com",
-      "id": 14
-    },
-    {
-      "id": 15
-    },
-    {
-      "id": 16
-    },
-    {
-      "id": 17
-    },
-    {
-      "id": 18
-    },
-    {
-      "name": "정석용",
-      "company": "카카오",
-      "email": "정석용@naver.com",
-      "id": 19
-    },
-    {
-      "id": 20
-    },
-    {
-      "id": 21
-    },
-    {
-      "id": 22
-    },
-    {
-      "id": 23
-    },
-    {
-      "id": 24
-    },
-    {
-      "id": 25
-    },
-    {
-      "id": 26
-    },
-    {
-      "id": 27
-    },
-    {
-      "id": 28
-    },
-    {
-      "id": 29
-    },
-    {
-      "id": 30
-    },
-    {
-      "id": 31
-    },
-    {
-      "id": 32
-    },
-    {
-      "id": 33
-    },
-    {
-      "{}": "",
-      "id": 34
-    },
-    {
-      "{}": "",
-      "id": 35
-    },
-    {
-      "{}": "",
-      "id": 36
-    },
-    {
-      "id": 37
+      "id" : 3,
+      "username": "123xxx",
+      "profileimg": "https://velog.velcdn.com/images/123xxx/profile/73005fb9-4017-4d36-b901-da7548941937/image.PNG",
+      "command" : "코틀린의 장점이라고 써있는 부분이 C#엔 예전부터 있던 점들인데 왜 C#은 잘 안 쓸까요?"
+
     }
+
   ]
 }

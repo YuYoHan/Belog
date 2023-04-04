@@ -10,11 +10,6 @@ const PostsApi =  {
       
       return Axios.delete(`http://localhost:3001/mainpostslist/${id}`)
    },
-
-   test(): Promise<any> {
-      
-      return Axios.get(`http://3.35.52.233:8080/`)
-   },
 }
 
 
