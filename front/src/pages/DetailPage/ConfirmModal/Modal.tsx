@@ -50,6 +50,17 @@ function DetailConfirmModal ({id,setModalOpen} : ModalType) {
 
 export default DetailConfirmModal
 
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+  `;
+
 const Presentation = styled.div`
   z-index: 1200;
   position: absolute;
@@ -62,8 +73,7 @@ const WrapperModal = styled.div`
   -webkit-tap-highlight-color: transparent;
   display: flex;
   justify-content: center;
-align-items: center;
- 
+  align-items: center;
 `;
 
 const Modal = styled.div`
@@ -76,7 +86,7 @@ const Modal = styled.div`
    overflow: hidden;
    border-radius: 8px;
    transition: all 400ms ease-in-out 2s;
-   animation: fadeIn 400ms;
+   animation: ${fadeIn} 400ms;
    padding: 2rem 1.5rem;
   &::-webkit-scrollbar {
     display: none;
@@ -126,10 +136,6 @@ const ModalContent = styled.div`
 `;
 
 const ButtonWrap = styled.div`
-
-
-
-
    margin-top: 2rem;
     display: flex;
     -webkit-box-pack: end;
@@ -137,18 +143,16 @@ const ButtonWrap = styled.div`
 
     & button{
       display: inline-flex;
-   -webkit-box-align: center;
-   align-items: center;
-   -webkit-box-pack: center;
-   justify-content: center;
-   font-weight: bold;
-   cursor: pointer;
-   outline: none;
-   border: none;
-   border-radius: 4px;
-   padding: 0px 1.25rem;
-   height: 2rem;
-   font-size: 1rem;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      cursor: pointer;
+      outline: none;
+      border: none;
+      border-radius: 4px;
+      padding: 0px 1.25rem;
+      height: 2rem;
+      font-size: 1rem;
 }
 `
 
@@ -164,16 +168,7 @@ const ButtonCheck = styled.button`
 `
 
 
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-    transform: scale(0.5);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-  `;
+
 
 const S = {
    Presentation,

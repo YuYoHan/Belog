@@ -1,11 +1,25 @@
+import useInput from "hooks/useInput"
+import { useEffect, useState } from "react";
 import styled from "styled-components"
 
-function ComentForm() {
+function ComentForm(props : any) {
 
+
+   const [content , setContent] = useInput('');
+
+   
+   useEffect(() => {
+      function CommentValue () {
+         props.ContentValue(content)
+      }
+      CommentValue()
+   },[content])
 
    return (
       <S.Wrapper>
-         <textarea placeholder="댓글을 작성하세요" ></textarea>
+         <form>
+            <textarea value={content}  onChange={setContent} placeholder="댓글을 작성하세요" ></textarea>
+         </form>
       </S.Wrapper>
    )
 }
