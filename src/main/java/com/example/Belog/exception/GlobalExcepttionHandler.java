@@ -1,27 +1,28 @@
 package com.example.Belog.exception;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-@ControllerAdvice
+@RestControllerAdvice
 public class GlobalExcepttionHandler {
     @ExceptionHandler(Exception.class)
-    public String handlerException(Exception exception, Model model) {
-        model.addAttribute("exception", exception);
-        return "/error/globalError";
+    public ResponseEntity<?> handlerException(Exception exception, Model model) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(exception);
     }
 
     @ExceptionHandler(UserException.class )
-    public String handleCustomException(UserException userException, Model model) {
+    public ResponseEntity<UserException> handleCustomException(UserException userException, Model model) {
         model.addAttribute("userException", userException);
-        return "/error/userError";
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(userException);
     }
 
     @ExceptionHandler(BoardException.class)
-    public String handleCustomException2(BoardException boardException, Model model) {
-        model.addAttribute("boardException", boardException);
-        return "/error/boardError";
+    public ResponseEntity<BoardException> handleCustomException2(BoardException boardException, Model model) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(boardException);
     }
 
 }
