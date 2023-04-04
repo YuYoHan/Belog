@@ -55,13 +55,13 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public UserDTO update(UserDTO userDTO) {
-        return userMapper.update(userDTO);
+    public void update(UserDTO userDTO) {
+         userMapper.update(userDTO);
     }
 
     @Override
-    public void delete(String userEmail, String userPw) {
-
+    public void delete(Long userId) {
+        userMapper.deleteUser(userId);
     }
 
     @Override

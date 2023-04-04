@@ -15,7 +15,7 @@ public interface UserMapper {
     // 아니면 param으로 처리
     UserDTO login(@Param("userEmail") String userEmail, @Param("userPw") String userPw);
 
-    UserDTO deleteUser(@Param("userEmail") String userEmail, @Param("userPw") String userPw);
+    void deleteUser(Long userId);
 
     int emailCheck(String userEmail);
 
@@ -23,5 +23,5 @@ public interface UserMapper {
 
     Optional<UserDTO> getUser(String userEmail);
 
-    UserDTO update(UserDTO userDTO);
+    void update(UserDTO userDTO);
 }

@@ -130,9 +130,9 @@ public class UserController {
     @GetMapping("/{userEmail}")
     public ResponseEntity<?> getUser(@PathVariable String userEmail) {
         Optional<UserDTO> userDTO = userService.getUser(userEmail);
-        if(userDTO.isPresent()) {
+        if (userDTO.isPresent()) {
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body(userDTO);
-        } else  {
+        } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
@@ -140,36 +140,68 @@ public class UserController {
 
     /**
      * 회원 가입 API
+     *
      * @return ResponseEntity<UserResponse> 201 Created, 가입된 회원의 정보
      */
     @PostMapping("/")
-    public ResponseEntity<Boolean> signUp(@RequestBody UserDTO userDTO) {
-        boolean login = userService.signUp(userDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(login);
+    public ResponseEntity<String> signUp(@Validated @RequestBody UserDTO userDTO, Errors errors, HttpServletResponse resp) {
+
+
+        // post요청시 넘어온 user 입력값에서 Validation에 걸리는 경우
+        if (errors.hasErrors()) {
+            // 유효성 통과 못한 필드와 메시지를 핸들링
+            // 회원가입 실패시 message 값들을 모델에 매핑해서 View로 전달
+            Map<String, String> validatorResult = userService.validateHandling(errors);
+            // map.keySet() -> 모든 key값을 갖고온다.
+            // 그 갖고온 키로 반복문을 통해 키와 에러 메세지로 매핑
+            for (String key : validatorResult.keySet()
+            ) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(validatorResult.get(key));
+            }
+        }
+        if (userService.signUp(userDTO)) {
+            log.info("result : " + userDTO.getUserId());
+            log.info("result : " + userDTO.getUserEmail());
+
+            Cookie cookie = new Cookie("userEmail", userDTO.getUserEmail());
+            // 30분
+            cookie.setMaxAge(1800);
+            resp.addCookie(cookie);
+        }
+        return ResponseEntity.status(HttpStatus.CREATED).body("회원가입 성공했습니다.");
     }
 
     // 로그인
     @PostMapping("/loginUser")
-    public String login(@PathVariable String userId, @PathVariable String userPw) {
-        UserDTO loginUser = userService.login(userId, userPw);
-        if(loginUser != null) {
-            return "로그인이 성공했습니다.";
+    public String login(@RequestBody UserDTO userDTO, HttpSession session) {
+        UserDTO loginUser = userService.login(userDTO.getUserEmail(), userDTO.getUserPw());
+        if (loginUser != null) {
+            session.setAttribute("userId", loginUser.getUserId());
+            session.setAttribute("userEmail", loginUser.getUserEmail());
+            return "로그인에 성공했습니다.";
         }
         return "아이디가 없습니다.";
     }
 
+    @GetMapping("/logOut")
+    public String logOut(HttpServletRequest req) {
+        req.getSession().invalidate();
+        return "로그아웃 하셨습니다";
+    }
+
     // 회원 정보 수정
-    @PutMapping("/{id}")
-    public ResponseEntity<UserDTO> update(@PathVariable Long id, @RequestBody UserDTO userDTO) {
-        UserDTO user = userService.update(userDTO);
-        return ResponseEntity.status(HttpStatus.OK).body(user);
+    @PutMapping("/")
+    public ResponseEntity<?> update(@RequestBody UserDTO userDTO, HttpSession session) {
+            userService.update(userDTO);
+            return ResponseEntity.status(HttpStatus.OK).body(userDTO);
+
     }
 
     // 회원 탈퇴(삭제) API
     // 204 : NO_CONTENT
-    @DeleteMapping("/")
-    public ResponseEntity<Object> delete(String userEmail, String userPw) {
-        userService.delete(userEmail, userPw);
+    @DeleteMapping("/{userId}")
+    public ResponseEntity<Object> delete(@PathVariable Long userId) {
+        userService.delete(userId);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
     }
 
@@ -178,8 +210,7 @@ public class UserController {
     // ajax를 쓸 때는 반드시 @ResponseBody를 써야한다.
     public @ResponseBody int emailCheck(@RequestParam("userEmail") String userEmail) {
         log.info("userEmail : " + userEmail);
-        int checkResult = userService.emailCheck(userEmail);
-        return checkResult;
+        return userService.emailCheck(userEmail);
     }
 
 

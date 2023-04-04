@@ -2,6 +2,7 @@ package com.example.Belog.domain;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.validation.constraints.NotBlank;
@@ -9,6 +10,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @ToString
+@NoArgsConstructor
 public class CommentDTO {
 
     // 댓글 번호 pk
