@@ -7,7 +7,6 @@ import Profile from './Profile'
 
 function CommentList({data} : {data : commentData}) {
 
-   console.log(data);
    const {id,username,profileimg,command } = data
 
   return (

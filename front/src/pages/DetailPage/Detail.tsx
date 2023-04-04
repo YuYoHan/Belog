@@ -1,8 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import CommentApi from "apis/comment/CommentAPI";
-import ComentForm from "components/Comment/CommentForm/ComentForm";
-import ComentTitle from "components/Comment/CommentForm/ComentTitle";
-import ComentBtn from "components/Comment/CommentForm/ComtentBtn";
+import CommentIndexPage from "components/Comment/CommentForm";
 import CommentList from "components/Comment/CommentList";
 import { commentKey } from "consts/queryKey";
 import React, { useEffect } from "react";
@@ -28,7 +26,7 @@ function DetailPage() {
    const [Buttondisble, setButtondisble] = React.useState<boolean>(false)
    const location = useLocation();
    const {id, title, content,tablist,img} = location.state.data 
-   const {data : commentist} = useQuery<querycommentData>([commentKey.GET_COMMENT_LIST], CommentApi.getPostsApi);
+   const {data : commentist} = useQuery<querycommentData>([commentKey.GET_COMMENT_LIST], CommentApi.getCommentApi);
    // const { command,id,profileimg,username} = {commentist.data}
    console.log(commentist?.data);
    
@@ -58,13 +56,11 @@ function DetailPage() {
          <S.Content>
             {content}
          </S.Content>
-         <ComentTitle />
-         <ComentForm />
-         <ComentBtn/>
-
+         
+         <CommentIndexPage/>
          {
-            commentist?.data.map((list) => 
-               <CommentList data={list}/>
+            commentist?.data.map((list,index) => 
+               <CommentList data={list} key={index}/>
             )
          }
       </S.Wrapper>
