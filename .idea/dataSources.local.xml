@@ -12,8 +12,8 @@
       <schema-mapping>
         <introspection-scope>
           <node kind="schema">
-            <name qname="velog" />
             <name qname="belog" />
+            <name qname="velog" />
           </node>
         </introspection-scope>
       </schema-mapping>

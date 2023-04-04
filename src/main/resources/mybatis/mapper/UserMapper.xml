@@ -5,7 +5,7 @@
 <mapper namespace="com.example.Belog.mapper.UserMapper">
     <insert id="signUp">
         insert into user(userEmail, userPw, userName, userAddr, userAddrDetail, userAddrEtc)
-        values (#{userEmail},#{userPw}, #{userName}, #{userAddr}, #{userAddrDeail}, #{userAddrEtc})
+        values (#{userEmail},#{userPw}, #{userName}, #{userAddr}, #{userAddrDetail}, #{userAddrEtc})
     </insert>
 
     <select id="emailCheck" parameterType="String" resultType="int">
@@ -15,8 +15,8 @@
         select * from user where userEmail=#{userEmail} and userPw=#{userPw}
     </select>
     
-    <delete id="deleteUser" parameterType="String">
-        delete from user where userEmail=#{userEmail} and userPw=#{userPw}
+    <delete id="deleteUser" parameterType="Long">
+        delete from user where userId=#{userId}
     </delete>
     <select id="getAllUser" resultType="com.example.Belog.domain.UserDTO">
         select * from user
@@ -31,6 +31,6 @@
                         userAddr=#{userAddr},
                         userAddrDetail=#{userAddrDetail},
                         userAddrEtc=#{userAddrEtc}
-        where userEmail=#{userEmail}
+        where userId=#{userId}
     </update>
 </mapper>

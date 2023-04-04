@@ -1,5 +1,12 @@
 package com.example.Belog.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@ToString
+@Getter
+@Setter
 public class Criteria {
     // 현재 페이지
     private int page;

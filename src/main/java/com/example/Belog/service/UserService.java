@@ -24,7 +24,7 @@ public interface UserService {
     Optional<UserDTO> getUser(String userEmail);
 
 
-    UserDTO update(UserDTO userDTO);
+    void update(UserDTO userDTO);
 
-    void delete(String userEmail, String userPw);
+    void delete(Long userId);
 }
