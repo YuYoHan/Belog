@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="daf0e01f-043c-42f0-baae-403369b6c973" name="변경" comment="" />
+    <list default="true" id="daf0e01f-043c-42f0-baae-403369b6c973" name="변경" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/d513b5e6-d8c5-4cb8-bdef-689885ac6616.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/d513b5e6-d8c5-4cb8-bdef-689885ac6616.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Belog/domain/UserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Belog/domain/UserDTO.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -67,7 +71,8 @@
       <option name="presentableId" value="Default" />
       <updated>1680608223088</updated>
       <workItem from="1680608224498" duration="1926000" />
-      <workItem from="1680610161908" duration="316000" />
+      <workItem from="1680610161908" duration="728000" />
+      <workItem from="1680665374330" duration="1413000" />
     </task>
     <servers />
   </component>
