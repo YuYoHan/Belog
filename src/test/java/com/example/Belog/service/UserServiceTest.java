@@ -9,7 +9,7 @@ import org.springframework.test.context.TestPropertySource;
 
 @SpringBootTest
 // H2 데이터베이스 사용하기 위해서 설정
-@TestPropertySource(locations = "classpath:application-rds.properties")
+@TestPropertySource(locations = "classpath:application-prod.properties")
 class UserServiceTest {
 
     @Test
