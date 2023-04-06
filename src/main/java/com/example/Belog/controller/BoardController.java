@@ -4,6 +4,8 @@ import com.example.Belog.domain.BoardDTO;
 import com.example.Belog.domain.Criteria;
 import com.example.Belog.domain.PageDTO;
 import com.example.Belog.service.BoardService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Tag(name = "Board check", description = "API 상태 체크")
 @RestController
 //@NoArgsConstructor
 @AllArgsConstructor
@@ -51,6 +54,8 @@ public class BoardController {
 //        return "redirect:/board?page=1";
 //    }
 
+    @Tag(name = "Board check")
+    @Operation(summary = "입력 API", description = "게시판을 입력하는 API입니다.")
     @PostMapping("/board")
     public ResponseEntity<?> insertBoard(@RequestBody BoardDTO boardDTO) {
         boardService.writeBoard(boardDTO);
@@ -68,6 +73,8 @@ public class BoardController {
 //        return "redirect:/board?page=1";
 //    }
 
+    @Tag(name = "Board check")
+    @Operation(summary = "삭제 API", description = "게시판을 삭제하는 API입니다.")
     @DeleteMapping("/board/{boardNum}")
     public ResponseEntity<?> deleteBoard(@PathVariable("boardNum") Long boardNum) {
         boardService.deleteBoard(boardNum);
@@ -95,6 +102,8 @@ public class BoardController {
 //        return "redirect:/board?page=1";
 //    }
 
+    @Tag(name = "Board check")
+    @Operation(summary = "수정 API", description = "게시판을 수정하는 API입니다.")
     @PutMapping("/board")
     public ResponseEntity<?> updateBoard(@RequestBody BoardDTO boardDTO) {
         boardService.updateBoard(boardDTO);
@@ -114,6 +123,8 @@ public class BoardController {
 //        return "/borad_list";
 //    }
 
+    @Tag(name = "Board check")
+    @Operation(summary = "모든 게시판 찾기 API", description = "게시판을 10개씩 조회하는 API입니다.")
     @GetMapping("/board/{page}")
     public ResponseEntity<?> findAllBoard(@PathVariable("page") int page) {
 
@@ -140,6 +151,9 @@ public class BoardController {
 //        return "/board_detail";
 //    }
 
+
+    @Tag(name = "Board check")
+    @Operation(summary = "상세정보 API", description = "게시판을 상세하게 보여주는 API입니다.")
     @GetMapping("/board/{page}/{boardNum}")
     public ResponseEntity<?> boardDetail(@PathVariable Long boardNum, @PathVariable int page) {
         BoardDTO boardDetail = boardService.findBoardByBoardNum(boardNum);
