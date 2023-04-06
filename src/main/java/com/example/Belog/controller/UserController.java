@@ -2,6 +2,13 @@ package com.example.Belog.controller;
 
 import com.example.Belog.domain.UserDTO;
 import com.example.Belog.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
@@ -20,6 +27,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+// API 그룹 설정
+// name : 태그의 이름
+// description : API 그룹에 대한 설명
+@Tag(name = "user check", description = "API 상태 체크")
 @RestController
 @Log4j2
 @AllArgsConstructor
@@ -28,12 +39,42 @@ public class UserController {
 
     private UserService userService;
 
-//    @GetMapping("/signUp")
-//    public String signUp() {
-//        return "/signUp";
-//    }
-//
-//    @PostMapping("/signUp")
+    // 모든 회원 정보를 가져오는 API
+    @GetMapping("/")
+    @Tag(name = "user check")
+    @Operation(summary = "전체 불러오기 API", description = "모든 유저들을 불러오는 API입니다.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "모든 회원조회 성공"),
+            @ApiResponse(responseCode = "404", description = "모든 회원조회 실패")
+    })
+    public ResponseEntity<List<UserDTO>> getAllUser() {
+        List<UserDTO> userDTOList = userService.getAllUser();
+        return ResponseEntity.status(HttpStatus.OK).body(userDTOList);
+    }
+
+    // 회원 정보를 가져오는 API
+    @GetMapping("/{userEmail}")
+    @Tag(name = "user check")
+    @Operation(summary = "불러오기 API", description = "특정 유저들을 불러오는 API입니다.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "회원조회 성공"),
+            @ApiResponse(responseCode = "404", description = "회원조회 실패")
+    })
+    public ResponseEntity<?> getUser(
+             @PathVariable String userEmail) {
+        Optional<UserDTO> userDTO = userService.getUser(userEmail);
+        if (userDTO.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(userDTO);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
+
+    //    @GetMapping("/signUp")
+    //    public String signUp() {
+    //        return "/signUp";
+    //    }
+    //    @PostMapping("/signUp")
 //    public String signUp(@Validated UserDTO userDTO, Errors errors, HttpServletResponse resp, Model model) {
 //        // post요청시 넘어온 user 입력값에서 Validation에 걸리는 경우
 //        if(errors.hasErrors()) {
@@ -69,74 +110,6 @@ public class UserController {
 //        }
 //        return "redirect:/";
 //    }
-//
-//
-//
-//    @GetMapping("/login")
-//    public String loginForm(@CookieValue("userEmail") String userEmail, Model model) {
-//        if(userEmail == null) {
-//            return "/login";
-//        } else {
-//            model.addAttribute("loginEmail", userEmail);
-//            log.info(userEmail);
-//            return "/login";
-//        }
-//    }
-//
-//
-//    @PostMapping("/login")
-//    public String login(String userEmail, String userPw, HttpSession session, Model model) {
-//        UserDTO user =  userService.login(userEmail, userPw);
-//
-//        if(user != null) {
-//            session.setAttribute("userId", user.getUserId());
-//            session.setAttribute("userEmail", user.getUserEmail());
-//        }
-//        return "home";
-//    }
-//
-//    @PostMapping("/logOut")
-//    public String logOut(HttpServletRequest req) {
-//        req.getSession().invalidate();
-//        return "redirect:/";
-//    }
-//
-//    @GetMapping("/remove")
-//    public String remove() {
-//        return "/remove";
-//    }
-//
-//    @PostMapping("/remove")
-//    public String remove(String userEmail, String userPw) {
-//        log.info("아이디 : " + userEmail);
-//        log.info("비밀번호 : " + userPw);
-//
-//        UserDTO user = userService.remove(userEmail, userPw);
-//        if(user != null) {
-//            return "redirect:/";
-//        } else {
-//            return "/remove";
-//        }
-//    }
-
-    // 모든 회원 정보를 가져오는 API
-    @GetMapping("/")
-    public ResponseEntity<List<UserDTO>> getAllUser() {
-        List<UserDTO> userDTOList = userService.getAllUser();
-        return ResponseEntity.status(HttpStatus.OK).body(userDTOList);
-    }
-
-    // 회원 정보를 가져오는 API
-    @GetMapping("/{userEmail}")
-    public ResponseEntity<?> getUser(@PathVariable String userEmail) {
-        Optional<UserDTO> userDTO = userService.getUser(userEmail);
-        if (userDTO.isPresent()) {
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(userDTO);
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-        }
-    }
-
 
     /**
      * 회원 가입 API
@@ -144,6 +117,12 @@ public class UserController {
      * @return ResponseEntity<UserResponse> 201 Created, 가입된 회원의 정보
      */
     @PostMapping("/")
+    @Tag(name = "user check")
+    @Operation(summary = "회원가입 API", description = "회원가입하는 API입니다.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "201", description = "회원가입 성공"),
+            @ApiResponse(responseCode = "400", description = "잘못된 요청")
+    })
     public ResponseEntity<String> signUp(@Validated @RequestBody UserDTO userDTO, Errors errors, HttpServletResponse resp) {
 
 
@@ -171,8 +150,34 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body("회원가입 성공했습니다.");
     }
 
+//    @GetMapping("/login")
+//    public String loginForm(@CookieValue("userEmail") String userEmail, Model model) {
+//        if(userEmail == null) {
+//            return "/login";
+//        } else {
+//            model.addAttribute("loginEmail", userEmail);
+//            log.info(userEmail);
+//            return "/login";
+//        }
+//    }
+//
+//
+//    @PostMapping("/login")
+//    public String login(String userEmail, String userPw, HttpSession session, Model model) {
+//        UserDTO user =  userService.login(userEmail, userPw);
+//
+//        if(user != null) {
+//            session.setAttribute("userId", user.getUserId());
+//            session.setAttribute("userEmail", user.getUserEmail());
+//        }
+//        return "home";
+//    }
+
     // 로그인
     @PostMapping("/loginUser")
+    @Tag(name = "user check")
+    @Operation(summary = "로그인 API", description = "로그인하는 API입니다.")
+    @ApiResponse(responseCode = "200", description = "로그인 성공")
     public String login(@RequestBody UserDTO userDTO, HttpSession session) {
         UserDTO loginUser = userService.login(userDTO.getUserEmail(), userDTO.getUserPw());
         if (loginUser != null) {
@@ -183,7 +188,15 @@ public class UserController {
         return "아이디가 없습니다.";
     }
 
+    //    @PostMapping("/logOut")
+//    public String logOut(HttpServletRequest req) {
+//        req.getSession().invalidate();
+//        return "redirect:/";
+//    }
     @GetMapping("/logOut")
+    @Tag(name = "user check")
+    @Operation(summary = "로그아웃 API", description = "로그아웃 하는 API입니다.")
+    @ApiResponse(responseCode = "200", description = "로그아웃 성공")
     public String logOut(HttpServletRequest req) {
         req.getSession().invalidate();
         return "로그아웃 하셨습니다";
@@ -191,15 +204,39 @@ public class UserController {
 
     // 회원 정보 수정
     @PutMapping("/")
+    @Tag(name = "user check")
+    @Operation(summary = "수정 API", description = "유저 정보를 수정하는 API입니다.")
+    @ApiResponse(responseCode = "201", description = "수정 성공")
     public ResponseEntity<?> update(@RequestBody UserDTO userDTO, HttpSession session) {
-            userService.update(userDTO);
-            return ResponseEntity.status(HttpStatus.OK).body(userDTO);
+        userService.update(userDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(userDTO);
 
     }
+
+//    @GetMapping("/remove")
+//    public String remove() {
+//        return "/remove";
+//    }
+//
+//    @PostMapping("/remove")
+//    public String remove(String userEmail, String userPw) {
+//        log.info("아이디 : " + userEmail);
+//        log.info("비밀번호 : " + userPw);
+//
+//        UserDTO user = userService.remove(userEmail, userPw);
+//        if(user != null) {
+//            return "redirect:/";
+//        } else {
+//            return "/remove";
+//        }
+//    }
 
     // 회원 탈퇴(삭제) API
     // 204 : NO_CONTENT
     @DeleteMapping("/{userId}")
+    @Tag(name = "user check")
+    @Operation(summary = "삭제 API", description = "유저를 삭제하는 API입니다.")
+    @ApiResponse(responseCode = "204", description = "삭제 성공")
     public ResponseEntity<Object> delete(@PathVariable Long userId) {
         userService.delete(userId);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
@@ -207,6 +244,9 @@ public class UserController {
 
     // 중복체크
     @PostMapping("/user/email-check")
+    @Tag(name = "user check")
+    @Operation(summary = "중복체크 API", description = "userEmail이 중복인지 체크하는 API입니다.")
+    @ApiResponse(responseCode = "200", description = "중복체크 성공")
     // ajax를 쓸 때는 반드시 @ResponseBody를 써야한다.
     public @ResponseBody int emailCheck(@RequestParam("userEmail") String userEmail) {
         log.info("userEmail : " + userEmail);
