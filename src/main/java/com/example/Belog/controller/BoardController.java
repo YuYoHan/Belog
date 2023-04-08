@@ -34,6 +34,7 @@ import java.util.Map;
 //@NoArgsConstructor
 @AllArgsConstructor
 @Slf4j
+@RequestMapping("/v1")
 public class BoardController {
 
     private BoardService boardService;

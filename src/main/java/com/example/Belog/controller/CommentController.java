@@ -23,7 +23,7 @@ import java.util.List;
 @RestController
 @Log4j2
 @AllArgsConstructor
-@RequestMapping("/board/{boardNum}")
+@RequestMapping("/v1/board/{boardNum}")
 public class CommentController {
 
     private CommentService commentService;
