@@ -5,6 +5,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @Getter
 @ToString
@@ -27,21 +30,18 @@ public class BoardDTO {
 
     @Schema(description = "해쉬태그", nullable = true)
     private String hashTag;
+    private List<MultipartFile> boardImages;
 
     @Builder
     public BoardDTO(
-            Long boardNum,
-            Long userId,
             String boardTitle,
-            // Date writeTime,
             String boardContents,
-            String hashTag
+            String hashTag,
+            List<MultipartFile> boardImages
     ) {
-        this.boardNum = boardNum;
-        this.userId = userId;
         this.boardTitle = boardTitle;
-        // this.writeTime = writeTime;
         this.boardContents = boardContents;
         this.hashTag = hashTag;
+        this.boardImages = boardImages;
     }
 }

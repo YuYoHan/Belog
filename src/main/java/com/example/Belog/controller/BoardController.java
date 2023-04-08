@@ -1,6 +1,7 @@
 package com.example.Belog.controller;
 
 import com.example.Belog.domain.BoardDTO;
+import com.example.Belog.domain.BoardImageDTO;
 import com.example.Belog.domain.Criteria;
 import com.example.Belog.domain.PageDTO;
 import com.example.Belog.service.BoardService;
@@ -10,10 +11,12 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -54,12 +57,31 @@ public class BoardController {
 //        return "redirect:/board?page=1";
 //    }
 
+
     @Tag(name = "Board check")
     @Operation(summary = "입력 API", description = "게시판을 입력하는 API입니다.")
-    @PostMapping("/board")
-    public ResponseEntity<?> insertBoard(@RequestBody BoardDTO boardDTO) {
-        boardService.writeBoard(boardDTO);
-        return new ResponseEntity<>(boardDTO, HttpStatus.CREATED);
+    @PostMapping(value = "/board")
+    public ResponseEntity<?> insertBoard(
+            @RequestParam("boardTitle") String boardTitle,
+            @RequestParam("boardContents") String boardContents,
+            @RequestParam("hashTag") String hashTag,
+            @RequestParam("boardImages") List<MultipartFile> boardImages
+    ) {
+
+        BoardDTO boardDTO = BoardDTO.builder()
+                .boardTitle(boardTitle)
+                .boardContents(boardContents)
+                .hashTag(hashTag)
+                .boardImages(boardImages)
+                .build();
+
+        try{
+            boardService.writeBoard(boardDTO);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (Exception e) {
+            log.error("error", e);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 //    @PostMapping("/board/delete")
@@ -157,8 +179,12 @@ public class BoardController {
     @GetMapping("/board/{page}/{boardNum}")
     public ResponseEntity<?> boardDetail(@PathVariable Long boardNum, @PathVariable int page) {
         BoardDTO boardDetail = boardService.findBoardByBoardNum(boardNum);
+        List<BoardImageDTO> boardDetailImages = boardService.findBoardImagesByBoardNum(boardNum);
 
-        log.info("{}번 게시글 보기: {}", boardNum, boardDetail);
-        return new ResponseEntity<>(boardDetail, HttpStatus.OK);
+        Map<String, Object> map = new HashMap<>();
+        map.put("boardDetail", boardDetail);
+        map.put("boardImageList", boardDetailImages);
+
+        return new ResponseEntity<>(map, HttpStatus.OK);
     }
 }

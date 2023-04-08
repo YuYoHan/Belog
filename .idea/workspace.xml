@@ -5,21 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="daf0e01f-043c-42f0-baae-403369b6c973" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/com/example/Belog/domain/BoardImageDTO$BoardImageDTOBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/com/example/Belog/domain/BoardImageDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Belog/domain/BoardImageDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/com/example/Belog/controller/BoardController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/example/Belog/controller/BoardController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/com/example/Belog/controller/CommentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/example/Belog/controller/CommentController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/example/Belog/controller/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/example/Belog/controller/HomeController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/example/Belog/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/example/Belog/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/resources/application-test.properties" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/resources/application-test.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/example/Belog/domain/BoardDTO$BoardDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/example/Belog/domain/BoardDTO$BoardDTOBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/example/Belog/domain/BoardDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/example/Belog/domain/BoardDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/example/Belog/domain/CommentDTO$CommentDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/example/Belog/domain/CommentDTO$CommentDTOBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/example/Belog/domain/CommentDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/example/Belog/domain/CommentDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/example/Belog/mapper/BoardMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/example/Belog/mapper/BoardMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/example/Belog/service/BoardService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/example/Belog/service/BoardService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/example/Belog/service/BoardServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/example/Belog/service/BoardServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/resources/mybatis/mapper/BoardMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/resources/mybatis/mapper/BoardMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Belog/controller/BoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Belog/controller/BoardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Belog/controller/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Belog/controller/CommentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Belog/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Belog/controller/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Belog/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Belog/controller/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Belog/domain/BoardDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Belog/domain/BoardDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Belog/domain/CommentDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Belog/domain/CommentDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Belog/domain/UserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Belog/domain/UserDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Belog/mapper/BoardMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Belog/mapper/BoardMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Belog/service/BoardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Belog/service/BoardService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Belog/service/BoardServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Belog/service/BoardServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/BoardMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/BoardMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +46,7 @@
             <expand>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="Belog" type="f1a62948:ProjectNode" />
+                <item name="setting" type="f1a62948:ProjectNode" />
               </path>
             </expand>
             <select />
@@ -84,7 +91,14 @@
       <recent name="com.example.Belog.config" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Spring Boot.BelogApplication">
+    <configuration name="BelogApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="setting.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.Belog.BelogApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="BelogApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="Belog.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.Belog.BelogApplication" />
