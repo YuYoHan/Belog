@@ -2,6 +2,9 @@ package com.example.Belog.controller;
 
 import com.example.Belog.domain.UserDTO;
 import com.example.Belog.service.UserService;
+import com.fasterxml.jackson.databind.ser.FilterProvider;
+import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
+import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
@@ -13,6 +16,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -47,9 +51,18 @@ public class UserController {
             @ApiResponse(responseCode = "200", description = "모든 회원조회 성공"),
             @ApiResponse(responseCode = "404", description = "모든 회원조회 실패")
     })
-    public ResponseEntity<List<UserDTO>> getAllUser() {
+    public ResponseEntity<MappingJacksonValue> getAllUser() {
         List<UserDTO> userDTOList = userService.getAllUser();
-        return ResponseEntity.status(HttpStatus.OK).body(userDTOList);
+
+        SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter
+                .filterOutAllExcept("userId", "userEmail", "userName", "userAddr", "userAddrDetail", "userAddrEtc");
+
+        FilterProvider filters = new SimpleFilterProvider().addFilter("user", filter);
+
+        MappingJacksonValue value = new MappingJacksonValue(userDTOList);
+        value.setFilters(filters);
+
+        return ResponseEntity.status(HttpStatus.OK).body(value);
     }
 
     // 회원 정보를 가져오는 API
@@ -60,11 +73,20 @@ public class UserController {
             @ApiResponse(responseCode = "200", description = "회원조회 성공"),
             @ApiResponse(responseCode = "404", description = "회원조회 실패")
     })
-    public ResponseEntity<?> getUser(
+    public ResponseEntity<MappingJacksonValue> getUser(
              @PathVariable String userEmail) {
         Optional<UserDTO> userDTO = userService.getUser(userEmail);
+
+        SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter
+                .filterOutAllExcept("userId", "userEmail", "userName", "userAddr", "userAddrDetail", "userAddrEtc");
+
+        FilterProvider filters = new SimpleFilterProvider().addFilter("user", filter);
+
+        MappingJacksonValue value = new MappingJacksonValue(userDTO);
+        value.setFilters(filters);
+
         if (userDTO.isPresent()) {
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(userDTO);
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(value);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
