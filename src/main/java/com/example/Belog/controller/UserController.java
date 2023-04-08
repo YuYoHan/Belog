@@ -38,7 +38,7 @@ import java.util.Optional;
 @RestController
 @Log4j2
 @AllArgsConstructor
-@RequestMapping("/user")
+@RequestMapping("/v1/user")
 public class UserController {
 
     private UserService userService;
