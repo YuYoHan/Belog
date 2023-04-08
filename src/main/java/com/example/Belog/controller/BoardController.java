@@ -1,20 +1,27 @@
 package com.example.Belog.controller;
 
 import com.example.Belog.domain.BoardDTO;
+import com.example.Belog.domain.BoardImageDTO;
 import com.example.Belog.domain.Criteria;
 import com.example.Belog.domain.PageDTO;
 import com.example.Belog.service.BoardService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Collection;
@@ -54,12 +61,48 @@ public class BoardController {
 //        return "redirect:/board?page=1";
 //    }
 
+
     @Tag(name = "Board check")
     @Operation(summary = "입력 API", description = "게시판을 입력하는 API입니다.")
-    @PostMapping("/board")
-    public ResponseEntity<?> insertBoard(@RequestBody BoardDTO boardDTO) {
-        boardService.writeBoard(boardDTO);
-        return new ResponseEntity<>(boardDTO, HttpStatus.CREATED);
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "게시판 쓰기 성공"),
+            @ApiResponse(responseCode = "500", description = "게시판 쓰기 실패")
+    })
+    @PostMapping(value = "/board")
+    public ResponseEntity<?> insertBoard(
+            @RequestParam("boardTitle") String boardTitle,
+            @RequestParam("boardContents") String boardContents,
+            @RequestParam("hashTag") String hashTag,
+            @RequestParam("boardImages") List<MultipartFile> boardImages,
+            HttpServletRequest request
+    ) {
+
+        Cookie[] cookies = request.getCookies();
+        Long userId = 0L;
+
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("userId")) {
+                    userId = Long.parseLong(cookie.getValue());
+                }
+            }
+        }
+
+        BoardDTO boardDTO = BoardDTO.builder()
+                .userId(userId)
+                .boardTitle(boardTitle)
+                .boardContents(boardContents)
+                .hashTag(hashTag)
+                .boardImages(boardImages)
+                .build();
+
+        try{
+            boardService.writeBoard(boardDTO);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (Exception e) {
+            log.error("error", e);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 //    @PostMapping("/board/delete")
@@ -75,6 +118,10 @@ public class BoardController {
 
     @Tag(name = "Board check")
     @Operation(summary = "삭제 API", description = "게시판을 삭제하는 API입니다.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "회원 삭제 성공"),
+            @ApiResponse(responseCode = "404", description = "회원 삭제 실패")
+    })
     @DeleteMapping("/board/{boardNum}")
     public ResponseEntity<?> deleteBoard(@PathVariable("boardNum") Long boardNum) {
         boardService.deleteBoard(boardNum);
@@ -104,6 +151,10 @@ public class BoardController {
 
     @Tag(name = "Board check")
     @Operation(summary = "수정 API", description = "게시판을 수정하는 API입니다.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "회원 수정 성공"),
+            @ApiResponse(responseCode = "404", description = "회원 수정 실패")
+    })
     @PutMapping("/board")
     public ResponseEntity<?> updateBoard(@RequestBody BoardDTO boardDTO) {
         boardService.updateBoard(boardDTO);
@@ -125,6 +176,10 @@ public class BoardController {
 
     @Tag(name = "Board check")
     @Operation(summary = "모든 게시판 찾기 API", description = "게시판을 10개씩 조회하는 API입니다.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "회원 조회 성공"),
+            @ApiResponse(responseCode = "404", description = "회원 조회 실패")
+    })
     @GetMapping("/board/{page}")
     public ResponseEntity<?> findAllBoard(@PathVariable("page") int page) {
 
@@ -154,11 +209,19 @@ public class BoardController {
 
     @Tag(name = "Board check")
     @Operation(summary = "상세정보 API", description = "게시판을 상세하게 보여주는 API입니다.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "회원 상세조회 성공"),
+            @ApiResponse(responseCode = "404", description = "회원 상세조회 실패")
+    })
     @GetMapping("/board/{page}/{boardNum}")
     public ResponseEntity<?> boardDetail(@PathVariable Long boardNum, @PathVariable int page) {
         BoardDTO boardDetail = boardService.findBoardByBoardNum(boardNum);
+        List<BoardImageDTO> boardDetailImages = boardService.findBoardImagesByBoardNum(boardNum);
 
-        log.info("{}번 게시글 보기: {}", boardNum, boardDetail);
-        return new ResponseEntity<>(boardDetail, HttpStatus.OK);
+        Map<String, Object> map = new HashMap<>();
+        map.put("boardDetail", boardDetail);
+        map.put("boardImageList", boardDetailImages);
+
+        return new ResponseEntity<>(map, HttpStatus.OK);
     }
 }
