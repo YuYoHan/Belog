@@ -1,7 +1,5 @@
 package com.example.Belog.domain;
 
-import com.fasterxml.jackson.annotation.JsonFilter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,7 +13,6 @@ import javax.validation.constraints.Pattern;
 @Getter
 @ToString
 @NoArgsConstructor
-@JsonFilter("user")
 public class UserDTO {
 
     @Schema(description = "유저 번호", example = "1", required = true)

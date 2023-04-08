@@ -6,13 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="daf0e01f-043c-42f0-baae-403369b6c973" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-<<<<<<< HEAD
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/example/Belog/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/example/Belog/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Belog/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Belog/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Belog/domain/UserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Belog/domain/UserDTO.java" afterDir="false" />
-=======
       <change beforePath="$PROJECT_DIR$/src/main/resources/application-prod.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-prod.properties" afterDir="false" />
->>>>>>> 3a80aa6f4eaeb70021c9afc4c0ce5386356cb013
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,71 +72,9 @@
     </key>
   </component>
   <component name="RunManager" selected="Spring Boot.BelogApplication">
-<<<<<<< HEAD
-    <configuration name="UserControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Belog.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.Belog.controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.Belog.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.example.Belog.controller.UserControllerTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserControllerTest.login" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Belog.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.Belog.controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.Belog.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.example.Belog.controller.UserControllerTest" />
-      <option name="METHOD_NAME" value="login" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserControllerTest.signUp" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Belog.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.Belog.controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.Belog.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.example.Belog.controller.UserControllerTest" />
-      <option name="METHOD_NAME" value="signUp" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserControllerTest.testSignUp" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Belog.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.Belog.controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.Belog.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.example.Belog.controller.UserControllerTest" />
-      <option name="METHOD_NAME" value="testSignUp" />
-      <option name="TEST_OBJECT" value="method" />
-=======
     <configuration name="BelogApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="setting.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.Belog.BelogApplication" />
->>>>>>> 3a80aa6f4eaeb70021c9afc4c0ce5386356cb013
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -154,14 +86,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="JUnit.UserControllerTest" />
-        <item itemvalue="JUnit.UserControllerTest.signUp" />
-        <item itemvalue="JUnit.UserControllerTest.login" />
-        <item itemvalue="JUnit.UserControllerTest.testSignUp" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -174,12 +98,7 @@
       <workItem from="1680608224498" duration="1926000" />
       <workItem from="1680610161908" duration="728000" />
       <workItem from="1680665374330" duration="2647000" />
-      <workItem from="1680701675934" duration="20532000" />
-      <workItem from="1680917202072" duration="2800000" />
-      <workItem from="1680920890650" duration="116000" />
-      <workItem from="1680921232876" duration="2025000" />
-      <workItem from="1680931330533" duration="1604000" />
-      <workItem from="1680948035833" duration="1753000" />
+      <workItem from="1680701675934" duration="20231000" />
     </task>
     <servers />
   </component>
@@ -196,20 +115,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/test/java/com/example/Belog/controller/UserControllerTest.java</url>
-          <line>60</line>
-          <properties class="com.example.Belog.controller.UserControllerTest" method="testSignUp">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
