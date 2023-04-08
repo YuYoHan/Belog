@@ -34,11 +34,13 @@ public class BoardDTO {
 
     @Builder
     public BoardDTO(
+            Long userId,
             String boardTitle,
             String boardContents,
             String hashTag,
             List<MultipartFile> boardImages
     ) {
+        this.userId = userId;
         this.boardTitle = boardTitle;
         this.boardContents = boardContents;
         this.hashTag = hashTag;
