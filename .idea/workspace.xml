@@ -5,14 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="daf0e01f-043c-42f0-baae-403369b6c973" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-<<<<<<< HEAD
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/example/Belog/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/example/Belog/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Belog/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Belog/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Belog/domain/UserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Belog/domain/UserDTO.java" afterDir="false" />
-=======
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application-prod.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-prod.properties" afterDir="false" />
->>>>>>> 3a80aa6f4eaeb70021c9afc4c0ce5386356cb013
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/example/Belog/controller/BoardController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/example/Belog/controller/BoardController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/example/Belog/controller/CommentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/example/Belog/controller/CommentController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/example/Belog/domain/BoardImageDTO$BoardImageDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/example/Belog/domain/BoardImageDTO$BoardImageDTOBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/example/Belog/domain/BoardImageDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/example/Belog/domain/BoardImageDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +29,7 @@
             <expand>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="setting" type="f1a62948:ProjectNode" />
+                <item name="Belog" type="f1a62948:ProjectNode" />
               </path>
             </expand>
             <select />
@@ -78,7 +75,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Spring Boot.BelogApplication">
-<<<<<<< HEAD
     <configuration name="UserControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Belog.test" />
       <extension name="coverage">
@@ -138,11 +134,6 @@
       <option name="MAIN_CLASS_NAME" value="com.example.Belog.controller.UserControllerTest" />
       <option name="METHOD_NAME" value="testSignUp" />
       <option name="TEST_OBJECT" value="method" />
-=======
-    <configuration name="BelogApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="setting.main" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.Belog.BelogApplication" />
->>>>>>> 3a80aa6f4eaeb70021c9afc4c0ce5386356cb013
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -203,7 +194,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/test/java/com/example/Belog/controller/UserControllerTest.java</url>
           <line>60</line>
-          <properties class="com.example.Belog.controller.UserControllerTest" method="testSignUp">
+          <properties class="com.example.Belog.controller.UserControllerTest">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
