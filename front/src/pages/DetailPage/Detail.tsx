@@ -28,7 +28,7 @@ function DetailPage() {
    const {id, title, content,tablist,img} = location.state.data 
    const {data : commentist} = useQuery<querycommentData>([commentKey.GET_COMMENT_LIST], CommentApi.getCommentApi);
    // const { command,id,profileimg,username} = {commentist.data}
-   console.log(commentist?.data);
+   console.log(commentist);
    
 
 

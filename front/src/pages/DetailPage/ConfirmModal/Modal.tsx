@@ -18,11 +18,13 @@ function DetailConfirmModal ({id,setModalOpen} : ModalType) {
    
    
    const mutation  : any = useMutation(() => PostsApi.deletePostsApi(id), {
-         onSuccess: () => {
+         onSuccess: (res) => {
+            console.log(res);
+            
             queryClient.invalidateQueries([queryKey.GET_MAINPOSTS_LIST])
             navigete('/')
          },
-      })
+    })
 
   return (
    <S.Presentation>
