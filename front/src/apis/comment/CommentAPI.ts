@@ -1,5 +1,5 @@
 import Axios from "apis/@core";
-import {  querycommentData } from "pages/DetailPage/Detail";
+import {  commentData, querycommentData } from "pages/DetailPage/Detail";
 
 
 const CommentApi =  {
@@ -7,8 +7,8 @@ const CommentApi =  {
       return Axios.get("http://localhost:3001/comment")
    },
    
-   createCommentApi(): Promise<querycommentData> {
-      return Axios.get("http://localhost:3001/comment")
+   createCommentApi(data : object): Promise<commentData> {
+      return Axios.post("http://localhost:3001/comment",data)
    },
 }
 

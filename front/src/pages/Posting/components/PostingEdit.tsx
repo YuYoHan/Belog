@@ -23,7 +23,6 @@ const testdate  = () => {
 }
 
 
-
 // const imageHandler = () => {
 //    console.log('에디터에서 이미지 버튼을 클릭하면 이 핸들러가 시작됩니다!');
 //    // 1. 이미지를 저장할 input type=file DOM을 만든다.
