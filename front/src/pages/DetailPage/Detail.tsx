@@ -1,37 +1,21 @@
-import { useQuery } from "@tanstack/react-query";
-import CommentApi from "apis/comment/CommentAPI";
 import CommentIndexPage from "components/Comment/CommentForm";
 import CommentList from "components/Comment/CommentList";
-import { commentKey } from "consts/queryKey";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components"
 import EditBtn from "./EditBtn";
 import RemoveBtn from "./RemoveBtn";
 
 
-export type commentData = {
-   id : number,
-   username : string,
-   profileimg : string,
-   command : string
-}
 
-export type querycommentData = {
-   data : commentData[]
-}
 
 function DetailPage() {
 
    const [Buttondisble, setButtondisble] = React.useState<boolean>(false)
    const location = useLocation();
    const {id, title, content,tablist,img} = location.state.data 
-   const {data : commentist} = useQuery<querycommentData>([commentKey.GET_COMMENT_LIST], CommentApi.getCommentApi);
-   // const { command,id,profileimg,username} = {commentist.data}
-   console.log(commentist);
+   console.log(location.state.data );
    
-
-
    useEffect(() => {
 
       if(location.pathname.indexOf('mypage') === 1){
@@ -57,12 +41,8 @@ function DetailPage() {
             {content}
          </S.Content>
          
-         <CommentIndexPage/>
-         {
-            commentist?.data.map((list,index) => 
-               <CommentList data={list} key={index}/>
-            )
-         }
+         <CommentIndexPage />
+         <CommentList/>
       </S.Wrapper>
    )
 }

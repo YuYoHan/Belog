@@ -1,4 +1,4 @@
-import TimeForToday from "hooks/daysTimer";
+import TimeForToday from "hooks/usedaysTimer";
 import { media } from "libs/styles/media"
 import { Link } from "react-router-dom"
 import styled from "styled-components"

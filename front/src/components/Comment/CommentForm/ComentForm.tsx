@@ -4,12 +4,15 @@ import styled from "styled-components"
 import CommentApi from 'apis/comment/CommentAPI'
 import { commentKey } from 'consts/queryKey'
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useRecoilState } from "recoil";
+import { commentScrollMove } from "atom/comment/commentScrollmove";
+
 
 function ComentForm() {
 
 
    const [command , setContent, reset] = useInput('');
-   
+   const [commentScrollMoveValue ,setcommentScrollMoveValue] = useRecoilState<boolean>(commentScrollMove)
 
    const commentobj = {
       username : 'cleooo',
@@ -19,10 +22,11 @@ function ComentForm() {
       
 
    const queryClient = useQueryClient();
-      const mutation  = useMutation(() => CommentApi.createCommentApi(commentobj), {
+      const mutation  : any = useMutation(() => CommentApi.createCommentApi(commentobj), {
          onSuccess: (res) => {
             queryClient.invalidateQueries([commentKey.GET_COMMENT_LIST]);
             reset("");
+            setcommentScrollMoveValue(true)
          },
       })
       

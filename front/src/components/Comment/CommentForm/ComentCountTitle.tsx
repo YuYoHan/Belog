@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-function ComentTitle() {
+function ComentCountTitle() {
 
 
    return (
@@ -12,7 +12,7 @@ function ComentTitle() {
    )
 }
 
-export default ComentTitle
+export default ComentCountTitle
 
 const Wrapper = styled.div`
    display: flex;

@@ -11,10 +11,11 @@ function Tabheader() {
 
 
    const onFormChange = (e : React.MouseEvent) : void => {
-      const { innerText } : any  = e.target
-      
-      form = innerText.toLowerCase();
-      setForm(form);
+        const  {innerText} : any = e.target
+        console.log(e.target);
+        
+        form = innerText.toLowerCase();
+        setForm(form);
    };
 
    
