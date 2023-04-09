@@ -1,6 +1,4 @@
-import { commentData } from 'pages/DetailPage/Detail'
-import { MypageData } from 'pages/Mypage/components/Myposting/MypageList'
-import React from 'react'
+import React, { useRef } from 'react'
 import styled from 'styled-components'
 
 
@@ -13,12 +11,11 @@ type commentDataProps = {
 
 function Profile({user,imgurl} : commentDataProps ) {
 
-   
 
   return (
     <S.Wrapper>
       <S.Innerwrap>
-         <S.Profilewrap>
+         <S.Profilewrap >
          <img src={imgurl} alt="사용자 이미지"/>
          <p>{user}</p>
          </S.Profilewrap>

@@ -2,7 +2,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import ComentForm from './ComentForm'
-import ComentTitle from './ComentTitle'
+import ComentCountTitle from './ComentCountTitle'
 
 
 
@@ -13,7 +13,7 @@ function CommentIndexPage() {
 
   return (
    <React.Fragment>
-      <ComentTitle/>
+      <ComentCountTitle/>
       <ComentForm />
    </React.Fragment>
      )
