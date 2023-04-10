@@ -5,6 +5,7 @@ drop table user;
 drop table board;
 drop table comment;
 drop table like_sth;
+drop table boardImg;
 
 create table user(
 	userId bigint primary key auto_increment,
@@ -14,13 +15,6 @@ create table user(
     userAddr varchar(1000) not null,
     userAddrDetail varchar(1000) not null ,
     userAddrEtc varchar(300) not null
-);
-
-create table userImg(
-    imgNum bigint primary key auto_increment,
-    userImg varchar(3000),
-    userId bigint,
-    foreign key pk_userId(userId) references user(userId)
 );
 
 create table board(
@@ -58,3 +52,4 @@ create table like_sth(
 );
 
 select * from user;
+TRUNCATE table user;

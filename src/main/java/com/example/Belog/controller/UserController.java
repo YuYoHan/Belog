@@ -264,7 +264,7 @@ public class UserController {
     }
 
     // 중복체크
-    @PostMapping("/user/email-check")
+    @PostMapping("/email-check")
     @Tag(name = "user check")
     @Operation(summary = "중복체크 API", description = "userEmail이 중복인지 체크하는 API입니다.")
     @ApiResponse(responseCode = "200", description = "중복체크 성공")
