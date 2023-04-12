@@ -51,18 +51,18 @@ public class UserController {
             @ApiResponse(responseCode = "200", description = "모든 회원조회 성공"),
             @ApiResponse(responseCode = "404", description = "모든 회원조회 실패")
     })
-    public ResponseEntity<MappingJacksonValue> getAllUser() {
+    public ResponseEntity<List<UserDTO>> getAllUser() {
         List<UserDTO> userDTOList = userService.getAllUser();
 
-        SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter
-                .filterOutAllExcept("userId", "userEmail", "userName", "userAddr", "userAddrDetail", "userAddrEtc");
+//        SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter
+//                .filterOutAllExcept("userId", "userEmail", "userName", "userAddr", "userAddrDetail", "userAddrEtc");
+//
+//        FilterProvider filters = new SimpleFilterProvider().addFilter("user", filter);
+//
+//        MappingJacksonValue value = new MappingJacksonValue(userDTOList);
+//        value.setFilters(filters);
 
-        FilterProvider filters = new SimpleFilterProvider().addFilter("user", filter);
-
-        MappingJacksonValue value = new MappingJacksonValue(userDTOList);
-        value.setFilters(filters);
-
-        return ResponseEntity.status(HttpStatus.OK).body(value);
+        return ResponseEntity.status(HttpStatus.OK).body(userDTOList);
     }
 
     // 회원 정보를 가져오는 API
@@ -73,20 +73,20 @@ public class UserController {
             @ApiResponse(responseCode = "200", description = "회원조회 성공"),
             @ApiResponse(responseCode = "404", description = "회원조회 실패")
     })
-    public ResponseEntity<MappingJacksonValue> getUser(
+    public ResponseEntity<?> getUser(
              @PathVariable String userEmail) {
         Optional<UserDTO> userDTO = userService.getUser(userEmail);
 
-        SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter
-                .filterOutAllExcept("userId", "userEmail", "userName", "userAddr", "userAddrDetail", "userAddrEtc");
-
-        FilterProvider filters = new SimpleFilterProvider().addFilter("user", filter);
-
-        MappingJacksonValue value = new MappingJacksonValue(userDTO);
-        value.setFilters(filters);
+//        SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter
+//                .filterOutAllExcept("userId", "userEmail", "userName", "userAddr", "userAddrDetail", "userAddrEtc");
+//
+//        FilterProvider filters = new SimpleFilterProvider().addFilter("user", filter);
+//
+//        MappingJacksonValue value = new MappingJacksonValue(userDTO);
+//        value.setFilters(filters);
 
         if (userDTO.isPresent()) {
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(value);
+            return ResponseEntity.status(HttpStatus.OK).body(userDTO);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
@@ -135,7 +135,6 @@ public class UserController {
 
     /**
      * 회원 가입 API
-     *
      * @return ResponseEntity<UserResponse> 201 Created, 가입된 회원의 정보
      */
     @PostMapping("/")
