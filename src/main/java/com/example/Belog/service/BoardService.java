@@ -18,7 +18,7 @@ public interface BoardService {
 
     BoardDTO findBoardByBoardNum(Long boardNum);
 
-    List<BoardImageDTO> findBoardImagesByBoardNum(Long boardNum);
+    List<String> findBoardImagesByBoardNum(Long boardNum);
 
     int getBoardCount();
 }
