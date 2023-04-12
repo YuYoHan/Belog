@@ -33,5 +33,5 @@ public interface BoardMapper {
 
     Long getLastBoardNum();
 
-    void insertBoardImage(@Param("boardNum") Long boardNum, @Param("boardImages")List<File> boardImages);
+    void insertBoardImage(@Param("boardNum") Long boardNum, @Param("boardImages")List<String> boardImages);
 }
