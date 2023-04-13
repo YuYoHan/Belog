@@ -1,7 +1,6 @@
 package com.example.Belog.controller;
 
 import com.example.Belog.domain.BoardDTO;
-import com.example.Belog.domain.BoardImageDTO;
 import com.example.Belog.domain.Criteria;
 import com.example.Belog.domain.PageDTO;
 import com.example.Belog.service.BoardService;
@@ -10,21 +9,12 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -108,7 +98,7 @@ public class BoardController {
 
         Long userId = (Long)session.getAttribute("userId");
 
-        boardDTO.builder().userId(userId).build();
+        boardDTO = boardDTO.builder().userId(userId).build();
 
         try{
             boardService.writeBoard(boardDTO);

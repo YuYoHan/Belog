@@ -1,7 +1,6 @@
 package com.example.Belog.service;
 
 import com.example.Belog.domain.BoardDTO;
-import com.example.Belog.domain.BoardImageDTO;
 import com.example.Belog.domain.Criteria;
 
 import java.io.IOException;

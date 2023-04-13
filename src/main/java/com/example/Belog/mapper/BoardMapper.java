@@ -5,10 +5,7 @@ import com.example.Belog.domain.BoardImageDTO;
 import com.example.Belog.domain.Criteria;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.util.List;
 
 @Mapper
