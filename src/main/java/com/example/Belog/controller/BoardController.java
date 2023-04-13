@@ -63,6 +63,40 @@ public class BoardController {
 //    }
 
 
+//    @Tag(name = "Board check")
+//    @Operation(summary = "입력 API", description = "게시판을 입력하는 API입니다.")
+//    @ApiResponses(value = {
+//            @ApiResponse(responseCode = "201", description = "게시판 쓰기 성공"),
+//            @ApiResponse(responseCode = "500", description = "게시판 쓰기 실패")
+//    })
+//    @PostMapping(value = "/board")
+//    public ResponseEntity<?> insertBoard(
+//            @RequestParam("boardTitle") String boardTitle,
+//            @RequestParam("boardContents") String boardContents,
+//            @RequestParam("hashTag") String hashTag,
+//            @RequestParam("boardImages") List<MultipartFile> boardImages,
+//            HttpSession session
+//    ) {
+//
+//        Long userId = (Long)session.getAttribute("userId");
+//
+//        BoardDTO boardDTO = BoardDTO.builder()
+//                .userId(userId)
+//                .boardTitle(boardTitle)
+//                .boardContents(boardContents)
+//                .hashTag(hashTag)
+//                .boardImages(boardImages)
+//                .build();
+//
+//        try{
+//            boardService.writeBoard(boardDTO);
+//            return new ResponseEntity<>(HttpStatus.CREATED);
+//        } catch (Exception e) {
+//            log.error("error", e);
+//            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
+
     @Tag(name = "Board check")
     @Operation(summary = "입력 API", description = "게시판을 입력하는 API입니다.")
     @ApiResponses(value = {
@@ -70,32 +104,11 @@ public class BoardController {
             @ApiResponse(responseCode = "500", description = "게시판 쓰기 실패")
     })
     @PostMapping(value = "/board")
-    public ResponseEntity<?> insertBoard(
-            @RequestParam("boardTitle") String boardTitle,
-            @RequestParam("boardContents") String boardContents,
-            @RequestParam("hashTag") String hashTag,
-            @RequestParam("boardImages") List<MultipartFile> boardImages,
-            HttpServletRequest request
-    ) {
+    public ResponseEntity<?> insertBoard(@RequestBody BoardDTO boardDTO, HttpSession session) {
 
-        Cookie[] cookies = request.getCookies();
-        Long userId = 0L;
+        Long userId = (Long)session.getAttribute("userId");
 
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("userId")) {
-                    userId = Long.parseLong(cookie.getValue());
-                }
-            }
-        }
-
-        BoardDTO boardDTO = BoardDTO.builder()
-                .userId(userId)
-                .boardTitle(boardTitle)
-                .boardContents(boardContents)
-                .hashTag(hashTag)
-                .boardImages(boardImages)
-                .build();
+        boardDTO.builder().userId(userId).build();
 
         try{
             boardService.writeBoard(boardDTO);
@@ -217,12 +230,7 @@ public class BoardController {
     @GetMapping("/board/{page}/{boardNum}")
     public ResponseEntity<?> boardDetail(@PathVariable Long boardNum, @PathVariable int page) {
         BoardDTO boardDetail = boardService.findBoardByBoardNum(boardNum);
-        List<BoardImageDTO> boardDetailImages = boardService.findBoardImagesByBoardNum(boardNum);
 
-        Map<String, Object> map = new HashMap<>();
-        map.put("boardDetail", boardDetail);
-        map.put("boardImageList", boardDetailImages);
-
-        return new ResponseEntity<>(map, HttpStatus.OK);
+        return new ResponseEntity<>(boardDetail, HttpStatus.OK);
     }
 }

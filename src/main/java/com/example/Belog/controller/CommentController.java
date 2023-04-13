@@ -35,7 +35,19 @@ public class CommentController {
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "댓글 등록 성공"),
             @ApiResponse(responseCode = "404", description = "댓글 등록 실패")}) //API 호출결과에 대해서 설명
-    public ResponseEntity<?> addComment(@RequestBody CommentDTO commentDTO) {
+    public ResponseEntity<?> addComment( @PathVariable("boardNum") Long boardNum, @RequestParam("comment") String comment, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        Long userId = (Long)session.getAttribute("userId");
+
+        if("".equals(userId)){
+            log.info("세션에 아이디값 없음");
+        }
+
+        CommentDTO commentDTO = CommentDTO.builder()
+                .userId(userId)
+                .boardNum(boardNum)
+                .comment(comment)
+                .build();
         commentService.addComment(commentDTO);
         log.info("Add success");
         return new ResponseEntity<>(commentDTO, HttpStatus.CREATED);
@@ -48,7 +60,8 @@ public class CommentController {
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "댓글 수정 성공"),
             @ApiResponse(responseCode = "404", description = "댓글 수정 실패") })
-    public ResponseEntity<?> editComment(@RequestBody CommentDTO commentDTO) {
+    public ResponseEntity<?> editComment( @PathVariable("commentNum") Long commentNum, @RequestBody CommentDTO commentDTO, HttpServletRequest request) {
+
         commentService.editComment(commentDTO);
         log.info("edit");
         return new ResponseEntity<>(commentDTO, HttpStatus.OK);
@@ -97,7 +110,7 @@ public class CommentController {
             @ApiResponse(responseCode = "200", description = "전체 댓글 수 조회 성공"),
             @ApiResponse(responseCode = "404", description = "전체 댓글 수 조회 실패")
     })
-    public int count(@PathVariable Long boardNum) {
+    public int count(@PathVariable("boardNum") Long boardNum) {
         log.info("count board "+boardNum);
         return commentService.countComment(boardNum);
     }

@@ -32,13 +32,8 @@ public class CommentDTO {
     @NotBlank(message = "댓글을 입력해주세요")
     private String comment;
 
-    @DateTimeFormat(pattern = "yyMMdd")
-    @Schema(description = "댓글작성시간", example = "yyMMdd")
-    private LocalDateTime commentTime;
-
     @Builder
-    public CommentDTO(Long commentNum, Long boardNum, Long userId, String comment) {
-        this.commentNum = commentNum;
+    public CommentDTO(Long boardNum, Long userId, String comment) {
         this.boardNum = boardNum;
         this.userId = userId;
         this.comment = comment;
