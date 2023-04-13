@@ -15,6 +15,7 @@ import javax.validation.constraints.Pattern;
 @Getter
 @ToString
 @NoArgsConstructor
+//@JsonFilter("user")
 public class UserDTO {
 
     @Schema(description = "유저 번호", example = "1", required = true)
