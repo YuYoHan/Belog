@@ -5,6 +5,7 @@ drop table user;
 drop table board;
 drop table comment;
 drop table like_sth;
+drop table boardImg;
 
 create table user(
 	userId bigint primary key auto_increment,
@@ -14,13 +15,6 @@ create table user(
     userAddr varchar(1000) not null,
     userAddrDetail varchar(1000) not null ,
     userAddrEtc varchar(300) not null
-);
-
-create table userImg(
-    imgNum bigint primary key auto_increment,
-    userImg varchar(3000),
-    userId bigint,
-    foreign key pk_userId(userId) references user(userId)
 );
 
 create table board(
@@ -34,18 +28,17 @@ create table board(
 );
 
 create table boardImg(
-                         boardImgNum bigint primary key auto_increment,
-                         boardImg varchar(3000),
-                         boardNum bigint, foreign key pk_boardNum(boardNum) references board(boardNum)
+     boardImgNum bigint primary key auto_increment,
+     boardImg varchar(3000),
+     boardNum bigint, foreign key pk_boardNum(boardNum) references board(boardNum)
 );
 
 create table comment(
-	commentNum bigint primary key auto_increment,
+    commentNum bigint primary key auto_increment,
     comment varchar(3000),
     userId bigint, foreign key pk_userId3(userId) references user(userId),
-    boardNum bigint,
-    foreign key pk_boardNum(boardNum) references board(boardNum),
-    commentTime datetime default now()
+    boardNum bigint, foreign key pk_boardNum(boardNum) references board(boardNum),
+    commentTime timestamp not null default current_timestamp on update current_timestamp
 );
 
 create table like_sth(
@@ -58,3 +51,4 @@ create table like_sth(
 );
 
 select * from user;
+TRUNCATE table user;
