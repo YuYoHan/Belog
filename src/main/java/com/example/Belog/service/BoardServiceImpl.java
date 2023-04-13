@@ -23,8 +23,8 @@ import java.util.List;
 @Slf4j
 public class  BoardServiceImpl implements BoardService{
     private final BoardMapper boardMapper;
-    @Value("${file.dir}")
-    private String fileDir;
+//    @Value("${file.dir}")
+//    private String fileDir;
 
 //    @Override
 //    public void writeBoard(BoardDTO boardDTO) throws IOException{
