@@ -4,15 +4,10 @@ import com.example.Belog.domain.BoardDTO;
 import com.example.Belog.domain.BoardImageDTO;
 import com.example.Belog.domain.Criteria;
 import com.example.Belog.mapper.BoardMapper;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
