@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public Optional<UserDTO> getUser(String userEmail) {
+    public UserDTO getUser(String userEmail) {
         return userMapper.getUser(userEmail);
     }
 

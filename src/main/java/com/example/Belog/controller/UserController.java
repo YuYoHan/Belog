@@ -75,7 +75,7 @@ public class UserController {
     })
     public ResponseEntity<?> getUser(
              @PathVariable String userEmail) {
-        Optional<UserDTO> userDTO = userService.getUser(userEmail);
+        UserDTO userDTO = userService.getUser(userEmail);
 
 //        SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter
 //                .filterOutAllExcept("userId", "userEmail", "userName", "userAddr", "userAddrDetail", "userAddrEtc");
@@ -85,7 +85,7 @@ public class UserController {
 //        MappingJacksonValue value = new MappingJacksonValue(userDTO);
 //        value.setFilters(filters);
 
-        if (userDTO.isPresent()) {
+        if (userDTO != null) {
             return ResponseEntity.status(HttpStatus.OK).body(userDTO);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
@@ -264,14 +264,20 @@ public class UserController {
     }
 
     // 중복체크
-    @PostMapping("/email-check")
+    @PostMapping("/email-check/{userEmail}")
     @Tag(name = "user check")
     @Operation(summary = "중복체크 API", description = "userEmail이 중복인지 체크하는 API입니다.")
     @ApiResponse(responseCode = "200", description = "중복체크 성공")
     // ajax를 쓸 때는 반드시 @ResponseBody를 써야한다.
-    public @ResponseBody int emailCheck(@RequestParam("userEmail") String userEmail) {
+    public int emailCheck(@PathVariable String userEmail) {
         log.info("userEmail : " + userEmail);
-        return userService.emailCheck(userEmail);
+        int emailCheck = userService.emailCheck(userEmail);
+
+        if(emailCheck != 0) {
+            throw new IllegalStateException("이미 가입된 회원입니다.");
+        } else {
+            return 1;
+        }
     }
 
 

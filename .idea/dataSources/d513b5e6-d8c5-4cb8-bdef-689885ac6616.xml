@@ -1108,32 +1108,32 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </table>
     <column id="303" parent="298" name="boardNum">
       <AutoIncrement>1</AutoIncrement>
-      <DataType>bigint|0s</DataType>
+      <DataType>BIGINT(19)|-5s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
     <column id="304" parent="298" name="boardTitle">
-      <DataType>varchar(300)|0s</DataType>
+      <DataType>VARCHAR(300)|12s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
     <column id="305" parent="298" name="boardContents">
-      <DataType>varchar(3000)|0s</DataType>
+      <DataType>VARCHAR(3000)|12s</DataType>
       <Position>3</Position>
     </column>
     <column id="306" parent="298" name="writeTime">
-      <DataType>timestamp|0s</DataType>
+      <DataType>TIMESTAMP(19)|93s</DataType>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <NotNull>1</NotNull>
       <OnUpdate>CURRENT_TIMESTAMP</OnUpdate>
       <Position>4</Position>
     </column>
     <column id="307" parent="298" name="hashTag">
-      <DataType>varchar(300)|0s</DataType>
+      <DataType>VARCHAR(300)|12s</DataType>
       <Position>5</Position>
     </column>
     <column id="308" parent="298" name="userId">
-      <DataType>bigint|0s</DataType>
+      <DataType>BIGINT(19)|-5s</DataType>
       <Position>6</Position>
     </column>
     <foreign-key id="309" parent="298" name="board_ibfk_1">
@@ -1143,6 +1143,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </foreign-key>
     <index id="310" parent="298" name="PRIMARY">
       <ColNames>boardNum</ColNames>
+      <NameSurrogate>1</NameSurrogate>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
@@ -1153,20 +1154,20 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     <key id="312" parent="298" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
-      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+      <UnderlyingIndexColNames>boardNum</UnderlyingIndexColNames>
     </key>
     <column id="313" parent="299" name="boardImgNum">
       <AutoIncrement>1</AutoIncrement>
-      <DataType>bigint|0s</DataType>
+      <DataType>BIGINT(19)|-5s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
     <column id="314" parent="299" name="boardImg">
-      <DataType>varchar(3000)|0s</DataType>
+      <DataType>VARCHAR(3000)|12s</DataType>
       <Position>2</Position>
     </column>
     <column id="315" parent="299" name="boardNum">
-      <DataType>bigint|0s</DataType>
+      <DataType>BIGINT(19)|-5s</DataType>
       <Position>3</Position>
     </column>
     <foreign-key id="316" parent="299" name="boardimg_ibfk_1">
@@ -1176,6 +1177,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </foreign-key>
     <index id="317" parent="299" name="PRIMARY">
       <ColNames>boardImgNum</ColNames>
+      <NameSurrogate>1</NameSurrogate>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
@@ -1186,28 +1188,28 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     <key id="319" parent="299" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
-      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+      <UnderlyingIndexColNames>boardImgNum</UnderlyingIndexColNames>
     </key>
     <column id="320" parent="300" name="commentNum">
       <AutoIncrement>1</AutoIncrement>
-      <DataType>bigint|0s</DataType>
+      <DataType>BIGINT(19)|-5s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
     <column id="321" parent="300" name="comment">
-      <DataType>varchar(3000)|0s</DataType>
+      <DataType>VARCHAR(3000)|12s</DataType>
       <Position>2</Position>
     </column>
     <column id="322" parent="300" name="userId">
-      <DataType>bigint|0s</DataType>
+      <DataType>BIGINT(19)|-5s</DataType>
       <Position>3</Position>
     </column>
     <column id="323" parent="300" name="boardNum">
-      <DataType>bigint|0s</DataType>
+      <DataType>BIGINT(19)|-5s</DataType>
       <Position>4</Position>
     </column>
     <column id="324" parent="300" name="commentTime">
-      <DataType>datetime|0s</DataType>
+      <DataType>DATETIME(19)|93s</DataType>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <Position>5</Position>
     </column>
@@ -1223,6 +1225,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </foreign-key>
     <index id="327" parent="300" name="PRIMARY">
       <ColNames>commentNum</ColNames>
+      <NameSurrogate>1</NameSurrogate>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
@@ -1237,24 +1240,24 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     <key id="330" parent="300" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
-      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+      <UnderlyingIndexColNames>commentNum</UnderlyingIndexColNames>
     </key>
     <column id="331" parent="301" name="likeNum">
       <AutoIncrement>1</AutoIncrement>
-      <DataType>bigint|0s</DataType>
+      <DataType>BIGINT(19)|-5s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
     <column id="332" parent="301" name="likeBoard">
-      <DataType>varchar(3000)|0s</DataType>
+      <DataType>VARCHAR(3000)|12s</DataType>
       <Position>2</Position>
     </column>
     <column id="333" parent="301" name="userId">
-      <DataType>bigint|0s</DataType>
+      <DataType>BIGINT(19)|-5s</DataType>
       <Position>3</Position>
     </column>
     <column id="334" parent="301" name="boardNum">
-      <DataType>bigint|0s</DataType>
+      <DataType>BIGINT(19)|-5s</DataType>
       <Position>4</Position>
     </column>
     <foreign-key id="335" parent="301" name="like_sth_ibfk_1">
@@ -1269,6 +1272,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </foreign-key>
     <index id="337" parent="301" name="PRIMARY">
       <ColNames>likeNum</ColNames>
+      <NameSurrogate>1</NameSurrogate>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
@@ -1283,45 +1287,46 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     <key id="340" parent="301" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
-      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+      <UnderlyingIndexColNames>likeNum</UnderlyingIndexColNames>
     </key>
     <column id="341" parent="302" name="userId">
       <AutoIncrement>1</AutoIncrement>
-      <DataType>bigint|0s</DataType>
+      <DataType>BIGINT(19)|-5s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
     <column id="342" parent="302" name="userEmail">
-      <DataType>varchar(300)|0s</DataType>
+      <DataType>VARCHAR(300)|12s</DataType>
       <Position>2</Position>
     </column>
     <column id="343" parent="302" name="userPw">
-      <DataType>varchar(300)|0s</DataType>
+      <DataType>VARCHAR(300)|12s</DataType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
     <column id="344" parent="302" name="userName">
-      <DataType>varchar(300)|0s</DataType>
+      <DataType>VARCHAR(300)|12s</DataType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
     <column id="345" parent="302" name="userAddr">
-      <DataType>varchar(1000)|0s</DataType>
+      <DataType>VARCHAR(1000)|12s</DataType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
     <column id="346" parent="302" name="userAddrDetail">
-      <DataType>varchar(1000)|0s</DataType>
+      <DataType>VARCHAR(1000)|12s</DataType>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
     <column id="347" parent="302" name="userAddrEtc">
-      <DataType>varchar(300)|0s</DataType>
+      <DataType>VARCHAR(300)|12s</DataType>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
     <index id="348" parent="302" name="PRIMARY">
       <ColNames>userId</ColNames>
+      <NameSurrogate>1</NameSurrogate>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
@@ -1333,7 +1338,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     <key id="350" parent="302" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
-      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+      <UnderlyingIndexColNames>userId</UnderlyingIndexColNames>
     </key>
     <key id="351" parent="302" name="userEmail">
       <UnderlyingIndexName>userEmail</UnderlyingIndexName>
