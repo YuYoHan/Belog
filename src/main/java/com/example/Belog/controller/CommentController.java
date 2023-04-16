@@ -39,10 +39,6 @@ public class CommentController {
         HttpSession session = request.getSession();
         Long userId = (Long)session.getAttribute("userId");
 
-        if("".equals(userId)){
-            log.info("세션에 아이디값 없음");
-        }
-
         CommentDTO commentDTO = CommentDTO.builder()
                 .userId(userId)
                 .boardNum(boardNum)
