@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import Loding from 'assets/images/gif/loding.gif'
+
 
 function LodingPage ()  {
   return (
     <Background>
-      <img src={Loding} alt="로딩중" />
+      <img src={require('assets/images/gif/loding.gif')} alt="로딩중" />
       <LoadingText>로딩 중</LoadingText>
     </Background>
   );

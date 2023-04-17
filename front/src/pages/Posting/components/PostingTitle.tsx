@@ -1,11 +1,11 @@
 import styled from "styled-components"
 
-function PostingTitle() {
+function PostingTitle({setTitleValue}:any) {
    return (
       <S.Wrapper>
          <S.container>
             <S.Title>
-               <input placeholder='제목을 입력해주세요.'/>
+               <input onChange={setTitleValue} placeholder='제목을 입력해주세요.'/>
             </S.Title>
          </S.container>
       </S.Wrapper>
