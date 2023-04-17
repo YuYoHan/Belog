@@ -53,17 +53,9 @@ public class UserController {
     })
     public ResponseEntity<List<UserDTO>> getAllUser() {
         List<UserDTO> userDTOList = userService.getAllUser();
-
-//        SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter
-//                .filterOutAllExcept("userId", "userEmail", "userName", "userAddr", "userAddrDetail", "userAddrEtc");
-//
-//        FilterProvider filters = new SimpleFilterProvider().addFilter("user", filter);
-//
-//        MappingJacksonValue value = new MappingJacksonValue(userDTOList);
-//        value.setFilters(filters);
-
         return ResponseEntity.status(HttpStatus.OK).body(userDTOList);
     }
+
 
     // 회원 정보를 가져오는 API
     @GetMapping("/{userEmail}")
@@ -77,14 +69,6 @@ public class UserController {
              @PathVariable String userEmail) {
         UserDTO userDTO = userService.getUser(userEmail);
 
-//        SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter
-//                .filterOutAllExcept("userId", "userEmail", "userName", "userAddr", "userAddrDetail", "userAddrEtc");
-//
-//        FilterProvider filters = new SimpleFilterProvider().addFilter("user", filter);
-//
-//        MappingJacksonValue value = new MappingJacksonValue(userDTO);
-//        value.setFilters(filters);
-
         if (userDTO != null) {
             return ResponseEntity.status(HttpStatus.OK).body(userDTO);
         } else {
@@ -92,46 +76,6 @@ public class UserController {
         }
     }
 
-    //    @GetMapping("/signUp")
-    //    public String signUp() {
-    //        return "/signUp";
-    //    }
-    //    @PostMapping("/signUp")
-//    public String signUp(@Validated UserDTO userDTO, Errors errors, HttpServletResponse resp, Model model) {
-//        // post요청시 넘어온 user 입력값에서 Validation에 걸리는 경우
-//        if(errors.hasErrors()) {
-//            // 회원 가입 실패시, 입력 데이터를 유지
-//            model.addAttribute("userDTO", userDTO);
-//
-//            // 유효성 통과 못한 필드와 메시지를 핸들링
-//            // 회원가입 실패시 message 값들을 모델에 매핑해서 View로 전달
-//            Map<String, String> validatorResult = userService.validateHandling(errors);
-//
-//
-//            // map.keySet() -> 모든 key값을 갖고온다.
-//            // 그 갖고온 키로 반복문을 통해 키와 에러 메세지로 매핑
-//            for (String key: validatorResult.keySet()
-//                 ) {
-//                // ex) model.addAtrribute("valid_id", "아이디는 필수 입력사항 입니다.")
-//                model.addAttribute(key,validatorResult.get(key));
-//            }
-//            return "/signUp";
-//        }
-//        if(userService.signUp(userDTO)) {
-//            log.info("result : " + userDTO.getUserId());
-//            log.info("result : " + userDTO.getUserEmail());
-//
-//            Cookie cookie = new Cookie("userEmail", userDTO.getUserEmail());
-//            // 30분
-//            cookie.setMaxAge(1800);
-//            resp.addCookie(cookie);
-//
-//
-//            model.addAttribute("userEmail", userDTO.getUserEmail());
-//
-//        }
-//        return "redirect:/";
-//    }
 
     /**
      * 회원 가입 API
@@ -171,28 +115,6 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body("회원가입 성공했습니다.");
     }
 
-//    @GetMapping("/login")
-//    public String loginForm(@CookieValue("userEmail") String userEmail, Model model) {
-//        if(userEmail == null) {
-//            return "/login";
-//        } else {
-//            model.addAttribute("loginEmail", userEmail);
-//            log.info(userEmail);
-//            return "/login";
-//        }
-//    }
-//
-//
-//    @PostMapping("/login")
-//    public String login(String userEmail, String userPw, HttpSession session, Model model) {
-//        UserDTO user =  userService.login(userEmail, userPw);
-//
-//        if(user != null) {
-//            session.setAttribute("userId", user.getUserId());
-//            session.setAttribute("userEmail", user.getUserEmail());
-//        }
-//        return "home";
-//    }
 
     // 로그인
     @PostMapping("/loginUser")
@@ -209,11 +131,7 @@ public class UserController {
         return "아이디가 없습니다.";
     }
 
-    //    @PostMapping("/logOut")
-//    public String logOut(HttpServletRequest req) {
-//        req.getSession().invalidate();
-//        return "redirect:/";
-//    }
+
     @GetMapping("/logOut")
     @Tag(name = "user check")
     @Operation(summary = "로그아웃 API", description = "로그아웃 하는 API입니다.")
@@ -241,23 +159,7 @@ public class UserController {
 
     }
 
-//    @GetMapping("/remove")
-//    public String remove() {
-//        return "/remove";
-//    }
-//
-//    @PostMapping("/remove")
-//    public String remove(String userEmail, String userPw) {
-//        log.info("아이디 : " + userEmail);
-//        log.info("비밀번호 : " + userPw);
-//
-//        UserDTO user = userService.remove(userEmail, userPw);
-//        if(user != null) {
-//            return "redirect:/";
-//        } else {
-//            return "/remove";
-//        }
-//    }
+
 
     // 회원 탈퇴(삭제) API
     // 204 : NO_CONTENT
