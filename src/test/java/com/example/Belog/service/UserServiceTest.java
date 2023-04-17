@@ -111,6 +111,42 @@ class UserServiceTest {
     @Test
     @DisplayName("업데이트 테스트")
     void updateUser() {
+         Long userId = 1L;
+        String userEmail = "zxzz45@naver.com";
+        String password = "Dbekdms147!";
+        String name = "테스터";
+        String addr = "서울시 xxxx xxx";
+        String addrDetail = "xxxx";
+        String addrEtc = "2층";
 
+        UserDTO user = UserDTO.builder()
+                .userId(userId)
+                .userPw(password)
+                .userName(name)
+                .userAddr(addr)
+                .userAddrDetail(addrDetail)
+                .userAddrEtc(addrEtc)
+                .build();
+
+        userService.update(user);
+        UserDTO userCheck = userService.getUser(userEmail);
+
+            Assertions.assertThat(user.getUserPw()).isEqualTo(password);
+            Assertions.assertThat(user.getUserName()).isEqualTo(name);
+            Assertions.assertThat(user.getUserAddr()).isEqualTo(addr);
+            Assertions.assertThat(user.getUserAddrDetail()).isEqualTo(addrDetail);
+            Assertions.assertThat(user.getUserAddrEtc()).isEqualTo(addrEtc);
+
+        log.info(String.valueOf(userCheck));
+    }
+
+    @Test
+    @DisplayName("삭제 테스트")
+    void deleteUser() {
+        Long userId = 1L;
+        userService.delete(userId);
+        String userEmail = "zxzz45@naver.com";
+        UserDTO userCheck = userService.getUser(userEmail);
+        log.info(String.valueOf(userCheck));
     }
 }
