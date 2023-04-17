@@ -1,20 +1,28 @@
 import styled from "styled-components"
 import PostingEdit from "./components/PostingEdit"
-import PostingRegisterbtn from "pages/Posting/components/PostingRegisterbtn"
 import PostingTag from "pages/Posting/components/PostingTag"
 import PostingTitle from "pages/Posting/components/PostingTitle"
+import useInput from "hooks/useInput"
+import { useState } from "react"
+
+export type postingData = {
+   boardTitle : string,
+   tagList : string[]
+}
 
 function PostingPage() {
    
+   const [boardTitle, setTboardTitle] = useInput('');
+   const [tagList , setTagList] = useState<string[]>([])
    
+
    return(
       <S.Wrapper>
          <S.container>
-            <PostingTitle/>
-            <PostingTag/>
-            <PostingEdit/>
+            <PostingTitle setTboardTitle={setTboardTitle}/>
+            <PostingTag tagList ={tagList} setTagList={setTagList}/>
+            <PostingEdit boardTitle={boardTitle} tagList={tagList}/>
          </S.container>
-         <PostingRegisterbtn/>
       </S.Wrapper>
    )
 }
