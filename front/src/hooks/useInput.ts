@@ -7,8 +7,6 @@ type UserInputProps = [string, (e: React.ChangeEvent<HTMLInputElement> & React.C
 const useInput = (initialValue: string) : UserInputProps => {
     const [value, setValue] = useState(initialValue);
     const onChange = (e: React.ChangeEvent<HTMLInputElement> & React.ChangeEvent<HTMLTextAreaElement> & string) => {
-        e.preventDefault();
-
         setValue(e.target.value);
     };
 
@@ -19,3 +17,5 @@ const useInput = (initialValue: string) : UserInputProps => {
     return [value, onChange ,reset];
 };
 export default useInput;
+
+

@@ -1,128 +1,48 @@
 import axios from 'axios';
-import useInput from 'hooks/useInput';
-import React, { ChangeEvent, useEffect, useMemo, useRef, useState } from 'react';
+import React, {  useMemo, useRef, useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import { json } from 'stream/consumers';
 import styled from 'styled-components';
+import PostingRegisterbtn from "pages/Posting/components/PostingRegisterbtn"
+import usequillcontent from 'hooks/usequillcontent';
+import { postingData } from '..';
 
-function PostingEdit() {
+
+function PostingEdit({boardTitle,tagList} : postingData ) {
   
-   const [content, setcontent ] = useInput('');
-   const QuillRef = useRef<ReactQuill>();
-  const [imgurl, setImgUrl] = useState<string>('')
+    const [content, setcontent ] = usequillcontent('');
+    const QuillRef = useRef<ReactQuill>();
+    const [imgfile, setImgFile] = useState< any>([])
+    const [createObjectURL, setCreateObjectURL] = useState<string[]>([]);
 
 const imageHandler = () => {
-   console.log('에디터에서 이미지 버튼을 클릭하면 이 핸들러가 시작됩니다!');
-   // 1. 이미지를 저장할 input type=file DOM을 만든다.
    const input = document.createElement('input');
    input.setAttribute('type', 'file');
    input.setAttribute('accept', 'image/*');
-   input.click(); // 에디터 이미지버튼을 클릭하면 이 input이 클릭된다.
-   
-   // 속성 써주기
-   // input이 클릭되면 파일 선택창이 나타난다.
-   
-   // input에 변화가 생긴다면 = 이미지를 선택
-   input.addEventListener('change', async () => {
-     console.log('온체인지');
-      
-      const file = input.files ? input.files[0] : null;
-        // multer에 맞는 형식으로 데이터 만들어준다.
-        if(file !== null){
-          const formData = new FormData();
-          formData.append('image', file); 
-          
-          try {
-            const result = await axios.post('http://13.125.167.162:8080//borad/', formData );
-            console.log('성공 시, 백엔드가 보내주는 데이터', result.data.url);
-            const IMG_URL = result.data.url;
-      
-       // 이 URL을 img 태그의 src에 넣은 요소를 현재 에디터의 커서에 넣어주면 에디터 내에서 이미지가 나타난다
-       // src가 base64가 아닌 짧은 URL이기 때문에 데이터베이스에 에디터의 전체 글 내용을 저장할 수있게된다
-       // 이미지는 꼭 로컬 백엔드 uploads 폴더가 아닌 다른 곳에 저장해 URL로 사용하면된다.
-       
-       // 이미지 태그를 에디터에 써주기 - 여러 방법이 있다.
-       const editor = QuillRef.current?.getEditor(); // 에디터 객체 가져오기
-       console.log(editor);
-       
-       // 1. 에디터 root의 innerHTML을 수정해주기
-       // editor의 root는 에디터 컨텐츠들이 담겨있다. 거기에 img태그를 추가해준다.
-       // 이미지를 업로드하면 -> 멀터에서 이미지 경로 URL을 받아와 -> 이미지 요소로 만들어 에디터 안에 넣어준다.
-         if(editor){
-            editor.root.innerHTML =
-            editor.root.innerHTML + `<img src=${IMG_URL} /><br/>`; // 현재 있는 내용들 뒤에 써줘야한다.
-         }
-       // 2. 현재 에디터 커서 위치값을 가져온다
-         //  const range = editor.getSelection();
-         //  editor.insertEmbed(range.index, 'image', IMG_URL);
-       // 가져온 위치에 이미지를 삽입한다
-      } catch (error) {
-        console.log('실패했어요ㅠ');
+   input.click(); 
+
+   input.addEventListener('change', async (e) => {
+     e.preventDefault()
+    // const file = input.files ? input.files[0] : null;
+    const file = input.files && input.files[0];
+    const fileExt = file?.name.split('.').pop();
+    if(!['jpeg', 'png', 'jpg', 'JPG', 'PNG', 'JPEG','gif'].includes(fileExt as string)) return alert('jpg, png, jpg, gif 파일만 업로드가 가능합니다.')
+
+    if(file) {
+      const TemporaryURL = URL.createObjectURL(file)
+      setCreateObjectURL((props : any) =>[...props, TemporaryURL,])
+     
+      const editor = QuillRef?.current?.getEditor();
+      if(editor){
+        editor.root.innerHTML =  editor.root.innerHTML + `<img src=${TemporaryURL} class="boardImage"/><br/>`; // 현재 있는 내용들 뒤에 써줘야한다.
       }
-    }
-   });
+      setImgFile((props : any) => [...props  ,{file}])
+    } 
+  });
  };
 
-// const imageHandler = (event: ChangeEvent<HTMLInputElement>) => {
-//   const editor = QuillRef.current?.getEditor();
-//   console.log(editor)
-//   const input = document.createElement("input");
-//   input.setAttribute("type", "file");
-//   input.setAttribute("accept", "image/*");
-//   input.click();
 
-//   input.onchange = async () => {
-//     console.log('핸들 작동');
-    
-//     const file = input.files ? input.files[0] : undefined;
 
-//     if(file && editor){
-//     const reader = new FileReader();
-//     reader.readAsDataURL(file);
-    
-//     reader.onloadend = () => {
-//       console.log(reader);
-//       fetch("http://localhost:3001/posts/" , {
-//         method: "POST",
-//         body : JSON.stringify(reader.result),
-        
-//       }).then(response => response.json()).then((json) => console.log(json))
-//       // axios
-//       //   .post('http://localhost:3001/posts', { image: reader.result })
-//       //   .then((response) => {
-//       //     const imageUrl = response.data.url;
-//       //     console.log(imageUrl);
-          
-//       //     // const quill = quillRef.current;
-//       //     // const range = quill?.getSelection(true);
-//       //     // if (range) {
-//       //     //   quill?.insertEmbed(range.index, 'image', imageUrl);
-//       //     // }
-//       //   })
-//       //   .catch((error) => {
-//       //     console.error('Error uploading image:', error);
-//       //   });
-//     };
-      
-//         const formData = new FormData();
-//         formData.append("image", file);
-        
-
-//         // const res = await axios.post('http://localhost:3001/posts', formData,{
-//         //   headers: {
-//         //     'Content-Type': 'multipart/form-data'
-//         //   }
-//         // });
-        
-//         // const url = res.data.url;
-//         //             editor.root.innerHTML =
-//         //     editor.root.innerHTML + `<img src=${url} /><br/>`; // 현재 있는 내용들 뒤에 써줘야한다.
-
-        
-//       }
-//     } 
-//   };
 
 const modules = useMemo(() => ({
   toolbar: {
@@ -169,6 +89,14 @@ const modules = useMemo(() => ({
       formats={formats}
       onChange={setcontent}
       placeholder="내용을 입력해주세요"/>
+    <PostingRegisterbtn  
+      content={content} 
+      createObjectURL={createObjectURL} 
+      boardTitle={boardTitle} 
+      tagList={tagList}
+      imgfile={imgfile}
+      QuillRef={QuillRef}
+      />
 
    </S.Wrapper>
   )
