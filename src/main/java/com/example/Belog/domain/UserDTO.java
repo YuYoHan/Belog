@@ -54,6 +54,7 @@ public class UserDTO {
 
     @Builder
     public UserDTO(
+            Long userId,
             String userEmail,
             String userPw,
             String userName,
@@ -61,6 +62,7 @@ public class UserDTO {
             String userAddrDetail,
             String userAddrEtc
             ) {
+        this.userId = userId;
         this.userEmail = userEmail;
         this.userPw = userPw;
         this.userName = userName;
