@@ -224,13 +224,20 @@ public class UserController {
     }
 
     // 회원 정보 수정
-    @PutMapping("/")
+    @PutMapping("/{userId}")
     @Tag(name = "user check")
     @Operation(summary = "수정 API", description = "유저 정보를 수정하는 API입니다.")
     @ApiResponse(responseCode = "201", description = "수정 성공")
-    public ResponseEntity<?> update(@RequestBody UserDTO userDTO, HttpSession session) {
-        userService.update(userDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(userDTO);
+    public ResponseEntity<?> update(@PathVariable Long userId, @RequestBody UserDTO userDTO) {
+        Long userIdCheck = userDTO.getUserId();
+
+        if(userIdCheck == userId) {
+            userService.update(userDTO);
+            return ResponseEntity.status(HttpStatus.CREATED).body(userDTO);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+
 
     }
 
@@ -276,7 +283,7 @@ public class UserController {
         if(emailCheck != 0) {
             throw new IllegalStateException("이미 가입된 회원입니다.");
         } else {
-            return 1;
+            return 0;
         }
     }
 
