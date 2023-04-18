@@ -6,6 +6,7 @@ type TagProps = {
    setTagList :  Dispatch<SetStateAction<string[]>>
 }
 
+
 function PostingTag({tagList,setTagList} : TagProps) {
    const [tagItem, setTagItem] = useState<string>('')
    const [placeholder, setPlaceholder] = useState<string>('태그를 입력해주세요')
