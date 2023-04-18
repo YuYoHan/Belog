@@ -73,7 +73,7 @@ const Wrapper = styled.div`
       border: none;
       color: #212529;
       &:focus-within {
-    border-color: tomato;
+      border-color: #757bf6;
   }
    }
 `
@@ -84,7 +84,7 @@ const TagItem = styled.div`
   justify-content: space-between;
   margin: 5px;
   padding: 5px;
-  background-color: tomato;
+  background-color: #757bf6;
   border-radius: 5px;
   color: white;
   font-size: 13px;
@@ -101,7 +101,7 @@ const Button = styled.button`
   margin-left: 5px;
   background-color: white;
   border-radius: 50%;
-  color: tomato;
+  color: #757bf6;
 `
 
 const S = {
