@@ -117,6 +117,20 @@ public class  BoardServiceImpl implements BoardService{
     }
 
     @Override
+    public List<BoardDTO> findBoardByUserId(Long userId) {
+        List<BoardDTO> boardListByUserId = boardMapper.findBoardByUserId(userId);
+
+        return boardListByUserId;
+    }
+
+    @Override
+    public Long findUserIdByUserEmail(String userEmail) {
+        Long userId = boardMapper.findUserIdByUserEmail(userEmail);
+
+        return userId;
+    }
+
+    @Override
     public int getBoardCount() {
         return boardMapper.getBoardCount();
     }

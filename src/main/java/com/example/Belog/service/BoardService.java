@@ -19,5 +19,9 @@ public interface BoardService {
 
     List<String> findBoardImagesByBoardNum(Long boardNum);
 
+    List<BoardDTO> findBoardByUserId(Long userId);
+
+    Long findUserIdByUserEmail(String userEmail);
+
     int getBoardCount();
 }

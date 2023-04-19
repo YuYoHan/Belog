@@ -28,6 +28,10 @@ public interface BoardMapper {
 
     int getBoardCountByBoardNum(Long boardNum);
 
+    List<BoardDTO> findBoardByUserId(Long userId);
+
+    Long findUserIdByUserEmail(String userEmail);
+
     Long getLastBoardNum();
 
     void insertBoardImage(@Param("boardNum") Long boardNum, @Param("boardImages")List<String> boardImages);
