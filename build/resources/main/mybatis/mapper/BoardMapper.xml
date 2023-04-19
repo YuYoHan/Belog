@@ -49,4 +49,12 @@
     <select id="getLastBoardNum" resultType="Long">
         select max(boardNum) from board;
     </select>
+
+    <select id="findUserIdByUserEmail" parameterType="String" resultType="Long">
+        select userId from user where userEmail = #{userEmail};
+    </select>
+
+    <select id="findBoardByUserId" resultType="com.example.Belog.domain.BoardDTO">
+        select * from board where userId = #{userId};
+    </select>
 </mapper>
