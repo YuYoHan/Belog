@@ -10,16 +10,19 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 @SpringBootTest
 @Slf4j
-public class UserMapperTest {
+class UserMapperTest {
+
     @Autowired
     private UserMapper userMapper;
 
     @Test
     @DisplayName("회원가입 테스트")
     void signUp() {
-        String email = "zxzz48@naver.com";
+        String email = "zxzz46@naver.com";
         String password = "Dbekdms147!";
         String name = "테스터";
         String addr = "서울시 xxxx xxx";
@@ -35,7 +38,7 @@ public class UserMapperTest {
                 .userAddrEtc(addrEtc)
                 .build();
 
-        if(userMapper.signUp(p1) ==1) {
+        if(userMapper.signUp(p1) == 1) {
             log.info(p1.getUserEmail());
             log.info(p1.getUserPw());
             log.info(p1.getUserName());
@@ -72,7 +75,7 @@ public class UserMapperTest {
     @DisplayName("이메일 중복 체크 테스트")
     void emailCheck() {
         UserDTO p3 = UserDTO.builder()
-                .userEmail("zxzz78@naver.com")
+                .userEmail("zxzz48@naver.com")
                 .build();
 
         int userCheck = userMapper.emailCheck(p3.getUserEmail());
@@ -147,4 +150,5 @@ public class UserMapperTest {
         UserDTO userCheck = userMapper.getUser(userEmail);
         log.info(String.valueOf(userCheck));
     }
+
 }
