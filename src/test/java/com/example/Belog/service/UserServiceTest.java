@@ -59,7 +59,7 @@ class UserServiceTest {
     public void  login() {
         UserDTO p2 = UserDTO.builder()
                 .userEmail("zxzz46@naver.com")
-                .userPw("Dbekdms147!")
+                .userPw("zxzz12")
                 .build();
 
         UserDTO loginUser = userService.login(p2.getUserEmail(), p2.getUserPw());
