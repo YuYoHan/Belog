@@ -3,41 +3,86 @@ import PostsApi from "apis/posts/PostsAPI";
 import LodingPage from "components/Loding/loding";
 import { queryKey} from "consts/queryKey";
 import { media } from "libs/styles/media";
+import useMainpPostingListQuery from "queries/postingQuery";
+import React, { useEffect } from "react";
 import styled from "styled-components"
 import MainPageCard from "./MainCard";
+import { useInView } from 'react-intersection-observer';
 
-export type MainPageData = {
-   id : number,
-   title : string,
-   content : string,
-   taglist : Array<string>,
-   img: string,
-   profile:{username : string,img:string},
-   command : string,
-   publishedAt: string
+
+export interface BoardData {
+   boardContents: string;
+   writeTime: string;
+   boardNum?: number;
+   boardTitle?: string;
+   hashTag?: string;
+ }
+ 
+ interface Board {
+     boardList: BoardData[];
 }
 
-export type queryMainPost = {
-   data : MainPageData[]
+ 
+ interface PageParams {
+   [index: number]: undefined;
+ }
+ 
+ interface Page {
+   config: any;
+   data: Board[];
+ }
+ 
+interface pageDTO {
+   endPage: number,
+   next: boolean,
+   prev: boolean,
+   realEnd: number,
+   startPage: number,
+   total: number
 }
+
+export interface ResponseData {
+   pageDTO: any;
+   boardList: Board;
+   data: any;
+   pageParams: PageParams;
+   pages: Page[];
+ }
+
 
 function MainPageList() {
    
 
-   const {data : mainlist, isLoading } = useQuery<queryMainPost,boolean >([queryKey.GET_MAINPOSTS_LIST], PostsApi.getPostsApi);
+   const { data, fetchNextPage, isFetching } = useMainpPostingListQuery();
+   const [ref, inView] = useInView();
+
+
+   useEffect(() => {
+      // 서버 요청시 취소됐을때
+      
+        if (!inView || isFetching) return;
+        fetchNextPage();
+    }, [inView]);
+
 
    return(
       <S.Wrapper>
          <S.Innerwrap>
             <S.Ul>
-               {
-                  mainlist?.data.map((list  ,index) => (
-                     <MainPageCard data={list} key={index}/>
+               {data &&
+                    data.pages.map((page, index) => (
+                        <React.Fragment key={index}>
+                            {page.data.boardList.map((data : BoardData, index : number ) => (
+                              <MainPageCard data={data} key={index}/>
+                            ))}
+                        </React.Fragment>
                ))}
+               <div ref={ref} />
+
             </S.Ul>
          </S.Innerwrap>
 
-         {isLoading && <LodingPage />}
+         {isFetching && <LodingPage />}
       </S.Wrapper>
 
    )

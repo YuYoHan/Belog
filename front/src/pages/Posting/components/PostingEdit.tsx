@@ -109,13 +109,16 @@ const Wrapper = styled.div`
    & .ql-toolbar.ql-snow,.ql-container.ql-snow{
       border: none;
       padding: 0;
-   }
+      
+    }
    & .ql-container{
       min-height: 380px;
       margin-top: 2rem;
 
       & .ql-editor{
-         padding: 0;
+        padding: 0;
+        height: 20rem;
+        overflow-y: auto;
       }
       
       & .ql-editor.ql-blank::before{

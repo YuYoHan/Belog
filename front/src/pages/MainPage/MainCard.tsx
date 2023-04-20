@@ -2,28 +2,28 @@ import TimeForToday from "hooks/usedaysTimer";
 import { media } from "libs/styles/media"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
-import { MainPageData } from "./MainList"
+import { BoardData} from "./MainList"
 
-function MainPageCard ({data} : {data : MainPageData}) {
+function MainPageCard ({data} : {data : BoardData}) {
    
 
    return (
       <S.Li>
-         <S.StyledLink to={`list/${data.title}`} state={{data}}>
+         <S.StyledLink to={`list/${data.boardTitle}`} state={{data}}>
             <S.ImgContainer>
-               <img src={data.img}/>
+               {/* <img src={data.img}/> */}
             </S.ImgContainer>
             <S.Content>
-               <strong>{data.title}</strong>
-               <p>{data.content}</p>
+               <strong>{data.boardTitle}</strong>
+               <p dangerouslySetInnerHTML={{ __html :  data.boardContents  }} ></p>
                <Days>
-                  <span>{TimeForToday(data.publishedAt)}</span>
+                  <span>{TimeForToday(data.writeTime)}</span>
                </Days>
             </S.Content>
                <S.Userinfo>
                   <div>
-                     <img src={data.profile.img} alt=""/>
-                     <span>{data.profile.username}</span>
+                     {/* <img src={data.profile.img} alt=""/>
+                     <span>{data.profile.username}</span> */}
                   </div>
                </S.Userinfo>
          </S.StyledLink>
