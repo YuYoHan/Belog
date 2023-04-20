@@ -98,10 +98,18 @@ public class BoardController {
 
         Long userId = (Long)session.getAttribute("userId");
 
-        boardDTO = boardDTO.builder().userId(userId).build();
+        BoardDTO insertBoardDTO = new BoardDTO().builder()
+                .userId(userId)
+                .boardTitle(boardDTO.getBoardTitle())
+                .boardContents(boardDTO.getBoardContents())
+                .hashTag(boardDTO.getHashTag())
+                .boardImages(boardDTO.getBoardImages())
+                .build();
+
+        // boardDTO = boardDTO.builder().userId(userId).build();
 
         try{
-            boardService.writeBoard(boardDTO);
+            boardService.writeBoard(insertBoardDTO);
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
             log.error("error", e);
@@ -222,5 +230,13 @@ public class BoardController {
         BoardDTO boardDetail = boardService.findBoardByBoardNum(boardNum);
 
         return new ResponseEntity<>(boardDetail, HttpStatus.OK);
+    }
+
+    @GetMapping("/board")
+    public ResponseEntity<?> getUserBoardByUserEmail(@RequestParam String userEmail) {
+        Long userId = boardService.findUserIdByUserEmail(userEmail);
+
+        List<BoardDTO> boardListByUserEmail = boardService.findBoardByUserId(userId);
+        return new ResponseEntity<>(boardListByUserEmail, HttpStatus.OK);
     }
 }
