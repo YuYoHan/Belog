@@ -1,10 +1,10 @@
 import Axios from "apis/@core";
 import { commentData,querycommentData} from "components/Comment/CommentList";
-
+const path = '/v1/board/'
 
 const CommentApi =  {
    getCommentApi(): Promise<querycommentData> {
-      return Axios.get("http://localhost:3001/comment")
+      return Axios.get( path )
    },
    
    createCommentApi(data : object): Promise<querycommentData> {

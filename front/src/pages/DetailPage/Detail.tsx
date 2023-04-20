@@ -1,5 +1,5 @@
-import CommentIndexPage from "components/Comment/CommentForm";
-import CommentList from "components/Comment/CommentList";
+// import CommentIndexPage from "components/Comment/CommentForm";
+// import CommentList from "components/Comment/CommentList";
 import React, { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components"
@@ -13,8 +13,8 @@ function DetailPage() {
 
    const [Buttondisble, setButtondisble] = React.useState<boolean>(false)
    const location = useLocation();
-   const {id, title, content,tablist,img} = location.state.data 
-   console.log(location.state.data );
+   const {id, title, boardContents,tablist,img} = location.state.data 
+   console.log(boardContents );
    
    useEffect(() => {
 
@@ -27,7 +27,7 @@ function DetailPage() {
 
    return (
       <S.Wrapper> 
-         <S.Title>
+         {/* <S.Title>
             {title}
          </S.Title>
          { Buttondisble &&
@@ -42,7 +42,10 @@ function DetailPage() {
          </S.Content>
          
          <CommentIndexPage />
-         <CommentList/>
+         <CommentList/> */}
+         <S.Content>
+            <div dangerouslySetInnerHTML={{ __html :  boardContents  }}  />
+         </S.Content>
       </S.Wrapper>
    )
 }
@@ -74,6 +77,12 @@ const ButtonWrap = styled.div`
 `
 const Content = styled.div`
    margin: 5rem 0;
+
+   & img{
+      display: block;
+      margin: 3rem auto;
+      max-width: 100%;
+   }
 `
 
 

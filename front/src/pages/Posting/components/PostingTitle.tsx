@@ -1,11 +1,17 @@
+import useInput from "hooks/usequillcontent"
 import styled from "styled-components"
+import { boardtitle } from ".."
 
-function PostingTitle({setTitleValue}:any) {
+
+function PostingTitle({boardTitle,setTboardTitle}: any) {
+   
+   
+
    return (
       <S.Wrapper>
          <S.container>
             <S.Title>
-               <input onChange={setTitleValue} placeholder='제목을 입력해주세요.'/>
+               <input type="text" value={boardTitle} onChange={setTboardTitle} placeholder='제목을 입력해주세요.'/>
             </S.Title>
          </S.container>
       </S.Wrapper>

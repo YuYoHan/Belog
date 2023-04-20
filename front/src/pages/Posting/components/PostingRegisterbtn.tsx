@@ -69,40 +69,31 @@ function PostingRegisterbtn ({content,boardTitle,tagList,createObjectURL,imgfile
 
 
    const addPostingContent = () => {
-      
+
+      if(boardTitle === ''){
+         return alert('제목을 입력 해주세요')
+      }else if(content === ''){
+         return alert('내용을 입력 해주세요')
+      }
+
       const boardData = {
          "boardTitle" : boardTitle,
          "boardContents" : content,
          "hashTag" : tagList.join(),
          "boardImages" : boardImgURL
       }
-      console.log(boardData);
-      
-      const test = {
-         "boardTitle" : "title1",
-         "boardContents" : "test",
-         "hashTag" : "test",
-         "boardImages" : ["url1", "url2"]
-     }
-     
   
       
-      // axios.post('http://3.39.232.117:8080//v1/board',test)
-      //    .then(function (res) {
-      //       console.log(res);
-      //    })
-      //     .catch(function (error) {
-      //       console.log(error);
-      //    });
+      axios.post('http://43.201.113.140:8080/v1/board', boardData)
+         .then(function (res) {
+            alert('게시가 완료되었습니다.')
+            return history(-1)
+         })
+          .catch(function (error) {
+            console.log(error);
+         });
 
 
-      //    axios.get(`http://3.39.232.117:8080//v1/board/${1}`)
-      //    .then(function (res) {
-      //       console.log(res);
-      //    })
-      //     .catch(function (error) {
-      //       console.log(error);
-      //    });
    }
 
       
