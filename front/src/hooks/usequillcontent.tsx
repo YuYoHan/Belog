@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 type UserInputProps = [string, (e: React.ChangeEvent<HTMLInputElement> & string) => void ,  React.Dispatch<React.SetStateAction<string>>]
 
-const useInput = (initialValue: string) : UserInputProps => {
+export const useQuillEditor = (initialValue: string) : UserInputProps => {
     const [value, setValue] = useState(initialValue);
     const onChange = (e: React.ChangeEvent<HTMLInputElement> & string) => {
         setValue(e);
@@ -10,4 +10,4 @@ const useInput = (initialValue: string) : UserInputProps => {
 
     return [value, onChange, setValue];
 };
-export default useInput;
+// export default useQuillEditor;

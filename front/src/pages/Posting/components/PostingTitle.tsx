@@ -1,6 +1,4 @@
-import useInput from "hooks/usequillcontent"
 import styled from "styled-components"
-import { boardtitle } from ".."
 
 
 function PostingTitle({boardTitle,setTboardTitle}: any) {

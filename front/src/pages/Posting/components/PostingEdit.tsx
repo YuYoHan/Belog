@@ -4,13 +4,13 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import styled from 'styled-components';
 import PostingRegisterbtn from "pages/Posting/components/PostingRegisterbtn"
-import usequillcontent from 'hooks/usequillcontent';
 import { postingData } from '..';
+import { useQuillEditor } from 'hooks/usequillcontent';
 
 
 function PostingEdit({boardTitle,tagList} : postingData ) {
   
-    const [content, setcontent ] = usequillcontent('');
+    const [content, setcontent ] = useQuillEditor('');
     const QuillRef = useRef<ReactQuill>();
     const [imgfile, setImgFile] = useState< any>([])
     const [createObjectURL, setCreateObjectURL] = useState<string[]>([]);
@@ -114,7 +114,6 @@ const Wrapper = styled.div`
    & .ql-container{
       min-height: 380px;
       margin-top: 2rem;
-
       & .ql-editor{
         padding: 0;
         height: 20rem;
