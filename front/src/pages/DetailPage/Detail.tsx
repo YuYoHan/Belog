@@ -1,5 +1,10 @@
 // import CommentIndexPage from "components/Comment/CommentForm";
 // import CommentList from "components/Comment/CommentList";
+import { useQuery } from "@tanstack/react-query";
+import Axios from "apis/@core";
+import { PostDtailsApi } from "apis/posts/Detail";
+import axios from "axios";
+import { queryKey } from "consts/queryKey";
 import React, { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components"
@@ -13,35 +18,27 @@ function DetailPage() {
 
    const [Buttondisble, setButtondisble] = React.useState<boolean>(false)
    const location = useLocation();
-   const {id, title, boardContents,tablist,img} = location.state.data 
-   console.log(boardContents );
+   const {id, title, boardContents,tablist,img,boardNum} = location.state.data 
+   const {data : datailData, isLoading } = useQuery<any,boolean >([queryKey.GET_MAINPOSTS_LIST ,boardNum],()=> PostDtailsApi.getPostDtailsApi(boardNum));
    
+   console.log(datailData);
+
+
    useEffect(() => {
 
-      if(location.pathname.indexOf('mypage') === 1){
-         setButtondisble(true)
-      }
-   },[Buttondisble])
-
-
+   })
 
    return (
       <S.Wrapper> 
-         {/* <S.Title>
+         <S.Title>
             {title}
          </S.Title>
-         { Buttondisble &&
             <S.ButtonWrap>
-               <EditBtn/>
+               <EditBtn boardNum={boardNum} />
                <RemoveBtn id={id}/>
             </S.ButtonWrap>
-
-         }
-         <S.Content>
-            {content}
-         </S.Content>
          
-         <CommentIndexPage />
+         {/* <CommentIndexPage />
          <CommentList/> */}
          <S.Content>
             <div dangerouslySetInnerHTML={{ __html :  boardContents  }}  />

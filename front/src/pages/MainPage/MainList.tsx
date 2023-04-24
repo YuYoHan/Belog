@@ -56,12 +56,13 @@ function MainPageList() {
    const { data, fetchNextPage, isFetching } = useMainpPostingListQuery();
    const [ref, inView] = useInView();
 
+   console.log(data);
+   
 
    useEffect(() => {
       // 서버 요청시 취소됐을때
-      
-        if (!inView || isFetching) return;
-        fetchNextPage();
+      if (!inView || isFetching) return;
+      fetchNextPage();
     }, [inView]);
 
 
@@ -70,17 +71,17 @@ function MainPageList() {
          <S.Innerwrap>
             <S.Ul>
                {data &&
-                    data.pages.map((page, index) => (
-                        <React.Fragment key={index}>
-                            {page.data.boardList.map((data : BoardData, index : number ) => (
-                              <MainPageCard data={data} key={index}/>
-                            ))}
-                        </React.Fragment>
+                  data.pages.map((page, index) => (
+                     <React.Fragment key={index}>
+                        {page.data.boardList.map((data : BoardData, index : number ) => (
+                           <MainPageCard data={data} key={index}/>
+                           ))}
+                     </React.Fragment>
                ))}
-               <div ref={ref} />
 
             </S.Ul>
          </S.Innerwrap>
+               <div ref={ref} />
 
          {isFetching && <LodingPage />}
       </S.Wrapper>

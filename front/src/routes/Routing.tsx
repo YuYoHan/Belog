@@ -12,6 +12,7 @@ function Routing() {
             <Route element={<Header/>}>
                <Route path='/' element={<MainPageList/>} />
                <Route path='/Posting' element={<PostingPage/>} />
+               <Route path='/Posting/:boardNum' element={<PostingPage/>} />
                <Route path='/myPage' element={<MyPage/>} />
                <Route path='list/:title' element={<DetailPage/>} />
                <Route path='/mypage/:title' element={<DetailPage/>} />

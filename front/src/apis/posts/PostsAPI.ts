@@ -1,10 +1,10 @@
 import Axios from "apis/@core";
 import { ResponseData } from "pages/MainPage/MainList";
 
-const path = 'http://43.201.113.140:8080//v1/board/'
+const path = 'http://13.125.56.209:8080//v1/board/'
 
 const PostsApi =  {
-   getPostsApi(pageParam : any): Promise<ResponseData> {
+   getPostsApi(pageParam : number): Promise<ResponseData> {
       return Axios.get(path + pageParam)
         
    },
