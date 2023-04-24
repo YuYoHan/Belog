@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 
-function EditBtn( ) {
+function EditBtn({boardNum} : {boardNum : number} ) {
+   
+   console.log(boardNum);
    
 
-
    return (
-      <Link to={`/Posting:id`}>
+      <Link to={`/Posting/${boardNum}`}>
          <Button>
             수정
          </Button>

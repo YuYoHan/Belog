@@ -8,6 +8,7 @@ import { S3Client } from "@aws-sdk/client-s3";
 import ReactQuill from "react-quill";
 import { useCallback, useEffect, useState } from "react";
 import { Number } from "aws-sdk/clients/iot";
+import EditBtn from "pages/DetailPage/EditBtn";
 
 type postingDataProps = {
    content : string,
@@ -34,7 +35,9 @@ function PostingRegisterbtn ({content,boardTitle,tagList,createObjectURL,imgfile
    
    const images = document.querySelectorAll(".boardImage") as NodeListOf<HTMLImageElementWithSrc>;
    const [boardImgURL, setBoardImgURL] = useState<string[]>()
+   const [isboardID ,setisBoardID] = useState<boolean>(true) 
    const history = useNavigate()
+   
    const onClickbackhistory = () => {
       history(-1)
    }
@@ -68,7 +71,7 @@ function PostingRegisterbtn ({content,boardTitle,tagList,createObjectURL,imgfile
    },[imgfile])   
 
 
-   const addPostingContent = () => {
+   const onAddPosting = () => {
 
       if(boardTitle === ''){
          return alert('제목을 입력 해주세요')
@@ -92,15 +95,22 @@ function PostingRegisterbtn ({content,boardTitle,tagList,createObjectURL,imgfile
           .catch(function (error) {
             console.log(error);
          });
-
-
+   }
+   const onUpdatePosting = () => {
+      
    }
 
-      
+      // 게시글의 상세 아이디가 있다 ? 있으면 update 함수 없으면 글등록 ㄱㄱ
+
    return (
       <S.Wrapper>
             <S.CancleButton onClick={onClickbackhistory}>취소</S.CancleButton>
-            <S.RegisterButton onClick={addPostingContent}>글 등록</S.RegisterButton>
+            {
+               isboardID ? 
+            <S.RegisterButton onClick={onUpdatePosting}>수정 완료료</S.RegisterButton>
+               :
+            <S.RegisterButton onClick={onAddPosting}>글 등록</S.RegisterButton>
+            }
       </S.Wrapper>
    )
 }
