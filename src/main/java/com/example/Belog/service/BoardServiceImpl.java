@@ -68,7 +68,8 @@ public class  BoardServiceImpl implements BoardService{
 
     @Override
     public List<BoardDTO> findAllBoard(Criteria criteria) {
-        List<BoardDTO> boardList = Collections.emptyList();
+        List<BoardDTO> boardList = new ArrayList<>();
+        List<BoardDTO> returnBoardList = new ArrayList<>();
 
         int boardCount = boardMapper.getBoardCount();
 
@@ -76,7 +77,26 @@ public class  BoardServiceImpl implements BoardService{
             boardList = boardMapper.findAllBoard(criteria);
         }
 
-        return boardList;
+        for (BoardDTO boardDTO : boardList) {
+            Long boardNum = boardDTO.getBoardNum();
+            List<String> boardImages = findBoardImagesByBoardNum(boardNum);
+
+            BoardDTO returnBoardDTO = boardDTO.builder()
+                    .writeTime(boardDTO.getWriteTime())
+                    .boardNum(boardNum)
+                    .userId(boardDTO.getUserId())
+                    .boardImages(boardImages)
+                    .boardTitle(boardDTO.getBoardTitle())
+                    .boardContents(boardDTO.getBoardContents())
+                    .hashTag(boardDTO.getHashTag())
+                    .build();
+
+            returnBoardList.add(returnBoardDTO);
+        }
+
+        log.info("returnBoardList", returnBoardList);
+
+        return returnBoardList;
     }
 
     @Override

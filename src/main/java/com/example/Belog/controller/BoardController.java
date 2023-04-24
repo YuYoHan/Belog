@@ -225,8 +225,8 @@ public class BoardController {
             @ApiResponse(responseCode = "200", description = "회원 상세조회 성공"),
             @ApiResponse(responseCode = "404", description = "회원 상세조회 실패")
     })
-    @GetMapping("/board/{page}/{boardNum}")
-    public ResponseEntity<?> boardDetail(@PathVariable Long boardNum, @PathVariable int page) {
+    @GetMapping("/board/boardDetail/{boardNum}")
+    public ResponseEntity<?> boardDetail(@PathVariable Long boardNum) {
         BoardDTO boardDetail = boardService.findBoardByBoardNum(boardNum);
 
         return new ResponseEntity<>(boardDetail, HttpStatus.OK);

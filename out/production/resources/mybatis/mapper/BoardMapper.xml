@@ -30,7 +30,7 @@
         select count(*) from board;
     </select>
 
-    <select id="findAllBoard" resultType="map">
+    <select id="findAllBoard" resultType="com.example.Belog.domain.BoardDTO">
         select * from board order by boardNum desc limit #{startRow}, #{BOARD_NUM_PER_PAGE};
     </select>
 
