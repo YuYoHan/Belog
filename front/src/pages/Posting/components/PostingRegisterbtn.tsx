@@ -107,7 +107,7 @@ function PostingRegisterbtn ({content,boardTitle,tagList,createObjectURL,imgfile
             <S.CancleButton onClick={onClickbackhistory}>취소</S.CancleButton>
             {
                isboardID ? 
-            <S.RegisterButton onClick={onUpdatePosting}>수정 완료료</S.RegisterButton>
+            <S.RegisterButton onClick={onUpdatePosting}>수정 완료</S.RegisterButton>
                :
             <S.RegisterButton onClick={onAddPosting}>글 등록</S.RegisterButton>
             }
