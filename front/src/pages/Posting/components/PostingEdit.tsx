@@ -8,9 +8,9 @@ import { postingData } from '..';
 import { useQuillEditor } from 'hooks/usequillcontent';
 
 
-function PostingEdit({boardTitle,tagList} : postingData ) {
-  
-    const [content, setcontent ] = useQuillEditor('');
+function PostingEdit({inputboardTitle,tagList,Detailcontent,boardImg} : postingData ) {
+    
+    const [content, setcontent ] = useQuillEditor(Detailcontent ? Detailcontent : "");
     const QuillRef = useRef<ReactQuill>();
     const [imgfile, setImgFile] = useState< any>([])
     const [createObjectURL, setCreateObjectURL] = useState<string[]>([]);
@@ -92,10 +92,11 @@ const modules = useMemo(() => ({
     <PostingRegisterbtn  
       content={content} 
       createObjectURL={createObjectURL} 
-      boardTitle={boardTitle} 
+      inputboardTitle={inputboardTitle} 
       tagList={tagList}
       imgfile={imgfile}
       QuillRef={QuillRef}
+      boardImg={boardImg}
       />
 
    </S.Wrapper>

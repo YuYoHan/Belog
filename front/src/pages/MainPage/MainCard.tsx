@@ -5,13 +5,16 @@ import styled from "styled-components"
 import { BoardData} from "./MainList"
 
 function MainPageCard ({data} : {data : BoardData}) {
-   
+
 
    return (
       <S.Li>
          <S.StyledLink to={`list/${data.boardTitle}`} state={{data}}>
             <S.ImgContainer>
-               {/* <img src={data.img}/> */}
+               {
+               data.boardImages?.[0] && 
+                  <img src={data.boardImages?.[0]}/>
+               }
             </S.ImgContainer>
             <S.Content>
                <strong>{data.boardTitle}</strong>

@@ -3,11 +3,14 @@ import PostingEdit from "./components/PostingEdit"
 import PostingTag from "pages/Posting/components/PostingTag"
 import PostingTitle from "pages/Posting/components/PostingTitle"
 import useInput from "hooks/useInput"
-import { Dispatch, SetStateAction, useState } from "react"
+import { Dispatch, SetStateAction, useEffect, useState } from "react"
+import { useLocation } from "react-router"
 
 export type postingData = {
-   boardTitle : string,
-   tagList : string[]
+   inputboardTitle : string,
+   tagList : string[],
+   Detailcontent? : string,
+   boardImg?: string[]
 }
 
 export type boardtitle = {
@@ -18,15 +21,42 @@ export type boardtitle = {
 
 function PostingPage() {
    
-   const [boardTitle, setTboardTitle] = useInput('');
+   const location = useLocation();
+   const [inputboardTitle, setTinputboardTitle, reset] = useInput(location.state !== null ? location.state.data.boardTitle : "");
    const [tagList , setTagList] = useState<string[]>([])
    
+   useEffect(() => {
+      
+      if(location.state !== null){
+         const {hashTag} =  location.state.data
+         
+         const detailtagitem = hashTag.split(',')
+         detailtagitem.map((item : string) => {
+               setTagList((props) => [...props,item])
+         })
+      }
+   },[location])
+
+   
+
    return(
       <S.Wrapper>
          <S.container>
-            <PostingTitle boardTitle={boardTitle} setTboardTitle={setTboardTitle}/>
-            <PostingTag tagList ={tagList} setTagList={setTagList}/>
-            <PostingEdit boardTitle={boardTitle} tagList={tagList}/>
+            <PostingTitle 
+            inputboardTitle={inputboardTitle} 
+            setTinputboardTitle={setTinputboardTitle}/>
+
+            <PostingTag 
+            tagList ={tagList} 
+            setTagList={setTagList}/>
+            
+            <PostingEdit 
+            inputboardTitle={inputboardTitle} 
+            tagList={tagList}
+            Detailcontent={ location.state?.data?.boardContents}
+            boardImg={location.state?.data?.boardImages}
+            
+            />
          </S.container>
       </S.Wrapper>
    )

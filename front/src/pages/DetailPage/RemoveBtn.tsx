@@ -8,7 +8,7 @@ import DetailConfirmModal from "./ConfirmModal/Modal";
 
 
 
-function RemoveBtn({ id } : {id : number} ) {
+function RemoveBtn({ boardNum } : {boardNum : number} ) {
 
    const [modalOpen, setModalOpen] = useState<boolean>(false);
    
@@ -19,7 +19,7 @@ function RemoveBtn({ id } : {id : number} ) {
    return (
       <div>
       <Button onClick={onOpenModal}>삭제</Button>
-      {modalOpen && <DetailConfirmModal id={id} setModalOpen={setModalOpen}/>}
+      {modalOpen && <DetailConfirmModal boardNum={boardNum} setModalOpen={setModalOpen}/>}
       </div>
    )
 }

@@ -7,24 +7,24 @@ import { useNavigate } from 'react-router-dom';
 
 
 interface ModalType {
-   id: number;
+  boardNum: number;
    setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
  }
 
-function DetailConfirmModal ({id,setModalOpen} : ModalType) {
+function DetailConfirmModal ({boardNum,setModalOpen} : ModalType) {
    
    const navigete = useNavigate()
    const queryClient = useQueryClient();
    
    
-  //  const mutation  : any = useMutation(() => PostsApi.deletePostsApi(id), {
-  //       onSuccess: (res) => {
-  //           console.log(res);
+   const mutation  : any = useMutation(() => PostsApi.deletePostsApi(boardNum), {
+        onSuccess: (res) => {
+            console.log(res);
             
-  //           queryClient.invalidateQueries([queryKey.GET_MAINPOSTS_LIST])
-  //           navigete('/')
-  //       },
-  //   })
+            queryClient.invalidateQueries([queryKey.GET_MAINPOSTS_LIST])
+            navigete('/')
+        },
+    })
 
   return (
    <S.Presentation>
@@ -40,9 +40,9 @@ function DetailConfirmModal ({id,setModalOpen} : ModalType) {
          <S.ButtonClose onClick={() => setModalOpen(false)}>
             취소
          </S.ButtonClose>
-         {/* <S.ButtonCheck onClick={() => mutation.mutate()}>
+         <S.ButtonCheck onClick={() => mutation.mutate()}>
             확인
-         </S.ButtonCheck> */}
+         </S.ButtonCheck>
       </S.ButtonWrap>
       </S.Modal>
       </S.WrapperModal>

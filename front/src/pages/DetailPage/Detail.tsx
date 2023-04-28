@@ -2,16 +2,31 @@
 // import CommentList from "components/Comment/CommentList";
 import { useQuery } from "@tanstack/react-query";
 import Axios from "apis/@core";
-import { PostDtailsApi } from "apis/posts/Detail";
+import { PostDetailsApi } from "apis/posts/Detail";
+import PostsApi from "apis/posts/PostsAPI";
 import axios from "axios";
 import { queryKey } from "consts/queryKey";
-import React, { useEffect, useRef } from "react";
+import { async } from "q";
+import React, { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components"
 import EditBtn from "./EditBtn";
 import RemoveBtn from "./RemoveBtn";
 
+export interface DetailpageData {
+   boardContents: string;
+   writeTime: string;
+   boardNum: number;
+   boardTitle: string;
+   hashTag?: string;
+   boardImages?: string[];
+   userId : null | number
+   
+}
 
+export interface Detaildata {
+   data : DetailpageData
+}
 
 
 function DetailPage() {
@@ -19,29 +34,38 @@ function DetailPage() {
    const [Buttondisble, setButtondisble] = React.useState<boolean>(false)
    const location = useLocation();
    const {id, title, boardContents,tablist,img,boardNum} = location.state.data 
-   const {data : datailData, isLoading } = useQuery<any,boolean >([queryKey.GET_MAINPOSTS_LIST ,boardNum],()=> PostDtailsApi.getPostDtailsApi(boardNum));
-   
-   console.log(datailData);
+   // const {data : datailData, isLoading } = useQuery<any,boolean >([queryKey.GET_MAINPOSTS_LIST ,boardNum],()=> PostDtailsApi.getPostDtailsApi(boardNum));
+   const [data , setData] = useState<DetailpageData>()
 
 
    useEffect(() => {
-
-   })
+      const fetchData = async () => {
+         try{
+            const res = await PostsApi.getDetailPostsApi(boardNum)
+            setData(res.data)
+         }catch(err){
+            console.log(err);
+         }
+      }
+      fetchData()
+   },[])
 
    return (
       <S.Wrapper> 
          <S.Title>
-            {title}
+            {data?.boardTitle}
          </S.Title>
             <S.ButtonWrap>
-               <EditBtn boardNum={boardNum} />
-               <RemoveBtn id={id}/>
+            {data && <EditBtn data={data} />}
+               <RemoveBtn boardNum={boardNum}/>
             </S.ButtonWrap>
          
          {/* <CommentIndexPage />
          <CommentList/> */}
          <S.Content>
-            <div dangerouslySetInnerHTML={{ __html :  boardContents  }}  />
+         {data && (
+            <div dangerouslySetInnerHTML={{ __html: data.boardContents }} />
+         )}
          </S.Content>
       </S.Wrapper>
    )

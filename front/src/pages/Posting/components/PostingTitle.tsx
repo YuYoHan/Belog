@@ -1,7 +1,9 @@
+import { useEffect } from "react"
 import styled from "styled-components"
 
 
-function PostingTitle({boardTitle,setTboardTitle}: any) {
+function PostingTitle({inputboardTitle,setTinputboardTitle}: any) {
+   
    
    
 
@@ -9,7 +11,8 @@ function PostingTitle({boardTitle,setTboardTitle}: any) {
       <S.Wrapper>
          <S.container>
             <S.Title>
-               <input type="text" value={boardTitle} onChange={setTboardTitle} placeholder='제목을 입력해주세요.'/>
+               
+            <input type="text" value={inputboardTitle} onChange={setTinputboardTitle} placeholder='제목을 입력해주세요.'/>
             </S.Title>
          </S.container>
       </S.Wrapper>

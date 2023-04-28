@@ -13,9 +13,10 @@ import { useInView } from 'react-intersection-observer';
 export interface BoardData {
    boardContents: string;
    writeTime: string;
-   boardNum?: number;
-   boardTitle?: string;
+   boardNum: number;
+   boardTitle: string;
    hashTag?: string;
+   boardImages?: string[];
  }
  
  interface Board {
@@ -56,15 +57,14 @@ function MainPageList() {
    const { data, fetchNextPage, isFetching } = useMainpPostingListQuery();
    const [ref, inView] = useInView();
 
-   console.log(data);
-   
-
    useEffect(() => {
       // 서버 요청시 취소됐을때
       if (!inView || isFetching) return;
       fetchNextPage();
     }, [inView]);
 
+   console.log(data);
+   
 
    return(
       <S.Wrapper>

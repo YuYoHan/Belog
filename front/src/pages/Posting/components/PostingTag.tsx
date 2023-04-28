@@ -19,7 +19,10 @@ function PostingTag({tagList,setTagList} : TagProps) {
     }
 
    const submitTagItem = () => {
+      
       let updatedTagList = [...tagList]
+      console.log(updatedTagList);
+      
       updatedTagList.push(tagItem)
       setTagList(updatedTagList)
       setTagItem('')
