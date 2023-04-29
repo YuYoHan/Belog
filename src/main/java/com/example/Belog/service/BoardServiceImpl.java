@@ -64,6 +64,12 @@ public class  BoardServiceImpl implements BoardService{
     @Override
     public void updateBoard(BoardDTO boardDTO) {
         boardMapper.updateBoard(boardDTO);
+
+        Long boardNum =  boardDTO.getBoardNum();
+        boardMapper.deleteBoardImage(boardNum);
+
+        List<String> boardImages = boardDTO.getBoardImages();
+        boardMapper.insertBoardImage(boardNum, boardImages);
     }
 
     @Override
