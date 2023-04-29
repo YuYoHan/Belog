@@ -8,6 +8,10 @@
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+
+
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Belog/service/BoardServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Belog/service/BoardServiceImpl.java" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,27 +75,27 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/study_/project/Belog&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;d91659513e7beb8cc580b7cf53b10fd8&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "last_opened_file_path": "C:/study_/project/Belog",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "spring.configuration.checksum": "67970e0cb54c1c90d43fe563dd0e4dad",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -106,7 +110,7 @@
       <recent name="com.example.Belog.config" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.BelogApplication">
+  <component name="RunManager" selected="Spring Boot.BelogApplication (1)">
     <configuration name="Belog [jacocoTestCoverageVerification]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -181,18 +185,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserMapperTest.updateUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Belog.test" />
+    <configuration name="BelogApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="setting.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.Belog.BelogApplication" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.example.Belog.mapper.*" />
+          <option name="PATTERN" value="com.example.Belog.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.example.Belog.mapper" />
-      <option name="MAIN_CLASS_NAME" value="com.example.Belog.mapper.UserMapperTest" />
-      <option name="METHOD_NAME" value="updateUser" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -206,11 +207,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.BelogApplication (1)" />
         <item itemvalue="JUnit.UserControllerTest.testSignUp" />
         <item itemvalue="Gradle.Belog [jacocoTestCoverageVerification]" />
         <item itemvalue="Gradle.Belog [jacocoTestReport]" />
         <item itemvalue="JUnit.UserMapperTest.deleteUser" />
-        <item itemvalue="JUnit.UserMapperTest.updateUser" />
       </list>
     </recent_temporary>
   </component>
@@ -238,9 +239,13 @@
       <workItem from="1681784448500" duration="6851000" />
       <workItem from="1681951171840" duration="4351000" />
       <workItem from="1681996313297" duration="487000" />
+
       <workItem from="1682147008811" duration="903000" />
       <workItem from="1682247132818" duration="504000" />
       <workItem from="1682343333533" duration="2364000" />
+
+      <workItem from="1682730852488" duration="1623000" />
+
     </task>
     <task id="LOCAL-00001" summary="[Feat] Comment 댓글 이메일 출력기능 수정">
       <created>1681229460063</created>
