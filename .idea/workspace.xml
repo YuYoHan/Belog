@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="daf0e01f-043c-42f0-baae-403369b6c973" name="변경" comment="[Feat] Comment 댓글 이메일 출력기능 수정">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Belog/config/WebMvcConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Belog/config/WebMvcConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/example/Belog/service/BoardServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/example/Belog/service/BoardServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Belog/service/BoardServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Belog/service/BoardServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -238,7 +239,8 @@
       <workItem from="1682247132818" duration="504000" />
       <workItem from="1682343333533" duration="2364000" />
       <workItem from="1682730852488" duration="1623000" />
-      <workItem from="1683003199579" duration="1230000" />
+      <workItem from="1683003199579" duration="3441000" />
+      <workItem from="1683163587412" duration="3380000" />
     </task>
     <task id="LOCAL-00001" summary="[Feat] Comment 댓글 이메일 출력기능 수정">
       <created>1681229460063</created>
