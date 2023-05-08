@@ -50,9 +50,11 @@ public class  BoardServiceImpl implements BoardService{
 
         boardMapper.writeBoard(boardDTO);
 
-        Long lastBoardNum = boardMapper.getLastBoardNum();
+        if(boardImages.size() != 0) {
+            Long lastBoardNum = boardMapper.getLastBoardNum();
 
-        boardMapper.insertBoardImage(lastBoardNum, boardImages);
+            boardMapper.insertBoardImage(lastBoardNum, boardImages);
+        }
     }
 
     @Override
@@ -64,6 +66,14 @@ public class  BoardServiceImpl implements BoardService{
     @Override
     public void updateBoard(BoardDTO boardDTO) {
         boardMapper.updateBoard(boardDTO);
+
+        Long boardNum =  boardDTO.getBoardNum();
+        boardMapper.deleteBoardImage(boardNum);
+
+        if(boardDTO.getBoardImages().size() != 0) {
+            List<String> boardImages = boardDTO.getBoardImages();
+            boardMapper.insertBoardImage(boardNum, boardImages);
+        }
     }
 
     @Override
