@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="daf0e01f-043c-42f0-baae-403369b6c973" name="변경" comment="[Feat] Comment 댓글 이메일 출력기능 수정">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/example/Belog/exception/GlobalExceptionHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/example/Belog/exception/GlobalExceptionHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/classes/com/example/Belog/controller/UserControllerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/classes/com/example/Belog/controller/UserControllerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/Belog/controller/UserControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/Belog/controller/UserControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +107,7 @@
       <recent name="com.example.Belog.config" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.BelogApplication">
+  <component name="RunManager" selected="JUnit.UserControllerTest.testSignUp">
     <configuration name="Belog [jacocoTestCoverageVerification]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -240,7 +241,9 @@
       <workItem from="1681996313297" duration="487000" />
       <workItem from="1682147008811" duration="903000" />
       <workItem from="1682247132818" duration="504000" />
-      <workItem from="1682343333533" duration="2364000" />
+      <workItem from="1682343333533" duration="2640000" />
+      <workItem from="1682418076282" duration="275000" />
+      <workItem from="1683355026086" duration="1377000" />
     </task>
     <task id="LOCAL-00001" summary="[Feat] Comment 댓글 이메일 출력기능 수정">
       <created>1681229460063</created>
@@ -275,7 +278,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/test/java/com/example/Belog/controller/UserControllerTest.java</url>
-          <line>29</line>
+          <line>127</line>
           <properties class="com.example.Belog.controller.UserControllerTest">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />

@@ -13,6 +13,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,11 +38,11 @@ import java.util.Optional;
 @Tag(name = "user check", description = "API 상태 체크")
 @RestController
 @Log4j2
-@AllArgsConstructor
+@RequiredArgsConstructor
 @RequestMapping("/v1/user")
 public class UserController {
 
-    private UserService userService;
+    private final UserService userService;
 
     // 모든 회원 정보를 가져오는 API
     @GetMapping("/")
