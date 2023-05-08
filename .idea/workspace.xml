@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="daf0e01f-043c-42f0-baae-403369b6c973" name="변경" comment="[Feat] Comment 댓글 이메일 출력기능 수정" />
+    <list default="true" id="daf0e01f-043c-42f0-baae-403369b6c973" name="변경" comment="[Feat] Comment 댓글 이메일 출력기능 수정">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/com/example/Belog/exception/GlobalExceptionHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/example/Belog/exception/GlobalExceptionHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/classes/com/example/Belog/controller/UserControllerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/classes/com/example/Belog/controller/UserControllerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/Belog/controller/UserControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/Belog/controller/UserControllerTest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -84,7 +89,7 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;67970e0cb54c1c90d43fe563dd0e4dad&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;d91659513e7beb8cc580b7cf53b10fd8&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -102,7 +107,7 @@
       <recent name="com.example.Belog.config" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.BelogApplication (1)">
+  <component name="RunManager" selected="JUnit.UserControllerTest.testSignUp">
     <configuration name="Belog [jacocoTestCoverageVerification]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -177,15 +182,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BelogApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <module name="setting.main" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.Belog.BelogApplication" />
+    <configuration name="UserMapperTest.updateUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Belog.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.example.Belog.*" />
+          <option name="PATTERN" value="com.example.Belog.mapper.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="com.example.Belog.mapper" />
+      <option name="MAIN_CLASS_NAME" value="com.example.Belog.mapper.UserMapperTest" />
+      <option name="METHOD_NAME" value="updateUser" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -199,11 +207,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.BelogApplication (1)" />
         <item itemvalue="JUnit.UserControllerTest.testSignUp" />
         <item itemvalue="Gradle.Belog [jacocoTestCoverageVerification]" />
         <item itemvalue="Gradle.Belog [jacocoTestReport]" />
         <item itemvalue="JUnit.UserMapperTest.deleteUser" />
+        <item itemvalue="JUnit.UserMapperTest.updateUser" />
       </list>
     </recent_temporary>
   </component>
@@ -233,10 +241,9 @@
       <workItem from="1681996313297" duration="487000" />
       <workItem from="1682147008811" duration="903000" />
       <workItem from="1682247132818" duration="504000" />
-      <workItem from="1682343333533" duration="2364000" />
-      <workItem from="1682730852488" duration="1623000" />
-      <workItem from="1683003199579" duration="3441000" />
-      <workItem from="1683163587412" duration="3684000" />
+      <workItem from="1682343333533" duration="2640000" />
+      <workItem from="1682418076282" duration="275000" />
+      <workItem from="1683355026086" duration="1377000" />
     </task>
     <task id="LOCAL-00001" summary="[Feat] Comment 댓글 이메일 출력기능 수정">
       <created>1681229460063</created>
@@ -271,7 +278,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/test/java/com/example/Belog/controller/UserControllerTest.java</url>
-          <line>29</line>
+          <line>127</line>
           <properties class="com.example.Belog.controller.UserControllerTest">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -281,7 +288,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/test/java/com/example/Belog/mapper/UserMapperTest.java</url>
           <line>72</line>
-          <properties class="com.example.Belog.mapper.UserMapperTest">
+          <properties class="com.example.Belog.mapper.UserMapperTest" method="emailCheck">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
