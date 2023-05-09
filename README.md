@@ -31,17 +31,17 @@ Git 협업이 익숙지않아서 Git 협업을 익숙하게 하기위해서 커�
 
 
 ## 사용한 기술 및 라이브러리
-Springboot 2.7.8
-Java 11
-Gradle 7.6
-JaCoCo 0.8.7
-myBatis 2.3.0
-lombok
-mysql
-devtools
-
-React Axios AWS S3
-AWS EC2환경에서 배포
+Springboot 2.7.8 <br>
+Java 11<br>
+Gradle 7.6<br>
+JaCoCo 0.8.7<br>
+myBatis 2.3.0<br>
+lombok<br>
+mysql<br>
+devtools<br>
+<br>
+React Axios AWS S3<br>
+AWS EC2환경에서 배포<br>
 
 
 ## 후기
