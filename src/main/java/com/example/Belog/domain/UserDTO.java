@@ -39,16 +39,16 @@ public class UserDTO {
     @NotBlank(message = "이름은 필수 입력사항 입니다.")
     private String userName;
 
-    @Schema(description = "주소", required = true)
-    @NotBlank(message = "주소는 필수 입력사항 입니다.")
+    @Schema(description = "우편번호", required = true)
+    @NotBlank(message = "우편번호는 필수 입력사항 입니다.")
     private String userAddr;
 
-    @Schema(description = "상세 주소", required = true)
-    @NotBlank
+    @Schema(description = "주소", required = true)
+    @NotBlank(message = "주소는 필수 입력사항 입니다.")
     private  String userAddrDetail;
 
-    @Schema(description = "그 외 주소", required = true)
-    @NotBlank
+    @Schema(description = "상세 주소", required = true)
+    @NotBlank(message = "상세주소는 필수 입력사항 입니다.")
     private String userAddrEtc;
 
 
