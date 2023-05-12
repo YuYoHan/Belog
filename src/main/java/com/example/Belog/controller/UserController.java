@@ -2,24 +2,14 @@ package com.example.Belog.controller;
 
 import com.example.Belog.domain.UserDTO;
 import com.example.Belog.service.UserService;
-import com.fasterxml.jackson.databind.ser.FilterProvider;
-import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
-import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.Parameters;
-import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.json.MappingJacksonValue;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +20,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 // API 그룹 설정
 // name : 태그의 이름
@@ -127,6 +116,8 @@ public class UserController {
         if (loginUser != null) {
             session.setAttribute("userId", loginUser.getUserId());
             session.setAttribute("userEmail", loginUser.getUserEmail());
+            log.info("session userId: " + session.getAttribute("userId"));
+            log.info("session userEmail: " + session.getAttribute("userEmail"));
             return "로그인에 성공했습니다.";
         }
         return "아이디가 없습니다.";
@@ -156,8 +147,6 @@ public class UserController {
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
-
-
     }
 
 
