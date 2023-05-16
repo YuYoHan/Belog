@@ -1,11 +1,18 @@
+import { useEffect } from "react"
 import styled from "styled-components"
 
-function PostingTitle({setTitleValue}:any) {
+
+function PostingTitle({inputboardTitle,setTinputboardTitle}: any) {
+   
+   
+   
+
    return (
       <S.Wrapper>
          <S.container>
             <S.Title>
-               <input onChange={setTitleValue} placeholder='제목을 입력해주세요.'/>
+               
+            <input type="text" value={inputboardTitle} onChange={setTinputboardTitle} placeholder='제목을 입력해주세요.'/>
             </S.Title>
          </S.container>
       </S.Wrapper>

@@ -1,26 +1,64 @@
-import React,{useState} from 'react';
+import { useMutation } from '@tanstack/react-query';
+import { AuthApi } from 'apis/auth/authApi';
+import { OpenCloseModal } from 'atom/modal/isOpenCloseModal';
+import { StorgeSession } from 'atom/SessionStorge/SessionStorge';
+import useInputs from 'hooks/useinputs';
+import {  useNavigate } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
+import { SessionRepository } from 'repository/SessionRepository';
 import styled from 'styled-components';
-import JoinModal from './JoinModal';
 
-const Overlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
 
-const ModalWrapper = styled.div`
-  background-color: #fff;
-  padding: 30px;
-  border-radius: 5px;
-  position: relative;
-  width: 400px;
-`;
+
+
+
+function LoginModal() {
+  const setIsOpenAddTodoModal = useSetRecoilState(OpenCloseModal);
+  const setStorgeSession = useSetRecoilState(StorgeSession);
+  const navigete = useNavigate()
+  const [{ userEmail, userPw }, onChangeForm] = useInputs({
+    userEmail: '',
+    userPw: '',
+  });
+
+
+  const onClickCloseModal = () => {
+    setIsOpenAddTodoModal(false)
+  }
+  
+  const loginMutaion = useMutation(() => AuthApi.login({userEmail,userPw}), {
+        onSuccess: (res) => {
+            // const token = res.data.data.token;
+            // SessionRepository.setToken(window.localStorage);
+            // if (SessionRepository.getToken()) setStorgeSession(true)
+            console.log(res);
+            
+        },
+        onError: (err) => {
+            alert(err);
+        },
+    });
+
+ 
+
+  return (
+    <>
+        <CloseButton onClick={onClickCloseModal}>X</CloseButton>
+        <LoginContainer>
+          <Title>로그인</Title>
+          <form onSubmit={(e)=> {
+            e.preventDefault()
+            loginMutaion.mutate()}}>
+            <Input type="email" name='userEmail' onChange={onChangeForm} placeholder="이메일" />
+            <Input type="password" name='userPw' onChange={onChangeForm} placeholder="비밀번호" />
+            <SubmitButton >로그인</SubmitButton>
+          </form>
+        </LoginContainer>
+  </>);
+}
+
+export default LoginModal;
+
 
 const CloseButton = styled.button`
   position: absolute;
@@ -50,7 +88,7 @@ const Input = styled.input`
 
 const SubmitButton = styled.button`
   padding: 10px;
-  background-color: #20c997;
+  background-color: #757bf6;;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -60,49 +98,5 @@ const SubmitButton = styled.button`
 
 const Title = styled.h2`
   margin-top: 0;
+  margin-bottom: 1rem;
 `;
-
-const SignUpText = styled.div`
-  margin-top: 20px;
-  text-align: right;
-`;
-
-const SignUpLink = styled.a`
-  color: #20c997;
-`;
-
-interface Props {
-  isOpen: boolean;
-  onClose: () => void;
-}
-
-function LoginModal({ isOpen, onClose }: Props) {
-  const [isJoinModalOpen, setJoinModalOpen] = useState(false);
-
-  const handleJoinClick = () => {
-    onClose();
-    setJoinModalOpen(true);
-  };
-
-  if (!isOpen) return null;
-
-  return (
-    <><Overlay onClick={onClose}>
-      <ModalWrapper onClick={(e) => e.stopPropagation()}>
-        <CloseButton onClick={onClose}>X</CloseButton>
-        <LoginContainer>
-          <Title>로그인</Title>
-          <Input type="email" placeholder="이메일" />
-          <Input type="password" placeholder="비밀번호" />
-          <SubmitButton>로그인</SubmitButton>
-          <SignUpText>
-            아직 회원이 아니신가요? {''}<SignUpLink onClick={handleJoinClick}>회원가입</SignUpLink>
-          </SignUpText>
-        </LoginContainer>
-      </ModalWrapper>
-    </Overlay>
-    <JoinModal isOpen={isJoinModalOpen} onClose={() => setJoinModalOpen(false)}/>
-  </>);
-}
-
-export default LoginModal;

@@ -17,9 +17,14 @@ function PostingTag({tagList,setTagList} : TagProps) {
          setPlaceholder('')
       }
     }
+    console.log(tagList);
+    
 
    const submitTagItem = () => {
+      
       let updatedTagList = [...tagList]
+      console.log(updatedTagList);
+      
       updatedTagList.push(tagItem)
       setTagList(updatedTagList)
       setTagItem('')
@@ -34,7 +39,8 @@ function PostingTag({tagList,setTagList} : TagProps) {
    
    return(
       <S.Wrapper>
-         {tagList.map((tagItem, index) => {
+         {
+         tagList.map((tagItem, index) => {
           return (
             <S.TagItem key={index}>
               <S.Text>{tagItem}</S.Text>

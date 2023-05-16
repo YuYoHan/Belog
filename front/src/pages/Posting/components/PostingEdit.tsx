@@ -1,42 +1,35 @@
-import axios from 'axios';
-import React, {  useMemo, useRef, useState } from 'react';
+import  {  useMemo, useRef, useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import styled from 'styled-components';
 import PostingRegisterbtn from "pages/Posting/components/PostingRegisterbtn"
-import usequillcontent from 'hooks/usequillcontent';
 import { postingData } from '..';
+import { useQuillEditor } from 'hooks/usequillcontent';
 
 
-function PostingEdit({boardTitle,tagList} : postingData ) {
-  
-    const [content, setcontent ] = usequillcontent('');
+function PostingEdit({inputboardTitle,tagList,Detailcontent,boardImg,boardNum} : postingData ) {
+    
+    const [content, setcontent ] = useQuillEditor(Detailcontent ? Detailcontent : "");
     const QuillRef = useRef<ReactQuill>();
-    const [imgfile, setImgFile] = useState< any>([])
-    const [createObjectURL, setCreateObjectURL] = useState<string[]>([]);
+    const [imgfile, setImgFile] = useState<object>()
+    const [createObjectURL, setCreateObjectURL] = useState<string >('');
 
 const imageHandler = () => {
-   const input = document.createElement('input');
-   input.setAttribute('type', 'file');
-   input.setAttribute('accept', 'image/*');
-   input.click(); 
+  const input = document.createElement('input');
+  input.setAttribute('type', 'file');
+  input.setAttribute('accept', 'image/*');
+  input.click();
 
-   input.addEventListener('change', async (e) => {
-     e.preventDefault()
-    // const file = input.files ? input.files[0] : null;
+  input.addEventListener('change', async (e) => {
+    e.preventDefault()
     const file = input.files && input.files[0];
     const fileExt = file?.name.split('.').pop();
     if(!['jpeg', 'png', 'jpg', 'JPG', 'PNG', 'JPEG','gif'].includes(fileExt as string)) return alert('jpg, png, jpg, gif 파일만 업로드가 가능합니다.')
 
     if(file) {
-      const TemporaryURL = URL.createObjectURL(file)
-      setCreateObjectURL((props : any) =>[...props, TemporaryURL,])
-     
-      const editor = QuillRef?.current?.getEditor();
-      if(editor){
-        editor.root.innerHTML =  editor.root.innerHTML + `<img src=${TemporaryURL} class="boardImage"/><br/>`; // 현재 있는 내용들 뒤에 써줘야한다.
-      }
-      setImgFile((props : any) => [...props  ,{file}])
+      const TemporaryURL  = URL.createObjectURL(file)
+      setCreateObjectURL( TemporaryURL)
+      setImgFile({file})
     } 
   });
  };
@@ -92,10 +85,12 @@ const modules = useMemo(() => ({
     <PostingRegisterbtn  
       content={content} 
       createObjectURL={createObjectURL} 
-      boardTitle={boardTitle} 
+      inputboardTitle={inputboardTitle} 
       tagList={tagList}
       imgfile={imgfile}
       QuillRef={QuillRef}
+      boardImg={boardImg}
+      boardNum={boardNum}
       />
 
    </S.Wrapper>
@@ -109,13 +104,15 @@ const Wrapper = styled.div`
    & .ql-toolbar.ql-snow,.ql-container.ql-snow{
       border: none;
       padding: 0;
-   }
+      
+    }
    & .ql-container{
       min-height: 380px;
       margin-top: 2rem;
-
       & .ql-editor{
-         padding: 0;
+        padding: 0;
+        height: 20rem;
+        overflow-y: auto;
       }
       
       & .ql-editor.ql-blank::before{

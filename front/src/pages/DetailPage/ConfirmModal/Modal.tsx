@@ -1,28 +1,56 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled, { keyframes } from 'styled-components';
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { queryKey } from "consts/queryKey";
 import PostsApi from "apis/posts/PostsAPI";
 import { useNavigate } from 'react-router-dom';
+import AWS from 'aws-sdk';
+import ReactS3Client from 'react-aws-s3-typescript';
+import { string } from 'yargs';
 
 
 interface ModalType {
-   id: number;
-   setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  boardNum: number;
+   setModalOpen: React.Dispatch<React.SetStateAction<boolean>>,
+   img? : string[]
  }
 
-function DetailConfirmModal ({id,setModalOpen} : ModalType) {
+
+function DetailConfirmModal ({boardNum,setModalOpen,img} : ModalType) {
    
-   const navigete = useNavigate()
-   const queryClient = useQueryClient();
-   
-   
-   const mutation  : any = useMutation(() => PostsApi.deletePostsApi(id), {
+  const navigete = useNavigate()
+  const queryClient = useQueryClient();
+
+  
+  const s3 = new AWS.S3({
+    region: process.env.REACT_APP_S3_REGION,
+    accessKeyId: process.env.REACT_APP_S3_ACCESS_KET_ID,
+    secretAccessKey: process.env.REACT_APP_S3_SECRET_ACCESSKEY
+  });
+  
+  console.log(img);
+
+   const Deletemutation = useMutation(() => PostsApi.deletePostsApi(boardNum), {
         onSuccess: (res) => {
-            console.log(res);
-            
-            queryClient.invalidateQueries([queryKey.GET_MAINPOSTS_LIST])
-            navigete('/')
+          const imgurl = img?.map((item) => item.split("/").pop())
+
+          if(imgurl?.length !== 0){
+            const params : any = {
+              Bucket: 'blog-file-upload', 
+              Delete: {
+                // 키값에 배열의 imgurl 넣어줌
+                Objects: imgurl?.map((item) => ({ Key: `boardImage/${item}` })),
+                Quiet: false,
+              },
+            };
+            s3.deleteObjects(params, function(err, data) {
+              if (err) console.log(err, err.stack); // an error occurred
+              else     console.log(data);           // successful response
+            });
+          }
+          alert('게시글 삭제가 완료되었습니다.')
+          queryClient.invalidateQueries([queryKey.GET_MAINPOSTS_LIST])
+          navigete('/')
         },
     })
 
@@ -40,7 +68,8 @@ function DetailConfirmModal ({id,setModalOpen} : ModalType) {
          <S.ButtonClose onClick={() => setModalOpen(false)}>
             취소
          </S.ButtonClose>
-         <S.ButtonCheck onClick={() => mutation.mutate()}>
+         <S.ButtonCheck onClick={() => Deletemutation.mutate()}>
+         {/* <S.ButtonCheck onClick={test}> */}
             확인
          </S.ButtonCheck>
       </S.ButtonWrap>

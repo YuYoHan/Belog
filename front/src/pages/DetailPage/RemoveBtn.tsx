@@ -2,14 +2,17 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import PostsApi from "apis/posts/PostsAPI";
 import axios from "axios";
 import { queryKey } from "consts/queryKey";
-import { queryMainPost } from "pages/MainPage/MainList";
 import React, { useState } from "react";
 import styled from "styled-components"
 import DetailConfirmModal from "./ConfirmModal/Modal";
 
+interface  DetailProps {
+   boardNum : number,
+   img? : string[]
+}
 
 
-function RemoveBtn({ id } : {id : number} ) {
+function RemoveBtn({ boardNum,img } :  DetailProps ) {
 
    const [modalOpen, setModalOpen] = useState<boolean>(false);
    
@@ -20,7 +23,7 @@ function RemoveBtn({ id } : {id : number} ) {
    return (
       <div>
       <Button onClick={onOpenModal}>삭제</Button>
-      {modalOpen && <DetailConfirmModal id={id} setModalOpen={setModalOpen}/>}
+      {modalOpen && <DetailConfirmModal boardNum={boardNum} img={img} setModalOpen={setModalOpen}/>}
       </div>
    )
 }
