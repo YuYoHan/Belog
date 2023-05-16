@@ -2,13 +2,15 @@
 // import CommentList from "components/Comment/CommentList";
 import { useQuery } from "@tanstack/react-query";
 import Axios from "apis/@core";
-import { PostDetailsApi } from "apis/posts/Detail";
 import PostsApi from "apis/posts/PostsAPI";
 import axios from "axios";
+import CommentIndexPage from "components/Comment/CommentForm";
+import CommentList from "components/Comment/CommentList";
 import { queryKey } from "consts/queryKey";
 import { async } from "q";
 import React, { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { useRecoilState } from "recoil";
 import styled from "styled-components"
 import EditBtn from "./EditBtn";
 import RemoveBtn from "./RemoveBtn";
@@ -31,11 +33,10 @@ export interface Detaildata {
 
 function DetailPage() {
 
-   const [Buttondisble, setButtondisble] = React.useState<boolean>(false)
    const location = useLocation();
-   const {id, title, boardContents,tablist,img,boardNum} = location.state.data 
-   // const {data : datailData, isLoading } = useQuery<any,boolean >([queryKey.GET_MAINPOSTS_LIST ,boardNum],()=> PostDtailsApi.getPostDtailsApi(boardNum));
+   const {boardNum} = location.state.data
    const [data , setData] = useState<DetailpageData>()
+   const [tagList , setTagList] = useState<string[]>([])
 
 
    useEffect(() => {
@@ -43,6 +44,15 @@ function DetailPage() {
          try{
             const res = await PostsApi.getDetailPostsApi(boardNum)
             setData(res.data)
+
+            if(res && (res?.data?.hashTag?.length ?? 0) >= 1) {
+               const fetchtagItem = res?.data?.hashTag?.split(',')
+               fetchtagItem?.map((item : string) => {
+                  setTagList((props) => [...props,item])
+               })
+            }
+
+            setTagList((props) => [...props, ])
          }catch(err){
             console.log(err);
          }
@@ -50,22 +60,37 @@ function DetailPage() {
       fetchData()
    },[])
 
+   
+
+
    return (
       <S.Wrapper> 
          <S.Title>
             {data?.boardTitle}
          </S.Title>
+         <S.TagWrap>
+
+            {
+               tagList.length > 0 && 
+               tagList.map((tagItem, index) => {
+            return (
+               <S.TagItem key={index}>
+               <S.Text>{tagItem}</S.Text>
+               </S.TagItem>
+            )
+            })}
+         </S.TagWrap>
             <S.ButtonWrap>
             {data && <EditBtn data={data} />}
-               <RemoveBtn boardNum={boardNum}/>
+               <RemoveBtn boardNum={boardNum} img={data?.boardImages}/>
             </S.ButtonWrap>
          
-         {/* <CommentIndexPage />
-         <CommentList/> */}
          <S.Content>
          {data && (
             <div dangerouslySetInnerHTML={{ __html: data.boardContents }} />
          )}
+            <CommentIndexPage boardNum={boardNum}/>
+            <CommentList boardNum={boardNum}/>
          </S.Content>
       </S.Wrapper>
    )
@@ -106,10 +131,43 @@ const Content = styled.div`
    }
 `
 
+const TagWrap = styled.div`
+   color: #212529;
+   font-size: 1.125rem;
+   display: flex;
+   align-items: center;
+   flex-wrap: wrap;
+   margin-top: 1.5rem;
+   margin-bottom: -0.875rem;
+   min-height: 0.875rem;
+`
+
+const TagItem = styled.div`
+   background-color: #757bf6;
+   color: white;
+   margin-bottom: 0.875rem;
+   padding-left: 1rem;
+   padding-right: 1rem;
+   height: 2rem;
+   border-radius: 1rem;
+   display: inline-flex;
+   align-items: center;
+   margin-right: 0.875rem;
+   text-decoration: none;
+   font-weight: 500;
+   font-size: 1rem;
+`
+
+const Text = styled.span``
+
+
 
 const S = {
    Wrapper,
    Title,
    ButtonWrap,
-   Content
+   Content,
+   TagWrap,
+   TagItem,
+   Text,
 }

@@ -6,9 +6,13 @@ import React, { useState } from "react";
 import styled from "styled-components"
 import DetailConfirmModal from "./ConfirmModal/Modal";
 
+interface  DetailProps {
+   boardNum : number,
+   img? : string[]
+}
 
 
-function RemoveBtn({ boardNum } : {boardNum : number} ) {
+function RemoveBtn({ boardNum,img } :  DetailProps ) {
 
    const [modalOpen, setModalOpen] = useState<boolean>(false);
    
@@ -19,7 +23,7 @@ function RemoveBtn({ boardNum } : {boardNum : number} ) {
    return (
       <div>
       <Button onClick={onOpenModal}>삭제</Button>
-      {modalOpen && <DetailConfirmModal boardNum={boardNum} setModalOpen={setModalOpen}/>}
+      {modalOpen && <DetailConfirmModal boardNum={boardNum} img={img} setModalOpen={setModalOpen}/>}
       </div>
    )
 }

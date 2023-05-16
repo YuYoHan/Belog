@@ -1,6 +1,11 @@
+import { StorgeSession } from "atom/SessionStorge/SessionStorge"
+import { OpenCloseModal } from "atom/modal/isOpenCloseModal"
 import React, { useEffect, useRef, useState } from "react"
 import { Outlet } from "react-router-dom"
+import { useRecoilState } from "recoil"
 import styled from "styled-components"
+import Login from "./LoginBtn"
+import LoginButton from "./LoginBtn/modal/LoginBtn"
 import Logo from "./logo"
 import OnClickPosting from "./Postingbtn"
 import Profile from "./Profile"
@@ -10,8 +15,17 @@ function Header() {
    
    const [ScrollY, setScrollY] = React.useState<number>(0); 
    const [ScrollActive, setScrollActive] = React.useState<boolean>(false);
+   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+   const [isOpenoModal, setIsTodoModal] = useRecoilState(OpenCloseModal);
+   const [isLoginComponent, setisLoginComponent] = useRecoilState(StorgeSession);
 
- 
+
+   // useEffect(() => {
+   //    if(localStorge) return setisLoginComponent(true)
+   //    setisLoginComponent(false)
+      
+   // },[isLoginComponent])
+   
 
   const handleScroll  = () =>  {
      
@@ -41,9 +55,15 @@ function Header() {
             <S.container>
                <Logo/>
                <S.RightItem>
-                  <HeaderSearch/>
-                  <OnClickPosting/>
-                  <Profile/>
+               <LoginButton/>
+                  { isOpenoModal && <Login/> }
+                  {
+                     !isLoginComponent &&
+                     <>
+                     <OnClickPosting />
+                     <Profile />
+                     </>
+                  }
                </S.RightItem>
             </S.container>
          </S.HeaderContainer>

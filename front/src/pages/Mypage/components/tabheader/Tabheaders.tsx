@@ -11,9 +11,7 @@ function Tabheader() {
 
 
    const onFormChange = (e : React.MouseEvent) : void => {
-        const  {innerText} : any = e.target
-        console.log(e.target);
-        
+        const  {innerText} :  { innerText: string } = e.target as HTMLDivElement
         form = innerText.toLowerCase();
         setForm(form);
    };

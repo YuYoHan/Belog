@@ -1,0 +1,107 @@
+   import React, { ChangeEvent, useState } from 'react'
+import styled from 'styled-components'
+import { maskingName } from './hook/PswEncryption'
+import { AiFillEye } from "react-icons/ai";
+import useCheckPassword from 'hooks/checkPassword';
+
+type userdataPrpos = {
+   password : string
+   userPw : string
+   onChangeForm : (event: ChangeEvent<HTMLInputElement>) => void
+}
+
+function UserPswform({password,userPw,onChangeForm} : userdataPrpos) {
+
+   const PswEncryption = maskingName(userPw)
+   const [PswEdit, setPswEdit] = useState<boolean>(false)
+
+   const disabled = useCheckPassword(userPw)
+   console.log(disabled);
+   
+
+   const onClickPswUpdate = () => {
+      setPswEdit(true)
+   }
+   
+   const onChnagePswEdit = () => {
+      if(disabled) return setPswEdit(false)
+      alert('8글자 이상 입력해주세요')
+   }
+
+  return (
+    <Wrapper>
+      <PswTitle >
+         {
+            !PswEdit ? 
+            PswEncryption : <Input type='password' name='userPw' value={userPw}  onChange={onChangeForm}/>
+         }
+      </PswTitle>
+      <EditWrapper>
+      {
+            PswEdit ?
+            <button onClick={onChnagePswEdit}>저장</button>
+            :
+            <button onClick={onClickPswUpdate}>수정</button>
+         }
+      </EditWrapper>
+    </Wrapper>
+  )
+}
+
+export default UserPswform
+   
+const Wrapper = styled.div`
+   flex: 1 1 0%;
+   display: flex;
+   align-items: center;
+
+   
+`
+const PswTitle = styled.div`
+   flex: 1 1 0%;
+   font-size: 1rem;
+   color: #495057;
+   line-height: 1.5;
+   display: flex;
+   align-items: center;
+   
+   & button{
+      background: none;
+      cursor : pointer;
+      padding-top : 5px;
+      margin-left : .5rem
+   }
+`
+const EditWrapper = styled.div`
+   display: flex;
+   align-items: center;
+   margin-left: 1rem;
+
+   
+
+   & button{
+      outline: none;
+      padding: 0px;
+      border: none;
+      display: inline;
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #757bf6;
+      text-decoration: underline;
+      background: none;
+      cursor: pointer;
+   }
+`
+const Input = styled.input`
+   display: block;
+   border: 1px solid #DEE2E6;
+   background: #FFFFFF;
+   padding: 0.5rem;
+   color: #495057;
+   font-size: 1rem;
+   line-height: 1rem;
+   outline: none;
+   border-radius: 4px;
+   flex: 1 1 0%;
+   margin-right: 1rem;
+`

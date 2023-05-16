@@ -3,14 +3,15 @@ import PostingEdit from "./components/PostingEdit"
 import PostingTag from "pages/Posting/components/PostingTag"
 import PostingTitle from "pages/Posting/components/PostingTitle"
 import useInput from "hooks/useInput"
-import { Dispatch, SetStateAction, useEffect, useState } from "react"
+import {  useEffect, useState } from "react"
 import { useLocation } from "react-router"
 
 export type postingData = {
    inputboardTitle : string,
    tagList : string[],
    Detailcontent? : string,
-   boardImg?: string[]
+   boardImg?: string[],
+   boardNum: number
 }
 
 export type boardtitle = {
@@ -29,11 +30,13 @@ function PostingPage() {
       
       if(location.state !== null){
          const {hashTag} =  location.state.data
-         
-         const detailtagitem = hashTag.split(',')
-         detailtagitem.map((item : string) => {
+         console.log(hashTag.length);
+         if(hashTag.length >= 1){
+            const detailtagitem = hashTag.split(',')
+            detailtagitem.map((item : string) => {
                setTagList((props) => [...props,item])
-         })
+            })
+         }
       }
    },[location])
 
@@ -55,6 +58,7 @@ function PostingPage() {
             tagList={tagList}
             Detailcontent={ location.state?.data?.boardContents}
             boardImg={location.state?.data?.boardImages}
+            boardNum={location.state?.data?.boardNum}
             
             />
          </S.container>

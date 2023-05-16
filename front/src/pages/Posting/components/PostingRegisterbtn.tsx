@@ -1,74 +1,91 @@
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components"
 import ReactS3Client from 'react-aws-s3-typescript';
 import axios from "axios";
 import ReactQuill from "react-quill";
-import {  useEffect, useState } from "react";
-import { Number } from "aws-sdk/clients/iot";
+import {  useEffect, useRef, useState } from "react";
+import PostsApi from "apis/posts/PostsAPI";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { queryKey } from "consts/queryKey";
 
 
-type postingDataProps = {
+
+export type postingDataProps = {
    content : string,
    inputboardTitle : string,
    tagList : string[],
-   createObjectURL : string[],
-   imgfile: any
+   // createObjectURL : string[],
+   createObjectURL : string ,
+   imgfile?: any
    QuillRef: React.MutableRefObject<ReactQuill | undefined>
-   boardImg? : string[]
+   boardImg? : string[],
+   boardNum:number
+}
+
+export type postingApiDataProps = {
+   boardNum? : number,
+   boardTitle : string,
+   boardContents : string,
+   hashTag : string,
+   boardImages : string[]
 }
 
 interface HTMLImageElementWithSrc extends HTMLImageElement {
    src: string;
  }
 
-// type configdata= {
-//    bucketName : string
-//    region : string
-//    accessKeyId : string
-//    secretAccessKey :string 
-// }
+ interface S3Config {
+   bucketName: string;
+   region: string;
+   accessKeyId: string;
+   secretAccessKey: string;
+ }
 
-function PostingRegisterbtn ({content,inputboardTitle,tagList,createObjectURL,imgfile,QuillRef,boardImg} : postingDataProps) {
+function PostingRegisterbtn ({content,inputboardTitle,tagList,createObjectURL,imgfile,QuillRef,boardImg,boardNum} : postingDataProps) {
 
    
-   const images = document.querySelectorAll(".boardImage") as NodeListOf<HTMLImageElementWithSrc>;
    const imagesAray = document.querySelectorAll("img") as NodeListOf<HTMLImageElementWithSrc>;
    const [boardImgURL, setBoardImgURL] = useState<string[]>([])
    const [isboardID ,setisBoardID] = useState<boolean>(false) 
-   const history = useNavigate()
-   
-   const onClickbackhistory = () => {
-      history(-1)
-   }
-   
-   const config : any = {
-      bucketName: process.env.REACT_APP_S3_BUCKETNAME,
-      region: process.env.REACT_APP_S3_REGION,
-      accessKeyId: process.env.REACT_APP_S3_ACCESS_KET_ID,
-      secretAccessKey: process.env.REACT_APP_S3_SECRET_ACCESSKEY,
-   }
-   
-   // useEffect로 content바뀐 내용을 axios로 호출해야함
-   let ServerBoardURL: string[] = [];
-   useEffect(() => {
-      const s3 = new ReactS3Client(config);
-      
+   const navigate = useNavigate();
 
-      if(imgfile && imgfile.length > 0) {
+   const onClickbackhistory = () => {
+      navigate(-1)
+   }
+   
+   const config : S3Config = {
+      bucketName: process.env.REACT_APP_S3_BUCKETNAME || '',
+      region: process.env.REACT_APP_S3_REGION || '',
+      accessKeyId: process.env.REACT_APP_S3_ACCESS_KET_ID || '',
+      secretAccessKey: process.env.REACT_APP_S3_SECRET_ACCESSKEY || '',
+   }
+
+
+ useEffect(() => {
+   const s3 = new ReactS3Client(config);
+   const AddServerImg = async () => {
+
+      const originURL = createObjectURL?.replace(/^(blob:http:\/\/localhost:3000\/)/, '');
+      const data =  await s3.uploadFile(imgfile.file, `boardImage/${originURL}`);
+      const copyBoardImgURL = [...boardImgURL];
+      window.URL.revokeObjectURL(createObjectURL);
+      copyBoardImgURL.push(data.location);
+      setBoardImgURL(copyBoardImgURL);
+      if(QuillRef?.current){
+         const range = QuillRef?.current.getEditorSelection();
+         const selectionRange = {
+            index: (range?.index || 0) + 1,
+            length: 0,
+            // other properties as needed
+          };
+         QuillRef?.current.getEditor().insertEmbed(range?.index as number, 'image', data.location)
+         QuillRef?.current.getEditor().setSelection(selectionRange);
          
-         Promise.all(imgfile.map(async (s3File: any, i: any) => {
-         const originURL = createObjectURL[i].replace(/^(blob:http:\/\/localhost:3000\/)/, '');
-         const data = await s3.uploadFile(s3File.file, `boardImage/${originURL}`);
-         ServerBoardURL[i] = data.location;
-         const copyBoardImgURL = [...boardImgURL];
-         copyBoardImgURL.push(ServerBoardURL[i]);
-         setBoardImgURL( copyBoardImgURL)
-         images?.forEach((img : HTMLImageElementWithSrc, i : Number) => {
-            img.src = ServerBoardURL[i]
-         })
-         }));
       }
-   },[imgfile])
+   } 
+   AddServerImg()
+
+ }, [imgfile]);
 
    // 수정하기 페이지 
    useEffect(() => {
@@ -84,10 +101,13 @@ function PostingRegisterbtn ({content,inputboardTitle,tagList,createObjectURL,im
    
    // 사용자 에디터에 이미시 삭제시 
    useEffect(() => {
-      // if(boardImg?.length === boardImgURL.length) return
+      
+      if(!boardImg) return 
+      
       const boardImgSrc = Array.from(imagesAray).map((img: HTMLImageElementWithSrc) => img.src);
       const newImgURLs = boardImgSrc.filter(src => boardImg?.includes(src));
       setBoardImgURL(newImgURLs)
+
    }, [imagesAray.length])
 
    const boardData = {
@@ -96,55 +116,43 @@ function PostingRegisterbtn ({content,inputboardTitle,tagList,createObjectURL,im
       "hashTag" : tagList.join(),
       "boardImages" : boardImgURL
    }
-
-   const onAddPosting = () => {
-
-      if(inputboardTitle === ''){
-         return alert('제목을 입력 해주세요')
-      }else if(content === ''){
-         return alert('내용을 입력 해주세요')
-      }
-
-      axios.post('http://3.37.89.59:8080/v1/board', boardData)
-         .then(function (res) {
-            alert('게시가 완료되었습니다.')
-            return history(-1)
-         })
-          .catch(function (error) {
-            console.log(error);
-         });
+   
+   const UpdateboardData = {
+      "boardNum" : boardNum,
+      "boardTitle" : inputboardTitle,
+      "boardContents" : content,
+      "hashTag" : tagList.join(),
+      "boardImages" : boardImgURL
    }
 
-   const onUpdatePosting = async () => {
-      
-      console.log(boardData);
-      axios.put('http://3.37.89.59:8080/v1/board', boardData)
-         .then(function (res) {
-            alert('게시가 완료되었습니다.')
-            return history(-1)
-         })
-          .catch(function (error) {
-            console.log(error);
-         });
-      // try{
-      //    const res = await PostsApi.updatePostsApi(boardData)
-      //    console.log(res);
-         
-      // }catch(err) {
-      //    console.log(err);
-         
-      // }
-      
-   }
+
+   //게시글 생성
+   const queryClient = useQueryClient();
+   const AddPostingmutation = useMutation(() => PostsApi.createPostsApi(boardData), {
+      onSuccess: (res) => {
+         alert('게시가 완료되었습니다.')
+         queryClient.invalidateQueries([queryKey.GET_MAINPOSTS_LIST]);
+         navigate('/')
+      },
+   })
+
+   //게시글 수정
+   const UpdatePostingmutation = useMutation(() => PostsApi.updatePostsApi(UpdateboardData), {
+      onSuccess: (res) => {
+         alert('수정이 완료되었습니다.')
+         queryClient.invalidateQueries([queryKey.GET_MAINPOSTS_LIST]);
+         navigate('/')
+      },
+   })
 
    return (
       <S.Wrapper>
             <S.CancleButton onClick={onClickbackhistory}>취소</S.CancleButton>
             {
                isboardID ? 
-            <S.RegisterButton onClick={onUpdatePosting}>수정 완료</S.RegisterButton>
+            <S.RegisterButton onClick={()=> UpdatePostingmutation.mutate()}>수정 완료</S.RegisterButton>
                :
-            <S.RegisterButton onClick={onAddPosting}>글 등록</S.RegisterButton>
+            <S.RegisterButton onClick={()=> AddPostingmutation.mutate()}>글 등록</S.RegisterButton>
             }
       </S.Wrapper>
    )

@@ -1,14 +1,20 @@
 import Axios from "apis/@core";
 import { commentData,querycommentData} from "components/Comment/CommentList";
-const path = '/v1/board/'
+import { number } from "yargs";
+
+interface addCommentProps  {
+   comment : string
+}
+
+const path = 'http://13.125.208.169:8080/v1/board/'
 
 const CommentApi =  {
-   getCommentApi(): Promise<querycommentData> {
-      return Axios.get( path )
+   getCommentApi(boardNum : number): Promise<querycommentData> {
+      return Axios.get( path +  `${boardNum}/comment/list` )
    },
    
-   createCommentApi(data : object): Promise<querycommentData> {
-      return Axios.post("http://localhost:3001/comment",data)
+   createCommentApi(boardNum: number,data : addCommentProps): Promise<any> {
+      return Axios.post(path + `${boardNum}/comment`,data)
    },
 }
 

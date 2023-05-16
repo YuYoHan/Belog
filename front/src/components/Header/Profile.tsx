@@ -2,6 +2,9 @@ import styled from "styled-components"
 import { IoMdArrowDropdown } from "react-icons/io";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthApi } from "apis/auth/authApi";
+import { useMutation } from "@tanstack/react-query";
+import { SessionRepository } from "repository/SessionRepository";
 
 function Profile() {
    
@@ -14,6 +17,19 @@ function Profile() {
       
    }
 
+//    const signUpMutation = useMutation(() => AuthApi.logout(), {
+//       onSuccess: (res) => {
+//          // const Removetoken =  SessionRepository.getToken()
+            // SessionRepository.removeToken(Removetoken)
+//          //  alert(res.data)
+
+//       },
+//       onError: (err) => {
+//           console.log(err);
+          
+//       },
+//   }); 
+
    return(
       <S.Wrapper>
          <S.container onClick={onClickMenu}>
@@ -23,9 +39,8 @@ function Profile() {
                <div>
                   <ul>
                      <li><Link to={'/mypage'}>마이 페이지</Link></li>
-                     <li><Link to={'/test2'}>임시 글</Link></li>
-                     <li><Link to={'/test4'}>설정</Link></li>
-                     <li><Link to={'/test5'}>로그아웃</Link></li>
+                     <li><Link to={'/setting'}>설정</Link></li>
+                     {/* <li><Link to={'/test5'} onClick={()=> logoutMutation.mutate()}>로그아웃</Link></li> */}
                   </ul>
                </div>
             </S.Profiletoggle>

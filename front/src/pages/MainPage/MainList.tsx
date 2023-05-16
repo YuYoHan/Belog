@@ -1,5 +1,3 @@
-import { useQuery } from "@tanstack/react-query";
-import PostsApi from "apis/posts/PostsAPI";
 import LodingPage from "components/Loding/loding";
 import { queryKey} from "consts/queryKey";
 import { media } from "libs/styles/media";
@@ -63,8 +61,6 @@ function MainPageList() {
       fetchNextPage();
     }, [inView]);
 
-   console.log(data);
-   
 
    return(
       <S.Wrapper>

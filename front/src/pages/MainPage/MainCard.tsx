@@ -7,6 +7,7 @@ import { BoardData} from "./MainList"
 function MainPageCard ({data} : {data : BoardData}) {
 
 
+
    return (
       <S.Li>
          <S.StyledLink to={`list/${data.boardTitle}`} state={{data}}>

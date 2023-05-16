@@ -1,13 +1,22 @@
-import React from 'react';
+import { OpenCloseModal } from 'atom/modal/isOpenCloseModal';
+import React, { useEffect, useState } from 'react';
+import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 
+function LoginButton() {
+  const setIsOpenAddTodoModal = useSetRecoilState(OpenCloseModal);
 
-interface Props {
-  onClick: () => void;
-}
 
-function LoginButton({ onClick }: Props) {
-  return <StyledButton onClick={onClick}>로그인</StyledButton>;
+  const onClickModalOpen = (e : any) => {
+    e.preventDefault()
+    setIsOpenAddTodoModal(true)
+  }
+
+  return (
+    <>
+      <StyledButton onClick={onClickModalOpen}>로그인</StyledButton>
+    </>
+  ) 
 }
 
 export default LoginButton;
