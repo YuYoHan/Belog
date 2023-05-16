@@ -111,16 +111,25 @@ public class UserController {
     @Tag(name = "user check")
     @Operation(summary = "로그인 API", description = "로그인하는 API입니다.")
     @ApiResponse(responseCode = "200", description = "로그인 성공")
-    public String login(@RequestBody UserDTO userDTO, HttpSession session) {
+    public ResponseEntity<UserDTO> login(@RequestBody UserDTO userDTO, HttpSession session) {
         UserDTO loginUser = userService.login(userDTO.getUserEmail(), userDTO.getUserPw());
         if (loginUser != null) {
             session.setAttribute("userId", loginUser.getUserId());
             session.setAttribute("userEmail", loginUser.getUserEmail());
             log.info("session userId: " + session.getAttribute("userId"));
             log.info("session userEmail: " + session.getAttribute("userEmail"));
-            return "로그인에 성공했습니다.";
+
+            Long userId = (Long)session.getAttribute("userId");
+            String userPw = (String) session.getAttribute("userEmail");
+
+            UserDTO user = UserDTO.builder()
+                    .userId(loginUser.getUserId())
+                    .userEmail(loginUser.getUserEmail())
+                    .build();
+
+            return ResponseEntity.ok().body(user);
         }
-        return "아이디가 없습니다.";
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
     }
 
 
