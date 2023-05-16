@@ -127,6 +127,8 @@ public class UserController {
                     .userEmail(loginUser.getUserEmail())
                     .build();
 
+            log.info("user : " + user);
+
             return ResponseEntity.ok().body(user);
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
