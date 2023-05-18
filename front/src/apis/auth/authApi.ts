@@ -3,14 +3,16 @@ import { userData } from "components/Header/LoginBtn/hooks/useHomeRegexp";
 import { UserDataResponse } from "pages/UserUpdate/Index";
 
 
-const path = 'http://13.125.208.169:8080/v1/user/'
+const path = 'http://3.34.52.123:8080/v1/user/'
 
 interface UserUpdateDataProps {
+    userId : number;
     userAddr: string;
     userAddrDetail: string;
     userAddrEtc: string;
     userEmail: string;
     userPw: string;
+    userName : string
 }
 
 export const AuthApi = {
@@ -24,14 +26,15 @@ export const AuthApi = {
     },
     
     logout: () =>{
-        return Axios.post(path + '/logout')
+        return Axios.get(path + 'logOut')
     },
 
     getUser: (userEmail : string)  : Promise<UserDataResponse> => {
+        console.log(userEmail);
         return Axios.get(path + userEmail );
     },
 
-    userUpdate: (UserId: number,UserData : UserUpdateDataProps)  : Promise<any> => {
-        return Axios.post( path + UserId, UserData);
+    userUpdate: (UserId: number,UserData : any)  : Promise<any> => {
+        return Axios.put( path + UserId, UserData);
     },
 };

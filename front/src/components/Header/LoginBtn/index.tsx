@@ -1,8 +1,6 @@
 import React,{useState} from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import JoinModal from "./modal/JoinModal";
-import LoginButton from "./modal/LoginBtn";
 import LoginModal from "./modal/LoginModal";
 
 export interface ModalProps {
@@ -19,12 +17,10 @@ function Login() {
     const  {innerText} :  { innerText: string } = e.target as HTMLDivElement
     form = innerText.toLowerCase();
     setForm(form);
-    
   };
-  console.log(form);
-  
+
   return (
-    <Overlay>
+    <Overlay >
       <ModalWrapper onClick={(e) => e.stopPropagation()}>
     {
       form !== '로그인' ? <JoinModal setForm={setForm}/> : <LoginModal/>
@@ -48,6 +44,7 @@ function Login() {
 export default Login;
 
 const Overlay = styled.div`
+
   position: fixed;
   top: 0;
   left: 0;

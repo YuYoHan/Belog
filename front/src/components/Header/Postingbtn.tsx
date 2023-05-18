@@ -6,7 +6,7 @@ function OnClickPosting() {
    
    return(
       <S.Wrapper>
-         <Link to={`/Posting`}>
+         <Link to={`/Posting`} >
            <button >
                새 글 추가
            </button>

@@ -7,6 +7,7 @@ import {  useEffect, useRef, useState } from "react";
 import PostsApi from "apis/posts/PostsAPI";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { queryKey } from "consts/queryKey";
+import { SessionRepository } from "repository/SessionRepository";
 
 
 
@@ -27,7 +28,7 @@ export type postingApiDataProps = {
    boardTitle : string,
    boardContents : string,
    hashTag : string,
-   boardImages : string[]
+   boardImages : string[],
 }
 
 interface HTMLImageElementWithSrc extends HTMLImageElement {
@@ -46,13 +47,14 @@ function PostingRegisterbtn ({content,inputboardTitle,tagList,createObjectURL,im
    
    const imagesAray = document.querySelectorAll("img") as NodeListOf<HTMLImageElementWithSrc>;
    const [boardImgURL, setBoardImgURL] = useState<string[]>([])
+   const UserSessiondata = SessionRepository.getSession();
    const [isboardID ,setisBoardID] = useState<boolean>(false) 
    const navigate = useNavigate();
 
    const onClickbackhistory = () => {
       navigate(-1)
    }
-   
+   // aws key
    const config : S3Config = {
       bucketName: process.env.REACT_APP_S3_BUCKETNAME || '',
       region: process.env.REACT_APP_S3_REGION || '',
@@ -60,11 +62,10 @@ function PostingRegisterbtn ({content,inputboardTitle,tagList,createObjectURL,im
       secretAccessKey: process.env.REACT_APP_S3_SECRET_ACCESSKEY || '',
    }
 
-
- useEffect(() => {
-   const s3 = new ReactS3Client(config);
-   const AddServerImg = async () => {
-
+   //  aws s3 에디터 이미지 업로드
+   useEffect(() => {
+      const s3 = new ReactS3Client(config);
+      const AddServerImg = async () => {
       const originURL = createObjectURL?.replace(/^(blob:http:\/\/localhost:3000\/)/, '');
       const data =  await s3.uploadFile(imgfile.file, `boardImage/${originURL}`);
       const copyBoardImgURL = [...boardImgURL];
@@ -77,14 +78,13 @@ function PostingRegisterbtn ({content,inputboardTitle,tagList,createObjectURL,im
             index: (range?.index || 0) + 1,
             length: 0,
             // other properties as needed
-          };
+         };
          QuillRef?.current.getEditor().insertEmbed(range?.index as number, 'image', data.location)
          QuillRef?.current.getEditor().setSelection(selectionRange);
          
       }
    } 
    AddServerImg()
-
  }, [imgfile]);
 
    // 수정하기 페이지 
@@ -114,7 +114,7 @@ function PostingRegisterbtn ({content,inputboardTitle,tagList,createObjectURL,im
       "boardTitle" : inputboardTitle,
       "boardContents" : content,
       "hashTag" : tagList.join(),
-      "boardImages" : boardImgURL
+      "boardImages" : boardImgURL,
    }
    
    const UpdateboardData = {
@@ -122,14 +122,16 @@ function PostingRegisterbtn ({content,inputboardTitle,tagList,createObjectURL,im
       "boardTitle" : inputboardTitle,
       "boardContents" : content,
       "hashTag" : tagList.join(),
-      "boardImages" : boardImgURL
+      "boardImages" : boardImgURL,
    }
 
+   
 
    //게시글 생성
    const queryClient = useQueryClient();
    const AddPostingmutation = useMutation(() => PostsApi.createPostsApi(boardData), {
       onSuccess: (res) => {
+         console.log(res);
          alert('게시가 완료되었습니다.')
          queryClient.invalidateQueries([queryKey.GET_MAINPOSTS_LIST]);
          navigate('/')

@@ -28,11 +28,12 @@ function LoginModal() {
   
   const loginMutaion = useMutation(() => AuthApi.login({userEmail,userPw}), {
         onSuccess: (res) => {
-            // const token = res.data.data.token;
-            // SessionRepository.setToken(window.localStorage);
-            // if (SessionRepository.getToken()) setStorgeSession(true)
-            console.log(res);
-            
+            SessionRepository.setSession(res.data.userEmail,res.data.userId);
+            const UserSessiondata = SessionRepository.getSession();
+            if (UserSessiondata) setStorgeSession(true)
+            alert('로그인 되었습니다.')
+            setIsOpenAddTodoModal(false)
+            return navigete('/')
         },
         onError: (err) => {
             alert(err);
