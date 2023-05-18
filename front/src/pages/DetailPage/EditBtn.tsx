@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom"
 import styled from "styled-components"
+import { DetailpageData } from "./Detail"
 
-function EditBtn( ) {
+function EditBtn({data} : {data : DetailpageData} ) {
+   
+   // console.log(boardNum);
    
 
-
    return (
-      <Link to={`/Posting:id`}>
+      <Link to={`/Posting/${data.boardNum}`} state={{data}}> 
          <Button>
             수정
          </Button>

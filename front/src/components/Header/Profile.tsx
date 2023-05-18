@@ -2,11 +2,18 @@ import styled from "styled-components"
 import { IoMdArrowDropdown } from "react-icons/io";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthApi } from "apis/auth/authApi";
+import { useMutation } from "@tanstack/react-query";
+import { SessionRepository } from "repository/SessionRepository";
+import { useRecoilState } from "recoil";
+import { StorgeSession } from "atom/SessionStorge/SessionStorge";
 
 function Profile() {
    
    const [Profilemenu,setProfilemenu] = React.useState<boolean>(false);
-   
+   const [isLoginComponent, setisLoginComponent] = useRecoilState(StorgeSession);
+   const SessionEmail = SessionRepository.getSession()
+   const email = SessionEmail.email
    
    const onClickMenu = () => {
       if(!Profilemenu) return setProfilemenu(true);
@@ -14,18 +21,33 @@ function Profile() {
       
    }
 
+   const logoutMutation = useMutation(() => AuthApi.logout(), {
+      onSuccess: (res) => {
+         if(res.status === 200){
+            alert(res.data)
+            window.location.replace("/")
+            SessionRepository.removeSession();
+            setisLoginComponent(false)
+         }  
+      },
+      onError: (err) => {
+          console.log(err);
+          
+      },
+  }); 
+
    return(
       <S.Wrapper>
          <S.container onClick={onClickMenu}>
-            <ProfileBox/>
+            <UserEmail >{email}</UserEmail>
             <S.Profilearrow/>
             <S.Profiletoggle  Profilemenu={Profilemenu}>
                <div>
                   <ul>
                      <li><Link to={'/mypage'}>마이 페이지</Link></li>
-                     <li><Link to={'/test2'}>임시 글</Link></li>
-                     <li><Link to={'/test4'}>설정</Link></li>
-                     <li><Link to={'/test5'}>로그아웃</Link></li>
+                     <li><Link to={'/setting'}>설정</Link></li>
+                     <li><Link to={'#'} onClick={()=> logoutMutation.mutate()}>로그아웃</Link></li>
+                     {/* <li><Link to={'/'} onClick={test}>로그아웃</Link></li> */}
                   </ul>
                </div>
             </S.Profiletoggle>
@@ -47,13 +69,11 @@ const container = styled.div`
    position: relative;
 `
 
-const ProfileBox = styled.div`
-   background: #000;
+const UserEmail = styled.div`
    display: block;
-   height: 2.5rem;
-   width: 2.5rem;
-   border-radius: 50%;
    transition: all 0.125s ease-in 0s;
+   font-weight:bold;
+   font-size : 1.2rem;
 `
 
 const Profilearrow = styled(IoMdArrowDropdown)`

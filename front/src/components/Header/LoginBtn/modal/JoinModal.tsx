@@ -1,25 +1,110 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
+import DaumPostcode from "react-daum-postcode";
+import PopupPostCode from './PopupPostCode';
+import useInputs from 'hooks/useinputs';
+import useHomeRegexp from '../hooks/useHomeRegexp';
+import { useSetRecoilState } from 'recoil';
+import { OpenCloseModal } from 'atom/modal/isOpenCloseModal';
+import { useMutation } from '@tanstack/react-query';
+import { AuthApi } from 'apis/auth/authApi';
 
-const Overlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
+interface formProps {
+  setForm:  React.Dispatch<React.SetStateAction<string>>;
+}
 
-const ModalWrapper = styled.div`
-  background-color: #fff;
-  padding: 30px;
-  border-radius: 5px;
-  position: relative;
-  width: 400px;
-`;
+function JoinModal({setForm} : formProps) {
+
+  const [enroll_company, setEnroll_company] = useState({
+    userAddr   : "",
+    userAddrDetail   : "" ,
+  });
+
+  const [isKoKoApiModal, setisKoKoApiModal] = useState(false);
+  const [{ userEmail, userPw, userName ,userAddrEtc }, onChangeForm] = useInputs({
+    userEmail: '',
+    userPw: '',
+    userName  : "", 
+    userAddrEtc : "",
+  });
+
+  const setIsOpenAddTodoModal = useSetRecoilState(OpenCloseModal);
+  const [Warning , setWarning] = useState<boolean>(false)
+  const formdata = {userEmail, userPw, userName , userAddrEtc  , userAddr : enroll_company.userAddr , userAddrDetail : enroll_company.userAddrDetail}
+  const disabled = useHomeRegexp(formdata);
+
+  useEffect(() =>{
+    if(userPw.length >= 8){
+      setWarning(false)
+    }else{
+      setWarning(true)
+    }
+  },[userPw])
+
+  const onClickCloseModal = () => {
+    setIsOpenAddTodoModal(false)
+  }
+  
+  const onClickOpenKoKoApi = () => {
+    setisKoKoApiModal(true)
+  }
+
+  const onClickCloseKoKoApi = () => {
+    setisKoKoApiModal(false)
+  }
+
+  const handleInput = (e:any) => {
+    setEnroll_company({
+        ...enroll_company,
+          [e.target.name]:e.target.value,
+      })
+  }
+
+  const signUpMutation = useMutation(() => AuthApi.signup(formdata), {
+    onSuccess: (res) => {
+        console.log(res);
+        setForm('로그인')
+        alert(res.data)
+    },
+    onError: (err) => {
+        console.log(err);
+        
+    },
+});
+  
+  return (
+    <>
+        <CloseButton onClick={onClickCloseModal}>X</CloseButton>
+        <JoinContainer>
+          <Title>회원가입</Title>
+          <form onSubmit={(e)=>  {
+            e.preventDefault();
+          signUpMutation.mutate()
+          }}>
+            <Input type="email" name='userEmail' placeholder="이메일" onChange={onChangeForm} />
+            <Input type="password" name='userPw' placeholder="비밀번호" onChange={onChangeForm} />
+            <Warningmsg  Warning={Warning}><p>비밀번호 8자이상 입력해주세요</p></Warningmsg>
+            <Input type="text" name='userName' placeholder="이름"  onChange={onChangeForm} />
+            <PostalCodeInput>
+            <Input type="text" placeholder="우편번호" onChange={handleInput} value={enroll_company.userAddr}/>
+            <Input type="button" onClick={onClickOpenKoKoApi} value="우편번호 찾기" />
+            </PostalCodeInput>
+            {
+            isKoKoApiModal &&
+            <PopupPostCode onClose={onClickCloseKoKoApi} setcompany={setEnroll_company}/>
+            }
+            <Input type="text" placeholder="주소"  onChange={handleInput} value={enroll_company.userAddrDetail}/>
+            <Input type="text" name='userAddrEtc' placeholder="상세주소" onChange={onChangeForm}/>
+            <SubmitButton disabled={disabled}>회원가입</SubmitButton>
+          </form>
+        </JoinContainer>
+    </>
+  );
+}
+
+export default JoinModal;
+
+
 
 const CloseButton = styled.button`
   position: absolute;
@@ -37,6 +122,15 @@ const JoinContainer = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 20px;
+ 
+  & .postcode {
+    background : rgba(0,0,0,0.25);
+    position : fixed;
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+  } 
 `;
 
 const Input = styled.input`
@@ -47,71 +141,39 @@ const Input = styled.input`
   border: 1px solid #ccc;
 `;
 
+const PostalCodeInput = styled.div`
+    display: flex;
+    
+    & input[type='button']{
+      width : 100px;
+      margin-left: 10px
+    }
+`;
+
 const SubmitButton = styled.button`
   padding: 10px;
-  background-color: #20c997;
-  color: #fff;
   border: none;
   border-radius: 5px;
   width: 100%;
   cursor: pointer;
+  background: ${({ disabled }) => (disabled ?  '#F0F0F0' :'#757bf6;' )};
+  color: ${({ disabled }) => (disabled ? '#747474' : '#fff'  )};
+  font-weight: bold;
 `;
 
 const Title = styled.h2`
   margin-top: 0;
+  margin-bottom: 1rem;
 `;
 
-const SignUpText = styled.div`
-  margin-top: 20px;
-  text-align: right;
-`;
+const Warningmsg = styled.div<{Warning: boolean}>`
+  width : 80%;
+  margin-bottom: 5px;
+  padding-left: 10px;
 
-const SignUpLink = styled.a`
-  color: #20c997;
-`;
-
-interface Props {
-  isOpen: boolean;
-  onClose: () => void;
-}
-
-function JoinModal({ isOpen, onClose }: Props) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(event.target.value);
-  };
-
-  const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(event.target.value);
-  };
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    console.log('Email:', email, 'Password:', password);
-  };
-
-  if (!isOpen) return null;
-
-  return (
-    <Overlay onClick={onClose}>
-      <ModalWrapper>
-        <CloseButton onClick={onClose}>X</CloseButton>
-        <JoinContainer>
-          <Title>회원가입</Title>
-          <form onSubmit={handleSubmit}>
-            <Input type="email" placeholder="이메일" value={email} onChange={handleEmailChange} />
-            <Input type="password" placeholder="비밀번호" value={password} onChange={handlePasswordChange} />
-            <SubmitButton>회원가입</SubmitButton>
-          </form>
-          <SignUpText>
-            이미 계정이 있으신가요? <SignUpLink href="#">로그인</SignUpLink>
-          </SignUpText>
-        </JoinContainer>
-      </ModalWrapper>
-    </Overlay>
-  );
-}
-
-export default JoinModal;
+  display: ${({ Warning }) => (Warning ? 'block' : 'none')};
+  & p {
+    font-size: 14px;
+    color : red;
+  }
+`
