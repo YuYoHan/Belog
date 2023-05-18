@@ -6,7 +6,7 @@ interface addCommentProps  {
    comment : string
 }
 
-const path = 'http://13.125.208.169:8080/v1/board/'
+const path = 'http://3.34.52.123:8080/v1/board/'
 
 const CommentApi =  {
    getCommentApi(boardNum : number): Promise<querycommentData> {

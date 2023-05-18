@@ -1,12 +1,25 @@
 import TimeForToday from "hooks/usedaysTimer";
 import { media } from "libs/styles/media"
+import { useState } from "react";
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 import { BoardData} from "./MainList"
 
 function MainPageCard ({data} : {data : BoardData}) {
 
+   const [Preview,setPreview] = useState<any>();
 
+   const createMarkup = () => {
+      
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(data.boardContents, 'text/html');
+      
+      const html = doc.body.textContent;
+      return html;
+    };
+
+    const markup = createMarkup();
+    
 
    return (
       <S.Li>
@@ -19,7 +32,8 @@ function MainPageCard ({data} : {data : BoardData}) {
             </S.ImgContainer>
             <S.Content>
                <strong>{data.boardTitle}</strong>
-               <p dangerouslySetInnerHTML={{ __html :  data.boardContents  }} ></p>
+               {/* <p dangerouslySetInnerHTML={{ __html :  data.boardContents  }} ></p> */}
+               {markup && <p dangerouslySetInnerHTML={{ __html: markup }}></p>}
                <Days>
                   <span>{TimeForToday(data.writeTime)}</span>
                </Days>

@@ -30,7 +30,6 @@ function PostingPage() {
       
       if(location.state !== null){
          const {hashTag} =  location.state.data
-         console.log(hashTag.length);
          if(hashTag.length >= 1){
             const detailtagitem = hashTag.split(',')
             detailtagitem.map((item : string) => {

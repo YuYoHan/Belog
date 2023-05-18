@@ -11,22 +11,14 @@ import OnClickPosting from "./Postingbtn"
 import Profile from "./Profile"
 import HeaderSearch from "./Search"
 
+
 function Header() {
    
    const [ScrollY, setScrollY] = React.useState<number>(0); 
    const [ScrollActive, setScrollActive] = React.useState<boolean>(false);
-   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
    const [isOpenoModal, setIsTodoModal] = useRecoilState(OpenCloseModal);
    const [isLoginComponent, setisLoginComponent] = useRecoilState(StorgeSession);
-
-
-   // useEffect(() => {
-   //    if(localStorge) return setisLoginComponent(true)
-   //    setisLoginComponent(false)
-      
-   // },[isLoginComponent])
    
-
   const handleScroll  = () =>  {
      
      if (ScrollY > 100) {
@@ -55,14 +47,19 @@ function Header() {
             <S.container>
                <Logo/>
                <S.RightItem>
-               <LoginButton/>
-                  { isOpenoModal && <Login/> }
+               {isLoginComponent ? null : (
+                  <>
+                  <LoginButton/>
+                  {isOpenoModal && <Login/>}
+                  </>
+               )}
                   {
-                     !isLoginComponent &&
+                     isLoginComponent &&
                      <>
-                     <OnClickPosting />
-                     <Profile />
+                        <OnClickPosting />
+                        <Profile />
                      </>
+                      
                   }
                </S.RightItem>
             </S.container>

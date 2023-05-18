@@ -38,13 +38,13 @@ function DetailPage() {
    const [data , setData] = useState<DetailpageData>()
    const [tagList , setTagList] = useState<string[]>([])
 
+console.log(data);
 
    useEffect(() => {
       const fetchData = async () => {
          try{
             const res = await PostsApi.getDetailPostsApi(boardNum)
             setData(res.data)
-
             if(res && (res?.data?.hashTag?.length ?? 0) >= 1) {
                const fetchtagItem = res?.data?.hashTag?.split(',')
                fetchtagItem?.map((item : string) => {

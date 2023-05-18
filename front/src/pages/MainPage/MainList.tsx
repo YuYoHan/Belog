@@ -54,7 +54,8 @@ function MainPageList() {
 
    const { data, fetchNextPage, isFetching } = useMainpPostingListQuery();
    const [ref, inView] = useInView();
-
+   console.log(data);
+   
    useEffect(() => {
       // 서버 요청시 취소됐을때
       if (!inView || isFetching) return;
