@@ -12,15 +12,22 @@ import { AuthApi } from 'apis/auth/authApi';
 interface formProps {
   setForm:  React.Dispatch<React.SetStateAction<string>>;
 }
+/**
+ * @param {React.SetStateAction} setForm - 회원가입,로그인 변경 state.
 
+ */
 function JoinModal({setForm} : formProps) {
 
+  // 카카오 주소 api ,주소 입력 시 상세 주소, 우편주소 값 할당
   const [enroll_company, setEnroll_company] = useState({
     userAddr   : "",
     userAddrDetail   : "" ,
   });
 
+  // 카카오 모달 api 팝업 켜짐,꺼짐 여부 
   const [isKoKoApiModal, setisKoKoApiModal] = useState(false);
+
+  // input의 name과 변수 name 일치 하면  onChangeForm 함수 실행
   const [{ userEmail, userPw, userName ,userAddrEtc }, onChangeForm] = useInputs({
     userEmail: '',
     userPw: '',
@@ -28,6 +35,12 @@ function JoinModal({setForm} : formProps) {
     userAddrEtc : "",
   });
 
+  /*
+  setIsOpenAddTodoModal -  회원가입,로그인 전역으로 모달창을 관리
+  Warning - 비밀번호 8자 이상
+  formdata - 회원가입 폼 데이터
+  disabled - 모든 회원정보가 입력됐을때 boolean값으로 버튼 활성화
+  */ 
   const setIsOpenAddTodoModal = useSetRecoilState(OpenCloseModal);
   const [Warning , setWarning] = useState<boolean>(false)
   const formdata = {userEmail, userPw, userName , userAddrEtc  , userAddr : enroll_company.userAddr , userAddrDetail : enroll_company.userAddrDetail}
@@ -53,6 +66,7 @@ function JoinModal({setForm} : formProps) {
     setisKoKoApiModal(false)
   }
 
+  // 주소 input 데이터 업데이트 
   const handleInput = (e:any) => {
     setEnroll_company({
         ...enroll_company,
@@ -60,15 +74,17 @@ function JoinModal({setForm} : formProps) {
       })
   }
 
+  /*
+    회원가입 버튼 클릭 후 로그인 모달 이동 , alert 회원가입 메시지 노출 
+  */
+
   const signUpMutation = useMutation(() => AuthApi.signup(formdata), {
     onSuccess: (res) => {
-        console.log(res);
         setForm('로그인')
         alert(res.data)
     },
     onError: (err) => {
         console.log(err);
-        
     },
 });
   
@@ -79,7 +95,7 @@ function JoinModal({setForm} : formProps) {
           <Title>회원가입</Title>
           <form onSubmit={(e)=>  {
             e.preventDefault();
-          signUpMutation.mutate()
+            signUpMutation.mutate()
           }}>
             <Input type="email" name='userEmail' placeholder="이메일" onChange={onChangeForm} />
             <Input type="password" name='userPw' placeholder="비밀번호" onChange={onChangeForm} />

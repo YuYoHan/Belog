@@ -13,9 +13,15 @@ import styled from 'styled-components';
 
 
 function LoginModal() {
+  /*
+    setIsOpenAddTodoModal - recoil 전역 모달
+    setStorgeSession - recoil 전역 스토리지 
+    navigete - 페이지 이동 
+  */
   const setIsOpenAddTodoModal = useSetRecoilState(OpenCloseModal);
   const setStorgeSession = useSetRecoilState(StorgeSession);
   const navigete = useNavigate()
+  
   const [{ userEmail, userPw }, onChangeForm] = useInputs({
     userEmail: '',
     userPw: '',
@@ -26,6 +32,11 @@ function LoginModal() {
     setIsOpenAddTodoModal(false)
   }
   
+  /*
+    로그인 버튼 클릭 후 세션에 유저 이메일 아이디 저장 
+    로그인 된 사용자를 알기위해 전역관리 recoil setStorgeSession(true) 해줌
+    alert 메세지 노출, recoil 젼역 모달 꺼짐 , 메인페이지로 이동
+  */ 
   const loginMutaion = useMutation(() => AuthApi.login({userEmail,userPw}), {
         onSuccess: (res) => {
             SessionRepository.setSession(res.data.userEmail,res.data.userId);

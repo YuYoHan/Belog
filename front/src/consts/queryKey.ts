@@ -10,7 +10,3 @@ export const UserListKey = {
    GET_USER_LIST : 'GET_USER_LIST ',
 
 }
-
-// export const queryDetailKey  = {
-//    GET_COMMENT_LIST : 'GET_DETAIL_LIST',
-// }

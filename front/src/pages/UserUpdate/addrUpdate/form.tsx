@@ -1,42 +1,28 @@
 import PopupPostCode from 'components/Header/LoginBtn/modal/PopupPostCode'
-import React, { ChangeEvent, SetStateAction, useState } from 'react'
+import { useState } from 'react'
 import styled from 'styled-components'
+import { userdataPrpos } from '../Index';
 
-type userdataPrpos = {
-   // userAddr : string
-   // userAddrDetail : string
-   enroll_company : {
-      userAddr: string;
-      userAddrDetail: string;
-  }
-   userAddrEtc : string
-   onChangeForm : (event: ChangeEvent<HTMLInputElement>) => void
-   setEnroll_company : React.Dispatch<React.SetStateAction<{
-      userAddr: string;
-      userAddrDetail: string;
-  }>>
-}
+
 
 function UserAddrform({enroll_company,userAddrEtc,onChangeForm,setEnroll_company} : userdataPrpos) {
 
+
+   //isKoKoApiModal - 카카오 api 모달 켜짐,꺼짐 여부
    const [isKoKoApiModal, setisKoKoApiModal] = useState(false);
-   const [PopmodalApi, setPopmodalApi] = useState(false);
 
-   
-   const onChnageAddrEdit = () =>{
-
-   }
-
+   // 카카오 모달창 
    const onClickAddrUpdate = () =>{
       if(!isKoKoApiModal) return  setisKoKoApiModal(true)
       setisKoKoApiModal(false)
    }
 
+   // 카카오 모달창 주소 입력 시 우편주소,상세주소 값 할당 함수
    const handleInput = (e:any) => {
       setEnroll_company({
-          ...enroll_company,
-            [e.target.name]:e.target.value,
-        })
+         ...enroll_company,
+         [e.target.name]:e.target.value,
+      })
     }
 
 return (
@@ -50,10 +36,9 @@ return (
          <Input type="button" onClick={onClickAddrUpdate} value="우편번호 찾기" />
       </EditWrapper>
       {
-            isKoKoApiModal &&
-            <PopupPostCode postCodeClass="OpenpostModal" onClose={onClickAddrUpdate} setcompany={setEnroll_company}/>
+         isKoKoApiModal &&
+         <PopupPostCode postCodeClass="OpenpostModal" onClose={onClickAddrUpdate} setcompany={setEnroll_company}/>
       }
-
     </Wrapper>
   )
 }

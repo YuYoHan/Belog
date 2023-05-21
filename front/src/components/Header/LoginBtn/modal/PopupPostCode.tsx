@@ -4,7 +4,7 @@ import styled from 'styled-components';
  
 const PopupPostCode = (props : any) => {
 	// 우편번호 검색 후 주소 클릭 시 실행될 함수, data callback 용
-   
+   // 이 구성요소는 DaumPostcode API를 사용한 포스트코드 검색을 위한 팝업 모달입니다.
    const handlePostCode = (data : any) => {
       let fullAddress = data.address;
       let extraAddress = ''; 
@@ -18,7 +18,7 @@ const PopupPostCode = (props : any) => {
          }
          fullAddress += (extraAddress !== '' ? ` (${extraAddress})` : '');
       }
-
+      //수신된 데이터를 사용하여  userAddr 및 userAddrDetail 속성을 설정
       props.setcompany({
          ...props.company,
          userAddr:data.zonecode,

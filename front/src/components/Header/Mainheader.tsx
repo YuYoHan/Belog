@@ -2,24 +2,22 @@ import {Outlet} from 'react-router-dom'
 import styled from 'styled-components'
 import Logo from './logo'
 import OnClickLogin from './LoginBtn'
-import HeaderSearch from './Search'
 
 function MainHeader(){
-    
 
-    
-   return( <S.Wrapper>
-        <S.container>
-            <Logo/>
-            <S.RightItem>
-                <HeaderSearch/>
-                <OnClickLogin/>
-            </S.RightItem>
-        </S.container>
-        <Outlet/>
-    </S.Wrapper>
-   )
+    return( 
+        <S.Wrapper>
+            <S.container>
+                <Logo/>
+                <S.RightItem>
+                    <OnClickLogin/>
+                </S.RightItem>
+            </S.container>
+            <Outlet/>
+        </S.Wrapper>
+    )
 }
+
 export default MainHeader;
 
 const Wrapper = styled.div`

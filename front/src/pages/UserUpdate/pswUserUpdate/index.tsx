@@ -1,28 +1,28 @@
 import React, { ChangeEvent } from 'react'
 import styled from 'styled-components'
+import { userPswdataPrpos } from '../Index'
 import UserPswform from './form'
 import UserPswtitle from './title'
 
-export type userdataPrpos = {
-   password : string
-   userPw : string
-   onChangeForm : (event: ChangeEvent<HTMLInputElement>) => void
-}
 
 
-function PswUserUpdate({password,userPw,onChangeForm} : userdataPrpos) {
+/**
+ * @param {string} password - 서버에 저장된 비밀번호
+ * @param {string} userPw - input의 입력된 비밀번호
+ * @param {string} onChangeForm - useInputs 훅 
+ */
 
-   
+function PswUserUpdate({password,userPw,onChangeForm} : userPswdataPrpos) {
 
-  return (
-   <S.PswWrapper>
-   <S.PswWrap>
-      <UserPswtitle/>
-      <UserPswform userPw={userPw} password={password} onChangeForm={onChangeForm}/>
-   </S.PswWrap>
-      <p>개인 비밀번호를 수정하는 할 수 있습니다.</p>
-   </S.PswWrapper>
-  )
+   return (
+      <S.PswWrapper>
+      <S.PswWrap>
+         <UserPswtitle/>
+         <UserPswform userPw={userPw} password={password} onChangeForm={onChangeForm}/>
+      </S.PswWrap>
+         <p>개인 비밀번호를 수정하는 할 수 있습니다.</p>
+      </S.PswWrapper>
+   )
 }
 
 export default PswUserUpdate

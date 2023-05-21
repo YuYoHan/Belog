@@ -19,5 +19,8 @@ const GlobalStyles = createGlobalStyle`
    a {
       text-decoration: none;
    }
+   strong{
+      font-weight: bold;
+   }
 `;
 export default GlobalStyles;

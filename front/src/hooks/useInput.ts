@@ -5,10 +5,8 @@ type UserInputProps = [string, (e: React.ChangeEvent<HTMLInputElement> & React.C
 
 
 const useInput = (initialValue : string) : UserInputProps => {
-    console.log(initialValue);
     
     const [value, setValue] = useState(initialValue);
-    console.log(value);
     
     const onChange = (e: React.ChangeEvent<HTMLInputElement> & React.ChangeEvent<HTMLTextAreaElement> & string) => {
         setValue(e.target.value);

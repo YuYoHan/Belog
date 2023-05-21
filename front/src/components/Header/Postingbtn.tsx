@@ -7,9 +7,9 @@ function OnClickPosting() {
    return(
       <S.Wrapper>
          <Link to={`/Posting`} >
-           <button >
+            <button >
                새 글 추가
-           </button>
+            </button>
          </Link>
       </S.Wrapper>
    )

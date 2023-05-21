@@ -1,28 +1,35 @@
 import TimeForToday from "hooks/usedaysTimer";
 import { media } from "libs/styles/media"
-import { useState } from "react";
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 import { BoardData} from "./MainList"
 
+
+/**
+ * @param {number} boardNum - 게시판 아이디.
+ * @param {strinnumberg} userId - 사용자 아이디
+ * @param {string} boardTitle - 제목
+ * @param {string} boardImages - 본문 이미지
+ * @param {string} writeTime - 작성시간
+ * @param {string} boardContents - 게시물 본문 내용
+ * @param {string} hashTag - 태그리스트
+ */
 function MainPageCard ({data} : {data : BoardData}) {
-
-   const [Preview,setPreview] = useState<any>();
-
+   
+   //HTML 태그 text 만 노출시키기 위한  랜더링 해주기 위한 함수
    const createMarkup = () => {
-      
       const parser = new DOMParser();
       const doc = parser.parseFromString(data.boardContents, 'text/html');
-      
       const html = doc.body.textContent;
+      
       return html;
-    };
+   };
 
-    const markup = createMarkup();
-    
+   const markup = createMarkup();
 
    return (
       <S.Li>
+         {/* state 게시판 ID 전달 */}
          <S.StyledLink to={`list/${data.boardTitle}`} state={{data}}>
             <S.ImgContainer>
                {
@@ -32,18 +39,11 @@ function MainPageCard ({data} : {data : BoardData}) {
             </S.ImgContainer>
             <S.Content>
                <strong>{data.boardTitle}</strong>
-               {/* <p dangerouslySetInnerHTML={{ __html :  data.boardContents  }} ></p> */}
                {markup && <p dangerouslySetInnerHTML={{ __html: markup }}></p>}
                <Days>
                   <span>{TimeForToday(data.writeTime)}</span>
                </Days>
             </S.Content>
-               <S.Userinfo>
-                  <div>
-                     {/* <img src={data.profile.img} alt=""/>
-                     <span>{data.profile.username}</span> */}
-                  </div>
-               </S.Userinfo>
          </S.StyledLink>
       </S.Li>
    )
@@ -98,12 +98,10 @@ const ImgContainer = styled.div`
 const Content = styled.div`
    padding-left: 1.5rem;
    padding-right: 1.5rem;
-
-    padding: 1rem;
+   padding: 1rem;
    display: flex;
    flex: 1 1 0%;
    flex-direction: column;
-
    & strong {
       font-size: 1rem;
       margin: 0px 0px 0.25rem;
@@ -132,6 +130,7 @@ const Content = styled.div`
    }
    
 `
+
 const Days = styled.div`
    color: #868E96;
    font-size: 0.75rem;

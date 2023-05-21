@@ -1,14 +1,12 @@
 import { useMutation, useQuery ,useQueryClient} from '@tanstack/react-query';
-import Axios from 'apis/@core';
 import { AuthApi } from 'apis/auth/authApi';
 import { UserListKey } from 'consts/queryKey';
 import useInputs from 'hooks/useinputs';
-import React, { useEffect, useState } from 'react'
+import React, { ChangeEvent, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { SessionRepository } from 'repository/SessionRepository';
 import styled from 'styled-components';
 import AddrUserUpdate from './addrUpdate';
-import EmailUserUpdate from './emailUpdate';
 import PswUserUpdate from './pswUserUpdate';
 import Title from './Title'
 
@@ -24,24 +22,59 @@ export interface UserDataResponse {
   };
 }
 
+export type userdataPrpos = {
+
+  enroll_company : {
+    userAddr: string;
+    userAddrDetail: string;
+  }
+  userAddrEtc : string
+  onChangeForm : (event: ChangeEvent<HTMLInputElement>) => void
+  setEnroll_company : React.Dispatch<React.SetStateAction<{
+  userAddr: string;
+  userAddrDetail: string;
+  }>>
+}
+
+export type userPswdataPrpos = {
+  password : string
+  userPw : string
+  onChangeForm : (event: ChangeEvent<HTMLInputElement>) => void
+}
+
+export type userEmailDataPrpos = {
+  email : string
+  userEmail : string
+  onChangeForm : (event: ChangeEvent<HTMLInputElement>) => void
+}
+
 function UserSettion() {
 
+  /*
+    SessionData - 세션의 저장된 유저정보
+    eamil - 세션 유저 이메일
+    data - 유저 상세정보
+
+  */
   const SessionData = SessionRepository.getSession()
   const eamil = SessionData.email as string
   const {data} = useQuery<UserDataResponse>([UserListKey.GET_USER_LIST], () => AuthApi.getUser(eamil));
   const navigete = useNavigate();
   
+  // 카카오 api  우편주소, 상세주소 값을 담아주기 위한 변수
   const [enroll_company, setEnroll_company] = useState({
     userAddr :   "",
     userAddrDetail : "" ,
   });
 
+  // 이메일 , 비밀번호 , 참고주소 담아주기 위한 useInputhook
   const [{ userEmail, userPw ,userAddrEtc }, onChangeForm, setvalue] = useInputs({
     userEmail:   "",
     userPw:  "",
     userAddrEtc :  '',
   });
   
+  // 서버에서 받아온 데이터가 있으면 기본값을 셋팅해주는 useEffect
   useEffect(() => {
     if(data) {
       setvalue({
@@ -55,8 +88,9 @@ function UserSettion() {
         userAddrDetail:  data?.data.userAddrDetail|| ""
       })
     } 
-},[data])
+  },[data])
 
+  // 회원정보 수정 api mutation 파라미터 UserId, UserUpdateData
   const UserId = data?.data.userId as number;
   const UserUpdateData = {
     userId : data?.data.userId,
@@ -69,7 +103,8 @@ function UserSettion() {
   }
   
   const queryClient = useQueryClient();
-  const UserMutaion = useMutation(() => AuthApi.userUpdate(UserId,UserUpdateData), {
+  // 회원정보 버튼 클릭 후 서버에 수정된 데이터 전송성공시 , alert 노출 , 회원정보 query 키 최신화
+  const UserUpdateMutaion = useMutation(() => AuthApi.userUpdate(UserId,UserUpdateData), {
     onSuccess: (res) => {
         alert('수정되었습니다.')
         queryClient.invalidateQueries([UserListKey.GET_USER_LIST]);
@@ -83,11 +118,9 @@ function UserSettion() {
   return (
     <Wrapper>
       <Title/>
-      
-    {
+      {
         data &&
         <>
-          {/* <EmailUserUpdate userEmail={userEmail} email={data?.data.userEmail} onChangeForm={onChangeForm}/> */}
           <PswUserUpdate userPw={userPw} password={data?.data.userPw} onChangeForm={onChangeForm} />
           <AddrUserUpdate 
           enroll_company={enroll_company}
@@ -99,8 +132,7 @@ function UserSettion() {
       }
       <BtnWrap>
         <BackBtn onClick={() => navigete('/')}>취소</BackBtn>
-        <UserUpdateBtn onClick={()=> UserMutaion.mutate()}>회원수정 </UserUpdateBtn>
-        {/* <UserUpdateBtn onClick={test}>회원수정 </UserUpdateBtn> */}
+        <UserUpdateBtn onClick={()=> UserUpdateMutaion.mutate()}>회원수정 </UserUpdateBtn>
       </BtnWrap>
         </Wrapper>
   )

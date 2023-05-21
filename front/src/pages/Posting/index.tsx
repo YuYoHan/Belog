@@ -19,15 +19,16 @@ export type boardtitle = {
    setTitleValue :React.Dispatch<React.SetStateAction<string>>
 }
 
-
 function PostingPage() {
    
    const location = useLocation();
    const [inputboardTitle, setTinputboardTitle, reset] = useInput(location.state !== null ? location.state.data.boardTitle : "");
    const [tagList , setTagList] = useState<string[]>([])
    
+   /* 상세페이지 location 전달받은 데이터 tagList
+      수정하기 컴포넌트 데이터 
+   */
    useEffect(() => {
-      
       if(location.state !== null){
          const {hashTag} =  location.state.data
          if(hashTag.length >= 1){
@@ -39,26 +40,23 @@ function PostingPage() {
       }
    },[location])
 
-   
-
    return(
       <S.Wrapper>
          <S.container>
             <PostingTitle 
             inputboardTitle={inputboardTitle} 
-            setTinputboardTitle={setTinputboardTitle}/>
-
+            setTinputboardTitle={setTinputboardTitle}
+            />
             <PostingTag 
             tagList ={tagList} 
-            setTagList={setTagList}/>
-            
+            setTagList={setTagList}
+            />
             <PostingEdit 
             inputboardTitle={inputboardTitle} 
             tagList={tagList}
             Detailcontent={ location.state?.data?.boardContents}
             boardImg={location.state?.data?.boardImages}
             boardNum={location.state?.data?.boardNum}
-            
             />
          </S.container>
       </S.Wrapper>
