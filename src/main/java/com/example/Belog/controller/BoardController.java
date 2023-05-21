@@ -94,12 +94,12 @@ public class BoardController {
             @ApiResponse(responseCode = "500", description = "게시판 쓰기 실패")
     })
     @PostMapping(value = "/board")
-    public ResponseEntity<?> insertBoard(@RequestBody BoardDTO boardDTO, HttpSession session) {
+    public ResponseEntity<?> insertBoard(@RequestBody BoardDTO boardDTO) {
 
-        Long userId = (Long)session.getAttribute("userId");
+        // Long userId = (Long)session.getAttribute("userId");
 
         BoardDTO insertBoardDTO = new BoardDTO().builder()
-                .userId(userId)
+                .userId(boardDTO.getUserId())
                 .boardTitle(boardDTO.getBoardTitle())
                 .boardContents(boardDTO.getBoardContents())
                 .hashTag(boardDTO.getHashTag())
