@@ -43,6 +43,7 @@ function DetailPage() {
    const userId = data?.userId as number;
    const EditableBtn =  useEditable(userId)
 
+   console.log(data);
    
    //상세 페이지 api 호출 
    useEffect(() => {

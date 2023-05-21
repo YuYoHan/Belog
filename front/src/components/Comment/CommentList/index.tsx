@@ -28,7 +28,7 @@ function CommentList({boardNum} : { boardNum : number }) {
   const [commentScrollMoveValue ,setcommentScrollMoveValue] = useRecoilState<boolean>(commentScrollMove)
   
   useEffect(() => {
-    Axios.get(`http://3.34.52.123:8080/v1/board/${boardNum}/comment/list`)
+    Axios.get(`http://43.201.30.34:8080/v1/board/${boardNum}/comment/list`)
     .then((res) =>{
       console.log(res);
     }).catch((err) => {

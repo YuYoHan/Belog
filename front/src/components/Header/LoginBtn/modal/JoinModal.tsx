@@ -67,7 +67,7 @@ function JoinModal({setForm} : formProps) {
   }
 
   // 주소 input 데이터 업데이트 
-  const handleInput = (e:any) => {
+  const handleInput = (e:React.ChangeEvent<HTMLInputElement>) => {
     setEnroll_company({
         ...enroll_company,
           [e.target.name]:e.target.value,
@@ -80,6 +80,7 @@ function JoinModal({setForm} : formProps) {
 
   const signUpMutation = useMutation(() => AuthApi.signup(formdata), {
     onSuccess: (res) => {
+        console.log(res);
         setForm('로그인')
         alert(res.data)
     },

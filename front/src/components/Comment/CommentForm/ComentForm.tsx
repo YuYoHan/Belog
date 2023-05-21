@@ -30,7 +30,7 @@ function ComentForm({boardNum} : {boardNum : number}) {
       })
       
       const test = () => {
-         Axios.post(`http://3.34.52.123:8080/v1/board/${boardNum}/comment`,commentobj).
+         Axios.post(`http://43.201.30.34:8080/v1/board/${boardNum}/comment`,commentobj).
          then((res) => {
             
          }).catch((err)=>{

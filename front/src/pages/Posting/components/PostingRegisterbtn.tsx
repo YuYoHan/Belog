@@ -29,6 +29,8 @@ export type postingApiDataProps = {
    boardContents : string,
    hashTag : string,
    boardImages : string[],
+   userId : number,
+
 }
 
 interface HTMLImageElementWithSrc extends HTMLImageElement {
@@ -60,18 +62,28 @@ function PostingRegisterbtn ({content,inputboardTitle,tagList,createObjectURL,im
    imagesAray - 에디터에 올라간 이미지의 객체.
    boardImgURL - 에디터 이미지 저장 
    UserSessiondata - 세션 저장된 value
-   isboardID - EdtiBtn 컴포넌트 전달 해준 boolean값을 비교하기 위한 state   
+   isboardID - EdtiBtn 컴포넌트 전달 해준 상세 게시글 있으면 수정하기 버튼 보여주는 state   
 */
    const imagesAray = document.querySelectorAll("img") as NodeListOf<HTMLImageElementWithSrc>;
    const [boardImgURL, setBoardImgURL] = useState<string[]>([])
    const UserSessiondata = SessionRepository.getSession();
+   const userId = UserSessiondata.userid
    const [isboardID ,setisBoardID] = useState<boolean>(false) 
    const navigate = useNavigate();
-
+   console.log(boardNum);
+   
    // 취소 버튼 전 페이지로 이동
    const onClickbackhistory = () => {
       navigate(-1)
    }
+   // 
+   useEffect(() => {
+      if(boardNum){
+         setisBoardID(true)
+      }else{
+         setisBoardID(false)
+      }
+   },[])
 
    // aws key
    const config : S3Config = {
@@ -142,6 +154,7 @@ function PostingRegisterbtn ({content,inputboardTitle,tagList,createObjectURL,im
       "boardContents" : content,
       "hashTag" : tagList.join(),
       "boardImages" : boardImgURL,
+      "userId":userId
    }
    
    // 게시판 수정 데이터 
@@ -151,7 +164,9 @@ function PostingRegisterbtn ({content,inputboardTitle,tagList,createObjectURL,im
       "boardContents" : content,
       "hashTag" : tagList.join(),
       "boardImages" : boardImgURL,
+      "userId":userId
    }
+   
 
    /*게시글 생성 버튼 클릭 시  alert 노출 후 queryKey.GET_MAINPOSTS_LIST 맵핑된 함수 실행 ,메인 페이지 이동*/
    const queryClient = useQueryClient();

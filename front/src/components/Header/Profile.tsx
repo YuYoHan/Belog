@@ -36,6 +36,7 @@ function Profile() {
    const logoutMutation = useMutation(() => AuthApi.logout(), {
       onSuccess: (res) => {
          if(res.status === 200){
+            console.log(res);
             alert(res.data)
             window.location.replace("/")
             SessionRepository.removeSession();
@@ -55,7 +56,6 @@ function Profile() {
             <S.Profiletoggle  Profilemenu={Profilemenu}>
                <div>
                   <ul>
-                     <li><Link to={'/mypage'}>마이 페이지</Link></li>
                      <li><Link to={'/setting'}>설정</Link></li>
                      <li><Link to={'#'} onClick={()=> logoutMutation.mutate()}>로그아웃</Link></li>
                   </ul>

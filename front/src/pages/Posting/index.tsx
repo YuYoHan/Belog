@@ -12,6 +12,7 @@ export type postingData = {
    Detailcontent? : string,
    boardImg?: string[],
    boardNum: number
+   
 }
 
 export type boardtitle = {

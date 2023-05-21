@@ -1,29 +1,34 @@
 import Axios from "apis/@core";
-import { ResponseData } from "pages/MainPage/MainList";
+import { BoardData, getPostingData } from "pages/MainPage/MainList";
 import { Detaildata } from "pages/DetailPage"
-import { postingApiDataProps, postingDataProps } from "pages/Posting/components/PostingRegisterbtn";
+import { postingApiDataProps } from "pages/Posting/components/PostingRegisterbtn";
 
-const path = 'http://3.34.52.123:8080/v1/board/'
+type PostsData = {
+   data : string
+}
+
+
+const path = 'http://43.201.30.34:8080/v1/board/'
 
 const PostsApi =  {
-   getPostsApi(pageParam : number): Promise<ResponseData> {
+   // 게시물 
+   getPostsApi(pageParam : number): Promise<getPostingData> {
       return Axios.get(path + pageParam)
-        
    },
    
    getDetailPostsApi(boardnum : number): Promise<Detaildata> {
       return Axios.get( path + `boardDetail/${boardnum}`)
    },
 
-   createPostsApi(data : postingApiDataProps): Promise<any> {
+   createPostsApi(data : postingApiDataProps): Promise<PostsData> {
       return Axios.post( path, data)
    },
 
-   updatePostsApi(data : postingApiDataProps): Promise<any> {
+   updatePostsApi(data : postingApiDataProps): Promise<BoardData> {
       return Axios.put( path, data)
    },
 
-   deletePostsApi(boardnum : number): Promise<any> {
+   deletePostsApi(boardnum : number): Promise<PostsData> {
       return Axios.delete(path + boardnum)
    },
 }

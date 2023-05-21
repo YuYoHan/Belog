@@ -29,7 +29,7 @@ interface Page {
    data: Board[];
 }
 
-export interface ResponseData {
+export interface getPostingData {
    boardList: Board;
    data: any;
    pageParams: PageParams;

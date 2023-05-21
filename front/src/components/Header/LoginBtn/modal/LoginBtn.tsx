@@ -8,7 +8,7 @@ function LoginButton() {
   const setIsOpenAddTodoModal = useSetRecoilState(OpenCloseModal);
 
   // 모달 오픈
-  const onClickModalOpen = (e : any) => {
+  const onClickModalOpen = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
     e.preventDefault()
     setIsOpenAddTodoModal(true)
   }
@@ -23,11 +23,17 @@ function LoginButton() {
 export default LoginButton;
 
 const StyledButton = styled.button`
-  padding: 10px 20px;
-  background-color: #fff;
-  color: #333;
-  border: 2px solid #333;
-  font-size: 16px;
-  border-radius: 5px;
-  cursor: pointer;
+  height: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 1rem;
+    border-radius: 1rem;
+    border: none;
+    outline: none;
+    font-weight: bold;
+    word-break: keep-all;
+    background: #212529;
+    color: #FFFFFF;
+    transition: all 0.125s ease-in 0s;
+    cursor: pointer;
 `;

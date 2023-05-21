@@ -10,16 +10,18 @@ import AddrUserUpdate from './addrUpdate';
 import PswUserUpdate from './pswUserUpdate';
 import Title from './Title'
 
+export interface UserData  {
+  userAddr:       string  
+  userAddrDetail: string  
+  userAddrEtc:    string  
+  userEmail:      string  
+  userId:         number | undefined
+  userName:       string | undefined
+  userPw:         string  
+}
+
 export interface UserDataResponse {
-  data: {
-    userAddr: string;
-    userAddrDetail: string;
-    userAddrEtc: string;
-    userEmail: string;
-    userId: number;
-    userName: string;
-    userPw: string;
-  };
+  data: UserData
 }
 
 export type userdataPrpos = {
@@ -54,7 +56,6 @@ function UserSettion() {
     SessionData - 세션의 저장된 유저정보
     eamil - 세션 유저 이메일
     data - 유저 상세정보
-
   */
   const SessionData = SessionRepository.getSession()
   const eamil = SessionData.email as string
@@ -92,14 +93,14 @@ function UserSettion() {
 
   // 회원정보 수정 api mutation 파라미터 UserId, UserUpdateData
   const UserId = data?.data.userId as number;
-  const UserUpdateData = {
-    userId : data?.data.userId,
+  const UserUpdateData : UserData = {
+    userId : data?.data.userId ,
     userAddr : enroll_company.userAddr,
     userAddrDetail : enroll_company.userAddrDetail,
     userEmail,
     userPw,
     userAddrEtc,
-    userName:data?.data.userName
+    userName:data?.data.userName 
   }
   
   const queryClient = useQueryClient();
