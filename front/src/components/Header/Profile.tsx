@@ -118,6 +118,9 @@ const Profiletoggle = styled.div<{Profilemenu: boolean}>`
       color:#212529;
       cursor: pointer;
       font-weight: 500;
+      width: 100%;
+      display: block;
+      height: 100%;
    }
 `
 
