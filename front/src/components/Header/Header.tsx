@@ -9,7 +9,6 @@ import LoginButton from "./LoginBtn/modal/LoginBtn"
 import Logo from "./logo"
 import OnClickPosting from "./Postingbtn"
 import Profile from "./Profile"
-import HeaderSearch from "./Search"
 
 
 function Header() {
@@ -19,26 +18,28 @@ function Header() {
    const [isOpenoModal, setIsTodoModal] = useRecoilState(OpenCloseModal);
    const [isLoginComponent, setisLoginComponent] = useRecoilState(StorgeSession);
    
-  const handleScroll  = () =>  {
-     
-     if (ScrollY > 100) {
-        setScrollY(window.pageYOffset);
-        setScrollActive(true);
-      } else {
+
+   // 스크롤 내릴시 fixed 속성 적용
+   const handleScroll  = () =>  {
+
+      if (ScrollY > 100) {
          setScrollY(window.pageYOffset);
-      setScrollActive(false);
-   }
+         setScrollActive(true);
+         } else {
+         setScrollY(window.pageYOffset);
+         setScrollActive(false);
+      }
 }
 
-  useEffect(() => {
-    function scrollListener() {
-      window.addEventListener("scroll", handleScroll);
-    } 
-    scrollListener();
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    }; //  window 에서 스크롤을 감시를 종료
-  });
+   useEffect(() => {
+      function scrollListener() {
+         window.addEventListener("scroll", handleScroll);
+      } 
+      scrollListener();
+      return () => {
+         window.removeEventListener("scroll", handleScroll);
+      }; //  window 에서 스크롤을 감시를 종료
+   });
 
 
    return(
@@ -47,20 +48,21 @@ function Header() {
             <S.container>
                <Logo/>
                <S.RightItem>
+               {/* 세션에 저장된 유저가 없으면  로그인 버튼을 보여줌*/}
                {isLoginComponent ? null : (
                   <>
                   <LoginButton/>
                   {isOpenoModal && <Login/>}
                   </>
                )}
-                  {
-                     isLoginComponent &&
-                     <>
-                        <OnClickPosting />
-                        <Profile />
-                     </>
-                      
-                  }
+               {/* 로그인 상공 시 새 글 작성, 프로필 텝 메뉴 노출 */}
+               {
+                  isLoginComponent &&
+                  <>
+                     <OnClickPosting />
+                     <Profile />
+                  </>
+               }
                </S.RightItem>
             </S.container>
          </S.HeaderContainer>

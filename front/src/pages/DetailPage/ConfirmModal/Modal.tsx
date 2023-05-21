@@ -5,23 +5,22 @@ import { queryKey } from "consts/queryKey";
 import PostsApi from "apis/posts/PostsAPI";
 import { useNavigate } from 'react-router-dom';
 import AWS from 'aws-sdk';
-import ReactS3Client from 'react-aws-s3-typescript';
-import { string } from 'yargs';
-
 
 interface ModalType {
   boardNum: number;
-   setModalOpen: React.Dispatch<React.SetStateAction<boolean>>,
-   img? : string[]
- }
+  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>,
+  img? : string[]
+}
 
-
+/**
+ * @param {string} boardNum - 게시물 아이디
+ * @param {React.SetStateAction} setModalOpen - 모달 오픈 boolean
+ * @param {Array} img - aws 이미지 배열 
+ */
 function DetailConfirmModal ({boardNum,setModalOpen,img} : ModalType) {
-   
+  
   const navigete = useNavigate()
   const queryClient = useQueryClient();
-
-  
   const s3 = new AWS.S3({
     region: process.env.REACT_APP_S3_REGION,
     accessKeyId: process.env.REACT_APP_S3_ACCESS_KET_ID,
@@ -29,53 +28,54 @@ function DetailConfirmModal ({boardNum,setModalOpen,img} : ModalType) {
   });
   
   console.log(img);
-
-   const Deletemutation = useMutation(() => PostsApi.deletePostsApi(boardNum), {
-        onSuccess: (res) => {
-          const imgurl = img?.map((item) => item.split("/").pop())
-
-          if(imgurl?.length !== 0){
-            const params : any = {
-              Bucket: 'blog-file-upload', 
-              Delete: {
-                // 키값에 배열의 imgurl 넣어줌
-                Objects: imgurl?.map((item) => ({ Key: `boardImage/${item}` })),
-                Quiet: false,
-              },
-            };
-            s3.deleteObjects(params, function(err, data) {
-              if (err) console.log(err, err.stack); // an error occurred
-              else     console.log(data);           // successful response
-            });
-          }
-          alert('게시글 삭제가 완료되었습니다.')
-          queryClient.invalidateQueries([queryKey.GET_MAINPOSTS_LIST])
-          navigete('/')
-        },
-    })
+  
+  /*
+    게시글 삭제 버튼 클릭 후 게시글의 작성된 이미지  imgurl 변수 저장
+    이미지가 있다면 aws s3 버킷 이름과 , imgurl 의 저장된 이미지를 aws 
+    s3의 파일을 삭제 alert 노출 , queryClient.invalidateQueries([queryKey.GET_MAINPOSTS_LIST])
+    적용시켜줌으로써 최신 List 메인페이지 노출
+    
+  */
+  const Deletemutation = useMutation(() => PostsApi.deletePostsApi(boardNum), {
+    onSuccess: (res) => {
+      const imgurl = img?.map((item) => item.split("/").pop())
+      if(imgurl?.length !== 0){
+        const params : any = {
+          Bucket: 'blog-file-upload', 
+          Delete: {
+            // 키값에 배열의 imgurl 넣어줌
+            Objects: imgurl?.map((item) => ({ Key: `boardImage/${item}` })),
+            Quiet: false,
+          },
+        };
+        s3.deleteObjects(params, function(err, data) {
+          if (err) console.log(err, err.stack); 
+          else     console.log(data);           
+        });
+      }
+      alert('게시글 삭제가 완료되었습니다.')
+      queryClient.invalidateQueries([queryKey.GET_MAINPOSTS_LIST])
+      navigete('/')
+    },
+  })
 
   return (
-   <S.Presentation>
-     <S.WrapperModal>
-      <S.Modal>
-         <S.ModalTitle>
-            게시물 삭제
-         </S.ModalTitle>
-            <S.ModalContent>
-            정말로 삭제하시겠습니까?
-            </S.ModalContent>
-      <S.ButtonWrap>
-         <S.ButtonClose onClick={() => setModalOpen(false)}>
-            취소
-         </S.ButtonClose>
-         <S.ButtonCheck onClick={() => Deletemutation.mutate()}>
-         {/* <S.ButtonCheck onClick={test}> */}
-            확인
-         </S.ButtonCheck>
-      </S.ButtonWrap>
+    <S.Presentation>
+      <S.WrapperModal>
+        <S.Modal>
+          <S.ModalTitle>게시물 삭제</S.ModalTitle>
+          <S.ModalContent>정말로 삭제하시겠습니까?</S.ModalContent>
+        <S.ButtonWrap>
+          <S.ButtonClose onClick={() => setModalOpen(false)}>
+              취소
+          </S.ButtonClose>
+          <S.ButtonCheck onClick={() => Deletemutation.mutate()}>
+              확인
+          </S.ButtonCheck>
+        </S.ButtonWrap>
       </S.Modal>
       </S.WrapperModal>
-   </S.Presentation>
+    </S.Presentation>
   )
 }
 
@@ -108,25 +108,20 @@ const WrapperModal = styled.div`
 `;
 
 const Modal = styled.div`
-   position: relative;
-   width: 25rem;
-   height: 220px;
-   box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
-     0px 5px 8px 0px rgba(0, 0, 0, 0.14), 0px 1px 14px 0px rgba(0, 0, 0, 0.12);
-   background: #FFFFFF;
-   overflow: hidden;
-   border-radius: 8px;
-   transition: all 400ms ease-in-out 2s;
-   animation: ${fadeIn} 400ms;
-   padding: 2rem 1.5rem;
+  position: relative;
+  width: 25rem;
+  height: 220px;
+  box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
+    0px 5px 8px 0px rgba(0, 0, 0, 0.14), 0px 1px 14px 0px rgba(0, 0, 0, 0.12);
+  background: #FFFFFF;
+  overflow: hidden;
+  border-radius: 8px;
+  transition: all 400ms ease-in-out 2s;
+  animation: ${fadeIn} 400ms;
+  padding: 2rem 1.5rem;
   &::-webkit-scrollbar {
     display: none;
     visibility: hidden;
-  }
-
-  & {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
   }
 
   @media screen and (max-height: 768px) {
@@ -160,14 +155,14 @@ const ModalTitle = styled.h2`
 const ModalContent = styled.div`
   color: #495057;
   line-height: 1.5;
-   font-size: 1rem;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    white-space: pre-wrap;
+  font-size: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  white-space: pre-wrap;
 `;
 
 const ButtonWrap = styled.div`
-   margin-top: 2rem;
+    margin-top: 2rem;
     display: flex;
     -webkit-box-pack: end;
     justify-content: flex-end;
@@ -188,26 +183,26 @@ const ButtonWrap = styled.div`
 `
 
 const ButtonClose = styled.button`
-   color: #757bf6;
-   background-color: none;
+  color: #757bf6;
+  background-color: none;
 `
 
 const ButtonCheck = styled.button`
-   color: #ffffff;
-   background-color: #757bf6;
-   margin-left: 0.75rem;
+  color: #ffffff;
+  background-color: #757bf6;
+  margin-left: 0.75rem;
 `
 
 
 
 
 const S = {
-   Presentation,
-   WrapperModal,
-   Modal,
-   ModalContent,
-   ModalTitle,
-   ButtonWrap,
-   ButtonClose,
-   ButtonCheck,
+  Presentation,
+  WrapperModal,
+  Modal,
+  ModalContent,
+  ModalTitle,
+  ButtonWrap,
+  ButtonClose,
+  ButtonCheck,
 }

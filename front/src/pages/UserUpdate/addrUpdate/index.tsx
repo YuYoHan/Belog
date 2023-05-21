@@ -1,35 +1,23 @@
-import React, { ChangeEvent, SetStateAction } from 'react'
 import styled from 'styled-components'
+import { userdataPrpos } from '../Index'
 import UserAddrform from './form'
 import UserAddrtitle from './title'
 
-type userdataPrpos = {
-   // userAddr : string
-   // userAddrDetail : string
-   enroll_company :{
-      userAddr: string;
-      userAddrDetail: string;
-  }
-   userAddrEtc : string
-   onChangeForm : (event: ChangeEvent<HTMLInputElement>) => void
-   setEnroll_company : React.Dispatch<React.SetStateAction<{
-      userAddr: string;
-      userAddrDetail: string;
-  }>>
-}
+/**
+ * @param {string} enroll_company - 우편번호,상세주소
+ * @param {string} userAddrEtc - 참고주소
+ * @param {string} onChangeForm - useinputs 폼데이터 변경해주는 함수
+ * @param {string} setEnroll_company - setEnroll_company 폼데이터 변경해주는 함수
+ */
 
 
 function AddrUserUpdate({enroll_company,userAddrEtc,onChangeForm,setEnroll_company} : userdataPrpos ) {
 
-   
-
-  return (
+   return (
    <S.AddrWrapper>
    <S.AddrWrap>
       <UserAddrtitle/>
       <UserAddrform 
-      // userAddr={userAddr} 
-      // userAddrDetail={userAddrDetail}
       enroll_company={enroll_company}
       userAddrEtc={userAddrEtc} 
       onChangeForm={onChangeForm}

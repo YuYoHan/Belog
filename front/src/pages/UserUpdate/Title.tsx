@@ -3,15 +3,13 @@ import styled from 'styled-components'
 
 function Title() {
 
-
-
-  return (
-    <TitleWrap>
-      <h2>
-         내 정보 수정
-      </h2>
-    </TitleWrap>
-  )
+   return (
+      <TitleWrap>
+         <h2>
+            내 정보 수정
+         </h2>
+      </TitleWrap>
+   )
 }
 
 export default Title

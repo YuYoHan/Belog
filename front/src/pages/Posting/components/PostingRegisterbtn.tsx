@@ -10,12 +10,11 @@ import { queryKey } from "consts/queryKey";
 import { SessionRepository } from "repository/SessionRepository";
 
 
-
+// 부모(index) 컴포넌트에서 전달받은 props
 export type postingDataProps = {
    content : string,
    inputboardTitle : string,
    tagList : string[],
-   // createObjectURL : string[],
    createObjectURL : string ,
    imgfile?: any
    QuillRef: React.MutableRefObject<ReactQuill | undefined>
@@ -23,6 +22,7 @@ export type postingDataProps = {
    boardNum:number
 }
 
+// 생성, 수정 api 데이터 유형 타입
 export type postingApiDataProps = {
    boardNum? : number,
    boardTitle : string,
@@ -35,25 +35,44 @@ interface HTMLImageElementWithSrc extends HTMLImageElement {
    src: string;
  }
 
- interface S3Config {
+interface S3Config {
    bucketName: string;
    region: string;
    accessKeyId: string;
    secretAccessKey: string;
- }
+}
+
+
+/**
+ * @param {string} content - 에디터에 작성된 텍스트.
+ * @param {string} inputboardTitle - 제목에 입력되는 타이틀
+ * @param {string} tagList - 태그에 입력된 값의 배열
+ * @param {string} createObjectURL - 미리보기를 위한 임시 이미지 URL
+ * @param {object} imgfile - 이미지의 객체
+ * @param {object} QuillRef - react-quill DOM
+ * @param {Array} boardImg - 수정하기 게시물 이미지
+ * @param {number} boardNum - 수정하기 게시물ID
+ */
 
 function PostingRegisterbtn ({content,inputboardTitle,tagList,createObjectURL,imgfile,QuillRef,boardImg,boardNum} : postingDataProps) {
 
-   
+/**
+   imagesAray - 에디터에 올라간 이미지의 객체.
+   boardImgURL - 에디터 이미지 저장 
+   UserSessiondata - 세션 저장된 value
+   isboardID - EdtiBtn 컴포넌트 전달 해준 boolean값을 비교하기 위한 state   
+*/
    const imagesAray = document.querySelectorAll("img") as NodeListOf<HTMLImageElementWithSrc>;
    const [boardImgURL, setBoardImgURL] = useState<string[]>([])
    const UserSessiondata = SessionRepository.getSession();
    const [isboardID ,setisBoardID] = useState<boolean>(false) 
    const navigate = useNavigate();
 
+   // 취소 버튼 전 페이지로 이동
    const onClickbackhistory = () => {
       navigate(-1)
    }
+
    // aws key
    const config : S3Config = {
       bucketName: process.env.REACT_APP_S3_BUCKETNAME || '',
@@ -65,13 +84,20 @@ function PostingRegisterbtn ({content,inputboardTitle,tagList,createObjectURL,im
    //  aws s3 에디터 이미지 업로드
    useEffect(() => {
       const s3 = new ReactS3Client(config);
+      
       const AddServerImg = async () => {
+      //임시 URL aws에 원하는 저장소에 저장하기 위한 replace
       const originURL = createObjectURL?.replace(/^(blob:http:\/\/localhost:3000\/)/, '');
+      /*
+         파일객체와 url 보냄으로써 aws 파일저장
+         임시 url 생성 후 메모리에서 제거 하기위함 window.URL.revokeObjectURL(createObjectURL); 
+      */
       const data =  await s3.uploadFile(imgfile.file, `boardImage/${originURL}`);
       const copyBoardImgURL = [...boardImgURL];
       window.URL.revokeObjectURL(createObjectURL);
       copyBoardImgURL.push(data.location);
       setBoardImgURL(copyBoardImgURL);
+      // 이미지 에디터에 업로드 이 후 커서 끝으로
       if(QuillRef?.current){
          const range = QuillRef?.current.getEditorSelection();
          const selectionRange = {
@@ -99,7 +125,7 @@ function PostingRegisterbtn ({content,inputboardTitle,tagList,createObjectURL,im
       return 
    },[])
    
-   // 사용자 에디터에 이미시 삭제시 
+   // 사용자가 에디터의 이미지를 삭제 했을때 새로운 이미지  newImgURLs 배열값 반환해준다
    useEffect(() => {
       
       if(!boardImg) return 
@@ -110,6 +136,7 @@ function PostingRegisterbtn ({content,inputboardTitle,tagList,createObjectURL,im
 
    }, [imagesAray.length])
 
+   // 게시판 생성 데이터
    const boardData = {
       "boardTitle" : inputboardTitle,
       "boardContents" : content,
@@ -117,6 +144,7 @@ function PostingRegisterbtn ({content,inputboardTitle,tagList,createObjectURL,im
       "boardImages" : boardImgURL,
    }
    
+   // 게시판 수정 데이터 
    const UpdateboardData = {
       "boardNum" : boardNum,
       "boardTitle" : inputboardTitle,
@@ -125,20 +153,17 @@ function PostingRegisterbtn ({content,inputboardTitle,tagList,createObjectURL,im
       "boardImages" : boardImgURL,
    }
 
-   
-
-   //게시글 생성
+   /*게시글 생성 버튼 클릭 시  alert 노출 후 queryKey.GET_MAINPOSTS_LIST 맵핑된 함수 실행 ,메인 페이지 이동*/
    const queryClient = useQueryClient();
    const AddPostingmutation = useMutation(() => PostsApi.createPostsApi(boardData), {
       onSuccess: (res) => {
-         console.log(res);
          alert('게시가 완료되었습니다.')
          queryClient.invalidateQueries([queryKey.GET_MAINPOSTS_LIST]);
          navigate('/')
       },
    })
 
-   //게시글 수정
+   /*게시글 삭제 버튼 클릭 시  alert 노출 후 queryKey.GET_MAINPOSTS_LIST 맵핑된 함수 실행 메인 페이지로 이동*/
    const UpdatePostingmutation = useMutation(() => PostsApi.updatePostsApi(UpdateboardData), {
       onSuccess: (res) => {
          alert('수정이 완료되었습니다.')

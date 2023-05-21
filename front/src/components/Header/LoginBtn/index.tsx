@@ -6,13 +6,12 @@ import LoginModal from "./modal/LoginModal";
 export interface ModalProps {
   isModalOpen: boolean;
   setIsModalOpen : React.Dispatch<React.SetStateAction<boolean>>;
-  onClose ?: () => void;
 }
 
 function Login() {
 
+  // 모달창의 로그인 , 회원가입 text 의 반대되는 form 사용자 노출
   let [form, setForm] = useState<string>('로그인');
-
   const onFormChange = (e : React.MouseEvent) : void => {
     const  {innerText} :  { innerText: string } = e.target as HTMLDivElement
     form = innerText.toLowerCase();
@@ -44,7 +43,6 @@ function Login() {
 export default Login;
 
 const Overlay = styled.div`
-
   position: fixed;
   top: 0;
   left: 0;

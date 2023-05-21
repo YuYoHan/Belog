@@ -1,18 +1,15 @@
-   import React, { ChangeEvent, useState } from 'react'
+import  {  useState } from 'react'
 import styled from 'styled-components'
+import { userEmailDataPrpos } from '../Index'
 
-type userdataPrpos = {
-   eamil : string
-   userEmail: string
-   onChangeForm : (event: ChangeEvent<HTMLInputElement>) => void
+function UserEmailform({email,userEmail,onChangeForm} : userEmailDataPrpos) {
 
-}
-
-function UserEmailform({eamil,userEmail,onChangeForm} : userdataPrpos) {
-
-
+   /*
+      EmailEdit - 수정하기 버튼 클릭 시 div -> input 태그 용도
+      Emailvalue - 서버에서 받아온 유저 이메일
+   */
    const [EmailEdit, setEmailEdit] = useState<boolean>(false)
-   const [Emailvalue, setEmailvalue]= useState(eamil)
+   const [Emailvalue, setEmailvalue]= useState(email)
 
    const onClickEmailUpdate = () => {
       setEmailEdit(true)
@@ -23,27 +20,26 @@ function UserEmailform({eamil,userEmail,onChangeForm} : userdataPrpos) {
       setEmailvalue(userEmail)
    }
 
-  return (
-    <Wrapper>
-      <EmailTitle >
-         {
-            !EmailEdit ? 
-            Emailvalue
-            :
-            <Input type='email' name='userEmail' value={userEmail} onChange={onChangeForm}/>
-         }
-      </EmailTitle>
-      <EditWrapper>
-         {
-            EmailEdit ?
-            <button onClick={onChnageEmailEdit}>저장</button>
-            :
-            <button onClick={onClickEmailUpdate}>수정</button>
-         }
-      </EditWrapper>
-         
-    </Wrapper>
-  )
+   return (
+      <Wrapper>
+         <EmailTitle >
+            {
+               !EmailEdit ? 
+               Emailvalue
+               :
+               <Input type='email' name='userEmail' value={userEmail} onChange={onChangeForm}/>
+            }
+         </EmailTitle>
+         <EditWrapper>
+            {
+               EmailEdit ?
+               <button onClick={onChnageEmailEdit}>저장</button>
+               :
+               <button onClick={onClickEmailUpdate}>수정</button>
+            }
+         </EditWrapper>
+      </Wrapper>
+   )
 }
 
 export default UserEmailform

@@ -10,16 +10,28 @@ import { StorgeSession } from "atom/SessionStorge/SessionStorge";
 
 function Profile() {
    
+   /*
+      Profilemenu - 숨겨진 텝 메뉴 state
+      setisLoginComponent - 로그아웃 시 전역 recoil state
+      SessionEmail - 세션에 저장된 유저 정보
+      email - 세션에 저장된 유저 이메일
+   */ 
    const [Profilemenu,setProfilemenu] = React.useState<boolean>(false);
    const [isLoginComponent, setisLoginComponent] = useRecoilState(StorgeSession);
    const SessionEmail = SessionRepository.getSession()
    const email = SessionEmail.email
    
+   //텝메뉴 활성화, 비활성화
    const onClickMenu = () => {
       if(!Profilemenu) return setProfilemenu(true);
       setProfilemenu(false);
-      
    }
+
+   /*
+      로그아웃 버튼 클릭 후 성공시 alert 노출 
+      window.location.replace("/") 로그아웃 해도 기록이 남아있어서 새로고침으로 해결
+      세션 유저 정보 삭제
+   */
 
    const logoutMutation = useMutation(() => AuthApi.logout(), {
       onSuccess: (res) => {
@@ -31,8 +43,7 @@ function Profile() {
          }  
       },
       onError: (err) => {
-          console.log(err);
-          
+         console.log(err);
       },
   }); 
 
@@ -47,7 +58,6 @@ function Profile() {
                      <li><Link to={'/mypage'}>마이 페이지</Link></li>
                      <li><Link to={'/setting'}>설정</Link></li>
                      <li><Link to={'#'} onClick={()=> logoutMutation.mutate()}>로그아웃</Link></li>
-                     {/* <li><Link to={'/'} onClick={test}>로그아웃</Link></li> */}
                   </ul>
                </div>
             </S.Profiletoggle>
@@ -108,6 +118,9 @@ const Profiletoggle = styled.div<{Profilemenu: boolean}>`
       color:#212529;
       cursor: pointer;
       font-weight: 500;
+      width: 100%;
+      display: block;
+      height: 100%;
    }
 `
 

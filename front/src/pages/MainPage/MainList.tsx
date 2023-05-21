@@ -15,47 +15,38 @@ export interface BoardData {
    boardTitle: string;
    hashTag?: string;
    boardImages?: string[];
- }
- 
- interface Board {
-     boardList: BoardData[];
 }
 
- 
- interface PageParams {
+interface Board {
+   boardList: BoardData[];
+}
+
+interface PageParams {
    [index: number]: undefined;
- }
- 
- interface Page {
-   config: any;
+}
+
+interface Page {
    data: Board[];
- }
- 
-interface pageDTO {
-   endPage: number,
-   next: boolean,
-   prev: boolean,
-   realEnd: number,
-   startPage: number,
-   total: number
 }
 
 export interface ResponseData {
-   pageDTO: any;
    boardList: Board;
    data: any;
    pageParams: PageParams;
    pages: Page[];
- }
+}
 
 
 function MainPageList() {
    
-
+   /*
+      react-query 무한스크롤
+      data 10개 게시판 리스트 , fetchNextPage 무한스크롤 함수 , isFetching 비동기 함수가 처리되었는지 여부 
+   */ 
    const { data, fetchNextPage, isFetching } = useMainpPostingListQuery();
    const [ref, inView] = useInView();
-   console.log(data);
    
+   // 웹 브라우저 끝 지점 도달 시 무한 스크롤 함수 실행
    useEffect(() => {
       // 서버 요청시 취소됐을때
       if (!inView || isFetching) return;
@@ -79,7 +70,6 @@ function MainPageList() {
             </S.Ul>
          </S.Innerwrap>
                <div ref={ref} />
-
          {isFetching && <LodingPage />}
       </S.Wrapper>
 

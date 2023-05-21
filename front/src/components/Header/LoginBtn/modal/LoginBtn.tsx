@@ -4,9 +4,10 @@ import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 
 function LoginButton() {
+  // 전역 모달관리 boolean 값으로 여부 판단
   const setIsOpenAddTodoModal = useSetRecoilState(OpenCloseModal);
 
-
+  // 모달 오픈
   const onClickModalOpen = (e : any) => {
     e.preventDefault()
     setIsOpenAddTodoModal(true)

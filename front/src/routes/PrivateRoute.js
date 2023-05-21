@@ -1,8 +1,8 @@
 import { Outlet, Navigate } from 'react-router-dom';
-import { TokenRepository } from 'repository/SessionRepository';
+import { SessionRepository } from 'repository/SessionRepository';
 
 function PrivateRoute() {
-    const access = TokenRepository.getToken();
+    const access = SessionRepository.getToken();
     return access ? <Outlet /> : <Navigate to="/" />;
 }
 export default PrivateRoute;

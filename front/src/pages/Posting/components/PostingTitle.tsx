@@ -1,17 +1,23 @@
-import { useEffect } from "react"
+import { ChangeEventHandler, useEffect } from "react"
 import styled from "styled-components"
 
 
-function PostingTitle({inputboardTitle,setTinputboardTitle}: any) {
-   
-   
-   
+ type boardtitleProps = {
+   inputboardTitle: string,
+   setTinputboardTitle : ChangeEventHandler<HTMLInputElement>
+}
 
+/**
+ * @param {string} inputboardTitle - 제목에 입력되는 타이틀
+ * @param {string} setTinputboardTitle - 제목 setState
+ */
+
+function PostingTitle({inputboardTitle,setTinputboardTitle}: boardtitleProps) {
+   
    return (
       <S.Wrapper>
          <S.container>
             <S.Title>
-               
             <input type="text" value={inputboardTitle} onChange={setTinputboardTitle} placeholder='제목을 입력해주세요.'/>
             </S.Title>
          </S.container>
@@ -21,7 +27,6 @@ function PostingTitle({inputboardTitle,setTinputboardTitle}: any) {
 
 export default PostingTitle
 
-
 const Wrapper = styled.div`
 
 `
@@ -30,7 +35,6 @@ const container = styled.div`
    margin-bottom: 0.75rem;
 
 `
-
 const Title = styled.div`
 
    & input{
@@ -51,5 +55,4 @@ const S = {
    Wrapper,
    container,
    Title,
-
 }

@@ -1,7 +1,3 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import PostsApi from "apis/posts/PostsAPI";
-import axios from "axios";
-import { queryKey } from "consts/queryKey";
 import React, { useState } from "react";
 import styled from "styled-components"
 import DetailConfirmModal from "./ConfirmModal/Modal";

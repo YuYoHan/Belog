@@ -1,5 +1,5 @@
 import Header from 'components/Header/Header';
-import DetailPage from 'pages/DetailPage/Detail';
+import DetailPage from 'pages/DetailPage';
 import MainPageList from 'pages/MainPage/MainList';
 import MyPage from 'pages/Mypage';
 import PostingPage from 'pages/Posting';

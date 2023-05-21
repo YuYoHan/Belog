@@ -3,18 +3,18 @@ import styled from 'styled-components'
 import { maskingName } from './hook/PswEncryption'
 import { AiFillEye } from "react-icons/ai";
 import useCheckPassword from 'hooks/checkPassword';
+import { userPswdataPrpos } from '../Index';
 
-type userdataPrpos = {
-   password : string
-   userPw : string
-   onChangeForm : (event: ChangeEvent<HTMLInputElement>) => void
-}
 
-function UserPswform({password,userPw,onChangeForm} : userdataPrpos) {
+function UserPswform({password,userPw,onChangeForm} : userPswdataPrpos) {
 
+   /*
+      PswEncryption - 비밀번호 노출 방지 ••• 처리 hook
+      PswEdit - 수정하기 버튼 클릭 시 div -> input 태그 용도
+      disabled - 비밀번호 8글자 이상 hook
+   */
    const PswEncryption = maskingName(userPw)
    const [PswEdit, setPswEdit] = useState<boolean>(false)
-
    const disabled = useCheckPassword(userPw)
    
 
@@ -36,7 +36,7 @@ function UserPswform({password,userPw,onChangeForm} : userdataPrpos) {
          }
       </PswTitle>
       <EditWrapper>
-      {
+         {
             PswEdit ?
             <button onClick={onChnagePswEdit}>저장</button>
             :

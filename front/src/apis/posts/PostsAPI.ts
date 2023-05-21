@@ -1,6 +1,6 @@
 import Axios from "apis/@core";
 import { ResponseData } from "pages/MainPage/MainList";
-import { Detaildata } from "pages/DetailPage/Detail"
+import { Detaildata } from "pages/DetailPage"
 import { postingApiDataProps, postingDataProps } from "pages/Posting/components/PostingRegisterbtn";
 
 const path = 'http://3.34.52.123:8080/v1/board/'

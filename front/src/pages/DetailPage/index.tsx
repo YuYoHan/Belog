@@ -1,16 +1,12 @@
 // import CommentIndexPage from "components/Comment/CommentForm";
 // import CommentList from "components/Comment/CommentList";
-import { useQuery } from "@tanstack/react-query";
-import Axios from "apis/@core";
 import PostsApi from "apis/posts/PostsAPI";
-import axios from "axios";
 import CommentIndexPage from "components/Comment/CommentForm";
 import CommentList from "components/Comment/CommentList";
-import { queryKey } from "consts/queryKey";
-import { async } from "q";
-import React, { useEffect, useRef, useState } from "react";
+import useEditable from "hooks/editable";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { useRecoilState } from "recoil";
+import { SessionRepository } from "repository/SessionRepository";
 import styled from "styled-components"
 import EditBtn from "./EditBtn";
 import RemoveBtn from "./RemoveBtn";
@@ -33,34 +29,40 @@ export interface Detaildata {
 
 function DetailPage() {
 
+   /*
+      {boardNum} - 게시글 상세 번호
+      data - 상세 페이지 api state
+      tagList - 서버에 저장된 태그 리스트 저장 state
+      userId - 게시글 작성 유저 아이디
+      EditableBtn - 작성한 유저가 일치하면 수정 삭제 권한 부여 hook
+   */
    const location = useLocation();
    const {boardNum} = location.state.data
    const [data , setData] = useState<DetailpageData>()
    const [tagList , setTagList] = useState<string[]>([])
+   const userId = data?.userId as number;
+   const EditableBtn =  useEditable(userId)
 
-console.log(data);
-
+   
+   //상세 페이지 api 호출 
    useEffect(() => {
       const fetchData = async () => {
          try{
             const res = await PostsApi.getDetailPostsApi(boardNum)
             setData(res.data)
+            // 서버에서 빈 배열을 보내줬기떄문에 1보다 큰 것만 랜더링 되게 로직 구현
             if(res && (res?.data?.hashTag?.length ?? 0) >= 1) {
                const fetchtagItem = res?.data?.hashTag?.split(',')
                fetchtagItem?.map((item : string) => {
                   setTagList((props) => [...props,item])
                })
             }
-
-            setTagList((props) => [...props, ])
          }catch(err){
             console.log(err);
          }
       }
       fetchData()
    },[])
-
-   
 
 
    return (
@@ -69,7 +71,7 @@ console.log(data);
             {data?.boardTitle}
          </S.Title>
          <S.TagWrap>
-
+            {/* 서버에서 빈 배열 보내줘서 조건처리 0보다 큰 태그리스트만 랜더링 */}
             {
                tagList.length > 0 && 
                tagList.map((tagItem, index) => {
@@ -77,14 +79,15 @@ console.log(data);
                <S.TagItem key={index}>
                <S.Text>{tagItem}</S.Text>
                </S.TagItem>
-            )
-            })}
+            )})}
          </S.TagWrap>
+         {
+            EditableBtn &&
             <S.ButtonWrap>
             {data && <EditBtn data={data} />}
                <RemoveBtn boardNum={boardNum} img={data?.boardImages}/>
             </S.ButtonWrap>
-         
+            }
          <S.Content>
          {data && (
             <div dangerouslySetInnerHTML={{ __html: data.boardContents }} />
