@@ -2,6 +2,7 @@ package com.example.Belog.mapper;
 
 import com.example.Belog.domain.CommentDTO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -17,12 +18,11 @@ public interface CommentMapper {
     // 댓글 삭제
     void delete(Long commentNum);
 
-    // 댓글 불러오기
-//    CommentDTO find(Long boardNum, Long commentNum);
-
     // 댓글 목록
     List<CommentDTO> findAll(Long boardNum);
 
     // 댓글 개수
     int count(Long boardNum);
+
+
 }
