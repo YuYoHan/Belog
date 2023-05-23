@@ -23,7 +23,7 @@ import java.util.List;
 @RestController
 @Log4j2
 @AllArgsConstructor
-@RequestMapping("/v1/board/{boardNum}")
+@RequestMapping("/v1/board")
 public class CommentController {
 
     private CommentService commentService;
@@ -31,12 +31,14 @@ public class CommentController {
     // 댓글작성
     @Tag(name = "Comment check")  //API 그룹설정
     @Operation(summary = "추가 API", description = "댓글을 추가하는 API입니다.") // API 설명
-    @PostMapping("/comment")
+    @PostMapping("/{boardNum}/comment")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "댓글 등록 성공"),
             @ApiResponse(responseCode = "404", description = "댓글 등록 실패")}) //API 호출결과에 대해서 설명
-    public ResponseEntity<?> addComment( @PathVariable("boardNum") Long boardNum, @RequestParam("comment") String comment, HttpServletRequest request) {
-        HttpSession session = request.getSession();
+    public ResponseEntity<?> addComment( @PathVariable("boardNum") Long boardNum,
+                                         @RequestParam("comment") String comment,
+                                         HttpSession session) {
+
         Long userId = (Long)session.getAttribute("userId");
 
         CommentDTO commentDTO = CommentDTO.builder()
@@ -44,29 +46,34 @@ public class CommentController {
                 .boardNum(boardNum)
                 .comment(comment)
                 .build();
+
         commentService.addComment(commentDTO);
         log.info("Add success");
         return new ResponseEntity<>(commentDTO, HttpStatus.CREATED);
     }// addComment
 
+
     // 댓글수정
     @Tag(name = "Comment check")
     @Operation(summary = "수정 API", description = "댓글을 수정하는 API입니다.")
-    @PutMapping("/comment/{commentNum}")
+    @PutMapping("/{boardNum}/comment/{commentNum}")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "댓글 수정 성공"),
             @ApiResponse(responseCode = "404", description = "댓글 수정 실패") })
-    public ResponseEntity<?> editComment( @PathVariable("commentNum") Long commentNum, @RequestBody CommentDTO commentDTO, HttpServletRequest request) {
+    public ResponseEntity<?> editComment( @PathVariable("commentNum") Long commentNum,
+                                          @RequestBody CommentDTO commentDTO,
+                                          HttpSession session) {
 
         commentService.editComment(commentDTO);
         log.info("edit");
         return new ResponseEntity<>(commentDTO, HttpStatus.OK);
     }//editComment
 
+
     // 댓글삭제
     @Tag(name = "Comment check")
     @Operation(summary = "삭제 API", description = "댓글을 삭제하는 API입니다.")
-    @DeleteMapping("/comment/{commentNum}")
+    @DeleteMapping("/{boardNum}/comment/{commentNum}")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "댓글 삭제 성공"),
             @ApiResponse(responseCode = "404", description = "댓글 삭제 실패")})
@@ -77,18 +84,10 @@ public class CommentController {
         return new ResponseEntity<>(HttpStatus.OK);
     }//deleteComment
 
-    // 댓글 불러오기
-//    @GetMapping("/comment/{commentNum}")
-//    public CommentDTO findComment(@PathVariable("boardNum") Long boardNum,
-//                                  @PathVariable("commentNum") Long commentNum) {
-//        log.info("find " + commentNum);
-//        return commentService.findComment(boardNum, commentNum);
-//    }//deleteComment
-
     // 전체 댓글보여주기
     @Tag(name = "Comment check")
     @Operation(summary = "전체 조회 API", description = "댓글을 모두 조회하는 API입니다.")
-    @GetMapping("/comment/list")
+    @GetMapping("/{boardNum}/comment/list")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "전체 댓글 조회 성공"),
             @ApiResponse(responseCode = "404", description = "전체 댓글 조회 실패")
@@ -98,16 +97,20 @@ public class CommentController {
         return commentService.findAllComment(boardNum);
     }//findAllComment
 
+
     //댓글 수
     @Tag(name = "Comment check")
     @Operation(summary = "댓글 갯 수 API", description = "댓글수에 관련된 API입니다.")
-    @GetMapping("/comment/count")
+    @GetMapping("/{boardNum}/comment/count")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "전체 댓글 수 조회 성공"),
             @ApiResponse(responseCode = "404", description = "전체 댓글 수 조회 실패")
     })
     public int count(@PathVariable("boardNum") Long boardNum) {
         log.info("count board "+boardNum);
+        log.info(commentService.countComment(boardNum));
         return commentService.countComment(boardNum);
     }
+
+
 }
