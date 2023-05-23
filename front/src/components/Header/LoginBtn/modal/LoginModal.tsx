@@ -3,74 +3,72 @@ import { AuthApi } from 'apis/auth/authApi';
 import { OpenCloseModal } from 'atom/modal/isOpenCloseModal';
 import { StorgeSession } from 'atom/SessionStorge/SessionStorge';
 import useInputs from 'hooks/useinputs';
-import {  useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import { SessionRepository } from 'repository/SessionRepository';
 import styled from 'styled-components';
-
-
-
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { AxiosError } from 'axios';
 
 function LoginModal() {
-  /*
-    setIsOpenAddTodoModal - recoil 전역 모달
-    setStorgeSession - recoil 전역 스토리지 
-    navigete - 페이지 이동 
-  */
   const setIsOpenAddTodoModal = useSetRecoilState(OpenCloseModal);
   const setStorgeSession = useSetRecoilState(StorgeSession);
-  const navigete = useNavigate()
+  const navigate = useNavigate();
+
+  
 
   const [{ userEmail, userPw }, onChangeForm] = useInputs({
     userEmail: '',
     userPw: '',
   });
 
-
   const onClickCloseModal = () => {
-    setIsOpenAddTodoModal(false)
-  }
-  
-  /*
-    로그인 버튼 클릭 후 세션에 유저 이메일 아이디 저장 
-    로그인 된 사용자를 알기위해 전역관리 recoil setStorgeSession(true) 해줌
-    alert 메세지 노출, recoil 젼역 모달 꺼짐 , 메인페이지로 이동
-  */ 
-  const loginMutaion = useMutation(() => AuthApi.login({userEmail,userPw}), {
-        onSuccess: (res) => {
-            SessionRepository.setSession(res.data.userEmail,res.data.userId);
-            const UserSessiondata = SessionRepository.getSession();
-            if (UserSessiondata) setStorgeSession(true)
-            alert('로그인 되었습니다.')
-            setIsOpenAddTodoModal(false)
-            return navigete('/')
-        },
-        onError: (err) => {
-            alert(err);
-        },
-    });
+    setIsOpenAddTodoModal(false);
+  };
 
- 
+  /*
+    로그인 성공 시 유저 정보 세션 저장 
+    세션이 저장되면 전역으로(recoil) StorgeSession true
+    toast메세지 사용자에게 노출 , 메인페이지 이동
+  */
+  const loginMutation = useMutation(() => AuthApi.login({ userEmail, userPw }), {
+    onSuccess: (res) => {
+      SessionRepository.setSession(res.data.userEmail, res.data.userId);
+      const userSessionData = SessionRepository.getSession();
+      if (userSessionData) setStorgeSession(true);
+      setIsOpenAddTodoModal(false);
+        toast.success('로그인 성공하셨습니다.')
+      navigate('/');
+    },
+    onError: (err : AxiosError) => {
+      if(err.response && err.response.status === 404){
+          toast.error('비밀번호 혹은 가입되지 않은 이메일 입니다.')
+      }
+    },
+  });
 
   return (
     <>
-        <CloseButton onClick={onClickCloseModal}>X</CloseButton>
-        <LoginContainer>
-          <Title>로그인</Title>
-          <form onSubmit={(e)=> {
-            e.preventDefault()
-            loginMutaion.mutate()}}>
-            <Input type="email" name='userEmail' onChange={onChangeForm} placeholder="이메일" />
-            <Input type="password" name='userPw' onChange={onChangeForm} placeholder="비밀번호" />
-            <SubmitButton >로그인</SubmitButton>
-          </form>
-        </LoginContainer>
-  </>);
+      <CloseButton onClick={onClickCloseModal}>X</CloseButton>
+      <LoginContainer>
+        <Title>Login</Title>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            loginMutation.mutate();
+          }}
+        >
+          <Input type="email" name="userEmail" onChange={onChangeForm} placeholder="이메일" />
+          <Input type="password" name="userPw" onChange={onChangeForm} placeholder="비밀번호" />
+          <SubmitButton>로그인</SubmitButton>
+        </form>
+      </LoginContainer>
+    </>
+  );
 }
 
 export default LoginModal;
-
 
 const CloseButton = styled.button`
   position: absolute;
@@ -100,7 +98,7 @@ const Input = styled.input`
 
 const SubmitButton = styled.button`
   padding: 10px;
-  background-color: #757bf6;;
+  background-color: #757bf6;
   color: #fff;
   border: none;
   border-radius: 5px;

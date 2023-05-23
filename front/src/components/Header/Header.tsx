@@ -9,6 +9,7 @@ import LoginButton from "./LoginBtn/modal/LoginBtn"
 import Logo from "./logo"
 import OnClickPosting from "./Postingbtn"
 import Profile from "./Profile"
+import { ToastContainer } from "react-toastify"
 
 
 function Header() {
@@ -17,6 +18,7 @@ function Header() {
    const [ScrollActive, setScrollActive] = React.useState<boolean>(false);
    const [isOpenoModal, setIsTodoModal] = useRecoilState(OpenCloseModal);
    const [isLoginComponent, setisLoginComponent] = useRecoilState(StorgeSession);
+   console.log(isLoginComponent);
    
 
    // 스크롤 내릴시 fixed 속성 적용
@@ -65,6 +67,8 @@ function Header() {
                }
                </S.RightItem>
             </S.container>
+      <ToastContainer position="top-right" autoClose={2000}/>
+
          </S.HeaderContainer>
          <Outlet/>
       </S.Wrapper>

@@ -4,9 +4,13 @@ import UserEmailform from './form';
 import UserEmailtitle from './title';
 
 
-function EmailUserUpdate({email,userEmail,onChangeForm} : userEmailDataPrpos) {
+/**
+ * @param {string} email - 서버에 저장된 비밀번호
+ * @param {string} userEmail - input의 입력된 비밀번호
+ * @param {string} onChangeForm - useInputs 훅 
+ */
 
-   
+function EmailUserUpdate({email,userEmail,onChangeForm} : userEmailDataPrpos) {
 
    return (
       <S.EmailWrapper>

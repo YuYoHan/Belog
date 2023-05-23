@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import DaumPostcode from "react-daum-postcode";
 import PopupPostCode from './PopupPostCode';
 import useInputs from 'hooks/useinputs';
 import useHomeRegexp from '../hooks/useHomeRegexp';
@@ -8,6 +7,10 @@ import { useSetRecoilState } from 'recoil';
 import { OpenCloseModal } from 'atom/modal/isOpenCloseModal';
 import { useMutation } from '@tanstack/react-query';
 import { AuthApi } from 'apis/auth/authApi';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import useCheckPassword from 'hooks/checkPassword';
+import { AxiosError } from 'axios';
 
 interface formProps {
   setForm:  React.Dispatch<React.SetStateAction<string>>;
@@ -45,7 +48,9 @@ function JoinModal({setForm} : formProps) {
   const [Warning , setWarning] = useState<boolean>(false)
   const formdata = {userEmail, userPw, userName , userAddrEtc  , userAddr : enroll_company.userAddr , userAddrDetail : enroll_company.userAddrDetail}
   const disabled = useHomeRegexp(formdata);
-
+  const checkPw = useCheckPassword(userPw)
+  console.log(disabled);
+  
   useEffect(() =>{
     if(userPw.length >= 8){
       setWarning(false)
@@ -73,19 +78,20 @@ function JoinModal({setForm} : formProps) {
           [e.target.name]:e.target.value,
       })
   }
-
+  
   /*
-    회원가입 버튼 클릭 후 로그인 모달 이동 , alert 회원가입 메시지 노출 
+    회원가입 버튼 클릭 후 로그인 모달 이동 , toast 회원가입 메시지 노출 
   */
 
   const signUpMutation = useMutation(() => AuthApi.signup(formdata), {
     onSuccess: (res) => {
-        console.log(res);
-        setForm('로그인')
-        alert(res.data)
+      setForm('로그인')
+      toast.success('회원가입 성공하셨습니다.')
     },
-    onError: (err) => {
-        console.log(err);
+    onError: (err : AxiosError) => {
+      if(err.response && err.response.status === 500){
+        toast.error('이미 존재하는 이메일입니다.')
+      }
     },
 });
   
@@ -112,7 +118,7 @@ function JoinModal({setForm} : formProps) {
             }
             <Input type="text" placeholder="주소"  onChange={handleInput} value={enroll_company.userAddrDetail}/>
             <Input type="text" name='userAddrEtc' placeholder="상세주소" onChange={onChangeForm}/>
-            <SubmitButton disabled={disabled}>회원가입</SubmitButton>
+            <SubmitButton disabled={ disabled }>회원가입</SubmitButton>
           </form>
         </JoinContainer>
     </>

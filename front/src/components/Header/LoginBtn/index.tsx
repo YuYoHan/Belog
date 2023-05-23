@@ -1,4 +1,6 @@
+import ErrorBoundary from "ErrorBoundary.ts/errorBoundary";
 import React,{useState} from "react";
+import { ToastContainer } from "react-toastify";
 import styled from "styled-components";
 import JoinModal from "./modal/JoinModal";
 import LoginModal from "./modal/LoginModal";
@@ -10,6 +12,7 @@ export interface ModalProps {
 
 function Login() {
 
+  
   // 모달창의 로그인 , 회원가입 text 의 반대되는 form 사용자 노출
   let [form, setForm] = useState<string>('로그인');
   const onFormChange = (e : React.MouseEvent) : void => {
@@ -22,7 +25,7 @@ function Login() {
     <Overlay >
       <ModalWrapper onClick={(e) => e.stopPropagation()}>
     {
-      form !== '로그인' ? <JoinModal setForm={setForm}/> : <LoginModal/>
+      form !== '로그인' ? <JoinModal setForm={setForm}/> : <LoginModal/> 
     }
 
     {
@@ -37,6 +40,7 @@ function Login() {
     }
     </ModalWrapper>
   </Overlay>
+
   );
 }
 

@@ -35,13 +35,11 @@ function Profile() {
 
    const logoutMutation = useMutation(() => AuthApi.logout(), {
       onSuccess: (res) => {
-         if(res.status === 200){
             console.log(res);
             alert(res.data)
             window.location.replace("/")
             SessionRepository.removeSession();
             setisLoginComponent(false)
-         }  
       },
       onError: (err) => {
          console.log(err);

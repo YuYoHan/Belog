@@ -36,7 +36,7 @@ function DetailConfirmModal ({boardNum,setModalOpen,img} : ModalType) {
     적용시켜줌으로써 최신 List 메인페이지 노출
     
   */
-  const Deletemutation = useMutation(() => PostsApi.deletePostsApi(boardNum), {
+  const PostingDeletemutation = useMutation(() => PostsApi.deletePostsApi(boardNum), {
     onSuccess: (res) => {
       const imgurl = img?.map((item) => item.split("/").pop())
       if(imgurl?.length !== 0){
@@ -69,7 +69,7 @@ function DetailConfirmModal ({boardNum,setModalOpen,img} : ModalType) {
           <S.ButtonClose onClick={() => setModalOpen(false)}>
               취소
           </S.ButtonClose>
-          <S.ButtonCheck onClick={() => Deletemutation.mutate()}>
+          <S.ButtonCheck onClick={() => PostingDeletemutation.mutate()}>
               확인
           </S.ButtonCheck>
         </S.ButtonWrap>

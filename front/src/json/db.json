@@ -51,78 +51,15 @@
   ],
   "posts": [],
   "images": [],
-  "comment": [
-    {
-      "id": 1,
-      "username": "kwaneung",
-      "profileimg": "https://velog.velcdn.com/images/kwaneung/profile/c065ce6f-e476-48fb-89d0-da866db6771d/image.png",
-      "command": "잘 읽었습니다! 과연 자바를 대체할 정도로 대중화가 될 날이 언제올지 기다려지네요"
-    },
-    {
-      "id": 2,
-      "username": "123xxx",
-      "profileimg": "https://velog.velcdn.com/images/123xxx/profile/73005fb9-4017-4d36-b901-da7548941937/image.PNG",
-      "command": "자바시러 자바시러 자바시러"
-    },
-    {
-      "username": "123xxx",
-      "profileimg": "https://velog.velcdn.com/images/123xxx/profile/73005fb9-4017-4d36-b901-da7548941937/image.PNG",
-      "command": "코틀린의 장점이라고 써있는 부분이 C#엔 예전부터 있던 점들인데 왜 C#은 잘 안 쓸까요?",
-      "id": 3
-    },
-    {
-      "username": "cleooo",
-      "profileimg": "https://velog.velcdn.com/images/dydgh1225/profile/bc219776-6639-4af3-a907-308671880777/image.png",
-      "command": "ㅁㄴㅇㅁㄴㅇㄴㅁㅇ",
-      "id": 4
-    },
-    {
-      "username": "cleooo",
-      "profileimg": "https://velog.velcdn.com/images/dydgh1225/profile/bc219776-6639-4af3-a907-308671880777/image.png",
-      "command": "아무거나\n",
-      "id": 5
-    },
-    {
-      "username": "cleooo",
-      "profileimg": "https://velog.velcdn.com/images/dydgh1225/profile/bc219776-6639-4af3-a907-308671880777/image.png",
-      "command": "gdgd",
-      "id": 6
-    },
-    {
-      "username": "cleooo",
-      "profileimg": "https://velog.velcdn.com/images/dydgh1225/profile/bc219776-6639-4af3-a907-308671880777/image.png",
-      "command": "test",
-      "id": 7
-    },
-    {
-      "username": "cleooo",
-      "profileimg": "https://velog.velcdn.com/images/dydgh1225/profile/bc219776-6639-4af3-a907-308671880777/image.png",
-      "command": "asdsadasdasdasd",
-      "id": 8
-    },
-    {
-      "username": "cleooo",
-      "profileimg": "https://velog.velcdn.com/images/dydgh1225/profile/bc219776-6639-4af3-a907-308671880777/image.png",
-      "command": "test",
-      "id": 9
-    },
-    {
-      "username": "cleooo",
-      "profileimg": "https://velog.velcdn.com/images/dydgh1225/profile/bc219776-6639-4af3-a907-308671880777/image.png",
-      "command": "ㅎㅇㅎㅇ",
-      "id": 10
-    },
-    {
-      "username": "cleooo",
-      "profileimg": "https://velog.velcdn.com/images/dydgh1225/profile/bc219776-6639-4af3-a907-308671880777/image.png",
-      "command": "댓글변화",
-      "id": 11
-    },
-    {
-      "username": "cleooo",
-      "profileimg": "https://velog.velcdn.com/images/dydgh1225/profile/bc219776-6639-4af3-a907-308671880777/image.png",
-      "command": "ㅅㄷㄴㅅ",
-      "id": 12
-    }
-  ]
+    
+    "comment": [
+      {
+        "id": 1,
+        "useremail": "kwaneung",
+        "comment": "잘 읽었습니다! 과연 자바를 대체할 정도로 대중화가 될 날이 언제올지 기다려지네요",
+        "boardNum" : 1,
+        "commentNum":1,
+        "userId" : 4
+      }
+    ]
 }

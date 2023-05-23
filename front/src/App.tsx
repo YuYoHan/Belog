@@ -4,6 +4,7 @@ import GlobalStyles from 'libs/styles/global';
 import { QueryClient } from '@tanstack/react-query';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { RecoilRoot} from 'recoil';
+import { ToastContainer } from 'react-toastify';
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
@@ -22,7 +23,7 @@ function App() {
 
 
   return (
-      <QueryClientProvider client={qureyClient}>
+    <QueryClientProvider client={qureyClient}>
         <RecoilRoot>
           <GlobalStyles/>
           <Routing/>

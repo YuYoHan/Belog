@@ -9,7 +9,6 @@ import ComentCountTitle from './ComentCountTitle'
 
 function CommentIndexPage({boardNum} : {boardNum : number}) {
 
-   
 
   return (
    <React.Fragment>

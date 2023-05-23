@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import CommandContent from './command';
 import { commentKey } from "consts/queryKey";
 import CommentApi from "apis/comment/CommentAPI";
 import { useQuery } from "@tanstack/react-query";
@@ -8,14 +7,17 @@ import React from 'react';
 import { useRecoilState, } from 'recoil';
 import { commentScrollMove } from "atom/comment/commentScrollmove";
 import axios from 'axios';
-import Axios from 'apis/@core';
+import CommentCard from './list/commentCard';
 
 
 export type commentData = {
-  boardNum? : number,
-  comment? : string,
-  commentNum? : number,
-  userId? : number
+  data : {
+    useremail : string;
+    boardNum : number,
+    comment : string,
+    commentNum? : number,
+    userId : number
+  }
 }
 
 export type querycommentData = {
@@ -23,19 +25,11 @@ export type querycommentData = {
 }
 
 function CommentList({boardNum} : { boardNum : number }) {
-  const {data : commentist} = useQuery<querycommentData>([commentKey.GET_COMMENT_LIST], () => CommentApi.getCommentApi(boardNum));
+  const {data : commentist} = useQuery<querycommentData>([commentKey.GET_COMMENT_LIST], () => CommentApi.getCommentApi());
   const ref = useRef<HTMLInputElement>(null);
   const [commentScrollMoveValue ,setcommentScrollMoveValue] = useRecoilState<boolean>(commentScrollMove)
+  console.log(commentist);
   
-  useEffect(() => {
-    Axios.get(`http://43.201.30.34:8080/v1/board/${boardNum}/comment/list`)
-    .then((res) =>{
-      console.log(res);
-    }).catch((err) => {
-      console.log(err);
-      
-    })
-  },[])
 
   useEffect(()=>{
     if(commentScrollMoveValue === true){
@@ -49,13 +43,12 @@ function CommentList({boardNum} : { boardNum : number }) {
 
   return (
     <Wrapper >
-      {/* {
-        commentist?.data.map((list,index) => 
+      {
+        commentist?.data.map((list : any ,index) => 
         <div key={index} ref={ref}>
-          <Profile user={list.username} imgurl={list.profileimg}/>
-          <CommandContent command={list.command}/>
+          <CommentCard data={list}/>
         </div>
-      )} */}
+      )}
     </Wrapper>
   )
 }
