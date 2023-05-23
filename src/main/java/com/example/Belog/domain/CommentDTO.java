@@ -9,6 +9,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Getter
 @ToString
@@ -32,11 +33,18 @@ public class CommentDTO {
     @NotBlank(message = "댓글을 입력해주세요")
     private String comment;
 
+    @Schema(description = "댓글 작성 시간")
+    private Date commentTime;
+
     @Builder
-    public CommentDTO(Long boardNum, Long userId, String comment) {
+    public CommentDTO(Long boardNum,
+                      Long userId,
+                      String comment,
+                      Date commentTime) {
         this.boardNum = boardNum;
         this.userId = userId;
         this.comment = comment;
+        this.commentTime = commentTime;
     }
 
 }

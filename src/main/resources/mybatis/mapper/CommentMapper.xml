@@ -3,10 +3,12 @@
 
 <mapper namespace="com.example.Belog.mapper.CommentMapper">
 
+
     <insert id="add" useGeneratedKeys="true" keyProperty="commentNum">
         INSERT INTO comment(userId, boardNum, comment)
         VALUES (#{userId}, #{boardNum}, #{comment})
     </insert>
+
 
     <update id="edit" parameterType="com.example.Belog.domain.CommentDTO">
         UPDATE comment
@@ -14,25 +16,34 @@
         where commentNum = #{commentNum}
     </update>
 
+
     <delete id="delete" parameterType="Long">
         delete from comment
         where commentNum = #{commentNum}
     </delete>
 
-    <!--    <select id="find" resultType="com.example.Belog.domain.CommentDTO">-->
-    <!--        SELECT userId, comment, commentTime-->
-    <!--        FROM comment-->
-    <!--        where boardNum = #{boardNum} AND commentNum = #{commentNum}-->
-    <!--    </select>-->
-
-    <select id="findAll" resultType="java.util.HashMap">
-        SELECT comment, commentTime
-        FROM comment
-        where boardNum = #{boardNum}
+    <select id="find" parameterType="Long" resultType="java.lang.String">
+        select u.userEmail
+        from user u, comment c
+        where u.userId=c.userId and c.userId = #{userId}
     </select>
 
-    <select id="count" resultType="int">
-        select count(*) from comment
+    <select id="a" resultType="java.lang.String">
+        select userEmail
+        from user
+        where userId=#{userId}
+    </select>
+
+    <select id="findAll" parameterType="Long" resultType="java.util.HashMap">
+        select u.userEmail, c.comment, c.commentTime
+        from user u, comment c, board b
+        where u.userId=c.userId and b.boardNum = #{boardNum}
+    </select>
+
+
+    <select id="count" parameterType="Long" resultType="int">
+        select count(*) comment
+        from comment
         where boardNum = #{boardNum}
     </select>
 
