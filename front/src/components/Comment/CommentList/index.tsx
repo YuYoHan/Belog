@@ -25,7 +25,7 @@ export type querycommentData = {
 }
 
 function CommentList({boardNum} : { boardNum : number }) {
-  const {data : commentist} = useQuery<querycommentData>([commentKey.GET_COMMENT_LIST], () => CommentApi.getCommentApi());
+  const {data : commentist} = useQuery<querycommentData>([commentKey.GET_COMMENT_LIST], () => CommentApi.getCommentApi(boardNum));
   const ref = useRef<HTMLInputElement>(null);
   const [commentScrollMoveValue ,setcommentScrollMoveValue] = useRecoilState<boolean>(commentScrollMove)
   console.log(commentist);

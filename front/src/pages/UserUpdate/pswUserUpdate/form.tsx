@@ -4,6 +4,7 @@ import { maskingName } from './hook/PswEncryption'
 import { AiFillEye } from "react-icons/ai";
 import useCheckPassword from 'hooks/checkPassword';
 import { userPswdataPrpos } from '../Index';
+import { media } from 'libs/styles/media';
 
 
 function UserPswform({password,userPw,onChangeForm} : userPswdataPrpos) {
@@ -53,7 +54,9 @@ const Wrapper = styled.div`
    flex: 1 1 0%;
    display: flex;
    align-items: center;
-
+   ${media.mobildL} {
+      margin-top : 0.875rem
+   }
    
 `
 const PswTitle = styled.div`

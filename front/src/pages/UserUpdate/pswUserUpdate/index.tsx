@@ -1,3 +1,4 @@
+import { media } from 'libs/styles/media'
 import React, { ChangeEvent } from 'react'
 import styled from 'styled-components'
 import { userPswdataPrpos } from '../Index'
@@ -20,7 +21,7 @@ function PswUserUpdate({password,userPw,onChangeForm} : userPswdataPrpos) {
          <UserPswtitle/>
          <UserPswform userPw={userPw} password={password} onChangeForm={onChangeForm}/>
       </S.PswWrap>
-         <p>개인 비밀번호를 수정하는 할 수 있습니다.</p>
+         <p>개인 비밀번호를 수정 할 수 있습니다.</p>
       </S.PswWrapper>
    )
 }
@@ -39,6 +40,11 @@ const PswWrapper = styled.div`
 const PswWrap = styled.div`
    display: flex;
    align-items: center;
+
+   ${media.mobildL} {
+      display:block;
+      margin: 2rem 0px;
+   }
 `
 const S = {
    PswWrapper,

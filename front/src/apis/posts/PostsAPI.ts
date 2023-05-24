@@ -8,7 +8,7 @@ type PostsData = {
 }
 
 
-const path = 'http://43.201.30.34:8080/v1/board/'
+const path = 'http://43.200.8.104:8080/v1/board/'
 
 const PostsApi =  {
    // 게시물 

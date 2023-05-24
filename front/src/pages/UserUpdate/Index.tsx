@@ -2,6 +2,7 @@ import { useMutation, useQuery ,useQueryClient} from '@tanstack/react-query';
 import { AuthApi } from 'apis/auth/authApi';
 import { UserListKey } from 'consts/queryKey';
 import useInputs from 'hooks/useinputs';
+import { media } from 'libs/styles/media';
 import React, { ChangeEvent, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { SessionRepository } from 'repository/SessionRepository';
@@ -146,6 +147,11 @@ const Wrapper = styled.div`
   margin-left: auto;
   margin-right: auto;
   width: 768px;
+  ${media.mobildL} {
+    width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+   }
   padding-bottom: 5rem;
 `
 

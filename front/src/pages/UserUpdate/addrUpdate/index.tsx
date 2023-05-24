@@ -24,7 +24,7 @@ function AddrUserUpdate({enroll_company,userAddrEtc,onChangeForm,setEnroll_compa
       setEnroll_company={setEnroll_company}
       />
    </S.AddrWrap>
-      <p>개인 주소를 수정하는 할 수 있습니다.</p>
+      <p>개인 주소를 수정 할 수 있습니다.</p>
    </S.AddrWrapper>
   )
 }
