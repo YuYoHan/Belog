@@ -1,13 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components"
 import ReactS3Client from 'react-aws-s3-typescript';
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import ReactQuill from "react-quill";
 import {  useEffect, useRef, useState } from "react";
 import PostsApi from "apis/posts/PostsAPI";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { queryKey } from "consts/queryKey";
 import { SessionRepository } from "repository/SessionRepository";
+import { toast } from "react-toastify";
 
 
 // 부모(index) 컴포넌트에서 전달받은 props
@@ -172,10 +173,13 @@ function PostingRegisterbtn ({content,inputboardTitle,tagList,createObjectURL,im
    const queryClient = useQueryClient();
    const AddPostingmutation = useMutation(() => PostsApi.createPostsApi(boardData), {
       onSuccess: (res) => {
-         alert('게시가 완료되었습니다.')
+         toast.success('게시글 등록되었습니다.')
          queryClient.invalidateQueries([queryKey.GET_MAINPOSTS_LIST]);
          navigate('/')
       },
+      onError : (err : AxiosError) => {
+         toast.error('게시글 등록되지 않았습니다.')
+      }
    })
 
    /*게시글 삭제 버튼 클릭 시  alert 노출 후 queryKey.GET_MAINPOSTS_LIST 맵핑된 함수 실행 메인 페이지로 이동*/

@@ -21,13 +21,13 @@ function ComentForm({boardNum} : {boardNum : number}) {
    
 
    const queryClient = useQueryClient();
-      const mutation  : any = useMutation(() => CommentApi.createCommentApi(boardNum,commentobj), {
-         onSuccess: (res) => {
-            queryClient.invalidateQueries([commentKey.GET_COMMENT_LIST]);
-            reset("");
-            setcommentScrollMoveValue(true)
-         },
-      })
+   const mutation  : any = useMutation(() => CommentApi.createCommentApi(boardNum,commentobj), {
+      onSuccess: (res) => {
+         queryClient.invalidateQueries([commentKey.GET_COMMENT_LIST]);
+         reset("");
+         setcommentScrollMoveValue(true)
+      },
+   })
       
       const test = () => {
          Axios.post(`http://43.201.30.34:8080/v1/board/${boardNum}/comment`,commentobj).

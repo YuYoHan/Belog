@@ -41,7 +41,6 @@ export const AuthApi = {
     },
 
     getUser: (userEmail : string)  : Promise<UserDataResponse> => {
-        console.log(userEmail);
         return Axios.get(path + userEmail );
     },
 

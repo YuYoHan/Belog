@@ -28,18 +28,16 @@ function Profile() {
    }
 
    /*
-      로그아웃 버튼 클릭 후 성공시 alert 노출 
+      로그아웃 버튼 클릭 후 성공시  
       window.location.replace("/") 로그아웃 해도 기록이 남아있어서 새로고침으로 해결
       세션 유저 정보 삭제
    */
 
    const logoutMutation = useMutation(() => AuthApi.logout(), {
       onSuccess: (res) => {
-            console.log(res);
-            alert(res.data)
-            window.location.replace("/")
-            SessionRepository.removeSession();
-            setisLoginComponent(false)
+         window.location.replace("/")
+         SessionRepository.removeSession();
+         setisLoginComponent(false)
       },
       onError: (err) => {
          console.log(err);

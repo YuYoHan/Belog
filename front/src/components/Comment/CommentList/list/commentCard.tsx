@@ -12,8 +12,6 @@ function CommentCard( {data} : commentData) {
   const [UpdatehiddenBtn,setUpdatehiddenBtn] = useState<boolean>(false)
   const EditableBtn =  useEditable(data.userId)
   
-  console.log(EditableBtn);
-  
   
   const onClickhiddenBtn = () => {
     setUpdatehiddenBtn(true)

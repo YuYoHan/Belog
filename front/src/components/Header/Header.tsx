@@ -18,7 +18,6 @@ function Header() {
    const [ScrollActive, setScrollActive] = React.useState<boolean>(false);
    const [isOpenoModal, setIsTodoModal] = useRecoilState(OpenCloseModal);
    const [isLoginComponent, setisLoginComponent] = useRecoilState(StorgeSession);
-   console.log(isLoginComponent);
    
 
    // 스크롤 내릴시 fixed 속성 적용
