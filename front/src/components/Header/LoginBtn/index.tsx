@@ -1,4 +1,3 @@
-import ErrorBoundary from "ErrorBoundary.ts/errorBoundary";
 import React,{useState} from "react";
 import { ToastContainer } from "react-toastify";
 import styled from "styled-components";
