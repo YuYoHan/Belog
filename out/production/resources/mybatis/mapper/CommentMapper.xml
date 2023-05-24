@@ -22,27 +22,21 @@
         where commentNum = #{commentNum}
     </delete>
 
-    <select id="find" parameterType="Long" resultType="java.lang.String">
-        select u.userEmail
-        from user u, comment c
-        where u.userId=c.userId and c.userId = #{userId}
-    </select>
-
-    <select id="a" resultType="java.lang.String">
-        select userEmail
-        from user
-        where userId=#{userId}
+    <select id="find" parameterType="Long" resultType="java.util.HashMap">
+        select u.userEmail, c.comment, c.commentTime
+        from user u, comment c, board b
+        where u.userId=c.userId and b.boardNum = #{boardNum}
     </select>
 
     <select id="findAll" parameterType="Long" resultType="java.util.HashMap">
-        select u.userEmail, c.comment, c.commentTime, b.boardNum
+        select u.userEmail, c.comment, c.commentTime
         from user u, comment c, board b
         where u.userId=c.userId and b.boardNum = #{boardNum}
     </select>
 
 
     <select id="count" parameterType="Long" resultType="int">
-        select count(*) comment
+        select count(*)
         from comment
         where boardNum = #{boardNum}
     </select>

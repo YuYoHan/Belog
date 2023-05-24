@@ -60,9 +60,7 @@ public class CommentController {
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "댓글 수정 성공"),
             @ApiResponse(responseCode = "404", description = "댓글 수정 실패") })
-    public ResponseEntity<?> editComment( @PathVariable("commentNum") Long commentNum,
-                                          @RequestBody CommentDTO commentDTO,
-                                          HttpSession session) {
+    public ResponseEntity<?> editComment( @RequestBody CommentDTO commentDTO) {
 
         commentService.editComment(commentDTO);
         log.info("edit");
@@ -77,12 +75,12 @@ public class CommentController {
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "댓글 삭제 성공"),
             @ApiResponse(responseCode = "404", description = "댓글 삭제 실패")})
-    public ResponseEntity<?> deleteComment(@PathVariable("boardNum") Long boardNum,
-                                           @PathVariable("commentNum") Long commentNum) {
+    public ResponseEntity<?> deleteComment(@PathVariable("commentNum") Long commentNum) {
         commentService.deleteComment(commentNum);
         log.info("delete");
         return new ResponseEntity<>(HttpStatus.OK);
     }//deleteComment
+
 
     // 전체 댓글보여주기
     @Tag(name = "Comment check")
