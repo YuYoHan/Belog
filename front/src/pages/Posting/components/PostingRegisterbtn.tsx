@@ -71,7 +71,6 @@ function PostingRegisterbtn ({content,inputboardTitle,tagList,createObjectURL,im
    const userId = UserSessiondata.userid
    const [isboardID ,setisBoardID] = useState<boolean>(false) 
    const navigate = useNavigate();
-   console.log(boardNum);
    
    // 취소 버튼 전 페이지로 이동
    const onClickbackhistory = () => {

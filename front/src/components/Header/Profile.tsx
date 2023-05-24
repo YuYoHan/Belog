@@ -39,10 +39,7 @@ function Profile() {
          SessionRepository.removeSession();
          setisLoginComponent(false)
       },
-      onError: (err) => {
-         console.log(err);
-      },
-  }); 
+  });
 
    return(
       <S.Wrapper>

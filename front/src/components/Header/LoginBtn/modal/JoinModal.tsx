@@ -49,7 +49,6 @@ function JoinModal({setForm} : formProps) {
   const formdata = {userEmail, userPw, userName , userAddrEtc  , userAddr : enroll_company.userAddr , userAddrDetail : enroll_company.userAddrDetail}
   const disabled = useHomeRegexp(formdata);
   const checkPw = useCheckPassword(userPw)
-  console.log(disabled);
   
   useEffect(() =>{
     if(userPw.length >= 8){

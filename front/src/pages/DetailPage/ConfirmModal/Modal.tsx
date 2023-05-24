@@ -26,9 +26,6 @@ function DetailConfirmModal ({boardNum,setModalOpen,img} : ModalType) {
     accessKeyId: process.env.REACT_APP_S3_ACCESS_KET_ID,
     secretAccessKey: process.env.REACT_APP_S3_SECRET_ACCESSKEY
   });
-  
-  console.log(img);
-  
   /*
     게시글 삭제 버튼 클릭 후 게시글의 작성된 이미지  imgurl 변수 저장
     이미지가 있다면 aws s3 버킷 이름과 , imgurl 의 저장된 이미지를 aws 
