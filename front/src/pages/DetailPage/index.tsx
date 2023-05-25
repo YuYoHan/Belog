@@ -35,7 +35,6 @@ function DetailPage() {
       tagList - 서버에 저장된 태그 리스트 저장 state
       userId - 게시글 작성 유저 아이디
       EditableBtn - 작성한 유저가 일치하면 수정 삭제 권한 부여 hook
-      
    */
    const location = useLocation();
    const {boardNum} = location.state.data
@@ -60,7 +59,7 @@ function DetailPage() {
             }
          }catch(err){
             alert('상세 페이지를 불러오지 못했습니다.')
-
+            
          }
       }
       fetchData()
