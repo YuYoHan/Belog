@@ -50,7 +50,6 @@ function DetailConfirmModal ({boardNum,setModalOpen,img} : ModalType) {
           else     console.log(data);           
         });
       }
-      alert('게시글 삭제가 완료되었습니다.')
       queryClient.invalidateQueries([queryKey.GET_MAINPOSTS_LIST])
       navigete('/')
     },

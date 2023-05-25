@@ -17,11 +17,12 @@ function ComentForm({boardNum} : {boardNum : number}) {
    const commentobj = {
       comment
    }
+   console.log(commentobj);
    
    
 
    const queryClient = useQueryClient();
-   const mutation  : any = useMutation(() => CommentApi.createCommentApi(boardNum,commentobj), {
+   const CommentAddmutation  : any = useMutation(() => CommentApi.createCommentApi(boardNum,commentobj), {
       onSuccess: (res) => {
          queryClient.invalidateQueries([commentKey.GET_COMMENT_LIST]);
          reset("");
@@ -30,7 +31,7 @@ function ComentForm({boardNum} : {boardNum : number}) {
    })
       
       const test = () => {
-         Axios.post(`http://43.200.8.104:8080/v1/board/${boardNum}/comment`,commentobj).
+         Axios.post(`http://43.200.8.104:8080/v1/board/${boardNum}/comment`,comment).
          then((res) => {
             
          }).catch((err)=>{
@@ -46,8 +47,8 @@ function ComentForm({boardNum} : {boardNum : number}) {
             <textarea value={comment}  onChange={setContent} placeholder="댓글을 작성하세요" ></textarea>
          </form>
          <ButtonWrap>
-         <button onClick={test}>
-         {/* <button onClick={()=> mutation.mutate()}> */}
+         {/* <button onClick={test}> */}
+         <button onClick={()=> CommentAddmutation.mutate()}>
             댓글 등록
          </button>
       </ButtonWrap>

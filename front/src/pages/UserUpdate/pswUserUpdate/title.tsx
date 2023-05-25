@@ -13,7 +13,6 @@ export default UserPswtitle
 
 const EmailTitle = styled.div`
   width: 9.5rem;
-
   & h2{
       line-height: 1.5;
       color: #212529;

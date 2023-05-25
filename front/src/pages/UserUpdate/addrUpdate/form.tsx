@@ -1,4 +1,5 @@
 import PopupPostCode from 'components/Header/LoginBtn/modal/PopupPostCode'
+import { media } from 'libs/styles/media';
 import { useState } from 'react'
 import styled from 'styled-components'
 import { userdataPrpos } from '../Index';
@@ -33,7 +34,7 @@ return (
          <Input type="text" name='userAddrEtc' placeholder="상세주소" value={userAddrEtc} onChange={onChangeForm} autoComplete="off"/>
       </AddrTitle>
       <EditWrapper>
-         <Input type="button" onClick={onClickAddrUpdate} value="우편번호 찾기" />
+         <InputBtn type="button" onClick={onClickAddrUpdate} value="우편번호 찾기" />
       </EditWrapper>
       {
          isKoKoApiModal &&
@@ -46,25 +47,23 @@ return (
 export default UserAddrform
    
 const Wrapper = styled.div`
-   flex: 1 1 0%;
-   display: flex;
-   align-items: center;
-
-   
+   /* flex: 1 1 0%; */
+   width:425px;
 `
 const AddrTitle = styled.div`
-   flex: 1 1 0%;
    font-size: 1rem;
    color: #495057;
    line-height: 1.5;
-   
+   ${media.mobildL} {
+      margin-top: 1rem;
+   }
 `
 
 const EditWrapper = styled.div`
    display: flex;
    align-items: center;
-   margin-left: 1rem;
-   
+   justify-content: flex-end;
+   width: 425px;
 
    & button{
       outline: none;
@@ -80,6 +79,7 @@ const EditWrapper = styled.div`
    }
 `
 const Input = styled.input`
+   width: 100%;
    display: block;
    border: 1px solid #DEE2E6;
    background: #FFFFFF;
@@ -89,7 +89,18 @@ const Input = styled.input`
    line-height: 1rem;
    outline: none;
    border-radius: 4px;
-   width : 80%;
-   flex: 1 1 0%;
    margin-bottom : 1rem
+`
+const InputBtn = styled.input`
+   border: 1px solid #DEE2E6;
+   background: #FFFFFF;
+   padding: 0.5rem;
+   color: #495057;
+   font-size: 1rem;
+   line-height: 1rem;
+   outline: none;
+   border-radius: 4px;
+   margin-bottom : 1rem
+   width:120px;
+   
 `

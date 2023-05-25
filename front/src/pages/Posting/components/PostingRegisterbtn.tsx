@@ -184,9 +184,8 @@ function PostingRegisterbtn ({content,inputboardTitle,tagList,createObjectURL,im
    /*게시글 삭제 버튼 클릭 시  alert 노출 후 queryKey.GET_MAINPOSTS_LIST 맵핑된 함수 실행 메인 페이지로 이동*/
    const UpdatePostingmutation = useMutation(() => PostsApi.updatePostsApi(UpdateboardData), {
       onSuccess: (res) => {
-         alert('수정이 완료되었습니다.')
          queryClient.invalidateQueries([queryKey.GET_MAINPOSTS_LIST]);
-         navigate('/')
+         navigate(`/`)
       },
    })
 

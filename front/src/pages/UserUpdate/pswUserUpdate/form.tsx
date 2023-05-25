@@ -51,7 +51,6 @@ function UserPswform({password,userPw,onChangeForm} : userPswdataPrpos) {
 export default UserPswform
    
 const Wrapper = styled.div`
-   flex: 1 1 0%;
    display: flex;
    align-items: center;
    ${media.mobildL} {
@@ -60,13 +59,11 @@ const Wrapper = styled.div`
    
 `
 const PswTitle = styled.div`
-   flex: 1 1 0%;
+
    font-size: 1rem;
    color: #495057;
    line-height: 1.5;
-   display: flex;
-   align-items: center;
-   
+   width:425px;
    & button{
       background: none;
       cursor : pointer;
@@ -76,22 +73,19 @@ const PswTitle = styled.div`
 `
 const EditWrapper = styled.div`
    display: flex;
-   align-items: center;
+   justify-content: center;
    margin-left: 1rem;
-
-   
-
+   width : 150px;
    & button{
-      outline: none;
-      padding: 0px;
-      border: none;
-      display: inline;
+      border: 1px solid #DEE2E6;
+      background: #FFFFFF;
+      padding: 0.5rem;
+      color: #495057;
       font-size: 1rem;
-      line-height: 1.5;
-      color: #757bf6;
-      text-decoration: underline;
-      background: none;
-      cursor: pointer;
+      line-height: 1rem;
+      outline: none;
+      border-radius: 4px;
+      cursor:pointer
    }
 `
 const Input = styled.input`
@@ -104,6 +98,5 @@ const Input = styled.input`
    line-height: 1rem;
    outline: none;
    border-radius: 4px;
-   flex: 1 1 0%;
-   margin-right: 1rem;
+   width: 100%;
 `

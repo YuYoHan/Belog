@@ -26,6 +26,8 @@ function MainPageCard ({data} : {data : BoardData}) {
    };
 
    const markup = createMarkup();
+   console.log(data.boardImages?.length );
+   
 
    return (
       <S.Li>
@@ -33,7 +35,7 @@ function MainPageCard ({data} : {data : BoardData}) {
          <S.StyledLink to={`list/${data.boardTitle}`} state={{data}}>
             <S.ImgContainer>
                {
-               data.boardImages?.[0] && 
+               data.boardImages && 
                   <img src={data.boardImages?.[0]}/>
                }
             </S.ImgContainer>

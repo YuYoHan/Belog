@@ -149,8 +149,8 @@ const Wrapper = styled.div`
   width: 768px;
   ${media.mobildL} {
     width: 100%;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
    }
   padding-bottom: 5rem;
 `
@@ -158,8 +158,9 @@ const Wrapper = styled.div`
 const BtnWrap = styled.div`
   display:flex;
   justify-content: center;
-  margin-top : 1.5rem;
-
+  ${media.mobildL} {
+    margin-top : 2.5rem;
+  }
   & button{
     display: inline-flex;
     align-items: center;

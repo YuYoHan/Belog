@@ -1,3 +1,4 @@
+import { media } from 'libs/styles/media'
 import React from 'react'
 import styled from 'styled-components'
 
@@ -21,6 +22,12 @@ const TitleWrap = styled.div`
    margin-right: auto;
    width: 800px;
    padding-bottom: 5rem;
+   ${media.mobildL} {
+    display:flex;
+    justify-content: center;
+    margin:0;
+    width:100%;
+  }
 
    & h2{
       display: block;

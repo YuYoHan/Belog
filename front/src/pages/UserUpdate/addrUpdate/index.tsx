@@ -1,3 +1,4 @@
+import { media } from 'libs/styles/media'
 import styled from 'styled-components'
 import { userdataPrpos } from '../Index'
 import UserAddrform from './form'
@@ -43,6 +44,9 @@ const AddrWrapper = styled.div`
 const AddrWrap = styled.div`
    display: flex;
    align-items: center;
+   ${media.mobildL} {
+      display:block;
+   }
 `
 const S = {
    AddrWrapper,

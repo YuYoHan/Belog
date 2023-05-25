@@ -64,8 +64,6 @@ const EditWrapper = styled.div`
    align-items: center;
    margin-left: 1rem;
 
-   
-
    & button{
       outline: none;
       padding: 0px;

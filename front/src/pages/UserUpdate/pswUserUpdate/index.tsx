@@ -30,7 +30,7 @@ export default PswUserUpdate
 
 const PswWrapper = styled.div`
    margin-top: 3rem;
-
+   height:100px;
    & p {
       margin-top: 0.875rem;
       color: #868E96;
