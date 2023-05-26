@@ -56,6 +56,7 @@ function JoinModal({setForm} : formProps) {
     }else{
       setWarning(true)
     }
+    console.log(disabled);
   },[userPw])
 
   const onClickCloseModal = () => {
@@ -93,6 +94,8 @@ function JoinModal({setForm} : formProps) {
       }
     },
 });
+
+
   
   return (
     <>

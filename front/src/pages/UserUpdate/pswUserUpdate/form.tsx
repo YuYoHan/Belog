@@ -5,6 +5,7 @@ import { AiFillEye } from "react-icons/ai";
 import useCheckPassword from 'hooks/checkPassword';
 import { userPswdataPrpos } from '../Index';
 import { media } from 'libs/styles/media';
+import { toast } from 'react-toastify';
 
 
 function UserPswform({password,userPw,onChangeForm} : userPswdataPrpos) {
@@ -25,7 +26,7 @@ function UserPswform({password,userPw,onChangeForm} : userPswdataPrpos) {
    
    const onChnagePswEdit = () => {
       if(disabled) return setPswEdit(false)
-      alert('8글자 이상 입력해주세요')
+      toast.error('비밀번호 8글자 이상 입력해주세요.')
    }
 
   return (

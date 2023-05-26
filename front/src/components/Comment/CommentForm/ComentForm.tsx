@@ -3,8 +3,6 @@ import styled from "styled-components"
 import CommentApi from 'apis/comment/CommentAPI'
 import { commentKey } from 'consts/queryKey'
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useRecoilState } from "recoil";
-import { commentScrollMove } from "atom/comment/commentScrollmove";
 import Axios from "apis/@core";
 
 
@@ -12,12 +10,10 @@ function ComentForm({boardNum} : {boardNum : number}) {
 
 
    const [comment , setContent, reset] = useInput('');
-   const [commentScrollMoveValue ,setcommentScrollMoveValue] = useRecoilState<boolean>(commentScrollMove)
 
    const commentobj = {
       comment
    }
-   console.log(commentobj);
    
    
 
@@ -26,7 +22,6 @@ function ComentForm({boardNum} : {boardNum : number}) {
       onSuccess: (res) => {
          queryClient.invalidateQueries([commentKey.GET_COMMENT_LIST]);
          reset("");
-         setcommentScrollMoveValue(true)
       },
    })
       

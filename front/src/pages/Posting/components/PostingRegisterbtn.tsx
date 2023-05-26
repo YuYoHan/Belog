@@ -177,6 +177,8 @@ function PostingRegisterbtn ({content,inputboardTitle,tagList,createObjectURL,im
          navigate('/')
       },
       onError : (err : AxiosError) => {
+         console.log(err);
+         
          toast.error('게시글 등록되지 않았습니다.')
       }
    })
@@ -189,14 +191,29 @@ function PostingRegisterbtn ({content,inputboardTitle,tagList,createObjectURL,im
       },
    })
 
+   // 게시글 컨텐츠 제목 입력 안할시 게시글 등록안됨
+   const handlePostRegistration = async  () => {
+      if (!inputboardTitle || !content) {
+         toast.error('제목, 내용 입력해주세요')
+         return;
+      }
+
+      // 수정하기 / 게시글 등록 페이지 
+      if (isboardID) {
+         UpdatePostingmutation.mutate();
+      } else {
+         AddPostingmutation.mutate();
+      }
+   };
+
    return (
       <S.Wrapper>
             <S.CancleButton onClick={onClickbackhistory}>취소</S.CancleButton>
             {
                isboardID ? 
-            <S.RegisterButton onClick={()=> UpdatePostingmutation.mutate()}>수정 완료</S.RegisterButton>
-               :
-            <S.RegisterButton onClick={()=> AddPostingmutation.mutate()}>글 등록</S.RegisterButton>
+            <S.RegisterButton onClick={handlePostRegistration}>수정 완료</S.RegisterButton>
+            :
+            <S.RegisterButton onClick={handlePostRegistration}>글 등록</S.RegisterButton>
             }
       </S.Wrapper>
    )

@@ -3,11 +3,8 @@ import styled from 'styled-components';
 import { commentKey } from "consts/queryKey";
 import CommentApi from "apis/comment/CommentAPI";
 import { useQuery } from "@tanstack/react-query";
-import React from 'react';
-import { useRecoilState, } from 'recoil';
-import { commentScrollMove } from "atom/comment/commentScrollmove";
-import axios from 'axios';
 import CommentCard from './list/commentCard';
+import axios from 'axios';
 
 
 export type commentData = {
@@ -27,20 +24,8 @@ export type querycommentData = {
 function CommentList({boardNum} : { boardNum : number }) {
   const {data : commentist} = useQuery<querycommentData>([commentKey.GET_COMMENT_LIST], () => CommentApi.getCommentApi(boardNum));
   const ref = useRef<HTMLInputElement>(null);
-  const [commentScrollMoveValue ,setcommentScrollMoveValue] = useRecoilState<boolean>(commentScrollMove)
-  console.log(commentist);
   
-
-  useEffect(()=>{
-    if(commentScrollMoveValue === true){
-      ref.current?.scrollIntoView({ behavior: 'smooth' });
-      return setcommentScrollMoveValue(false)
-    }
-  },[commentScrollMoveValue])
-  
-
-  
-
+ 
   return (
     <Wrapper >
       {

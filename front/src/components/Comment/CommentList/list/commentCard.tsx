@@ -3,9 +3,9 @@ import CommentApi from 'apis/comment/CommentAPI'
 import CommentUpdateBtn from 'components/Comment/CommentList/list/UpdateBtn'
 import { commentKey } from 'consts/queryKey'
 import useEditable from 'hooks/editable'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import styled from 'styled-components'
-import {  commentData, querycommentData } from '..'
+import {  commentData } from '..'
 
 function CommentCard( {data} : commentData) {
 

@@ -26,19 +26,18 @@ function MainPageCard ({data} : {data : BoardData}) {
    };
 
    const markup = createMarkup();
-   console.log(data.boardImages?.length );
    
 
    return (
       <S.Li>
          {/* state 게시판 ID 전달 */}
          <S.StyledLink to={`list/${data.boardTitle}`} state={{data}}>
-            <S.ImgContainer>
-               {
-               data.boardImages && 
-                  <img src={data.boardImages?.[0]}/>
-               }
-            </S.ImgContainer>
+            {
+            data.boardImages && data.boardImages.length > 0 &&
+               <S.ImgContainer>
+                  <img src={data.boardImages?.[0]} alt="게시판 이미지"/>
+               </S.ImgContainer>
+            }
             <S.Content>
                <strong>{data.boardTitle}</strong>
                {markup && <p dangerouslySetInnerHTML={{ __html: markup }}></p>}
@@ -56,6 +55,7 @@ export default MainPageCard
 
 const Li = styled.li`
    width: 20rem;
+   height: 22rem;
    margin: 1rem;
    display: flex;
    flex-direction: column;

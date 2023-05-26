@@ -5,6 +5,7 @@ import PostingTitle from "pages/Posting/components/PostingTitle"
 import useInput from "hooks/useInput"
 import {  useEffect, useState } from "react"
 import { useLocation } from "react-router"
+import { ToastContainer } from "react-toastify"
 
 export type postingData = {
    inputboardTitle : string,
@@ -60,7 +61,9 @@ function PostingPage() {
             boardNum={location.state?.data?.boardNum}
             />
          </S.container>
+         <ToastContainer position="top-right" autoClose={2000}/>
       </S.Wrapper>
+      
    )
 }
 

@@ -1,8 +1,7 @@
 import Axios from "apis/@core";
-import { querycommentData} from "components/Comment/CommentList";
-import { number } from "yargs";
 
-interface addCommentProps  {
+
+type addCommentProps = {
    comment : string
 }
 
@@ -13,7 +12,7 @@ const CommentApi =  {
    getCommentApi(boardNum : number): Promise<any> {
       return Axios.get( path + `${boardNum}/comment/list`  )
    },
-   createCommentApi(boardNum: number,data : any): Promise<any> {
+   createCommentApi(boardNum: number,data : addCommentProps): Promise<any> {
       return Axios.post(path + `${boardNum}/comment`,data)
    },
 

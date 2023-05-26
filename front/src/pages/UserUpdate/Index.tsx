@@ -5,6 +5,7 @@ import useInputs from 'hooks/useinputs';
 import { media } from 'libs/styles/media';
 import React, { ChangeEvent, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { SessionRepository } from 'repository/SessionRepository';
 import styled from 'styled-components';
 import AddrUserUpdate from './addrUpdate';
@@ -114,8 +115,16 @@ function UserSettion() {
     onError: (err) => {
         alert(err);
     },
-});
+  });
 
+  // 비밀번호 8글자 입력 시 회원가입 성공
+  const handleUsersettionMutation = async () => {
+    if(userPw.length < 8) return toast.error('비밀번호 8글자 이상 입력해주세요')
+    
+    UserUpdateMutaion.mutate();
+  } 
+  
+  
   
   return (
     <Wrapper>
@@ -134,7 +143,7 @@ function UserSettion() {
       }
       <BtnWrap>
         <BackBtn onClick={() => navigete('/')}>취소</BackBtn>
-        <UserUpdateBtn onClick={()=> UserUpdateMutaion.mutate()}>회원수정 </UserUpdateBtn>
+        <UserUpdateBtn onClick={handleUsersettionMutation}>회원수정 </UserUpdateBtn>
       </BtnWrap>
         </Wrapper>
   )
@@ -158,6 +167,8 @@ const Wrapper = styled.div`
 const BtnWrap = styled.div`
   display:flex;
   justify-content: center;
+  margin-top : 1.5rem;
+
   ${media.mobildL} {
     margin-top : 2.5rem;
   }
