@@ -16,9 +16,10 @@ function PostingTag({tagList,setTagList} : TagProps) {
 
    //태그 인풋 엔터키 동작 submitTagItem 함수 실행
    const onKeyPress = (e: React.ChangeEvent<HTMLInputElement> & KeyboardEvent<HTMLInputElement>) => {
-      if (e.target.value.length  !== 0 && e.key === 'Enter') {
-         submitTagItem()
-         setPlaceholder('')
+      if (e.target.value.length !== 0 && e.key === 'Enter' && !e.getModifierState('Shift')) {
+         e.preventDefault(); // Prevent default form submission behavior
+         submitTagItem();
+         setPlaceholder('');
       }
    }
 
@@ -36,10 +37,12 @@ function PostingTag({tagList,setTagList} : TagProps) {
       const filteredTagList = tagList.filter(tagItem => tagItem !== deleteTagItem)
       setTagList(filteredTagList)
    }
-   
+
    useEffect(() => {
-      if(tagList.length <= 0) setPlaceholder('태그를 입력해주세요')
-   },[tagList])
+      if (tagList.length <= 0) {
+         setPlaceholder('태그를 입력해주세요')
+      }
+    }, [tagList])
 
    return(
       <S.Wrapper>

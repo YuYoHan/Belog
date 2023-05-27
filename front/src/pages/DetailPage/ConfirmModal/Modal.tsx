@@ -38,7 +38,7 @@ function DetailConfirmModal ({boardNum,setModalOpen,img} : ModalType) {
       const imgurl = img?.map((item) => item.split("/").pop())
       if(imgurl?.length !== 0){
         const params : any = {
-          Bucket: 'blog-file-upload', 
+          Bucket: 'blog-img-file', 
           Delete: {
             // 키값에 배열의 imgurl 넣어줌
             Objects: imgurl?.map((item) => ({ Key: `boardImage/${item}` })),
@@ -47,7 +47,6 @@ function DetailConfirmModal ({boardNum,setModalOpen,img} : ModalType) {
         };
         s3.deleteObjects(params, function(err, data) {
           if (err) console.log(err, err.stack); 
-          else     console.log(data);           
         });
       }
       queryClient.invalidateQueries([queryKey.GET_MAINPOSTS_LIST])

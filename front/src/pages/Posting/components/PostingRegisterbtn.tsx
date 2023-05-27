@@ -87,7 +87,7 @@ function PostingRegisterbtn ({content,inputboardTitle,tagList,createObjectURL,im
 
    // aws key
    const config : S3Config = {
-      bucketName: process.env.REACT_APP_S3_BUCKETNAME || '',
+      bucketName: 'blog-img-file' || '',
       region: process.env.REACT_APP_S3_REGION || '',
       accessKeyId: process.env.REACT_APP_S3_ACCESS_KET_ID || '',
       secretAccessKey: process.env.REACT_APP_S3_SECRET_ACCESSKEY || '',
