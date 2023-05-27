@@ -29,16 +29,6 @@
 
 이 프로젝트의 모델은 Velog로, Velog를 모델로 정한 이유는 개발공부를 하면서 가장 친숙한 형태의 블로그 형식이기 때문에 Velog로 정하게되었습니다. 그렇기 때문에 구조는 Velog와 비슷한 형태이며 불필요하다고 생각하는 UI를 제거하고 구성하였습니다.
 
-#### Voluntain will share the knowledge of programming.
-You can take easy-to-understand lectures created by our team, including Scratch and Python. Also, improve your understanding and application skills of programming with exercise questions in the lecture videos.
-
-#### Voluntain's website will give you a learning-friendly environment.
-
-Our website supports the following component.
-1. Various online lectures with detailed descriptions and exercise questions.
-2. Q&A section to ask questions freely.
-3. Function to check the lecture you watched recently.
-
 ## 시작 가이드
 ### Requirements
 For building and running the application you need:
