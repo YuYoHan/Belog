@@ -27,7 +27,7 @@
 
 ## 프로젝트 소개
 
-발룬테인은 온라인 코딩 교육 봉사를 하는 단체입니다. 기존에 소프트웨어학과에서 월드프렌즈 ICT 봉사단이라는 개발도상국에서 약 학 달 간 코딩 교육 봉사를 하는 활동이 있었는데, 봉사가 일회성으로 끝나는 점에 아쉬움을 느껴 지속적인 봉사를 하고자 만들어졌습니다. 발룬테인에서는 스크래치, 파이썬 등 프로그래밍 언어에 관한 강의를 제공하고, 질의응답과 라이브 세션을 통해 한국 학생과 외국 학생 간에 소통이 이루어집니다.
+이 프로젝트의 모델은 Velog로, Velog를 모델로 정한 이유는 개발공부를 하면서 가장 친숙한 형태의 블로그 형식이기 때문에 Velog로 정하게되었습니다. 그렇기 때문에 구조는 Velog와 비슷한 형태이며 불필요하다고 생각하는 UI를 제거하고 구성하였습니다.
 
 #### Voluntain will share the knowledge of programming.
 You can take easy-to-understand lectures created by our team, including Scratch and Python. Also, improve your understanding and application skills of programming with exercise questions in the lecture videos.
