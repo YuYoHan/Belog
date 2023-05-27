@@ -4,18 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-<<<<<<< HEAD
-    <list default="true" id="f86f6a71-be09-408d-af32-1e0721510d12" name="변경" comment="[Feat] Comment 댓글 이메일 출력기능 수정">
-<<<<<<< HEAD
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-=======
+    <list default="true" id="f86f6a71-be09-408d-af32-1e0721510d12" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/com/example/Belog/controller/CommentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/example/Belog/controller/CommentController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/com/example/Belog/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/example/Belog/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/example/Belog/mapper/CommentMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/example/Belog/mapper/CommentMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/example/Belog/service/CommentService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/example/Belog/service/CommentService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/example/Belog/service/CommentServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/example/Belog/service/CommentServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/resources/mybatis/mapper/CommentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/resources/mybatis/mapper/CommentMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Belog/controller/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Belog/controller/CommentController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Belog/domain/CommentDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Belog/domain/CommentDTO.java" afterDir="false" />
@@ -23,16 +16,16 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Belog/service/CommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Belog/service/CommentService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Belog/service/CommentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Belog/service/CommentServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/CommentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/CommentMapper.xml" afterDir="false" />
->>>>>>> back-end/comment
-=======
-    <list default="true" id="7113d2d2-0e47-445f-8355-4e626076cd59" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
->>>>>>> back-end/comment
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
   </component>
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
@@ -40,14 +33,55 @@
         <task path="$PROJECT_DIR$">
           <activation />
         </task>
-        <projects_view />
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Belog" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Belog" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Belog" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="verification" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
       </state>
     </system>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JUnit5 Test Class" />
+        <option value="AnnotationType" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="back-end/dev" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2NxaWybegUhuWuoHossoeisLMTC" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
-<<<<<<< HEAD
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
@@ -62,21 +96,14 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-<<<<<<< HEAD
-    &quot;last_opened_file_path&quot;: &quot;/Users/minsungkim/Minsung/Github/Belog/build.gradle&quot;,
-=======
     &quot;last_opened_file_path&quot;: &quot;E:/IntelliJ/Belog&quot;,
->>>>>>> back-end/comment
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-<<<<<<< HEAD
-=======
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
->>>>>>> back-end/comment
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;spring.configuration.checksum&quot;: &quot;d91659513e7beb8cc580b7cf53b10fd8&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
@@ -100,7 +127,7 @@
       <recent name="com.example.Belog.config" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.BelogApplication">
+  <component name="RunManager" selected="Spring Boot.BelogApplication">
     <configuration name="BelogApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.Belog.BelogApplication" />
       <module name="Belog.main" />
@@ -133,7 +160,6 @@
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
     <configuration name="Belog [jacocoTestReport]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -155,7 +181,6 @@
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
     <configuration name="UserControllerTest.testSignUp" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
@@ -199,7 +224,6 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.BelogApplication" />
         <item itemvalue="JUnit.UserControllerTest.testSignUp" />
         <item itemvalue="Gradle.Belog [jacocoTestCoverageVerification]" />
         <item itemvalue="Gradle.Belog [jacocoTestReport]" />
@@ -244,8 +268,6 @@
       <workItem from="1683936516956" duration="16675000" />
       <workItem from="1684196851148" duration="5433000" />
       <workItem from="1684246190230" duration="2846000" />
-      <workItem from="1684414963929" duration="1920000" />
-      <workItem from="1684663468396" duration="2089000" />
     </task>
     <task id="LOCAL-00001" summary="[Feat] Comment 댓글 이메일 출력기능 수정">
       <created>1681229460063</created>
@@ -255,9 +277,53 @@
       <updated>1681229460063</updated>
     </task>
     <option name="localTasksCounter" value="2" />
-=======
-  <component name="TaskManager">
->>>>>>> back-end/comment
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="[Feat] Comment 댓글 이메일 출력기능 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="[Feat] Comment 댓글 이메일 출력기능 수정" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/test/java/com/example/Belog/controller/UserControllerTest.java</url>
+          <line>127</line>
+          <properties class="com.example.Belog.controller.UserControllerTest">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/test/java/com/example/Belog/mapper/UserMapperTest.java</url>
+          <line>72</line>
+          <properties class="com.example.Belog.mapper.UserMapperTest">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/example/Belog/service/UserServiceTest.java</url>
+          <line>112</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

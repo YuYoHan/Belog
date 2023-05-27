@@ -123,8 +123,8 @@ public class UserController {
             String userPw = (String) session.getAttribute("userEmail");
 
             UserDTO user = UserDTO.builder()
-                    .userId(loginUser.getUserId())
-                    .userEmail(loginUser.getUserEmail())
+                    .userId(userId)
+                    .userEmail(userPw)
                     .build();
 
             log.info("user : " + user);
