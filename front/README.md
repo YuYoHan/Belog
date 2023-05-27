@@ -5,13 +5,14 @@
 
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FVoluntain-SKKU%2FVoluntain-2nd&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
 
-</div>
+</div><br/>
 
-# Voluntain Web Page v2.0
-> **성균관대학교 소프트웨어학과 온라인 해외봉사 단체** <br/> **개발기간: 2022.03 ~ 2022.10**
+
+# Blog Web Site
+> <br/> **개발기간: 2023.03 ~ 2023.05**<br/>
 
 ## 배포 주소
-> **프론트 서버** : (http://web-blog-site.s3-website.ap-northeast-2.amazonaws.com/](http://voluntain.cs.skku.edu:33307/)<br>
+> **프론트 서버** : http://web-blog-site.s3-website.ap-northeast-2.amazonaws.com<br>
 
 
 ## 웹개발팀 소개
