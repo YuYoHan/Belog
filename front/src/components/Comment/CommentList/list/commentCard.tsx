@@ -5,7 +5,7 @@ import { commentKey } from 'consts/queryKey'
 import useEditable from 'hooks/editable'
 import { useState } from 'react'
 import styled from 'styled-components'
-import {  commentData } from '..'
+import {  commentData } from '../..'
 
 function CommentCard( {data} : commentData) {
 

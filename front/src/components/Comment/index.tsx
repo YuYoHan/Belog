@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { commentKey } from "consts/queryKey";
 import CommentApi from "apis/comment/CommentAPI";
 import { useQuery } from "@tanstack/react-query";
-import CommentCard from './list/commentCard';
+import CommentCard from './CommentList/list/commentCard';
 import axios from 'axios';
 
 

@@ -2,7 +2,7 @@
 // import CommentList from "components/Comment/CommentList";
 import PostsApi from "apis/posts/PostsAPI";
 import CommentIndexPage from "components/Comment/CommentForm";
-import CommentList from "components/Comment/CommentList";
+import CommentList from "components/Comment";
 import useEditable from "hooks/editable";
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
@@ -35,7 +35,7 @@ function DetailPage() {
       tagList - 서버에 저장된 태그 리스트 저장 state
       userId - 게시글 작성 유저 아이디
       EditableBtn - 작성한 유저가 일치하면 수정 삭제 권한 부여 hook
-      
+
    */
    const location = useLocation();
    const {boardNum} = location.state.data

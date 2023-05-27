@@ -55,12 +55,11 @@ export default MainPageCard
 
 const Li = styled.li`
    width: 20rem;
-   height: 22rem;
+   min-height: 20rem;
    margin: 1rem;
    display: flex;
    flex-direction: column;
    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 10%), 0 4px 6px -2px rgb(0 0 0 / 5%);
-   
    ${media.tablet} {
       width: calc(50% - 2rem);
    }
@@ -83,16 +82,16 @@ const ImgContainer = styled.div`
    padding-top: 52%;
    width: 100%;
    position: relative;
-
-      & img {
-      position: absolute;
-      top: 0px;
-      left: 0px;
-      width: 100%;
-      height: 100%;
-      display: block;
-      object-fit: cover;
-   }
+   & img {
+   position: absolute;
+   top: 0px;
+   left: 0px;
+   width: 100%;
+   height: 100%;
+   display: block;
+   object-fit: cover;
+   padding: 1rem 1rem;
+}
 
    
 `

@@ -4,19 +4,19 @@ import CommentApi from 'apis/comment/CommentAPI'
 import { commentKey } from 'consts/queryKey'
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Axios from "apis/@core";
+import { toast } from "react-toastify";
 
 
 function ComentForm({boardNum} : {boardNum : number}) {
 
-
+   //input 사용자가 입력한 text 데이터
    const [comment , setContent, reset] = useInput('');
 
+   // 서버에 보낼 댓글 데이터
    const commentobj = {
       comment
    }
    
-   
-
    const queryClient = useQueryClient();
    const CommentAddmutation  : any = useMutation(() => CommentApi.createCommentApi(boardNum,commentobj), {
       onSuccess: (res) => {
@@ -24,6 +24,12 @@ function ComentForm({boardNum} : {boardNum : number}) {
          reset("");
       },
    })
+
+   // 댓글 등록시 값을 입력하지 않았다면 등록되지않음, 댓글 등록시 CommentAddmutation.mutate() 실행
+   const handleCommentMutation = () => {
+      if(comment.length === 0) return toast.error('댓글 내용을 입력해주세요.')
+      CommentAddmutation.mutate();
+   }
       
       const test = () => {
          Axios.post(`http://43.200.8.104:8080/v1/board/${boardNum}/comment`,comment).
@@ -43,7 +49,7 @@ function ComentForm({boardNum} : {boardNum : number}) {
          </form>
          <ButtonWrap>
          {/* <button onClick={test}> */}
-         <button onClick={()=> CommentAddmutation.mutate()}>
+         <button onClick={handleCommentMutation}>
             댓글 등록
          </button>
       </ButtonWrap>
