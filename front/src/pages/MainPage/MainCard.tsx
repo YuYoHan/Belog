@@ -24,6 +24,7 @@ function MainPageCard ({data} : {data : BoardData}) {
       
       return html;
    };
+   
 
    const markup = createMarkup();
    

@@ -18,7 +18,7 @@ interface JoinData {
     data : string
 }
 
-const path = 'http://43.200.8.104:8080/v1/user/'
+const path = 'http://15.164.220.47:8080/v1/user/'
 /*
     AuthApi.login - 로그인 API (이메일,비밀번호)
     AuthApi.signup - 회원가입 API (userData - 타입스크립트참고)
