@@ -36,15 +36,12 @@ public class CommentController {
             @ApiResponse(responseCode = "200", description = "댓글 등록 성공"),
             @ApiResponse(responseCode = "404", description = "댓글 등록 실패")}) //API 호출결과에 대해서 설명
     public ResponseEntity<?> addComment( @PathVariable("boardNum") Long boardNum,
-                                         @RequestParam("comment") String comment,
-                                         HttpSession session) {
+                                         @RequestBody CommentDTO commentDTO) {
 
-        Long userId = (Long)session.getAttribute("userId");
-
-        CommentDTO commentDTO = CommentDTO.builder()
-                .userId(userId)
+        CommentDTO insertCmt = CommentDTO.builder()
+                .userId(commentDTO.getUserId())
                 .boardNum(boardNum)
-                .comment(comment)
+                .comment(commentDTO.getComment())
                 .build();
 
         commentService.addComment(commentDTO);
@@ -98,7 +95,7 @@ public class CommentController {
 
     //댓글 수
     @Tag(name = "Comment check")
-    @Operation(summary = "댓글 갯 수 API", description = "댓글수에 관련된 API입니다.")
+    @Operation(summary = "댓글 수 API", description = "댓글수에 관련된 API입니다.")
     @GetMapping("/{boardNum}/comment/count")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "전체 댓글 수 조회 성공"),

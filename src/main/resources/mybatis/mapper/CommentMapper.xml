@@ -22,11 +22,14 @@
         where commentNum = #{commentNum}
     </delete>
 
+<<<<<<< HEAD
     <select id="find" parameterType="Long" resultType="java.util.HashMap">
         select u.userEmail, c.comment, c.commentTime
         from user u, comment c, board b
         where u.userId=c.userId and b.boardNum = #{boardNum}
     </select>
+=======
+>>>>>>> back-end/dev
 
     <select id="findAll" parameterType="Long" resultType="java.util.HashMap">
         select u.userEmail, c.comment, c.commentTime
