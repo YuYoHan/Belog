@@ -1,7 +1,7 @@
-# Voluntain-2nd
+# Belog Project
 
 <div align="center">
-<img width="329" alt="image" src="[https://user-images.githubusercontent.com/50205887/207568862-cdc9e2c0-b03c-43ff-bf46-3ba79a110d0c.png](https://web-blog-site.s3.ap-northeast-2.amazonaws.com/favicon.ico)">
+<img width="329" alt="image" src="https://web-blog-site.s3.ap-northeast-2.amazonaws.com/favicon.png">
 
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FVoluntain-SKKU%2FVoluntain-2nd&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
 
@@ -11,10 +11,8 @@
 > **성균관대학교 소프트웨어학과 온라인 해외봉사 단체** <br/> **개발기간: 2022.03 ~ 2022.10**
 
 ## 배포 주소
+> **프론트 서버** : (http://web-blog-site.s3-website.ap-northeast-2.amazonaws.com/](http://voluntain.cs.skku.edu:33307/)<br>
 
-> **개발 버전** : [http://voluntain.cs.skku.edu/](http://voluntain.cs.skku.edu/) <br>
-> **프론트 서버** : [http://voluntain.cs.skku.edu:33307/](http://voluntain.cs.skku.edu:33307/)<br>
-> **백엔드 서버** : [http://voluntain.cs.skku.edu:2223/](http://voluntain.cs.skku.edu:2223/)<br>
 
 ## 웹개발팀 소개
 
