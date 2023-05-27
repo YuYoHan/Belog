@@ -22,17 +22,6 @@
         where commentNum = #{commentNum}
     </delete>
 
-    <select id="find" parameterType="Long" resultType="java.lang.String">
-        select u.userEmail
-        from user u, comment c
-        where u.userId=c.userId and c.userId = #{userId}
-    </select>
-
-    <select id="a" resultType="java.lang.String">
-        select userEmail
-        from user
-        where userId=#{userId}
-    </select>
 
     <select id="findAll" parameterType="Long" resultType="java.util.HashMap">
         select u.userEmail, c.comment, c.commentTime

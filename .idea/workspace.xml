@@ -4,24 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f86f6a71-be09-408d-af32-1e0721510d12" name="변경" comment="[Feat] Comment 댓글 이메일 출력기능 수정">
-<<<<<<< HEAD
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/apis/auth/authApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/apis/auth/authApi.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/Header/LoginBtn/hooks/useHomeRegexp.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Header/LoginBtn/hooks/useHomeRegexp.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/Header/LoginBtn/modal/JoinModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Header/LoginBtn/modal/JoinModal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/Header/LoginBtn/modal/LoginModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Header/LoginBtn/modal/LoginModal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/example/Belog/controller/BoardController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/example/Belog/controller/BoardController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/example/Belog/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/example/Belog/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Belog/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Belog/controller/UserController.java" afterDir="false" />
-=======
+    <list default="true" id="f86f6a71-be09-408d-af32-1e0721510d12" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/com/example/Belog/controller/CommentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/example/Belog/controller/CommentController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/com/example/Belog/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/example/Belog/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/example/Belog/mapper/CommentMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/example/Belog/mapper/CommentMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/example/Belog/service/CommentService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/example/Belog/service/CommentService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/example/Belog/service/CommentServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/example/Belog/service/CommentServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/resources/mybatis/mapper/CommentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/resources/mybatis/mapper/CommentMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Belog/controller/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Belog/controller/CommentController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Belog/domain/CommentDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Belog/domain/CommentDTO.java" afterDir="false" />
@@ -29,7 +16,6 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Belog/service/CommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Belog/service/CommentService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Belog/service/CommentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Belog/service/CommentServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/CommentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapper/CommentMapper.xml" afterDir="false" />
->>>>>>> c2493dd093cdc585e57adbe3772d54a62be4059c
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,30 +85,30 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/IntelliJ/Belog&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;d91659513e7beb8cc580b7cf53b10fd8&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "last_opened_file_path": "E:/IntelliJ/Belog",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "spring.configuration.checksum": "d91659513e7beb8cc580b7cf53b10fd8",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.example.Belog.config" />
@@ -141,7 +127,7 @@
       <recent name="com.example.Belog.config" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.BelogApplication">
+  <component name="RunManager" selected="Spring Boot.BelogApplication">
     <configuration name="BelogApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.Belog.BelogApplication" />
       <module name="Belog.main" />
@@ -174,7 +160,6 @@
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
     <configuration name="Belog [jacocoTestReport]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -196,7 +181,6 @@
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
     <configuration name="UserControllerTest.testSignUp" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
@@ -240,7 +224,6 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.BelogApplication" />
         <item itemvalue="JUnit.UserControllerTest.testSignUp" />
         <item itemvalue="Gradle.Belog [jacocoTestCoverageVerification]" />
         <item itemvalue="Gradle.Belog [jacocoTestReport]" />
@@ -284,11 +267,7 @@
       <workItem from="1683886699317" duration="1147000" />
       <workItem from="1683936516956" duration="16675000" />
       <workItem from="1684196851148" duration="5433000" />
-      <workItem from="1684246190230" duration="4434000" />
-      <workItem from="1684328698294" duration="967000" />
-      <workItem from="1684406086403" duration="7038000" />
-      <workItem from="1684727240515" duration="1933000" />
-      <workItem from="1685175498483" duration="362000" />
+      <workItem from="1684246190230" duration="2846000" />
     </task>
     <task id="LOCAL-00001" summary="[Feat] Comment 댓글 이메일 출력기능 수정">
       <created>1681229460063</created>
