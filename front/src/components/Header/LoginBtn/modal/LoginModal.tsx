@@ -52,7 +52,7 @@ function LoginModal() {
     <>
       <CloseButton onClick={onClickCloseModal}>X</CloseButton>
       <LoginContainer>
-        <Title>Login</Title>
+        <Title>로그인</Title>
         <form
           onSubmit={(e) => {
             e.preventDefault();

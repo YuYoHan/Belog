@@ -88,10 +88,14 @@ function PostingRegisterbtn ({content,inputboardTitle,tagList,createObjectURL,im
    // aws key
    const config : S3Config = {
       bucketName: 'blog-img-file' || '',
-      region: process.env.REACT_APP_S3_REGION || '',
+      region: 'ap-northeast-2' || '',
       accessKeyId: process.env.REACT_APP_S3_ACCESS_KET_ID || '',
       secretAccessKey: process.env.REACT_APP_S3_SECRET_ACCESSKEY || '',
    }
+
+   console.log(config);
+   
+   
 
    //  aws s3 에디터 이미지 업로드
    useEffect(() => {
