@@ -40,5 +40,6 @@ const GlobalStyles = createGlobalStyle`
    h4{
       font-size:1.125rem
    }
+  
 `;
 export default GlobalStyles;

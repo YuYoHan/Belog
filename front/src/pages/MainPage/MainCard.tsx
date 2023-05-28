@@ -24,7 +24,6 @@ function MainPageCard ({data} : {data : BoardData}) {
       
       return html;
    };
-   
 
    const markup = createMarkup();
    
@@ -130,7 +129,7 @@ const Content = styled.div`
       text-overflow: ellipsis;
       color: #495057;
    }
-   
+
 `
 
 const Days = styled.div`

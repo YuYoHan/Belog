@@ -5,16 +5,20 @@ import { commentKey } from 'consts/queryKey'
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Axios from "apis/@core";
 import { toast } from "react-toastify";
+import { SessionRepository } from "repository/SessionRepository";
 
 
 function ComentForm({boardNum} : {boardNum : number}) {
 
    //input 사용자가 입력한 text 데이터
    const [comment , setContent, reset] = useInput('');
-
+   const UserSessiondata = SessionRepository.getSession();
+   const userId = UserSessiondata.userid
    // 서버에 보낼 댓글 데이터
    const commentobj = {
-      comment
+      comment,
+      boardNum,
+      userId,
    }
    
    const queryClient = useQueryClient();
@@ -22,6 +26,8 @@ function ComentForm({boardNum} : {boardNum : number}) {
       onSuccess: (res) => {
          queryClient.invalidateQueries([commentKey.GET_COMMENT_LIST]);
          reset("");
+         console.log(res);
+         
       },
    })
 
@@ -30,16 +36,6 @@ function ComentForm({boardNum} : {boardNum : number}) {
       if(comment.length === 0) return toast.error('댓글 내용을 입력해주세요.')
       CommentAddmutation.mutate();
    }
-      
-      const test = () => {
-         Axios.post(`http://15.164.220.47:8080/v1/board/${boardNum}/comment`,comment).
-         then((res) => {
-            
-         }).catch((err)=>{
-            console.log(err);
-            
-         })
-      }
       
 
    return (

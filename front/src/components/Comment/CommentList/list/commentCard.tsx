@@ -12,6 +12,7 @@ function CommentCard( {data} : commentData) {
   const [UpdatehiddenBtn,setUpdatehiddenBtn] = useState<boolean>(false)
   const EditableBtn =  useEditable(data.userId)
   
+  console.log(data);
   
   const onClickhiddenBtn = () => {
     setUpdatehiddenBtn(true)
@@ -29,7 +30,7 @@ function CommentCard( {data} : commentData) {
     <Wrap>
       <CommentListHeader>
         <UserEmail>
-          <p> {data.useremail} </p>
+          <p> {data.userEmail} </p>
         </UserEmail>
         {!UpdatehiddenBtn && EditableBtn && (
           <ChangeBtn>

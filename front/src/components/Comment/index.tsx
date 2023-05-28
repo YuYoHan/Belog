@@ -9,7 +9,7 @@ import axios from 'axios';
 
 export type commentData = {
   data : {
-    useremail : string;
+    userEmail : string;
     boardNum : number,
     comment : string,
     commentNum? : number,
@@ -25,14 +25,14 @@ function CommentList({boardNum} : { boardNum : number }) {
   const {data : commentist} = useQuery<querycommentData>([commentKey.GET_COMMENT_LIST], () => CommentApi.getCommentApi(boardNum));
   const ref = useRef<HTMLInputElement>(null);
   
- 
+  console.log(commentist);
+  
+
   return (
     <Wrapper >
       {
         commentist?.data.map((list : any ,index) => 
-        <div key={index} ref={ref}>
           <CommentCard data={list}/>
-        </div>
       )}
     </Wrapper>
   )

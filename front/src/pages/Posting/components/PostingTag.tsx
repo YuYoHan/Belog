@@ -30,10 +30,13 @@ function PostingTag({tagList,setTagList} : TagProps) {
       setTagList(updatedTagList)
       setTagItem('')
    }
+   console.log(tagItem);
+   
    
    // x 버튼 클릭시 태그삭제
    const deleteTagItem = (e : any) => {
       const deleteTagItem = e.target.parentElement.firstChild.innerText
+      
       const filteredTagList = tagList.filter(tagItem => tagItem !== deleteTagItem)
       setTagList(filteredTagList)
    }
@@ -74,6 +77,7 @@ const Wrapper = styled.div`
    align-items: center;
    flex-wrap: wrap;
    margin-bottom: 0.75rem;
+   padding: 0.5rem 0;
    & input{
       background: transparent;
       display: inline-flex;
@@ -81,7 +85,6 @@ const Wrapper = styled.div`
       cursor: text;
       font-size: 1.125rem;
       line-height: 2rem;
-      margin-bottom: 0.75rem;
       min-width: 8rem;
       border: none;
       color: #212529;

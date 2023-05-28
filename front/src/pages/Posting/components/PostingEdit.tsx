@@ -60,10 +60,9 @@ function PostingEdit({inputboardTitle,tagList,Detailcontent,boardImg,boardNum} :
       container: [
         [{ 'header': [2, 3, 4, false] }],
         ['bold', 'italic', 'underline', 'strike'],
-        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-        [{ 'indent': '-1' }, { 'indent': '+1' }],
-        ['image', 'link'],
-        [{ 'color': ['#000000', '#e60000', '#ff9900', '#ffff00', '#008a00', '#0066cc', '#9933ff', '#ffffff', '#f06666',  '#66a3e0', '#c285ff', '#888888', '#a10000', '#b26b00', '#b2b200', '#006100', '#0047b2', '#6b24b2', '#444444', '#5c0000', '#663d00', '#666600', '#003700', '#002966', '#3d1466'] }],
+        [{ 'list': 'ordered' }, { 'list': 'bullet' }, 'link'],
+        ['image'],
+        [{ 'color': ['#000000', '#e60000', '#ff9900', '#ffff00', '#008a00', '#0066cc', '#9933ff', '#ffffff', '#f06666', '#66a3e0', '#c285ff', '#888888', '#a10000', '#b26b00', '#b2b200', '#006100', '#0047b2', '#6b24b2', '#444444', '#5c0000', '#663d00', '#666600', '#003700', '#002966', '#3d1466'] }],
       ],
       handlers: {
         image: imageHandler,
@@ -78,6 +77,7 @@ const formats = [
   'underline',
   'strike',
   'link',
+  'list',
   'ordered',
   'blockquote',
   'image',

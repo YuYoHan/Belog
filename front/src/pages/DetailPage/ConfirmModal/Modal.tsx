@@ -54,6 +54,7 @@ function DetailConfirmModal ({boardNum,setModalOpen,img} : ModalType) {
     },
   })
 
+  
   return (
     <S.Presentation>
       <S.WrapperModal>

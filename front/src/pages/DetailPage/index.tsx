@@ -90,7 +90,7 @@ function DetailPage() {
                <RemoveBtn boardNum={boardNum} img={data?.boardImages}/>
             </S.ButtonWrap>
             }
-         <S.Content>
+         <S.Content className="ql-editor">
          {data && (
             <div dangerouslySetInnerHTML={{ __html: data.boardContents }} />
          )}
