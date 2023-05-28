@@ -1,0 +1,36 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.Belog.mapper.UserMapper">
+    <insert id="signUp">
+        insert into user(userEmail, userPw, userName, userAddr, userAddrDetail, userAddrEtc)
+        values (#{userEmail},#{userPw}, #{userName}, #{userAddr}, #{userAddrDetail}, #{userAddrEtc})
+    </insert>
+
+    <select id="emailCheck" parameterType="String" resultType="int">
+        select count(userEmail) from user where userEmail = #{userEmail}
+    </select>
+    <select id="login" resultType="com.example.Belog.domain.UserDTO">
+        select * from user where userEmail=#{userEmail} and userPw=#{userPw}
+    </select>
+    
+    <delete id="deleteUser" parameterType="Long">
+        delete from user where userId=#{userId}
+    </delete>
+    <select id="getAllUser" resultType="com.example.Belog.domain.UserDTO">
+        select * from user
+    </select>
+    <select id="getUser" resultType="com.example.Belog.domain.UserDTO">
+        select * from user where userEmail=#{userEmail}
+    </select>
+    <update id="update" parameterType="com.example.Belog.domain.UserDTO">
+        update user set
+                        userPw=#{userPw},
+                        userName=#{userName},
+                        userAddr=#{userAddr},
+                        userAddrDetail=#{userAddrDetail},
+                        userAddrEtc=#{userAddrEtc}
+        where userId=#{userId}
+    </update>
+</mapper>

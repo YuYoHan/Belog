@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.Belog.mapper.BoardMapper">
+
+    <insert id="writeBoard" parameterType="com.example.Belog.domain.BoardDTO">
+        insert into board(userId, boardTitle, boardContents, hashTag) values (#{userId}, #{boardTitle}, #{boardContents}, #{hashTag})
+    </insert>
+
+    <insert id="insertBoardImage">
+        insert into boardImg(boardNum, boardImg) values
+        <foreach collection="boardImages" item="boardImage" separator=",">
+            (#{boardNum}, #{boardImage})
+        </foreach>
+    </insert>
+
+    <delete id="deleteBoard" parameterType="Long">
+        delete from board where boardNum = #{boardNum}
+    </delete>
+
+    <delete id="deleteBoardImage" parameterType="Long">
+        delete from boardImg where boardNum = #{boardNum}
+    </delete>
+
+    <update id="updateBoard" parameterType="com.example.Belog.domain.BoardDTO">
+        update board set boardContents = #{boardContents}, boardTitle = #{boardTitle}, hashTag = #{hashTag} where boardNum = #{boardNum}
+    </update>
+
+    <select id="getBoardCount" parameterType="com.example.Belog.domain.BoardDTO" resultType="int">
+        select count(*) from board;
+    </select>
+
+    <select id="findAllBoard" resultType="com.example.Belog.domain.BoardDTO">
+        select * from board order by boardNum desc limit #{startRow}, #{BOARD_NUM_PER_PAGE};
+    </select>
+
+    <select id="findBoardImagesByBoardNum" resultType="com.example.Belog.domain.BoardImageDTO">
+        select * from boardImg where boardNum = #{boardNum}
+    </select>
+
+    <select id="getBoardCountByBoardNum" parameterType="Long" resultType="int">
+        select count(*) from board where boardNum = #{boardNum}
+    </select>
+
+    <select id="findBoardByBoardNum" parameterType="Long" resultType="com.example.Belog.domain.BoardDTO">
+        select boardNum, userId, boardTitle, boardContents, hashTag, writeTime from board where boardNum = #{boardNum};
+    </select>
+
+    <select id="getLastBoardNum" resultType="Long">
+        select max(boardNum) from board;
+    </select>
+
+    <select id="findUserIdByUserEmail" parameterType="String" resultType="Long">
+        select userId from user where userEmail = #{userEmail};
+    </select>
+
+    <select id="findBoardByUserId" resultType="com.example.Belog.domain.BoardDTO">
+        select * from board where userId = #{userId};
+    </select>
+</mapper>
