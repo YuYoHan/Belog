@@ -16,6 +16,7 @@ export type postingData = {
    
 }
 
+
 export type boardtitle = {
    boardTitle: string,
    setTitleValue :React.Dispatch<React.SetStateAction<string>>
