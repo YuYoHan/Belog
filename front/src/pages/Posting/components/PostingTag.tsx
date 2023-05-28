@@ -22,25 +22,32 @@ function PostingTag({tagList,setTagList} : TagProps) {
          setPlaceholder('');
       }
    }
+   
+   /*
+      공백을 입력해도 공백이 제거된 상태로 tagList에 추가
+      입력된 input 텍스트 setTagList에 저장
+   */ 
 
-   // 입력된 input 텍스트 setTagList에 저장
    const submitTagItem = () => {
-      let updatedTagList = [...tagList]
-      updatedTagList.push(tagItem)
-      setTagList(updatedTagList)
-      setTagItem('')
+      const trimmedTagItem = tagItem.trim(); 
+
+   if (trimmedTagItem !== '') {
+      let updatedTagList = [...tagList];
+      updatedTagList.push(trimmedTagItem);
+      setTagList(updatedTagList);
+      setTagItem('');
    }
-   console.log(tagItem);
+   }
    
    
    // x 버튼 클릭시 태그삭제
    const deleteTagItem = (e : any) => {
-      const deleteTagItem = e.target.parentElement.firstChild.innerText
+      const deleteTagItem = e.target.parentElement.firstChild.innerText.trim()
       
       const filteredTagList = tagList.filter(tagItem => tagItem !== deleteTagItem)
       setTagList(filteredTagList)
    }
-
+   
    useEffect(() => {
       if (tagList.length <= 0) {
          setPlaceholder('태그를 입력해주세요')
