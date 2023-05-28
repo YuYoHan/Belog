@@ -87,11 +87,12 @@ function PostingRegisterbtn ({content,inputboardTitle,tagList,createObjectURL,im
 
    // aws key
    const config : S3Config = {
-      bucketName: 'blog-img-file' || '',
+      bucketName: 'web-blog-site' || '',
       region: 'ap-northeast-2' || '',
       accessKeyId: process.env.REACT_APP_S3_ACCESS_KET_ID || '',
       secretAccessKey: process.env.REACT_APP_S3_SECRET_ACCESSKEY || '',
    }
+
 
    console.log(config);
    
