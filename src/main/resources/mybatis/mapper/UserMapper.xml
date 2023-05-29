@@ -18,9 +18,6 @@
     <delete id="deleteUser" parameterType="Long">
         delete from user where userId=#{userId}
     </delete>
-    <select id="getAllUser" resultType="com.example.Belog.domain.UserDTO">
-        select * from user
-    </select>
     <select id="getUser" resultType="com.example.Belog.domain.UserDTO">
         select * from user where userEmail=#{userEmail}
     </select>

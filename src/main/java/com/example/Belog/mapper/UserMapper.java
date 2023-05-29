@@ -19,7 +19,6 @@ public interface UserMapper {
 
     int emailCheck(String userEmail);
 
-    List<UserDTO> getAllUser();
 
     UserDTO getUser(String userEmail);
 

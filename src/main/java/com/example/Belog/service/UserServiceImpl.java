@@ -44,10 +44,6 @@ public class UserServiceImpl implements UserService{
         return user;
     }
 
-    @Override
-    public List<UserDTO> getAllUser() {
-        return userMapper.getAllUser();
-    }
 
     @Override
     public UserDTO getUser(String userEmail) {
