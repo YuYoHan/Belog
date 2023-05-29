@@ -29,9 +29,8 @@ Expand All
 ### Requirements
 For building and running the application you need:
 
-- [Node.js 14.19.3](https://nodejs.org/ca/blog/release/v14.19.3/)
-- [Npm 9.2.0](https://www.npmjs.com/package/npm/v/9.2.0)
-- [Strapi 3.6.6](https://www.npmjs.com/package/strapi/v/3.6.6)
+- [Node.js 16.17.1](https://nodejs.org/ca/blog/release/v16.17.1/)
+- [Npm 9.6.7](https://www.npmjs.com/package/npm/v/9.6.7)
 
 
 #### Frontend
