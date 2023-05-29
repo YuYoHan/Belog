@@ -31,7 +31,9 @@
     <select id="findAll" parameterType="Long" resultType="java.util.HashMap">
         select u.userEmail, c.userId, c.comment, c.commentTime
         from user u, comment c, board b
-        where u.userId=c.userId and b.boardNum = #{boardNum}
+        where u.userId=c.userId
+        and b.boardNum = c.boardNum
+        and b.boardNum = #{boardNum}
     </select>
 
 
