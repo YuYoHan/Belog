@@ -10,7 +10,6 @@ import { queryKey } from "consts/queryKey";
 import { SessionRepository } from "repository/SessionRepository";
 import { toast } from "react-toastify";
 
-
 // 부모(index) 컴포넌트에서 전달받은 props
 export type postingDataProps = {
    content : string,
@@ -92,10 +91,6 @@ function PostingRegisterbtn ({content,inputboardTitle,tagList,createObjectURL,im
       accessKeyId: process.env.REACT_APP_S3_ACCESS_KET_ID || '',
       secretAccessKey: process.env.REACT_APP_S3_SECRET_ACCESSKEY || '',
    }
-
-
-   console.log(config);
-   
    
 
    //  aws s3 에디터 이미지 업로드
@@ -182,8 +177,6 @@ function PostingRegisterbtn ({content,inputboardTitle,tagList,createObjectURL,im
          navigate('/')
       },
       onError : (err : AxiosError) => {
-         console.log(err);
-         
          toast.error('게시글 등록되지 않았습니다.')
       }
    })
