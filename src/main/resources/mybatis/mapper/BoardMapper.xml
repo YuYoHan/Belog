@@ -57,4 +57,8 @@
     <select id="findBoardByUserId" resultType="com.example.Belog.domain.BoardDTO">
         select * from board where userId = #{userId};
     </select>
+
+    <select id="findUserEmailByUserId" resultType="String">
+        select userEmail from user where userId = #{userId};
+    </select>
 </mapper>

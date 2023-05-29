@@ -36,9 +36,12 @@ public class BoardDTO {
     @Schema(description = "게시글 이미지 경로")
     private List<String> boardImages;
 
+    @Schema(description = "유저 이메일")
+    private String userEmail;
     @Builder
     public BoardDTO(
             Long userId,
+            String userEmail,
             Long boardNum,
             String boardTitle,
             String boardContents,
@@ -47,6 +50,7 @@ public class BoardDTO {
             Date writeTime
     ) {
         this.userId = userId;
+        this.userEmail = userEmail;
         this.boardNum = boardNum;
         this.boardTitle = boardTitle;
         this.boardContents = boardContents;

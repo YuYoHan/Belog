@@ -35,4 +35,6 @@ public interface BoardMapper {
     Long getLastBoardNum();
 
     void insertBoardImage(@Param("boardNum") Long boardNum, @Param("boardImages")List<String> boardImages);
+
+    String findUserEmailByUserId(Long userId);
 }

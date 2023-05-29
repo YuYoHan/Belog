@@ -90,11 +90,14 @@ public class  BoardServiceImpl implements BoardService{
         for (BoardDTO boardDTO : boardList) {
             Long boardNum = boardDTO.getBoardNum();
             List<String> boardImages = findBoardImagesByBoardNum(boardNum);
+            Long userId = boardDTO.getUserId();
+            String userEmail = boardMapper.findUserEmailByUserId(userId);
 
             BoardDTO returnBoardDTO = boardDTO.builder()
                     .writeTime(boardDTO.getWriteTime())
                     .boardNum(boardNum)
-                    .userId(boardDTO.getUserId())
+                    .userId(userId)
+                    .userEmail(userEmail)
                     .boardImages(boardImages)
                     .boardTitle(boardDTO.getBoardTitle())
                     .boardContents(boardDTO.getBoardContents())
