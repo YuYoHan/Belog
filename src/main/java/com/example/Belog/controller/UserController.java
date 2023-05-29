@@ -33,19 +33,6 @@ public class UserController {
 
     private final UserService userService;
 
-    // 모든 회원 정보를 가져오는 API
-    @GetMapping("/")
-    @Tag(name = "user check")
-    @Operation(summary = "전체 불러오기 API", description = "모든 유저들을 불러오는 API입니다.")
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "모든 회원조회 성공"),
-            @ApiResponse(responseCode = "404", description = "모든 회원조회 실패")
-    })
-    public ResponseEntity<List<UserDTO>> getAllUser() {
-        List<UserDTO> userDTOList = userService.getAllUser();
-        return ResponseEntity.status(HttpStatus.OK).body(userDTOList);
-    }
-
 
     // 회원 정보를 가져오는 API
     @GetMapping("/{userEmail}")

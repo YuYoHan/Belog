@@ -19,7 +19,6 @@ public interface UserService {
 
     int emailCheck(String userEmail);
 
-    List<UserDTO> getAllUser();
 
     UserDTO getUser(String userEmail);
 
