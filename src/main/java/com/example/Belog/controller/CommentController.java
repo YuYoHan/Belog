@@ -38,14 +38,14 @@ public class CommentController {
     public ResponseEntity<?> addComment( @PathVariable("boardNum") Long boardNum,
                                          @RequestBody CommentDTO commentDTO) {
 
-        CommentDTO insertCmt = CommentDTO.builder()
+        commentDTO = CommentDTO.builder()
                 .userId(commentDTO.getUserId())
                 .boardNum(boardNum)
                 .comment(commentDTO.getComment())
                 .build();
 
         commentService.addComment(commentDTO);
-        log.info("Add success");
+        log.info("Add success: " + commentDTO);
         return new ResponseEntity<>(commentDTO, HttpStatus.CREATED);
     }// addComment
 

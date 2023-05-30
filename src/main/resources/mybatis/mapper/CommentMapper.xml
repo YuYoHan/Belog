@@ -4,7 +4,7 @@
 <mapper namespace="com.example.Belog.mapper.CommentMapper">
 
 
-    <insert id="add" useGeneratedKeys="true" keyProperty="commentNum">
+    <insert id="add" parameterType="com.example.Belog.domain.CommentDTO">
         INSERT INTO comment(userId, boardNum, comment)
         VALUES (#{userId}, #{boardNum}, #{comment})
     </insert>
