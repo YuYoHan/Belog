@@ -10,6 +10,8 @@ import styled from "styled-components"
 import EditBtn from "./EditBtn";
 import RemoveBtn from "./RemoveBtn";
 import TimeForToday from "hooks/usedaysTimer";
+import { useQuery } from "@tanstack/react-query";
+import { DetailPageKey } from "consts/queryKey";
 
 export interface DetailpageData {
    boardContents: string;
@@ -43,7 +45,8 @@ function DetailPage() {
    const [tagList , setTagList] = useState<string[]>([])
    const userId = data?.userId as number;
    const EditableBtn =  useEditable(userId)
-   
+   console.log(boardNum);
+      
    
    //상세 페이지 api 호출 
    useEffect(() => {
