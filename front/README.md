@@ -89,9 +89,9 @@ $ npm start
    └── .github/workflows : git action ci/cd
    ├── src
    ├───├── apis - api 서비스 폴더 
-   ├    │   ├── authApi.ts : 회원가입,로그인 ... 
-   ├    │   ├── CommentApi.ts - 댓글 추가 수정 삭제 ...
-   ├    │   ├── PostApi.ts - 게시판 추가 수정 삭제 ...
+   │   │   ├── authApi.ts : 회원가입,로그인 ... 
+   │   │  ├── CommentApi.ts - 댓글 추가 수정 삭제 ...
+   │   │  ├── PostApi.ts - 게시판 추가 수정 삭제 ...
    ├───├── assets - 로고,로딩 
        │   └── gif
        │   └── images
@@ -132,20 +132,20 @@ $ npm start
        │   ├── font - 폰트
        │   ├── styles - css 초기세팅
        ├── pages
-       │   ├── Detail -  작성자 시간 hook
+       │   ├── Detail
        │   │   └── index.tsx - 상세페이지 컴포넌트들의 index        
        │   │   └── ConfirmModal.tsx - 상세 페이지 삭제 모달        
        │   │   └── EditBtn.tsx - 게시글 수정버튼(게시글 작성 컴포넌트 이동)        
        │   │   └── RemoveBtn.tsx - 게시글 삭제버튼 모달오픈        
-       │   ├── MainPage -  작성자 시간 hook
+       │   ├── MainPage
        │   │   └── MainCard.tsx - 카드형태 리스트 데이터        
        │   │   └── MainList.tsx - 전체리스트 api 요청,무한스크롤
-       │   ├── Posting -  작성자 시간 hook
+       │   ├── Posting
        │   │   └── PostingEdit.tsx - react-quill 에디터 설정, 이미지 핸들러
        │   │   └── PostingRegisterbtn.tsx - 게시글 등록,수정 버튼
        │   │   └── PostingTag.tsx - 게시글 태그 리스트
        │   │   └── PostingTitle.tsx - 게시글 제목
-       │   ├── UserUpdate -  작성자 시간 hook
+       │   ├── UserUpdate 
        │   │   └── index.tsx - 유저 상세 조회,유저 수정 버튼
        │   │   └── title.tsx - 설정 제목
        │   │   └── addrUpdate - form(사용자 input),index,title(제목)
@@ -155,7 +155,6 @@ $ npm start
        │   ├── SessionRepository -  세션 저장,삭제,가져오기
        ├── package-lock.json
        ├── package.json
-       ├── pages
        │   ├── _app.js
        │   ├── _document.js
        │   ├── about.js
