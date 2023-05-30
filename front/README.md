@@ -7,15 +7,12 @@
 
 </div>
 
-
-# Blog Web Site
->  **개발기간: 2023.03 ~ 2023.05**<br/>
-
+Expand All
+	@@ -14,16 +14,16 @@
 
 
 ## 배포 주소
 > **프론트 서버** : http://web:blog:site.s3:website.ap:northeast:2.amazonaws.com<br>
-
 
 ## 웹개발팀 소개
 
@@ -27,25 +24,30 @@
 
 ## 프로젝트 소개
 
-이 프로젝트의 모델은 Velog로, Velog를 모델로 정한 이유는 개발공부를 하면서 가장 친숙한 형태의 블로그 형식이기 때문에 Velog로 정하게되었습니다. 그렇기 때문에 구조는 Velog와 비슷한 형태이며 불필요하다고 생각하는 UI를 제거하고 구성하였습니다.
-
-## 시작 가이드
+Expand All
+	@@ -33,9 +33,9 @@
 ### Requirements
 For building and running the application you need:
 
+<<<<<<< HEAD
 : [Node.js 14.19.3](https://nodejs.org/ca/blog/release/v14.19.3/)
 : [Npm 9.2.0](https://www.npmjs.com/package/npm/v/9.2.0)
 : [Strapi 3.6.6](https://www.npmjs.com/package/strapi/v/3.6.6)
+=======
+- [Node.js 16.17.1](https://nodejs.org/ca/blog/release/v16.17.1/)
+- [Npm 9.6.7](https://www.npmjs.com/package/npm/v/9.6.7)
+>>>>>>> bdd89fbf73c90383f84c66d0ba69a1a0e46bc811
 
 
 #### Frontend
-```
-$ cd front
-$ npm install 
+Expand All
+	@@ -45,115 +45,135 @@ $ npm install
 $ npm run dev
-```
 
+<<<<<<< HEAD
 :::
+=======
+>>>>>>> bdd89fbf73c90383f84c66d0ba69a1a0e46bc811
 
 ## Stacks 🐈
 
