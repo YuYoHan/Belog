@@ -18,7 +18,7 @@ function App() {
             cacheTime: 1000 * 60 * 5,
         },
     },
-});
+  });
 
 
   return (
