@@ -20,10 +20,17 @@
 ## 웹개발팀 소개
 
 |      황순욱       |          유요한         |       정다현         |       김민성                                                                                                                        
+<<<<<<< HEAD
 | :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: | ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: | ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: |::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: 
 |   <img width="160px" src="https://avatars.githubusercontent.com/u/70474741?s=400&u=fb295b1d8b1ede66ad0d9e290d8fc3e899be0d50&v=4" />    |                      <img width="160px" src="https://user:images.githubusercontent.com/50205887/207570536:f5a82e48:99a1:4399:91d3:75fc5f8f3349.png" />    |                   <img width="160px" src="https://user:images.githubusercontent.com/50205887/207570634:247c3715:a54e:4f63:8c08:9b266f8a35f7.png"/>   |
 |   [@cleooo5857](https://github.com/cleooo5857)   |    [@ChaeyeonSeo](https://github.com/ChaeyeonSeo)  | [@hyunjeong408](https://github.com/hyunjeong408)  |
 | Front:end | Back:end | Back:end | Back:end |
+=======
+| :------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: 
+|   <img width="160px" src="https://avatars.githubusercontent.com/u/70474741?s=400&u=fb295b1d8b1ede66ad0d9e290d8fc3e899be0d50&v=4" />    |                      <img width="160px" src="https://avatars.githubusercontent.com/u/110465572?v=4" />    |                   <img width="160px" src="https://avatars.githubusercontent.com/u/43868558?v=4"/>   | <img width="160px" src="https://avatars.githubusercontent.com/u/89964419?s=64&v=4"/>
+|   [@cleooo5857](https://github.com/cleooo5857)   |    [@YuYoHan](https://github.com/YuYoHan)  | [@jDaHyun](https://github.com/jDaHyun)  | [@rlaalstjd00](https://github.com/rlaalstjd00)  |
+| Front-end | Back-end | Back-end | Back-end |
+>>>>>>> 72d8271986cddeb97cdb4de068ad85c020df115e
 
 ## 프로젝트 소개
 
@@ -33,16 +40,21 @@
 ### Requirements
 For building and running the application you need:
 
+<<<<<<< HEAD
 : [Node.js 14.19.3](https://nodejs.org/ca/blog/release/v14.19.3/)
 : [Npm 9.2.0](https://www.npmjs.com/package/npm/v/9.2.0)
 : [Strapi 3.6.6](https://www.npmjs.com/package/strapi/v/3.6.6)
 
+=======
+- [Node.js 16.17.1](https://nodejs.org/ca/blog/release/v16.17.1/)
+- [Npm 9.6.7](https://www.npmjs.com/package/npm/v/9.6.7)
+>>>>>>> 72d8271986cddeb97cdb4de068ad85c020df115e
 
 #### Frontend
 ```
 $ cd front
 $ npm install 
-$ npm run dev
+$ npm start
 ```
 
 :::
@@ -50,6 +62,7 @@ $ npm run dev
 ## Stacks 🐈
 
 ### 환경
+<<<<<<< HEAD
 ![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code:007ACC?style=for:the:badge&logo=Visual%20Studio%20Code&logoColor=white)
 ![Git](https://img.shields.io/badge/Git:F05032?style=for:the:badge&logo=Git&logoColor=white)
 ![Github](https://img.shields.io/badge/GitHub:181717?style=for:the:badge&logo=GitHub&logoColor=white)             
@@ -62,6 +75,18 @@ $ npm run dev
 ![CSS](https://img.shields.io/badge/React:20232A?style=for:the:badge&logo=react&logoColor=61DAFB)
 ![JavaScript](https://img.shields.io/badge/JavaScript:F7DF1E?style=for:the:badge&logo=Javascript&logoColor=white)
 ![React](https://img.shields.io/badge/React:20232A?style=for:the:badge&logo=react&logoColor=61DAFB)
+=======
+![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?style=for-the-badge&logo=Visual%20Studio%20Code&logoColor=white)
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=Git&logoColor=white)
+![Github](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white)             ![npm](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)   
+
+### 언어
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=CSS3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=Javascript&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+>>>>>>> 72d8271986cddeb97cdb4de068ad85c020df115e
 
 :::
 ## 화면 구성 📺
@@ -92,11 +117,19 @@ $ npm run dev
 ── .github/workflows : git action ci/cd
 ── Front
    ├── src
+<<<<<<< HEAD
    ├───├── apis : api 서비스 폴더 
    │   │   ├── authApi.ts : 회원가입,로그인 ... 
    │   │   ├── CommentApi.ts : 댓글 추가 수정 삭제 ...
    │   │   ├── PostApi.ts : 게시판 추가 수정 삭제 ...
    ├───├── assets : 로고,로딩 
+=======
+   ├───├── apis - api 서비스 폴더 
+   │   │   ├── authApi.ts : 회원가입,로그인 ... 
+   │   │  ├── CommentApi.ts - 댓글 추가 수정 삭제 ...
+   │   │  ├── PostApi.ts - 게시판 추가 수정 삭제 ...
+   ├───├── assets - 로고,로딩 
+>>>>>>> 72d8271986cddeb97cdb4de068ad85c020df115e
        │   └── gif
        │   └── images
        │   └── svg
