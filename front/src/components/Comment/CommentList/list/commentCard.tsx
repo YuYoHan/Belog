@@ -12,7 +12,6 @@ function CommentCard( {data} : commentData) {
   const [UpdatehiddenBtn,setUpdatehiddenBtn] = useState<boolean>(false)
   const EditableBtn =  useEditable(data.userId)
   
-  console.log(data);
   
   const onClickhiddenBtn = () => {
     setUpdatehiddenBtn(true)
@@ -21,10 +20,14 @@ function CommentCard( {data} : commentData) {
   const queryClient = useQueryClient();
   const CommentDeletemutation = useMutation(() => CommentApi.deleteCommentApi(), {
     onSuccess: (res) => {
-      if (!window.confirm('삭제 하시겠습니까')) return;
       queryClient.invalidateQueries([commentKey.GET_COMMENT_LIST])
     },
   })
+
+  const handleCommentDelete = () => {
+    if (!window.confirm('삭제 하시겠습니까')) return;
+      CommentDeletemutation.mutate();
+  }
   
   return (
     <Wrap>
@@ -35,7 +38,7 @@ function CommentCard( {data} : commentData) {
         {!UpdatehiddenBtn && EditableBtn && (
           <ChangeBtn>
             <span onClick={onClickhiddenBtn}>수정</span>
-            <span onClick={() => CommentDeletemutation}>삭제</span>
+            <span onClick={handleCommentDelete}>삭제</span>
           </ChangeBtn>
         )}
       </CommentListHeader>

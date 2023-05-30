@@ -12,6 +12,6 @@ function PrivateRoute({component: Component }) {
     } else {
         toast.error('로그인 사용자만 사용 할 수 있습니다.');
         return <Navigate to="/" />;
-      }
+    }
 }
 export default PrivateRoute;

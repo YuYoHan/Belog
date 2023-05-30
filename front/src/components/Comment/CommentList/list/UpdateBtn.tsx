@@ -1,7 +1,7 @@
 import { QueryClient, useMutation, useQueryClient } from '@tanstack/react-query';
 import CommentApi from 'apis/comment/CommentAPI';
 import { commentKey, queryKey } from 'consts/queryKey';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import useInputs from 'hooks/useinputs'
 
@@ -13,8 +13,14 @@ interface commentCardProps  {
 function CommentUpdateBtn({comment,setUpdatehiddenBtn} : commentCardProps) {
 
    const [{ commentform}, onChangeForm, setvalue] = useInputs({
-      comment:   "",
+      Updatecomment: comment || "",
     });
+
+   useEffect(() => {
+      setvalue({commentform: comment || ""})
+   },[comment])
+   
+
    const onClickOpenBtn = () => {
       setUpdatehiddenBtn(false)
    }
@@ -45,9 +51,9 @@ function CommentUpdateBtn({comment,setUpdatehiddenBtn} : commentCardProps) {
 
    return (
       <BtnWrap>
-      <textarea typeof='commentform' value={comment} onChange={onChangeForm}></textarea>
+      <textarea typeof='text' name='commentform' value={commentform} onChange={onChangeForm}></textarea>
          <CancelBtn onClick={onClickOpenBtn}> 취소 </CancelBtn>
-         <UpdateBtn onClick={()=> updateCommentMutation}> 댓글 수정 </UpdateBtn>
+         <UpdateBtn onClick={()=> updateCommentMutation.mutate()}> 댓글 수정 </UpdateBtn>
       </BtnWrap>
    )
 }

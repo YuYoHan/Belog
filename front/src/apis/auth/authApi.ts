@@ -17,7 +17,6 @@ interface loginData {
 interface JoinData {
     data : string
 }
-// const path = 'http://15.164.220.47:8080/v1/user/'
 const url = process.env.REACT_APP_BASE_URL
 const path = `${url}v1/user/`
 

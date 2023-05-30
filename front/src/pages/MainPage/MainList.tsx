@@ -15,6 +15,7 @@ export interface BoardData {
    boardTitle: string;
    hashTag?: string;
    boardImages?: string[];
+   userEmail:string;
 }
 
 interface Board {
@@ -53,7 +54,7 @@ function MainPageList() {
       fetchNextPage();
     }, [inView]);
 
-
+   
    return(
       <S.Wrapper>
          <S.Innerwrap>

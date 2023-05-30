@@ -1,10 +1,8 @@
-import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { commentKey } from "consts/queryKey";
 import CommentApi from "apis/comment/CommentAPI";
 import { useQuery } from "@tanstack/react-query";
 import CommentCard from './CommentList/list/commentCard';
-import axios from 'axios';
 
 
 export type commentData = {
@@ -22,17 +20,17 @@ export type querycommentData = {
 }
 
 function CommentList({boardNum} : { boardNum : number }) {
-  const {data : commentist} = useQuery<querycommentData>([commentKey.GET_COMMENT_LIST], () => CommentApi.getCommentApi(boardNum));
-  const ref = useRef<HTMLInputElement>(null);
+  const {data : commentList} = useQuery<querycommentData>([commentKey.GET_COMMENT_LIST], () => CommentApi.getCommentApi(boardNum));
   
-  console.log(commentist);
+  console.log(commentList);
+  console.log(boardNum);
   
 
   return (
     <Wrapper >
       {
-        commentist?.data.map((list : any ,index) => 
-          <CommentCard data={list}/>
+        commentList?.data.map((list : any ,index) => 
+          <CommentCard data={list} key={index}/>
       )}
     </Wrapper>
   )

@@ -5,7 +5,6 @@ type addCommentProps = {
    comment : string
 }
 
-// const path = 'http://15.164.220.47:8080/v1/board/'
 const url = process.env.REACT_APP_BASE_URL
 const path = `${url}v1/board/`
 

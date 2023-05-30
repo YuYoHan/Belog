@@ -22,7 +22,7 @@ function DetailConfirmModal ({boardNum,setModalOpen,img} : ModalType) {
   const navigete = useNavigate()
   const queryClient = useQueryClient();
   const s3 = new AWS.S3({
-    region: process.env.REACT_APP_S3_REGION,
+    region: 'ap-northeast-2',
     accessKeyId: process.env.REACT_APP_S3_ACCESS_KET_ID,
     secretAccessKey: process.env.REACT_APP_S3_SECRET_ACCESSKEY
   });
@@ -38,7 +38,7 @@ function DetailConfirmModal ({boardNum,setModalOpen,img} : ModalType) {
       const imgurl = img?.map((item) => item.split("/").pop())
       if(imgurl?.length !== 0){
         const params : any = {
-          Bucket: 'blog-img-file', 
+          Bucket: 'web-blog-site', 
           Delete: {
             // 키값에 배열의 imgurl 넣어줌
             Objects: imgurl?.map((item) => ({ Key: `boardImage/${item}` })),

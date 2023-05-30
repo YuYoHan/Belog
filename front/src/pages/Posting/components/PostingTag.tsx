@@ -16,7 +16,8 @@ function PostingTag({tagList,setTagList} : TagProps) {
 
    //태그 인풋 엔터키 동작 submitTagItem 함수 실행
    const onKeyPress = (e: React.ChangeEvent<HTMLInputElement> & KeyboardEvent<HTMLInputElement>) => {
-      if (e.target.value.length !== 0 && e.key === 'Enter' && !e.getModifierState('Shift')) {
+      if (e.target.value.length !== 0 && e.key === 'Enter' && e.nativeEvent.isComposing === false) {
+         
          e.preventDefault(); // Prevent default form submission behavior
          submitTagItem();
          setPlaceholder('');

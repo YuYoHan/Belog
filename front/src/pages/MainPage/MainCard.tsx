@@ -26,7 +26,6 @@ function MainPageCard ({data} : {data : BoardData}) {
    };
 
    const markup = createMarkup();
-   
 
    return (
       <S.Li>
@@ -45,6 +44,9 @@ function MainPageCard ({data} : {data : BoardData}) {
                   <span>{TimeForToday(data.writeTime)}</span>
                </Days>
             </S.Content>
+         <Userinfo>
+            <p>작성자 : <span>{data.userEmail}</span></p>
+         </Userinfo>
          </S.StyledLink>
       </S.Li>
    )
@@ -55,7 +57,6 @@ export default MainPageCard
 
 const Li = styled.li`
    width: 20rem;
-   min-height: 20rem;
    margin: 1rem;
    display: flex;
    flex-direction: column;
@@ -141,27 +142,19 @@ const Days = styled.div`
 const Userinfo = styled.div`
    padding: 0.625rem 1rem;
    border-top: 1px solid #F1F3F5;
-   display: flex;
-   font-size: 0.75rem;
+   font-size: 0.8rem;
    line-height: 1.5;
    justify-content: space-between;
    background-color: #fff;
    
-   & div{
-      display: flex;
-   }
-   & div img {
-      object-fit: cover;
-      border-radius: 50%;
-      width: 1.5rem;
-      height: 1.5rem;
-      display: block;
-      margin-right: 0.5rem;
-   }
-   & div > span {
-      color: #222;
+   & p {
+      color: #a8abaf;
+      & span {
+         color:#333;
+      }
    }
 `
+
 
 
 const S = {
