@@ -11,10 +11,10 @@ const path = `${url}v1/board/`
 const CommentApi =  {
    
    getCommentApi(boardNum : number): Promise<any> {
-      return Axios.get( path + `${boardNum}/comment/list`  )
+      return Axios.get( path + `${84}/comment/list`  )
    },
    createCommentApi(boardNum: number,data : addCommentProps): Promise<any> {
-      return Axios.post(path + `${boardNum}/comment`,data)
+      return Axios.post(path + `${84}/comment`,data)
    },
 
    updateCommentApi(comment : any): Promise<any> {
