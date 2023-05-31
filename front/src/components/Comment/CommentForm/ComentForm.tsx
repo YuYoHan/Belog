@@ -26,13 +26,12 @@ function ComentForm({boardNum} : {boardNum : number}) {
       onSuccess: (res) => {
          queryClient.invalidateQueries([commentKey.GET_COMMENT_LIST]);
          reset("");
-         console.log(res);
-         
       },
    })
 
    // 댓글 등록시 값을 입력하지 않았다면 등록되지않음, 댓글 등록시 CommentAddmutation.mutate() 실행
    const handleCommentMutation = () => {
+      if(!userId) return toast.error('로그인 후 이용 가능합니다.')
       if(comment.length === 0) return toast.error('댓글 내용을 입력해주세요.')
       CommentAddmutation.mutate();
    }

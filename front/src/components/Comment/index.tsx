@@ -23,7 +23,6 @@ export type querycommentData = {
 
 function CommentList({boardNum} : { boardNum : number }) {
   const {data : commentList} = useQuery<querycommentData>([commentKey.GET_COMMENT_LIST,boardNum], () => CommentApi.getCommentApi(boardNum));
-  console.log(commentList?.data.length);
   const commentlength = commentList?.data.length || 0
 
   return (
