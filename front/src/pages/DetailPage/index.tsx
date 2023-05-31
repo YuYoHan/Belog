@@ -10,8 +10,7 @@ import styled from "styled-components"
 import EditBtn from "./EditBtn";
 import RemoveBtn from "./RemoveBtn";
 import TimeForToday from "hooks/usedaysTimer";
-import { useQuery } from "@tanstack/react-query";
-import { DetailPageKey } from "consts/queryKey";
+
 
 export interface DetailpageData {
    boardContents: string;
@@ -66,7 +65,7 @@ function DetailPage() {
          }
       }
       fetchData()
-   },[])
+   },[setData])
 
 
    return (
@@ -102,7 +101,6 @@ function DetailPage() {
          {data && (
             <div dangerouslySetInnerHTML={{ __html: data.boardContents }} />
          )}
-            <CommentIndexPage boardNum={boardNum}/>
             <CommentList boardNum={boardNum}/>
          </S.Content>
       </S.Wrapper>

@@ -35,9 +35,9 @@ function Profile() {
 
    const logoutMutation = useMutation(() => AuthApi.logout(), {
       onSuccess: (res) => {
+         setisLoginComponent(false)
          window.location.replace("/")
          SessionRepository.removeSession();
-         setisLoginComponent(false)
       },
   });
 

@@ -7,12 +7,12 @@ import ComentCountTitle from './ComentCountTitle'
 
 
 
-function CommentIndexPage({boardNum} : {boardNum : number}) {
+function CommentIndexPage({boardNum,commentlength} : {boardNum : number , commentlength:number}) {
 
 
   return (
    <React.Fragment>
-      <ComentCountTitle/>
+      <ComentCountTitle commentlength={commentlength}/>
       <ComentForm boardNum={boardNum}/>
    </React.Fragment>
      )

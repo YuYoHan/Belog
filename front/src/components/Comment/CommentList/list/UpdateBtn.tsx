@@ -1,24 +1,29 @@
-import { QueryClient, useMutation, useQueryClient } from '@tanstack/react-query';
+import {  useMutation, useQueryClient } from '@tanstack/react-query';
 import CommentApi from 'apis/comment/CommentAPI';
-import { commentKey, queryKey } from 'consts/queryKey';
-import React, { useEffect, useState } from 'react'
+import { commentKey } from 'consts/queryKey';
+import React, { useEffect } from 'react'
 import styled from 'styled-components';
 import useInputs from 'hooks/useinputs'
 
-interface commentCardProps  {
-   comment : string
+export interface commentCardProps  {
+   commentdata : string
+   commentNum : number
+   boardNum : number
+   userId: number
    setUpdatehiddenBtn: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-function CommentUpdateBtn({comment,setUpdatehiddenBtn} : commentCardProps) {
+function CommentUpdateBtn({userId,commentdata,commentNum,boardNum,setUpdatehiddenBtn} : commentCardProps) {
 
-   const [{ commentform}, onChangeForm, setvalue] = useInputs({
-      Updatecomment: comment || "",
-    });
-
+   const [{ comment}, onChangeForm, setvalue] = useInputs({
+      Updatecomment: commentdata || "",
+   });
+   
+   const commentData = {userId,comment,commentNum,boardNum}
+   
    useEffect(() => {
-      setvalue({commentform: comment || ""})
-   },[comment])
+      setvalue({comment: commentdata || ""})
+   },[commentdata])
    
 
    const onClickOpenBtn = () => {
@@ -26,18 +31,19 @@ function CommentUpdateBtn({comment,setUpdatehiddenBtn} : commentCardProps) {
    }
 
    const queryClient = useQueryClient();
-   const updateCommentMutation = useMutation(() => CommentApi.updateCommentApi(commentform), {
+   const updateCommentMutation = useMutation(() => CommentApi.updateCommentApi(commentData), {
       onSuccess: (res) => {
           //낙관적 업데이트
           // 쿼리를 다시 불러오기 전에 UI를 업데이트 하고 불러오는 기능
-          queryClient.cancelQueries([commentKey.GET_COMMENT_LIST]);
+         queryClient.cancelQueries([commentKey.GET_COMMENT_LIST]);
           // 기존에 있던 저장된 쿼리 저장을 삭제하고
-          queryClient.setQueriesData([commentKey.GET_COMMENT_LIST], (oldData : any) => {
-            let updateData = oldData.data.data.find((data : any) => data.id === res.data.data.id);
-            updateData.content = res.data.data.content;
-            updateData.state = res.data.data.state;
-            return oldData
-          })
+         queryClient.setQueriesData([commentKey.GET_COMMENT_LIST], (oldData : any) => {
+         let updateData = oldData.data.find((data : any) => data.commentNum === res.data.commentNum);
+         updateData.comment = res.data.comment;
+         return oldData
+         })
+         setUpdatehiddenBtn(false)
+
           // 비어있는 쿼리에 oldData(이전 데이터)
           // data를 다시 새로 받아온 데이터를 활용하여
           // UI를 먼저 바꿔주고
@@ -46,12 +52,12 @@ function CommentUpdateBtn({comment,setUpdatehiddenBtn} : commentCardProps) {
          queryClient.invalidateQueries([commentKey.GET_COMMENT_LIST]);
       },
       // 성공 여부와 실패 여부와는 상관없이 데이터를 호출
-  })
+   })
 
 
    return (
       <BtnWrap>
-      <textarea typeof='text' name='commentform' value={commentform} onChange={onChangeForm}></textarea>
+      <textarea typeof='text' name='comment' value={comment} onChange={onChangeForm}></textarea>
          <CancelBtn onClick={onClickOpenBtn}> 취소 </CancelBtn>
          <UpdateBtn onClick={()=> updateCommentMutation.mutate()}> 댓글 수정 </UpdateBtn>
       </BtnWrap>
