@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import { IoMdArrowDropdown } from "react-icons/io";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthApi } from "apis/auth/authApi";
 import { useMutation } from "@tanstack/react-query";
 import { SessionRepository } from "repository/SessionRepository";
@@ -20,6 +20,7 @@ function Profile() {
    const [isLoginComponent, setisLoginComponent] = useRecoilState(StorgeSession);
    const SessionEmail = SessionRepository.getSession()
    const email = SessionEmail.email
+   const naviate = useNavigate();
    
    //텝메뉴 활성화, 비활성화
    const onClickMenu = () => {
@@ -35,11 +36,17 @@ function Profile() {
 
    const logoutMutation = useMutation(() => AuthApi.logout(), {
       onSuccess: (res) => {
-         setisLoginComponent(false)
-         window.location.replace("/")
-         SessionRepository.removeSession();
+         if(res.status === 200){
+            // naviate('/', { replace: true });
+            SessionRepository.removeSession();
+            setisLoginComponent(false)
+         }
       },
-  });
+   });
+   
+   const handleLogoutMutation = () => {
+      logoutMutation.mutate()
+   }
 
    return(
       <S.Wrapper>
@@ -50,7 +57,7 @@ function Profile() {
                <div>
                   <ul>
                      <li><Link to={'/setting'}>설정</Link></li>
-                     <li><Link to={'#'} onClick={()=> logoutMutation.mutate()}>로그아웃</Link></li>
+                     <li><Link to={'/'} onClick={handleLogoutMutation}>로그아웃</Link></li>
                   </ul>
                </div>
             </S.Profiletoggle>

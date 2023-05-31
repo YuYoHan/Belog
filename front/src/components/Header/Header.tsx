@@ -19,18 +19,17 @@ function Header() {
    const [isOpenoModal, setIsTodoModal] = useRecoilState(OpenCloseModal);
    const [isLoginComponent, setisLoginComponent] = useRecoilState(StorgeSession);
    
-
    // 스크롤 내릴시 fixed 속성 적용
    const handleScroll  = () =>  {
-
+      
       if (ScrollY > 100) {
          setScrollY(window.pageYOffset);
          setScrollActive(true);
-         } else {
+      } else {
          setScrollY(window.pageYOffset);
          setScrollActive(false);
       }
-}
+   }
 
    useEffect(() => {
       function scrollListener() {

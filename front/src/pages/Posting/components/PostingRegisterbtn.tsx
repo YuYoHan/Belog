@@ -59,7 +59,7 @@ interface S3Config {
 function PostingRegisterbtn ({content,inputboardTitle,tagList,createObjectURL,imgfile,QuillRef,boardImg,boardNum} : postingDataProps) {
 
 /**
-   imagesAray - 에디터에 올라간 이미지의 객체.
+   imagesAray - 에디터에 올라 간 이미지의 객체.
    boardImgURL - 에디터 이미지 저장 
    UserSessiondata - 세션 저장된 value
    isboardID - EdtiBtn 컴포넌트 전달 해준 상세 게시글 있으면 수정하기 버튼 보여주는 state   
@@ -134,20 +134,17 @@ function PostingRegisterbtn ({content,inputboardTitle,tagList,createObjectURL,im
             setBoardImgURL(copyBoardImgURL)
          })
       }
-      return 
-   },[])
+   },[boardImg])
    
-   // 사용자가 에디터의 이미지를 삭제 했을때 새로운 이미지  newImgURLs 배열값 반환해준다
-   useEffect(() => {
-      
-      if(!boardImg) return 
-      
-      const boardImgSrc = Array.from(imagesAray).map((img: HTMLImageElementWithSrc) => img.src);
-      const newImgURLs = boardImgSrc.filter(src => boardImg?.includes(src));
-      setBoardImgURL(newImgURLs)
+   // 사용자가 에디터의 이미지를 새로운  newImgURLs 배열값 반환해준다
+      useEffect(() => {
+         
+         const boardImgSrc = Array.from(imagesAray).map((img: HTMLImageElementWithSrc) => img.src);
+         setBoardImgURL(boardImgSrc)
+         // const newImgURLs = boardImgSrc.filter(src => boardImg?.includes(src));
 
-   }, [imagesAray.length])
-
+      }, [imagesAray.length])
+   
    // 게시판 생성 데이터
    const boardData = {
       "boardTitle" : inputboardTitle,
@@ -181,7 +178,7 @@ function PostingRegisterbtn ({content,inputboardTitle,tagList,createObjectURL,im
       }
    })
 
-   /*게시글 삭제 버튼 클릭 시  alert 노출 후 queryKey.GET_MAINPOSTS_LIST 맵핑된 함수 실행 메인 페이지로 이동*/
+   /*게시글 수정 버튼 클릭 시   queryKey.GET_MAINPOSTS_LIST 맵핑된 함수 실행 메인 페이지로 이동*/
    const UpdatePostingmutation = useMutation(() => PostsApi.updatePostsApi(UpdateboardData), {
       onSuccess: (res) => {
          queryClient.invalidateQueries([queryKey.GET_MAINPOSTS_LIST]);
@@ -190,7 +187,7 @@ function PostingRegisterbtn ({content,inputboardTitle,tagList,createObjectURL,im
    })
 
    // 게시글 컨텐츠 제목 입력 안할시 게시글 등록안됨
-   const handlePostRegistration = async  () => {
+   const handlePostRegistration =  () => {
       if (!inputboardTitle || !content) {
          toast.error('제목, 내용 입력해주세요')
          return;

@@ -44,7 +44,7 @@ function DetailPage() {
    const [tagList , setTagList] = useState<string[]>([])
    const userId = data?.userId as number;
    const EditableBtn =  useEditable(userId)
-      
+   
    
    //상세 페이지 api 호출 
    useEffect(() => {

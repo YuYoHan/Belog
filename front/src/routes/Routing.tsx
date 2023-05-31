@@ -5,6 +5,7 @@ import PostingPage from 'pages/Posting';
 import UserSettion from 'pages/UserUpdate/Index';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { SessionRepository } from 'repository/SessionRepository';
+import ScrollToTop from 'ScrollRestoration/Restoration';
 import PrivateRoute from './PrivateRoute';
 function Routing() {
    /* 
@@ -18,6 +19,7 @@ function Routing() {
    
    return(
       <BrowserRouter>
+         <ScrollToTop/>
          <Routes >
             <Route element={<Header/>}>
                <Route path='/' element={<MainPageList/>} />

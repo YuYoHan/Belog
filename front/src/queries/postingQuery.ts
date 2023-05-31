@@ -12,10 +12,14 @@ const useMainpPostingListQuery = () => {
     {
       // 마지막 꺼를 allpages에 추가를 해줌
       getNextPageParam: (lastPage ,allPages) =>{
-         const data = allPages.length 
+        const data = allPages.length 
          // data 현재 길이
          // lastPage.data.pageDTO.endPage 전체 길이
-        if(data !== lastPage.data.pageDTO.endPage) return lastPage.data.pageDTO.startPage + 1
+        if(data !== lastPage.data.pageDTO.endPage){
+          return lastPage.data.pageDTO.startPage + 1
+        }else{
+          return
+        } 
       },
       
       onError: (err : string) => {

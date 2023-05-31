@@ -26,7 +26,7 @@ function MainPageCard ({data} : {data : BoardData}) {
    };
 
    const markup = createMarkup();
-
+   
    return (
       <S.Li>
          {/* state 게시판 ID 전달 */}

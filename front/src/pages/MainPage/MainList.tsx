@@ -52,6 +52,7 @@ function MainPageList() {
       // 서버 요청시 취소됐을때
       if (!inView || isFetching) return;
       fetchNextPage();
+      
     }, [inView]);
 
    
