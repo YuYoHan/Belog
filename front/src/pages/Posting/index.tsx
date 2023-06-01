@@ -62,7 +62,7 @@ function PostingPage() {
             boardNum={location.state?.data?.boardNum}
             />
          </S.container>
-         <ToastContainer position="top-right" autoClose={2000}/>
+         <ToastContainer position="top-right" autoClose={1500}/>
       </S.Wrapper>
       
    )

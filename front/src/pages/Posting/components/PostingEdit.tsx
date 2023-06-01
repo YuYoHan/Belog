@@ -126,8 +126,8 @@ const Wrapper = styled.div`
       margin-top: 2rem;
       & .ql-editor{
         padding: 0;
-        height: 20rem;
         overflow-y: auto;
+        font-size: 1.125rem;
       }
       & .ql-editor.ql-blank::before{
         left: 0;

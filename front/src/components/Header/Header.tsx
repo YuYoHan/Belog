@@ -65,8 +65,7 @@ function Header() {
                }
                </S.RightItem>
             </S.container>
-      <ToastContainer position="top-right" autoClose={2000}/>
-
+         <ToastContainer position="top-right" limit={1} autoClose={1500}/>
          </S.HeaderContainer>
          <Outlet/>
       </S.Wrapper>

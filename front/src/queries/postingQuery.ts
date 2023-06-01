@@ -26,7 +26,7 @@ const useMainpPostingListQuery = () => {
         if (currentPage < totalPages) {
           return currentPage + 1;
         }
-        return null;
+        return
       },
       
       onError: (err : string) => {

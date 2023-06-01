@@ -17,7 +17,6 @@ const useHomeRegexp = ( joindata : userData) => {
     useEffect(() => {
         const JoinData = Object.values(joindata)
         const allValuesEmpty = JoinData.every(val => val !== "")
-        console.log(JoinData[1].length);
         
         if(allValuesEmpty&& JoinData[1].length > 8) {
             setDisabled(false)
