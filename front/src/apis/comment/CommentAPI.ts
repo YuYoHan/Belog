@@ -11,6 +11,7 @@ type CommentFetchProps = {
 const url = process.env.REACT_APP_BASE_URL
 const path = `${url}v1/board/`
 
+//댓글 리스트, 생성 , 수정 , 삭제 API
 const CommentApi =  {
    
    getCommentApi(boardNum : number): Promise<any> {

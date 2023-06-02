@@ -11,8 +11,8 @@ type PostsData = {
 const url = process.env.REACT_APP_BASE_URL
 const path = `${url}v1/board/`
 
+// 게시글 리스트 , 생성, 수정 , 삭제 API 
 const PostsApi =  {
-   // 게시물 
    getPostsApi(pageParam : number): Promise<getPostingData> {
       return Axios.get(path + pageParam)
    },
