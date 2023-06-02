@@ -61,7 +61,7 @@ $ npm start
 
 ---
 ## 화면 구성 📺
-| 로그인 팝업 | 회원가입 팝업 | 무한 스크롤  |  소개 페이지   | 내정보수정 |
+| 로그인 팝업 | 회원가입 팝업 | 무한 스크롤  |  소개 페이지   |
 | :-------------------------------------------: | :------------: | :-------------------------------------------: | :------------: |
 |  <img width="329" src="https://velog.velcdn.com/images/cleooo5857/post/ec59da91-e8f6-4b68-bc06-9fc1b9410c2e/image.png"/> |  <img width="329" src="https://velog.velcdn.com/images/cleooo5857/post/d8729255-3820-449d-9dc0-95fc872ed17f/image.png"/>| <img width="329" src="https://velog.velcdn.com/images/cleooo5857/post/9f0e2dde-87ab-4c90-9a6b-4176428e5aa7/image.gif"/>| <img width="329" src="https://velog.velcdn.com/images/cleooo5857/post/cbb91339-b07e-44a0-80aa-ea7bc92b3b96/image.gif"/>
 | 강좌 소개 페이지   |  강의 영상 페이지   | 강좌 소개 페이지   |  강의 영상 페이지   |  
