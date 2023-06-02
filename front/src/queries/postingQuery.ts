@@ -8,7 +8,7 @@ const useMainpPostingListQuery = () => {
   const { data, fetchNextPage, isFetching } = useInfiniteQuery(
     [queryKey.GET_MAINPOSTS_LIST],
     ({pageParam = 1} ) => 
-      PostsApi.getPostsApi(pageParam),
+    PostsApi.getPostsApi(pageParam),
     {
       getNextPageParam: (lastPage ,allPages) =>{
         
@@ -18,10 +18,10 @@ const useMainpPostingListQuery = () => {
         */
         const currentPage = allPages.length;
         const totalPages = lastPage.data.pageDTO.endPage;
-          /*
-            현재 10개씩 담겨져 있는 page 배열의 길이가 서버에 저장된
-            길이보다 작을때 다음페이지를 호출한다다
-            */ 
+        /*
+          현재 10개씩 담겨져 있는 page 배열의 길이가 서버에 저장된
+          길이보다 작을때 다음페이지를 호출한다다
+        */
 
         if (currentPage < totalPages) {
           return currentPage + 1;

@@ -109,8 +109,8 @@ function UserSettion() {
   // 회원정보 버튼 클릭 후 서버에 수정된 데이터 전송성공시 , alert 노출 , 회원정보 query 키 최신화
   const UserUpdateMutaion = useMutation(() => AuthApi.userUpdate(UserId,UserUpdateData), {
     onSuccess: (res) => {
-        alert('수정되었습니다.')
         queryClient.invalidateQueries([UserListKey.GET_USER_LIST]);
+        navigete('/')
     },
     onError: (err) => {
         alert(err);
@@ -145,7 +145,7 @@ function UserSettion() {
         <BackBtn onClick={() => navigete('/')}>취소</BackBtn>
         <UserUpdateBtn onClick={handleUsersettionMutation}>회원수정 </UserUpdateBtn>
       </BtnWrap>
-        </Wrapper>
+    </Wrapper>
   )
 }
 

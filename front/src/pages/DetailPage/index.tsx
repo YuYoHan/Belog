@@ -61,7 +61,6 @@ function DetailPage() {
             }
          }catch(err){
             alert('상세 페이지를 불러오지 못했습니다.')
-            
          }
       }
       fetchData()

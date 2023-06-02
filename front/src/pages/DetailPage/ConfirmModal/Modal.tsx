@@ -29,7 +29,7 @@ function DetailConfirmModal ({boardNum,setModalOpen,img} : ModalType) {
   /*
     게시글 삭제 버튼 클릭 후 게시글의 작성된 이미지  imgurl 변수 저장
     이미지가 있다면 aws s3 버킷 이름과 , imgurl 의 저장된 이미지를 aws 
-    s3의 파일을 삭제 alert 노출 , queryClient.invalidateQueries([queryKey.GET_MAINPOSTS_LIST])
+    s3의 파일을 삭제  , queryClient.invalidateQueries([queryKey.GET_MAINPOSTS_LIST])
     적용시켜줌으로써 최신 List 메인페이지 노출
     
   */

@@ -96,7 +96,6 @@ const Wrapper = styled.div`
    ${media.tablet} {
       width: calc(100% - 2rem);
    }
-  
 `;
 
 const Innerwrap = styled.div`

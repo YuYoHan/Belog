@@ -26,7 +26,6 @@ function CommentCard( {data} : commentData) {
   })
 
   const handleCommentDelete = () => {
-    if (!window.confirm('삭제 하시겠습니까')) return;
       CommentDeletemutation.mutate();
   }
   
