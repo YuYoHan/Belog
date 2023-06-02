@@ -66,7 +66,8 @@ $ npm start
 |  <img width="329" src="https://velog.velcdn.com/images/cleooo5857/post/ec59da91-e8f6-4b68-bc06-9fc1b9410c2e/image.png"/> |  <img width="329" src="https://velog.velcdn.com/images/cleooo5857/post/d8729255-3820-449d-9dc0-95fc872ed17f/image.png"/>| <img width="329" src="https://velog.velcdn.com/images/cleooo5857/post/9f0e2dde-87ab-4c90-9a6b-4176428e5aa7/image.gif"/> 
 | 게시글 등록 |  게시글 수정 | 게시글 삭제 | 
 | <img width="329" src="https://velog.velcdn.com/images/cleooo5857/post/7f35b58a-e0f6-487e-b667-e93b0aef4e6b/image.gif"/>   |  <img width="329" src="https://velog.velcdn.com/images/cleooo5857/post/9a63a18b-daa2-4f50-9433-a2ea47c87803/image.gif"/>     |<img width="329" src="https://velog.velcdn.com/images/cleooo5857/post/6925dc0d-1fda-44a2-be1e-245cb9a3276d/image.gif"/>   |
-
+| 설정 페이지 |  댓글 | 
+| <img width="329" src="https://velog.velcdn.com/images/cleooo5857/post/cbb91339-b07e-44a0-80aa-ea7bc92b3b96/image.gif"/>   |  <img width="329" src="https://velog.velcdn.com/images/cleooo5857/post/2fb5601c-456d-4761-9346-dba55a6d78c4/image.gif"/>     |
 ---
 ## 주요 기능 📦
 
