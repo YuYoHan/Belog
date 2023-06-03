@@ -12,22 +12,55 @@ Git 협업이 익숙지않아서 Git 협업을 익숙하게 하기위해서 커�
 ## ERD
 ![image](https://github.com/YuYoHan/Belog/assets/43868558/e95b408b-b134-4cbb-baa5-720c1784491d)
 
-
+##..
 ![image](https://github.com/YuYoHan/Belog/assets/43868558/5c7320f1-6ee8-41a7-8a65-3bf58adf5d35)
 
 ![image](https://github.com/YuYoHan/Belog/assets/43868558/003f5da6-1eab-4396-bd79-de9b4e2c6065)
 
-![image](https://github.com/YuYoHan/Belog/assets/43868558/47c1d306-693f-4b1b-871b-e161a8ee60ec)
+## 메뉴구조
+![image](https://github.com/YuYoHan/Belog/assets/43868558/056fd38f-ad6a-4e14-a89b-556439d0bcea)
 
-![image](https://github.com/YuYoHan/Belog/assets/43868558/e95b4c08-787f-4893-af4e-f077ce77ddf7)
+## 화면목록
+![image](https://github.com/YuYoHan/Belog/assets/43868558/f2f4a6d2-5e98-45dc-84ad-a5e147a1404a)
 
 ![image](https://github.com/YuYoHan/Belog/assets/43868558/d71482fc-d257-4246-b210-d1e1b4645e72)
 
 ![image](https://github.com/YuYoHan/Belog/assets/43868558/1b2336d1-3156-4262-841a-4c1fda2cc762)
 
+![image](https://github.com/YuYoHan/Belog/assets/43868558/295e25f3-8e77-41ed-a2a2-4f19a572d96a)
 
 ## 폴더구조
 ![image](https://github.com/YuYoHan/Belog/assets/43868558/36227e17-23b5-4dd1-83d3-85b02b783ba5)
+
+## UI 설계
+
+![image](https://github.com/YuYoHan/Belog/assets/43868558/c62eb55d-b065-40b6-95b4-3675a93f065e)
+
+게시글화면
+![image](https://github.com/YuYoHan/Belog/assets/43868558/d421695b-ad5a-4b27-87d7-a1a375fdcaab)
+
+로그인
+![image](https://github.com/YuYoHan/Belog/assets/43868558/0a67b3c1-5507-43ee-83d0-86500b0a50b0)
+
+회원가입
+![image](https://github.com/YuYoHan/Belog/assets/43868558/f1d9cf5c-f9ed-49ca-9d98-e22849df8dee)
+
+멩니
+![image](https://github.com/YuYoHan/Belog/assets/43868558/2829b1a4-f834-4fb7-ac43-b71bf42432d1)
+
+설정
+![image](https://github.com/YuYoHan/Belog/assets/43868558/126520bc-734e-468c-8510-8a2100813b8d)
+
+
+게시글작성
+![image](https://github.com/YuYoHan/Belog/assets/43868558/deb9bbf9-ad9b-4cd1-b738-e2affc80b43c)
+
+![image](https://github.com/YuYoHan/Belog/assets/43868558/0c6c12ef-ab10-4a79-80e0-8ea4f69ddcd9)
+
+![image](https://github.com/YuYoHan/Belog/assets/43868558/05745fa3-78e5-490c-9047-dffde63993e5)
+
+![image](https://github.com/YuYoHan/Belog/assets/43868558/6f127f8c-d4f3-4cda-a4c7-2c04fbbad2f8)
+
 
 
 ## 사용한 기술 및 라이브러리
