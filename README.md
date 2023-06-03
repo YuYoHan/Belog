@@ -12,14 +12,14 @@ Git 협업이 익숙지않아서 Git 협업을 익숙하게 하기위해서 커�
 ## ERD
 ![image](https://github.com/YuYoHan/Belog/assets/43868558/e95b408b-b134-4cbb-baa5-720c1784491d)
 
-
+## ..
 ![image](https://github.com/YuYoHan/Belog/assets/43868558/5c7320f1-6ee8-41a7-8a65-3bf58adf5d35)
 
 ![image](https://github.com/YuYoHan/Belog/assets/43868558/003f5da6-1eab-4396-bd79-de9b4e2c6065)
 
-![image](https://github.com/YuYoHan/Belog/assets/43868558/47c1d306-693f-4b1b-871b-e161a8ee60ec)
+![image](https://github.com/YuYoHan/Belog/assets/43868558/9d3a9e48-7e54-4875-ab4d-baa1cb6f9990)
 
-![image](https://github.com/YuYoHan/Belog/assets/43868558/e95b4c08-787f-4893-af4e-f077ce77ddf7)
+![image](https://github.com/YuYoHan/Belog/assets/43868558/b6adc34e-c63c-41bd-9dd6-3c280bfd4848)
 
 ![image](https://github.com/YuYoHan/Belog/assets/43868558/d71482fc-d257-4246-b210-d1e1b4645e72)
 
