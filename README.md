@@ -7,12 +7,21 @@ Git 협업이 익숙지않아서 Git 협업을 익숙하게 하기위해서 커�
 이 프로젝트의 모델은 Velog로, Velog를 모델로 정한 이유는 개발공부를 하면서 가장 친숙한 형태의 블로그 형식이기 때문에 Velog로 정하게되었습니다. 
 그렇기 때문에 구조는 Velog와 비슷한 형태이며 불필요하다고 생각하는 UI를 제거하고 구성하였습니다. 
 
+## 배포링크
+[프론트 S3 배포링크](http://web-blog-site.s3-website.ap-northeast-2.amazonaws.com/)
+
+## Velog 주소
+
+[Velog](https://velog.io/@zxzz45/series/Belog-Project)
+
+
+
 현재 프로젝트 ERD는 다음과 같습니다.
 
 ## ERD
 ![image](https://github.com/YuYoHan/Belog/assets/43868558/e95b408b-b134-4cbb-baa5-720c1784491d)
 
-##..
+## 프로젝트 PPT
 ![image](https://github.com/YuYoHan/Belog/assets/43868558/5c7320f1-6ee8-41a7-8a65-3bf58adf5d35)
 
 ![image](https://github.com/YuYoHan/Belog/assets/43868558/003f5da6-1eab-4396-bd79-de9b4e2c6065)
@@ -87,5 +96,7 @@ AWS EC2환경에서 배포<br>
 
 
 ## 후기
+
+처음 다같이 프로젝트를 Git으로 협업을 하다보니 팀 리더로써 많은 오차가 있었습니다. 저 포함 거의 
 
 
