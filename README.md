@@ -41,27 +41,36 @@ Git 협업이 익숙지않아서 Git 협업을 익숙하게 하기위해서 커�
 
 로그인
 ![image](https://github.com/YuYoHan/Belog/assets/43868558/0a67b3c1-5507-43ee-83d0-86500b0a50b0)
+![로그인](https://github.com/YuYoHan/Belog/assets/43868558/8b744b55-7a88-411c-9ddd-cd49e7313520)
+
 
 회원가입
 ![image](https://github.com/YuYoHan/Belog/assets/43868558/f1d9cf5c-f9ed-49ca-9d98-e22849df8dee)
+![회원가입](https://github.com/YuYoHan/Belog/assets/43868558/5b4a27b5-de49-476c-bf64-1d8cdc3ec9b5)
 
-멩니
+메인
 ![image](https://github.com/YuYoHan/Belog/assets/43868558/2829b1a4-f834-4fb7-ac43-b71bf42432d1)
+![메인화면](https://github.com/YuYoHan/Belog/assets/43868558/e70a8be9-f362-4359-8b49-5701290c52f1)
+
 
 설정
 ![image](https://github.com/YuYoHan/Belog/assets/43868558/126520bc-734e-468c-8510-8a2100813b8d)
-
+![설정](https://github.com/YuYoHan/Belog/assets/43868558/0ae10d02-a743-4b87-9777-4fd0aa4bbbc5)
 
 게시글작성
 ![image](https://github.com/YuYoHan/Belog/assets/43868558/deb9bbf9-ad9b-4cd1-b738-e2affc80b43c)
 
 ![image](https://github.com/YuYoHan/Belog/assets/43868558/0c6c12ef-ab10-4a79-80e0-8ea4f69ddcd9)
 
+![댓글](https://github.com/YuYoHan/Belog/assets/43868558/895f0056-69ab-4298-8d77-199cc0f1e766)
+
 ![image](https://github.com/YuYoHan/Belog/assets/43868558/05745fa3-78e5-490c-9047-dffde63993e5)
+![수정](https://github.com/YuYoHan/Belog/assets/43868558/655a6407-ad12-4df9-ba5a-959c476c4939)
 
 ![image](https://github.com/YuYoHan/Belog/assets/43868558/6f127f8c-d4f3-4cda-a4c7-2c04fbbad2f8)
+![삭제](https://github.com/YuYoHan/Belog/assets/43868558/86b671f4-c24c-48dd-812f-a845529749af)
 
-
+![로그아웃](https://github.com/YuYoHan/Belog/assets/43868558/dec581fa-0ccf-4455-8443-c2c12fd7acee)
 
 ## 사용한 기술 및 라이브러리
 Springboot 2.7.8 <br>
