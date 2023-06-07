@@ -93,7 +93,12 @@ function PostingRegisterbtn ({content,inputboardTitle,tagList,createObjectURL,im
    }
    
 
-   //  aws s3 에디터 이미지 업로드
+   /*
+      aws s3 에디터 이미지 업로드
+      사용자가 이미지 업로드 시 AWS제공해주는 임시 URL 필요한 src replace 후
+      aws 버킷 boardimage에 저장
+      서버에 저장 시킬 aws 이미지 setBoardImgURL state에 저장 
+   */ 
    useEffect(() => {
       const s3 = new ReactS3Client(config);
       
