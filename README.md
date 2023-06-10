@@ -82,6 +82,8 @@ Git 협업이 익숙지않아서 Git 협업을 익숙하게 하기위해서 커�
 ![로그아웃](https://github.com/YuYoHan/Belog/assets/43868558/dec581fa-0ccf-4455-8443-c2c12fd7acee)
 
 ## 사용한 기술 및 라이브러리
+
+<img src="https://img.shields.io/badge/SpringBoot-181717?style=flat-square&logo=SpringBoot&logoColor=white">
 Springboot 2.7.8 <br>
 Java 11<br>
 Gradle 7.6<br>
