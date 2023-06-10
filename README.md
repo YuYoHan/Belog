@@ -14,7 +14,13 @@ Git 협업이 익숙지않아서 Git 협업을 익숙하게 하기위해서 커�
 
 [Velog](https://velog.io/@zxzz45/series/Belog-Project)
 
+## 웹개발팀 소개
 
+|      황순욱       |          유요한         |       정다현         |       김민성                                                                                                                        
+| :------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: 
+|   <img width="160px" src="https://avatars.githubusercontent.com/u/70474741?s=400&u=fb295b1d8b1ede66ad0d9e290d8fc3e899be0d50&v=4" />    |                      <img width="160px" src="https://avatars.githubusercontent.com/u/110465572?v=4" />    |                   <img width="160px" src="https://avatars.githubusercontent.com/u/43868558?v=4"/>   | <img width="160px" src="https://avatars.githubusercontent.com/u/89964419?s=64&v=4"/>
+|   [@cleooo5857](https://github.com/cleooo5857)   |    [@YuYoHan](https://github.com/YuYoHan)  | [@jDaHyun](https://github.com/jDaHyun)  | [@rlaalstjd00](https://github.com/rlaalstjd00)  |
+| Front-end | Back-end | Back-end | Back-end |
 
 현재 프로젝트 ERD는 다음과 같습니다.
 
@@ -82,6 +88,20 @@ Git 협업이 익숙지않아서 Git 협업을 익숙하게 하기위해서 커�
 ![로그아웃](https://github.com/YuYoHan/Belog/assets/43868558/dec581fa-0ccf-4455-8443-c2c12fd7acee)
 
 ## 사용한 기술 및 라이브러리
+
+<img src="https://img.shields.io/badge/SpringBoot-181717?style=flat-square&logo=SpringBoot&logoColor=white"> <br/>
+<img src="https://img.shields.io/badge/Gradle-181717?style=flat-square&logo=Gradle&logoColor=white"> <br/>
+<img src="https://img.shields.io/badge/JaCoCo-181717?style=flat-square&logo=JaCoCo&logoColor=white"> <br/>
+<img src="https://img.shields.io/badge/Swagger-181717?style=flat-square&logo=Swagger&logoColor=white"> <br/>
+<img src="https://img.shields.io/badge/MyBatis-181717?style=flat-square&logo=MyBatis&logoColor=white"> <br/>
+<img src="https://img.shields.io/badge/MySQL-181717?style=flat-square&logo=MySQL&logoColor=white"> <br/>
+<img src="https://img.shields.io/badge/AWS-181717?style=flat-square&logo=AWS&logoColor=white"> <br/>
+<img src="https://img.shields.io/badge/RDS-181717?style=flat-square&logo=RDS&logoColor=white"> <br />
+<img src="https://img.shields.io/badge/github-181717?style=flat-square&logo=github&logoColor=white"> <br />
+<img src="https://img.shields.io/badge/IntelliJ-181717?style=flat-square&logo=IntelliJ&logoColor=white"> <br />
+
+
+
 Springboot 2.7.8 <br>
 Java 11<br>
 Gradle 7.6<br>
