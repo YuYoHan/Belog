@@ -20,6 +20,7 @@ function PostingEdit({inputboardTitle,tagList,Detailcontent,boardImg,boardNum} :
     QuillRef - react-quill 접근 DOM
     imgfile - 파일 업로드 객체
     createObjectURL - aws s3 임시 이미지의 URL
+    
   */
   const [content, setcontent ] = useQuillEditor(Detailcontent ? Detailcontent : "");
   const QuillRef = useRef<ReactQuill>();
