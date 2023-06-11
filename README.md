@@ -9,6 +9,7 @@ Git 협업이 익숙지않아서 Git 협업을 익숙하게 하기위해서 커�
 
 ## 배포링크
 [프론트 S3 배포링크](http://web-blog-site.s3-website.ap-northeast-2.amazonaws.com/)
+[백엔드 EC2 배포링크](http://52.79.240.85:8080/)
 
 ## Velog 주소
 
