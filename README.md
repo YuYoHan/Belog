@@ -28,7 +28,6 @@ Git 협업이 익숙지않아서 Git 협업을 익숙하게 하기위해서 커�
 | :-------------------------------------------: | :------------: |
 |  <img width="320" src="https://github.com/YuYoHan/Belog/assets/43868558/8b744b55-7a88-411c-9ddd-cd49e7313520/image.gif"/> |  <img width="320" src="https://github.com/YuYoHan/Belog/assets/43868558/5b4a27b5-de49-476c-bf64-1d8cdc3ec9b5/image.gif"/>| 
 | 메인 페이지  | 설정 페이지 |
-| :-------------------------------------------: | :------------: |
 | <img width="320" src="https://github.com/YuYoHan/Belog/assets/43868558/e70a8be9-f362-4359-8b49-5701290c52f1/image.gif"/> | <img width="320" src="https://github.com/YuYoHan/Belog/assets/43868558/0ae10d02-a743-4b87-9777-4fd0aa4bbbc5/image.gif"/> |
 | 게시글 등록 |  게시글 수정 |
 | <img width="320" src="https://velog.velcdn.com/images/cleooo5857/post/7f35b58a-e0f6-487e-b667-e93b0aef4e6b/image.gif"/>   |  <img width="320" src="https://velog.velcdn.com/images/cleooo5857/post/9a63a18b-daa2-4f50-9433-a2ea47c87803/image.gif"/>     |  
