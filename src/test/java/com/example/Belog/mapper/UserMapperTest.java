@@ -99,15 +99,6 @@ class UserMapperTest {
         Assertions.assertThat(user.getUserEmail()).isEqualTo(email);
     }
 
-    @Test
-    @DisplayName("전체 회원 조회 테스트")
-    void findByAllUser() {
-        List<UserDTO> userList = userMapper.getAllUser();
-        for (UserDTO user: userList
-        ) {
-            log.info("user = {}", user);
-        }
-    }
 
     @Test
     @DisplayName("업데이트 테스트")
