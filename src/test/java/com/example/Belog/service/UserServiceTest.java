@@ -98,16 +98,6 @@ class UserServiceTest {
     }
 
     @Test
-    @DisplayName("전체 회원 조회 테스트")
-    void findByAllUser() {
-        List<UserDTO> userList = userService.getAllUser();
-        for (UserDTO user: userList
-             ) {
-            log.info("user = {}", user);
-        }
-    }
-
-    @Test
     @DisplayName("업데이트 테스트")
     void updateUser() {
          Long userId = 1L;

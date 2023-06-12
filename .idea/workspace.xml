@@ -57,7 +57,23 @@
     "spring.configuration.checksum": "d91659513e7beb8cc580b7cf53b10fd8"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.UserMapperTest.login">
+    <configuration name="UserMapperTest.login" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Belog.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.Belog.mapper.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.Belog.mapper" />
+      <option name="MAIN_CLASS_NAME" value="com.example.Belog.mapper.UserMapperTest" />
+      <option name="METHOD_NAME" value="login" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="BelogApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="Belog.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.Belog.BelogApplication" />
@@ -65,6 +81,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.UserMapperTest.login" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -87,7 +108,7 @@
       <workItem from="1686280259122" duration="182000" />
       <workItem from="1686288784711" duration="2428000" />
       <workItem from="1686365468152" duration="1215000" />
-      <workItem from="1686572539815" duration="26000" />
+      <workItem from="1686572539815" duration="1458000" />
     </task>
     <servers />
   </component>
