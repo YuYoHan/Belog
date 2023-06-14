@@ -28,7 +28,7 @@ import java.util.Map;
 @RestController
 @Log4j2
 @RequiredArgsConstructor
-@RequestMapping("/v1/user")
+@RequestMapping("/api/v1/user")
 public class UserController {
 
     private final UserService userService;

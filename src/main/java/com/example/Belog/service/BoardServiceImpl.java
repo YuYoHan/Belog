@@ -18,31 +18,6 @@ import java.util.List;
 @Slf4j
 public class  BoardServiceImpl implements BoardService{
     private final BoardMapper boardMapper;
-//    @Value("${file.dir}")
-//    private String fileDir;
-
-//    @Override
-//    public void writeBoard(BoardDTO boardDTO) throws IOException{
-//        List<File> imageFiles = new ArrayList<>();
-//
-//        for (MultipartFile image : boardDTO.getBoardImages()) {
-//            String fileName = image.getOriginalFilename();
-//            String filePath = fileDir + fileName;
-//            File dest = new File(filePath);
-//            image.transferTo(dest);
-//            imageFiles.add(dest);
-//        }
-//
-//        boardMapper.writeBoard(boardDTO);
-//
-//        Long lastBoardNum = boardMapper.getLastBoardNum();
-//
-//        boardMapper.insertBoardImage(lastBoardNum, imageFiles);
-//
-//        for (File file : imageFiles) {
-//            file.delete();
-//        }
-//    }
 
     @Override
     public void writeBoard(BoardDTO boardDTO) throws IOException{
